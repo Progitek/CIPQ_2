@@ -1,0 +1,68 @@
+﻿$PBExportHeader$d_r_liste_famille_a_recolter_disponible.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=572 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=88 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(3) updatewhereclause=yes name=cie_no dbname="#Tmp_Recolte.cie_no" )
+ column=(type=char(40) updatewhereclause=yes name=ville dbname="t_CentreCIPQ.ville" )
+ column=(type=datetime updatewhereclause=yes name=dernierdedate dbname="dernierdedate" )
+ column=(type=char(12) updatewhereclause=yes name=codeverrat dbname="#Tmp_Recolte.codeverrat" )
+ column=(type=char(15) updatewhereclause=yes name=famille dbname="t_Verrat_Classe.famille" )
+ column=(type=number updatewhereclause=yes name=dernierdeampo_total dbname="dernierdeampo_total" )
+ retrieve="SELECT 
+#Tmp_Recolte.CIE_NO, 
+t_CentreCIPQ.VILLE, 
+max(#Tmp_Recolte.DATE_recolte) AS DernierDeDATE, 
+#Tmp_Recolte.CodeVerrat, 
+t_Verrat_Classe.Famille, 
+max(#Tmp_Recolte.AMPO_TOTAL) AS DernierDeAMPO_TOTAL 
+FROM (t_Verrat_Classe 
+INNER JOIN (t_CentreCIPQ 
+INNER JOIN (t_Verrat 
+INNER JOIN #Tmp_Recolte 
+ON (t_Verrat.CodeVerrat = #Tmp_Recolte.CodeVerrat) AND (t_Verrat.CIE_NO = #Tmp_Recolte.CIE_NO)) 
+ON t_CentreCIPQ.CIE = #Tmp_Recolte.CIE_NO) 
+ON t_Verrat_Classe.ClasseVerrat = #Tmp_Recolte.Classe) 
+INNER JOIN t_Produit ON t_Verrat_Classe.Famille = t_Produit.Famille 
+WHERE t_Verrat.ELIMIN Is Null AND t_Produit.Special = 1 
+GROUP BY 
+#Tmp_Recolte.CIE_NO, 
+t_CentreCIPQ.VILLE, 
+#Tmp_Recolte.CodeVerrat, 
+t_Verrat_Classe.Famille"  sort="cie_no A famille A " )
+group(level=1 header.height=304 trailer.height=48 by=("cie_no" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=112 by=("famille" ) header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="Liste des familles à récolter disponibles" border="0" color="33554432" x="480" y="12" height="380" width="2034" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2523" y="16" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="108" height="444" width="946" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2519" y1="100" x2="3465" y2="100"  name=l_4 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="Ville:" border="0" color="33554432" x="2619" y="124" height="64" width="576" html.valueishtml="0"  name=ville_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Centre:" border="0" color="33554432" x="37" y="32" height="92" width="343" html.valueishtml="0"  name=cie_no_t visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="389" y="28" height="108" width="293" format="[general]" html.valueishtml="0"  name=cie_no visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="690" y="28" height="108" width="1125" format="[general]" html.valueishtml="0"  name=ville visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="0" y1="288" x2="3470" y2="288"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header.1 x1="0" y1="296" x2="3470" y2="296"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="Famille" border="0" color="33554432" x="233" y="208" height="64" width="576" html.valueishtml="0"  name=famille_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Doses" border="0" color="33554432" x="1669" y="208" height="64" width="640" html.valueishtml="0"  name=dernierdeampo_total_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="631" y="276" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=dernierdedate visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="631" y="412" height="76" width="357" format="[general]" html.valueishtml="0"  name=codeverrat visible="0" edit.limit=12 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Dernierdedate:" border="0" color="33554432" x="37" y="276" height="64" width="576" html.valueishtml="0"  name=dernierdedate_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Codeverrat:" border="0" color="33554432" x="37" y="412" height="64" width="576" html.valueishtml="0"  name=codeverrat_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1701" y="16" height="76" width="640" format="[general]" html.valueishtml="0"  name=dernierdeampo_total visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.2 id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="233" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=famille visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="2" expression="sum(  dernierdeampo_total for group 2)"border="0" color="33554432" x="1669" y="24" height="64" width="640" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="0" y1="8" x2="3470" y2="8"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="4" height="64" width="3465" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

@@ -1,0 +1,25 @@
+﻿$PBExportHeader$swap_d.srf
+global type swap_d from function_object
+end type
+
+forward prototypes
+global function integer swap_d (ref decimal ad_item1, ref decimal ad_item2)
+end prototypes
+
+global function integer swap_d (ref decimal ad_item1, ref decimal ad_item2);// Fonction qui interchange 2 items de type decimal
+// Les 2 items doivent être de même type
+//
+// Retourne un entier
+// 1 - Succès
+// -1 - Échec
+
+decimal ld_tmp
+
+ld_tmp = ad_item1
+ad_item1 = ad_item2
+ad_item2 = ld_tmp
+
+return 1
+
+end function
+

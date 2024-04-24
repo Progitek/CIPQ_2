@@ -1,0 +1,172 @@
+HA$PBExportHeader$d_r_production_sperm_classe_verrat.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=33554431 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=680 color="536870912" )
+summary(height=124 color="536870912" )
+footer(height=72 color="536870912" )
+detail(height=0 color="536870912" height.autosize=yes )
+table(column=(type=char(3) update=yes updatewhereclause=yes name=cie_no dbname="t_Recolte.cie_no" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=coderace dbname="T_Verrat.coderace" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=vrairace dbname="T_Verrat.vrairace" )
+ column=(type=char(12) update=yes updatewhereclause=yes name=codeverrat dbname="T_Verrat.codeverrat" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=sous_groupe dbname="T_Verrat.sous_groupe" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=classe dbname="t_Recolte.classe" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=codehebergeur dbname="t_codehebergeur.codehebergeur" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_recolte dbname="t_Recolte.date_recolte" )
+ column=(type=number update=yes updatewhereclause=yes name=collectis dbname="t_Recolte.collectis" )
+ column=(type=number update=yes updatewhereclause=yes name=volume dbname="t_Recolte.volume" )
+ column=(type=number update=yes updatewhereclause=yes name=concentration dbname="t_Recolte.concentration" )
+ column=(type=number update=yes updatewhereclause=yes name=nbspz dbname="nbspz" )
+ column=(type=long update=yes updatewhereclause=yes name=motilite_p dbname="t_Recolte.motilite_p" )
+ column=(type=number update=yes updatewhereclause=yes name=ampo_total dbname="t_Recolte.ampo_total" )
+ column=(type=long update=yes updatewhereclause=yes name=nbr_sperm dbname="t_Recolte.nbr_sperm" )
+ column=(type=long update=yes updatewhereclause=yes name=prepose dbname="t_Recolte.prepose" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type_sem dbname="t_Recolte.type_sem" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=tatouage dbname="T_Verrat.tatouage" )
+ column=(type=datetime update=yes updatewhereclause=yes name=entproduct dbname="T_Verrat.entproduct" )
+ column=(type=datetime update=yes updatewhereclause=yes name=elimin dbname="T_Verrat.elimin" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=famille dbname="T_Verrat_classe.famille" )
+ retrieve="SELECT DISTINCT
+Temp_t_Recolte.CIE_NO, 
+T_Verrat.CodeRACE, 
+T_Verrat.VRAIRACE,
+T_Verrat.CodeVerrat,
+T_Verrat.Sous_Groupe, 
+Temp_t_Recolte.Classe, 
+Left(T_Verrat.CodeVerrat,1) AS CodeHebergeur, 
+Temp_t_Recolte.date_recolte, 
+Temp_t_Recolte.Collectis, 
+Temp_t_Recolte.VOLUME, 
+Temp_t_Recolte.Concentration, 
+Temp_t_Recolte.VOLUME*Temp_t_Recolte.Concentration/1000 AS NbSpz, 
+Temp_t_Recolte.MOTILITE_P, 
+Temp_t_Recolte.AMPO_TOTAL, 
+Temp_t_Recolte.Nbr_Sperm, 
+Temp_t_Recolte.PREPOSE, 
+Temp_t_Recolte.TYPE_SEM, 
+T_Verrat.TATOUAGE, 
+T_Verrat.ENTPRODUCT, 
+T_Verrat.ELIMIN,
+T_Verrat_classe.famille
+FROM 
+(T_Verrat left outer join t_verrat_classe on t_verrat.classe = t_verrat_classe.classeverrat) INNER JOIN (SELECT
+t_Recolte.cie_no,
+t_Recolte.classe,
+t_Recolte.date_recolte,
+t_Recolte.collectis,
+t_Recolte.Volume,
+t_Recolte.Concentration,
+t_Recolte.PREPOSE,
+t_Recolte.motilite_p,
+t_Recolte.nbr_sperm,
+t_Recolte.type_sem,
+t_Recolte.ampo_total,
+t_Recolte.codeverrat
+FROM
+t_Recolte
+WHERE
+t_Recolte.date_recolte >= :RA_DATEDEBUT and t_Recolte.date_recolte <= :RA_DATEFIN) as Temp_t_Recolte ON T_Verrat.CodeVerrat = Temp_t_Recolte.CodeVerrat
+GROUP BY 
+Temp_t_Recolte.CIE_NO, 
+T_Verrat.CodeRACE, 
+T_Verrat.VRAIRACE,
+T_Verrat.CodeVerrat, 
+T_Verrat.Sous_Groupe, 
+Temp_t_Recolte.Classe, 
+CodeHebergeur, 
+Temp_t_Recolte.date_recolte, 
+Temp_t_Recolte.Collectis, 
+Temp_t_Recolte.VOLUME, 
+Temp_t_Recolte.Concentration, 
+NbSpz, 
+Temp_t_Recolte.MOTILITE_P, 
+Temp_t_Recolte.AMPO_TOTAL, 
+Temp_t_Recolte.Nbr_Sperm, 
+Temp_t_Recolte.PREPOSE, 
+Temp_t_Recolte.TYPE_SEM, 
+T_Verrat.TATOUAGE, 
+T_Verrat.ENTPRODUCT, 
+T_Verrat.ELIMIN,
+T_Verrat_classe.famille;" arguments=(("RA_DATEDEBUT", date),("RA_DATEFIN", date))  sort="coderace A classe A sous_groupe A entproduct A codeverrat A cie_no A date_recolte A " )
+group(level=1 header.height=72 trailer.height=0 by=("coderace" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=76 trailer.height=84 by=("classe" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=168 trailer.height.autosize=yes by=("codeverrat" ) header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="27" y="16" height="540" width="448" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="" border="0" color="33554432" x="485" y="448" height="64" width="2034" html.valueishtml="0"  name=t_criteres  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Verrat" border="0" color="33554432" x="133" y="1140" height="64" width="357" html.valueishtml="0"  name=codeverrat_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sous Groupe Verrat" border="0" color="33554432" x="46" y="1140" height="64" width="517" html.valueishtml="0"  name=sous_groupe_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Classe Verrat" border="0" color="33554432" x="133" y="1140" height="64" width="576" html.valueishtml="0"  name=classe_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Code h$$HEX1$$e900$$ENDHEX$$bergeur" border="0" color="33554432" x="123" y="1140" height="64" width="421" html.valueishtml="0"  name=codehebergeur_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date Recolte" border="0" color="33554432" x="133" y="1140" height="64" width="603" html.valueishtml="0"  name=date_recolte_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Collectis" border="0" color="33554432" x="133" y="1140" height="64" width="329" html.valueishtml="0"  name=collectis_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Volume" border="0" color="33554432" x="133" y="1140" height="64" width="329" html.valueishtml="0"  name=volume_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Concentration" border="0" color="33554432" x="133" y="1140" height="64" width="361" html.valueishtml="0"  name=concentration_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nbspz" border="0" color="33554432" x="133" y="1140" height="64" width="329" html.valueishtml="0"  name=nbspz_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Motilite P" border="0" color="33554432" x="133" y="1140" height="64" width="329" html.valueishtml="0"  name=motilite_p_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ampo Total" border="0" color="33554432" x="133" y="1140" height="64" width="329" html.valueishtml="0"  name=ampo_total_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nbr Sperm" border="0" color="33554432" x="133" y="1140" height="64" width="329" html.valueishtml="0"  name=nbr_sperm_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prepose" border="0" color="33554432" x="133" y="1140" height="64" width="329" html.valueishtml="0"  name=prepose_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tatouage" border="0" color="33554432" x="133" y="1140" height="64" width="576" html.valueishtml="0"  name=tatouage_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Entproduct" border="0" color="33554432" x="133" y="1140" height="64" width="603" html.valueishtml="0"  name=entproduct_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="$$HEX1$$c900$$ENDHEX$$liminer" border="0" color="33554432" x="133" y="1140" height="64" width="603" html.valueishtml="0"  name=elimin_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Centre" border="0" color="33554432" x="78" y="1144" height="64" width="174" html.valueishtml="0"  name=cie_no_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Groupe (Verrat)" border="0" color="33554432" x="0" y="1144" height="64" width="416" html.valueishtml="0"  name=coderace_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type Sem" border="0" color="33554432" x="82" y="1144" height="64" width="265" html.valueishtml="0"  name=type_sem_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Race" border="0" color="33554432" x="782" y="1124" height="64" width="128" html.valueishtml="0"  name=vrairace_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Famille" border="0" color="33554432" x="997" y="1128" height="64" width="187" html.valueishtml="0"  name=famille_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2528" y="16" height="76" width="882" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="" border="0" color="33554432" x="2528" y="96" height="448" width="882" html.valueishtml="0"  name=filtre_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2528" y1="100" x2="3406" y2="100"  name=l_6 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Production spermatique par classe de verrats" border="0" color="33554432" x="485" y="16" height="308" width="2034" html.valueishtml="0"  name=t_4  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="2" expression="~"Pour la p$$HEX1$$e900$$ENDHEX$$riode du ~" +  RA_DATEDEBUT + ~" au ~" +  RA_DATEFIN "border="0" color="33554432" x="485" y="348" height="64" width="2034" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.1 alignment="0" expression="~"Race: ~" + coderace "border="0" color="33554432" x="18" y="4" height="64" width="658" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.2 alignment="0" expression="~"Classe de verrats: ~" +  classe "border="0" color="33554432" x="18" y="4" height="64" width="1010" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="0" color="33554432" x="658" y="0" height="76" width="357" format="[general]" html.valueishtml="0"  name=codeverrat visible="0" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=180 border="0" color="33554432" x="69" y="92" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=entproduct visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=190 border="0" color="33554432" x="59" y="92" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=elimin visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="0" color="33554432" x="238" y="108" height="76" width="306" format="[general]" html.valueishtml="0"  name=sous_groupe visible="0" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="0" color="33554432" x="123" y="96" height="76" width="576" format="[general]" html.valueishtml="0"  name=classe visible="0" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="0" color="33554432" x="160" y="96" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=date_recolte visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=80 border="0" color="33554432" x="151" y="96" height="76" width="329" format="[general]" html.valueishtml="0"  name=collectis visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=90 border="0" color="33554432" x="96" y="92" height="76" width="329" format="[general]" html.valueishtml="0"  name=volume visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=100 border="0" color="33554432" x="151" y="104" height="76" width="329" format="[general]" html.valueishtml="0"  name=concentration visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=110 border="0" color="33554432" x="311" y="116" height="76" width="329" format="[general]" html.valueishtml="0"  name=nbspz visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=120 border="0" color="33554432" x="96" y="104" height="76" width="329" format="[general]" html.valueishtml="0"  name=motilite_p visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=130 border="0" color="33554432" x="5" y="104" height="76" width="329" format="[general]" html.valueishtml="0"  name=ampo_total visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=140 border="0" color="33554432" x="5" y="104" height="76" width="329" format="[general]" html.valueishtml="0"  name=nbr_sperm visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=150 border="0" color="33554432" x="5" y="104" height="76" width="329" format="[general]" html.valueishtml="0"  name=prepose visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=170 border="0" color="33554432" x="5" y="104" height="76" width="576" format="[general]" html.valueishtml="0"  name=tatouage visible="0" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="5" y="4" height="76" width="110" format="[general]" html.valueishtml="0"  name=cie_no visible="0" edit.limit=3 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="5" y="108" height="76" width="137" format="[general]" html.valueishtml="0"  name=coderace visible="0" edit.limit=4 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=160 border="0" color="33554432" x="5" y="4" height="76" width="55" format="[general]" html.valueishtml="0"  name=type_sem visible="0" edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="0" color="33554432" x="14" y="92" height="76" width="55" format="[general]" html.valueishtml="0"  name=codehebergeur visible="0" edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (codeverrat <> codeverrat[-1]) or getrow() = 1, 1, 0)"border="0" color="33554432" x="1179" y="12" height="64" width="215" format="[GENERAL]" html.valueishtml="0"  name=cc_osetie visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=200 border="0" color="33554432" x="1829" y="76" height="64" width="110" format="[general]" html.valueishtml="0"  name=vrairace  tag="exclure_mr" visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=210 border="0" color="33554432" x="2126" y="68" height="64" width="407" format="[general]" html.valueishtml="0"  name=famille  tag="exclure_mr" visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="0" expression="~"Code verrat: ~" +  codeverrat  + ~" (~" +  tatouage  + ~")~""border="0" color="33554432" x="27" y="12" height="76" width="1403" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.3 alignment="0" expression="if( isNull( entproduct ), ~"~", ~"D$$HEX1$$e900$$ENDHEX$$but de production ~" +  string(entproduct, 'yyyy-mm-dd') + ~" ~" + if( isNull( elimin ),~"~", ~" Elimin$$HEX2$$e9002000$$ENDHEX$$le ~" +  string(elimin, 'yyyy-mm-dd')  ) )"border="0" color="33554432" x="27" y="92" height="64" width="1710" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.3 alignment="2" expression="sum(  ampo_total  for group 3 )"border="0" color="33554432" x="1797" y="92" height="64" width="155" format="[GENERAL]" html.valueishtml="0"  name=compute_sommeampototal visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.3 alignment="2" expression="count(  ampo_total  for group 3 )"border="0" color="33554432" x="2011" y="92" height="64" width="434" format="[GENERAL]" html.valueishtml="0"  name=compute_compteampototal visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.3 alignment="2" expression="round(   compute_sommeampototal  /  compute_compteampototal  , 0 )"border="0" color="33554432" x="2496" y="96" height="64" width="233" format="[GENERAL]" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=trailer.3 x1="27" y1="0" x2="3401" y2="0"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+compute(band=trailer.2 alignment="0" expression=" ~"Nombre de verrats: ~" + sum( cc_osetie for group 2)"border="0" color="33554432" x="270" y="12" height="64" width="1006" format="[General]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=summary alignment="0" text="Total:" border="0" color="33554432" x="1559" y="32" height="64" width="169" html.valueishtml="0"  name=t_5  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  ampo_total  for all )"border="0" color="33554432" x="1765" y="32" height="64" width="224" format="[GENERAL]" html.valueishtml="0"  name=compute_totaldose visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="2" expression=" count(  codeverrat  for all ) "border="0" color="33554432" x="2011" y="32" height="64" width="434" format="[GENERAL]" html.valueishtml="0"  name=compute_totalprelevement visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="2" expression="round(  compute_totaldose / compute_totalprelevement , 2 )"border="0" color="33554432" x="2496" y="32" height="64" width="233" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="4" height="64" width="3397" html.valueishtml="0"  name=t_13  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Moyenne" border="0" color="33554432" x="2464" y="588" height="64" width="297" html.valueishtml="0"  name=t_3  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Doses" border="0" color="33554432" x="1783" y="588" height="64" width="192" html.valueishtml="0"  name=t_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nombre de pr$$HEX1$$e900$$ENDHEX$$l$$HEX1$$e800$$ENDHEX$$vements" border="0" color="33554432" x="2011" y="520" height="132" width="434" html.valueishtml="0"  name=t_2  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="27" y1="668" x2="3401" y2="668"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="23" y1="676" x2="3397" y2="676"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

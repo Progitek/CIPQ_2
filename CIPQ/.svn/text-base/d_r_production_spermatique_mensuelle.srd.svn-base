@@ -1,0 +1,65 @@
+HA$PBExportHeader$d_r_production_spermatique_mensuelle.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=552 color="536870912" )
+summary(height=148 color="536870912" )
+footer(height=100 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=t_recolte_date_recolte dbname="t_recolte.date_recolte" )
+ column=(type=char(3) updatewhereclause=yes name=t_recolte_cie_no dbname="t_recolte.cie_no" )
+ column=(type=long updatewhereclause=yes name=nbrprelevement dbname="nbrprelevement" )
+ column=(type=number updatewhereclause=yes name=doses dbname="doses" )
+ column=(type=char(40) updatewhereclause=yes name=t_centrecipq_ville dbname="t_centrecipq.ville" )
+ retrieve="SELECT 
+t_Recolte.DATE_recolte, 
+t_Recolte.CIE_NO, 
+Count(t_Recolte.CodeVerrat) AS NbrPrelevement, 
+Sum(t_Recolte.AMPO_TOTAL) AS Doses,
+t_CentreCIPQ.ville
+FROM t_Recolte INNER JOIN t_CentreCIPQ ON t_Recolte.CIE_NO = t_CentreCIPQ.Cie
+WHERE month(t_Recolte.DATE_recolte) = month(:ad_cur) AND year(t_Recolte.DATE_recolte) = year(:ad_cur)
+GROUP BY 
+t_Recolte.DATE_recolte, 
+t_Recolte.CIE_NO, 
+t_CentreCIPQ.ville" arguments=(("ad_cur", date))  sort="t_recolte_cie_no A t_recolte_date_recolte A " )
+group(level=1 header.height=284 trailer.height=124 by=("t_recolte_cie_no" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1  tag="exclure_mr" visible="1" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2523" y="4" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Production spermatique mensuelle" border="0" color="33554432" x="471" y="0" height="324" width="2048" html.valueishtml="0"  name=t_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2519" y1="92" x2="3465" y2="92"  name=l_6 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="100" height="444" width="946" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header.1 x1="5" y1="268" x2="3479" y2="268"  name=l_1  tag="exclure_mr" visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header.1 x1="0" y1="276" x2="3474" y2="276"  name=l_2  tag="exclure_mr" visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="Centre:" border="0" color="33554432" x="18" y="16" height="92" width="320" html.valueishtml="0"  name=t_2  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="No centre" border="0" color="33554432" x="2985" y="16" height="64" width="439" html.valueishtml="0"  name=t_recolte_cie_no_t  tag="" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Nom centre" border="0" color="33554432" x="2546" y="20" height="64" width="439" html.valueishtml="0"  name=t_centrecipq_ville_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Nbr pr$$HEX1$$e900$$ENDHEX$$levements" border="0" color="33554432" x="1362" y="176" height="64" width="526" html.valueishtml="0"  name=nbrprelevement_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Doses" border="0" color="33554432" x="2103" y="176" height="64" width="439" html.valueishtml="0"  name=doses_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Date" border="0" color="33554432" x="832" y="184" height="64" width="439" html.valueishtml="0"  name=t_recolte_date_recolte_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="357" y="20" height="96" width="219" format="[general]" html.valueishtml="0"  name=t_recolte_cie_no  tag="" visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="631" y="20" height="96" width="1842" format="[general]" html.valueishtml="0"  name=t_centrecipq_ville  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="832" y="4" height="76" width="439" format="[shortdate] [time]" html.valueishtml="0"  name=t_recolte_date_recolte  tag="exclure_mr" visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1362" y="4" height="76" width="526" format="[general]" html.valueishtml="0"  name=nbrprelevement  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="2103" y="4" height="76" width="439" format="[general]" html.valueishtml="0"  name=doses  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="1367" y1="12" x2="2546" y2="12"  name=l_3  tag="exclure_mr" visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+text(band=trailer.1 alignment="2" text="Total pour le centre:" border="0" color="33554432" x="663" y="32" height="64" width="608" html.valueishtml="0"  name=t_4  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( nbrprelevement for group 1)"border="0" color="33554432" x="1362" y="32" height="68" width="526" format="[GENERAL]" html.valueishtml="0"  name=compute_2  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( doses for group 1)"border="0" color="33554432" x="2103" y="32" height="68" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_3  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="1367" y1="28" x2="2546" y2="28"  name=l_4  tag="exclure_mr" visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=summary x1="1367" y1="36" x2="2546" y2="36"  name=l_5  tag="exclure_mr" visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="2" expression="sum( doses for all)"border="0" color="33554432" x="2103" y="52" height="68" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_5  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum( nbrprelevement for all)"border="0" color="33554432" x="1362" y="52" height="68" width="526" format="[GENERAL]" html.valueishtml="0"  name=compute_4  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="1" text="Grand total:" border="0" color="33554432" x="663" y="52" height="64" width="608" html.valueishtml="0"  name=t_5  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="8" height="64" width="3465" html.valueishtml="0"  name=t_3  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="2" expression="~"Pour la date du ~" +  ad_cur "border="0" color="33554432" x="489" y="388" height="76" width="2025" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

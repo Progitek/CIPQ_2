@@ -1,0 +1,37 @@
+div.DerniereFonction
+{
+ position:absolute;
+ left:10; 
+ top:170;
+ FONT-FAMILY: 'Tahoma';
+ FONT-SIZE: 12pt;
+ FONT-WEIGHT: bold;
+ BACKGROUND-COLOR:#FFFCF0;
+ border-style: solid;
+ border-top-width: 15px;
+ border-color: #99FF99;
+ width:230;
+ height:450;
+}
+
+div.main
+{
+ position:absolute;
+ left:260; 
+ top:100;
+ FONT-FAMILY: 'Tahoma';
+ FONT-SIZE: 12pt;
+ FONT-WEIGHT: bold;
+ BACKGROUND-COLOR:#FFFCF0;
+ border-style: solid;
+ border-top-width: 15px;
+ border-color: #99FF99;
+ width:717;
+ height:520;
+}
+
+
+li
+{
+ list-style-image: url("bullet.jpg"); 
+}

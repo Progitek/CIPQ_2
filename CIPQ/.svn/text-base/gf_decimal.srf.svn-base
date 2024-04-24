@@ -1,0 +1,39 @@
+HA$PBExportHeader$gf_decimal.srf
+global type gf_decimal from function_object
+end type
+
+forward prototypes
+global function decimal gf_decimal (string as_binary)
+end prototypes
+
+global function decimal gf_decimal (string as_binary);integer 	li_cnt
+long		ll_len
+char		lch_char[]
+dec{0}	ld_decimal = 0
+
+//Check parameters
+If IsNull(as_binary) or Len(as_binary) <= 0 then
+	long ll_null
+	SetNull(ll_null)	
+	Return ll_null
+End If
+
+//Get the length
+ll_len = Len(as_binary)
+
+//Move string into arrach of characters
+lch_char = as_binary
+
+For li_cnt = 1 to ll_len
+	//Make sure only 0's and 1's are present
+	If (Not lch_char[li_cnt] = '1') AND (Not lch_char[li_cnt] = '0' ) Then
+		Return -1
+	End If
+	//Build the decimal equivalent
+	ld_decimal += long(lch_char[li_cnt]) * (2 ^ (ll_len - li_cnt))
+Next
+
+Return ld_decimal
+
+end function
+

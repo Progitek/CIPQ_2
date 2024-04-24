@@ -1,0 +1,23 @@
+﻿$PBExportHeader$remplir.srf
+global type remplir from function_object
+end type
+
+forward prototypes
+global function string remplir (string as_chaine, readonly integer ai_longueur, readonly character ac_car, readonly boolean ab_gauche)
+end prototypes
+
+global function string remplir (string as_chaine, readonly integer ai_longueur, readonly character ac_car, readonly boolean ab_gauche);if isNull(as_chaine) or isNull(ai_longueur) or isNull(ac_car) or isNull(ab_gauche) then
+	setNull(as_chaine)
+	return as_chaine
+end if
+
+if len(ac_car) < 1 then return as_chaine
+
+do while len(as_chaine) < ai_longueur
+	if ab_gauche then as_chaine = string(ac_car) + as_chaine else as_chaine += string(ac_car)
+loop
+
+return as_chaine
+
+end function
+

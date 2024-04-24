@@ -1,0 +1,174 @@
+HA$PBExportHeader$ds_exportation_eleveur.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=3180 color="536870912" )
+table(column=(type=char(32766) updatewhereclause=no name=customer_number dbname="customer_number" )
+ column=(type=char(32767) updatewhereclause=yes name=customer_name dbname="customer_name" )
+ column=(type=char(32767) updatewhereclause=yes name=address_line_1 dbname="address_line_1" )
+ column=(type=char(32767) updatewhereclause=yes name=address_line_2 dbname="address_line_2" )
+ column=(type=char(32767) updatewhereclause=yes name=address_line_3 dbname="address_line_3" )
+ column=(type=char(30) updatewhereclause=yes name=address_line_4 dbname="address_line_4" )
+ column=(type=char(32767) updatewhereclause=yes name=postal_code dbname="postal_code" )
+ column=(type=char(32767) updatewhereclause=yes name=phone_number dbname="phone_number" )
+ column=(type=char(32766) updatewhereclause=no name=contact dbname="contact" )
+ column=(type=char(32766) updatewhereclause=no name=salesperson_code dbname="salesperson_code" )
+ column=(type=char(255) updatewhereclause=yes name=limite_credit dbname="limite_credit" )
+ column=(type=char(3) updatewhereclause=yes name=interest_option dbname="interest_option" )
+ column=(type=char(32766) updatewhereclause=no name=report_group dbname="report_group" )
+ column=(type=char(8) updatewhereclause=yes name=terme_code dbname="terme_code" )
+ column=(type=char(8) updatewhereclause=yes name=account_set_code dbname="account_set_code" )
+ column=(type=char(32766) updatewhereclause=no name=transport_code dbname="transport_code" )
+ column=(type=char(32767) updatewhereclause=yes name=billing_cycle dbname="billing_cycle" )
+ column=(type=long updatewhereclause=yes name=no_eleveur dbname="t_eleveur_group.no_eleveur" dbalias=".no_eleveur" )
+ column=(type=char(6) updatewhereclause=yes name=billing_cycle_code dbname="t_eleveur_group.billing_cycle_code" dbalias=".billing_cycle_code" )
+ column=(type=char(50) updatewhereclause=yes name=description dbname="t_eleveur_group.description" dbalias=".description" )
+ column=(type=long updatewhereclause=yes name=typepayeur dbname="t_eleveur_group.typepayeur" dbalias=".typepayeur" )
+ column=(type=char(50) updatewhereclause=yes name=nomgroupsecondaire dbname="t_eleveur_group.nomgroupsecondaire" dbalias=".nomgroupsecondaire" )
+ column=(type=number updatewhereclause=yes name=nonpayeur dbname="t_eleveur_group.nonpayeur" dbalias=".nonpayeur" )
+ retrieve="SELECT 
+'~"' + cast(t_ELEVEUR.No_Eleveur as varchar(255) ) + Space(6-(Length(t_ELEVEUR.No_Eleveur))) + '~"' AS Customer_number ,
+
+PADR(if AF_ADRESSE is null then
+	IsNull(NOM,'')
+else
+	IsNull(AF_NOM, '')
+endif , 30, ' ') AS Customer_name,
+
+PADR(if AF_ADRESSE is null then
+	if RUE is null OR ADRESSE is null then
+		''
+	else
+		ADRESSE + ' ' + RUE
+	endif
+else
+	if AF_RUE is null OR AF_ADRESSE is null then
+		''
+	else
+		AF_ADRESSE + ' ' + AF_RUE
+	endif
+endif , 30, ' ') AS Address_line_1,
+
+PADR(if AF_ADRESSE is null then
+	IsNull(VILLE,'')
+else
+	IsNull(AF_VILLE, '')
+endif , 30, ' ') AS Address_line_2,
+
+PADR(if AF_ADRESSE is null then
+	IsNull(CONTE,'')
+else
+	IsNull(AF_CONTE,'')
+endif , 30 , ' ') AS Address_line_3,
+
+
+SPACE(30) AS Address_line_4, 
+
+PADR(if AF_NOM is null then
+	IsNull(CODE_POST,'')
+else
+	IsNull(AF_COD_POS,'')
+endif , 7 , ' ') AS Postal_code,
+
+PADR(if AF_NOM is null then
+	IsNull(TELEPHONE,'')
+else
+	IsNull(AF_TELEPHO,'')
+endif , 20 , ' ') AS Phone_number,
+
+if t_ELEVEUR.per_res is null then
+	'~"' + space(18) + '~"'
+else
+	'~"' + Right(t_ELEVEUR.per_res,18) + Space(18 - Length(Right(t_ELEVEUR.per_res,18))) + '~"'
+endif AS Contact,
+
+if t_ELEVEUR.NO_VEND is null then
+	'~"' + space(6) + '~"'
+else
+	'~"' + Right(cast(t_ELEVEUR.NO_VEND as varchar(255)),6) + Space(6 - Length(Right(cast(t_ELEVEUR.NO_VEND as varchar(255)),6))) + '~"'
+endif AS Salesperson_code,
+
+
+cast('50000.00' as varchar(255)) AS LIMITE_CREDIT, 
+
+'~"1~"' AS Interest_option, 
+
+if t_ELEVEUR.GENR_ELEV is null then
+	'~"' + Space(6) + '~"'
+else
+	'~"' + Right(t_ELEVEUR.GENR_ELEV,6) + Space(6 - Length(Right(t_ELEVEUR.GENR_ELEV,6))) + '~"'
+endif  AS Report_group,
+
+'~"30J' + Space(3) + '~"' AS Terme_code, 
+
+'~"COUR' + Space(2) + '~"' AS Account_set_code, 
+
+if t_ELEVEUR.CodeTransport is null then
+	'~"' + Space(20) + '~"'
+else
+	'~"' + Right(t_ELEVEUR.CodeTransport,20) + Space(20 - Length(Right(t_ELEVEUR.CodeTransport,20))) + '~"'
+endif  AS Transport_code,
+
+PADR(IsNull(Billing_cycle_code, 'MOIS'),6, ' ') AS Billing_cycle,
+
+t_Eleveur.No_Eleveur, Billing_cycle_code, Description, TypePayeur, NomGroupSecondaire, NonPayeur
+
+FROM t_ELEVEUR_Group 
+RIGHT JOIN (t_ELEVEUR_GroupSecondaire 
+RIGHT JOIN t_ELEVEUR ON t_ELEVEUR_GroupSecondaire.IDGroupSecondaire = t_ELEVEUR.GroupeSecondaire) ON t_ELEVEUR_Group.IDGroup = t_ELEVEUR.Groupe
+WHERE t_ELEVEUR.chkActivite = 1
+ORDER BY t_ELEVEUR.No_Eleveur" )
+text(band=detail alignment="1" text="Customer Number:" border="0" color="33554432" x="37" y="4" height="64" width="498" html.valueishtml="0"  name=customer_number_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="4" height="76" width="5486" format="[general]" html.valueishtml="0"  name=customer_number visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Customer Name:" border="0" color="33554432" x="37" y="140" height="64" width="498" html.valueishtml="0"  name=customer_name_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="140" height="76" width="5486" format="[general]" html.valueishtml="0"  name=customer_name visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Address Line 1:" border="0" color="33554432" x="37" y="276" height="64" width="498" html.valueishtml="0"  name=address_line_1_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="276" height="76" width="5486" format="[general]" html.valueishtml="0"  name=address_line_1 visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Address Line 2:" border="0" color="33554432" x="37" y="412" height="64" width="498" html.valueishtml="0"  name=address_line_2_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="412" height="76" width="5486" format="[general]" html.valueishtml="0"  name=address_line_2 visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Address Line 3:" border="0" color="33554432" x="37" y="548" height="64" width="498" html.valueishtml="0"  name=address_line_3_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="548" height="76" width="5486" format="[general]" html.valueishtml="0"  name=address_line_3 visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Address Line 4:" border="0" color="33554432" x="37" y="684" height="64" width="498" html.valueishtml="0"  name=address_line_4_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="684" height="76" width="850" format="[general]" html.valueishtml="0"  name=address_line_4 visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Postal Code:" border="0" color="33554432" x="37" y="820" height="64" width="498" html.valueishtml="0"  name=postal_code_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="820" height="76" width="5486" format="[general]" html.valueishtml="0"  name=postal_code visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Phone Number:" border="0" color="33554432" x="37" y="956" height="64" width="498" html.valueishtml="0"  name=phone_number_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="956" height="76" width="5486" format="[general]" html.valueishtml="0"  name=phone_number visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Contact:" border="0" color="33554432" x="37" y="1092" height="64" width="498" html.valueishtml="0"  name=contact_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="1092" height="76" width="5486" format="[general]" html.valueishtml="0"  name=contact visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Salesperson Code:" border="0" color="33554432" x="37" y="1228" height="64" width="498" html.valueishtml="0"  name=salesperson_code_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="1228" height="76" width="5486" format="[general]" html.valueishtml="0"  name=salesperson_code visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Limite Credit:" border="0" color="33554432" x="37" y="1364" height="64" width="498" html.valueishtml="0"  name=limite_credit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="1364" height="76" width="5486" format="[general]" html.valueishtml="0"  name=limite_credit visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Interest Option:" border="0" color="33554432" x="37" y="1500" height="64" width="498" html.valueishtml="0"  name=interest_option_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="1500" height="76" width="110" format="[general]" html.valueishtml="0"  name=interest_option visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Report Group:" border="0" color="33554432" x="37" y="1636" height="64" width="498" html.valueishtml="0"  name=report_group_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="1636" height="76" width="5486" format="[general]" html.valueishtml="0"  name=report_group visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Terme Code:" border="0" color="33554432" x="37" y="1772" height="64" width="498" html.valueishtml="0"  name=terme_code_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="1772" height="76" width="247" format="[general]" html.valueishtml="0"  name=terme_code visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Account Set Code:" border="0" color="33554432" x="37" y="1908" height="64" width="498" html.valueishtml="0"  name=account_set_code_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="1908" height="76" width="247" format="[general]" html.valueishtml="0"  name=account_set_code visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Transport Code:" border="0" color="33554432" x="37" y="2044" height="64" width="498" html.valueishtml="0"  name=transport_code_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="2044" height="76" width="5486" format="[general]" html.valueishtml="0"  name=transport_code visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Billing Cycle:" border="0" color="33554432" x="37" y="2180" height="64" width="498" html.valueishtml="0"  name=billing_cycle_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="2180" height="76" width="5486" format="[general]" html.valueishtml="0"  name=billing_cycle visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="2652" height="64" width="809" format="[general]" html.valueishtml="0"  name=nomgroupsecondaire visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="2560" height="64" width="809" format="[general]" html.valueishtml="0"  name=typepayeur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="2484" height="64" width="809" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="2400" height="64" width="809" format="[general]" html.valueishtml="0"  name=billing_cycle_code visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="2312" height="64" width="809" format="[general]" html.valueishtml="0"  name=no_eleveur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="2728" height="64" width="809" format="[general]" html.valueishtml="0"  name=nonpayeur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="f_getgroupefacturationaccpac( t_Eleveur.No_Eleveur,Billing_cycle_code,t_ELEVEUR_Group.Description,TypePayeur,NomGroupSecondaire,NonPayeur, 1)"border="0" color="33554432" x="567" y="2852" height="60" width="4649" format="[GENERAL]" html.valueishtml="0"  name=cf_getgroupefacturationaccpac visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

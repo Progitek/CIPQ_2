@@ -1,0 +1,13 @@
+﻿$PBExportHeader$f_cntheb.srf
+global type f_cntheb from function_object
+end type
+
+forward prototypes
+global function long f_cntheb (string as_centre, long ab_all, long ab_cumul, string ad_de, string ad_au)
+end prototypes
+
+global function long f_cntheb (string as_centre, long ab_all, long ab_cumul, string ad_de, string ad_au);//f_CntHeb
+
+RETURN gnv_app.of_cntheb( as_centre, (ab_all <> 0), (ab_cumul <> 0), date(ad_de), date(ad_au ))
+end function
+

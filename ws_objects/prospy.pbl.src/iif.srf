@@ -1,0 +1,52 @@
+﻿$PBExportHeader$iif.srf
+global type iif from function_object
+end type
+
+forward prototypes
+global function long iif (boolean ab_value, long al_true, long al_false)
+global function string iif (boolean ab_value, string as_true, string as_false)
+global function decimal iif (boolean ab_value, decimal adc_true, decimal adc_false)
+global function date iif (boolean ab_value, date ad_true, date ad_false)
+global function datetime iif (boolean ab_value, datetime adt_true, datetime adt_false)
+end prototypes
+
+global function long iif (boolean ab_value, long al_true, long al_false);
+//	Cette fonction est "overloaded" donc doit être vue en mode "edit source"
+
+If ab_value	Then Return al_true
+Return al_false
+
+end function
+
+function string iif (boolean ab_value, string as_true, string as_false);
+//	Cette fonction est "overloaded" donc doit être vue en mode "edit source"
+
+If ab_value	Then Return as_true
+
+Return as_false
+end function
+
+global function decimal iif (boolean ab_value, decimal adc_true, decimal adc_false);
+//	Cette fonction est "overloaded" donc doit être vue en mode "edit source"
+
+If ab_value	Then Return adc_true
+
+Return adc_false
+end function
+
+global function date iif (boolean ab_value, date ad_true, date ad_false);
+//	Cette fonction est "overloaded" donc doit être vue en mode "edit source"
+
+If ab_value	Then Return ad_true
+
+Return ad_false
+end function
+
+global function datetime iif (boolean ab_value, datetime adt_true, datetime adt_false);
+//	Cette fonction est "overloaded" donc doit être vue en mode "edit source"
+
+If ab_value	Then Return adt_true
+
+Return adt_false
+end function
+

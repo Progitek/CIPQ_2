@@ -1,0 +1,56 @@
+﻿$PBExportHeader$gf_dec.srf
+global type gf_dec from function_object
+end type
+
+forward prototypes
+global function String gf_dec (decimal ad_dec)
+end prototypes
+
+global function String gf_dec (decimal ad_dec);//////////////////////////////////////////////////////////////////////////////
+//
+// Function:    Dec
+//
+// Access:    public
+//
+// Arguments:
+// ad_dec  Decimal value whose Hexadecimal representation needs to be determined
+//
+// Returns:   string
+//      The Hexadecimal representation of the decimal number.
+//      If any argument's value is NULL, function returns NULL.
+//
+// Description:   Determines the Hexadecimal representation of a Decimal number.
+//
+//////////////////////////////////////////////////////////////////////////////
+// Author: Lijun Yang  Lijun.Yang@worldnet.att.net
+//
+// Date:  4/7/97
+//
+//=============================================================================
+//
+// Revision History
+//
+// Date   Initials  Description of Change
+// ----     --------  --------------------
+// 4/7/97  L.Y.   Initial creation
+//=============================================================================
+
+string ls_hex = ''
+char lch_hex[0 to 15] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', &
+      'A', 'B', 'C', 'D', 'E', 'F'}
+
+SetNull(ls_hex)
+
+If IsNull(ad_dec) Then Return ls_hex
+If match(string(ad_dec), '[.,]') Then Return ls_hex
+
+Do
+	ls_hex = lch_hex[mod (ad_dec, 16)] + ls_hex
+	ad_dec /= 16
+Loop Until ad_dec = 0
+
+Return ls_hex
+
+
+end function
+

@@ -1,0 +1,45 @@
+HA$PBExportHeader$d_r_plan_verraterie_sommaire_sf_vide.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=33554431 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=232 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=reception dbname="reception" )
+ column=(type=long updatewhereclause=yes name=verraterie dbname="verraterie" )
+ retrieve="SELECT 
+(Select Count(TEMPVID.No_Parc)
+FROM #TMP_Emplacement_Vide TEMPVID
+WHERE TEMPVID.Emplacement = 'E' and
+TEMPVID.CIE_NO = :RA_CIENO) as Reception,
+(Select Count(TEMPVID2.No_Parc)
+FROM #TMP_Emplacement_Vide TEMPVID2
+WHERE TEMPVID2.Emplacement <> 'E' and
+TEMPVID2.CIE_NO = :RA_CIENO) as Verraterie
+FROM 
+#TMP_Emplacement_Vide
+GROUP BY
+Reception,
+Verraterie;
+" arguments=(("RA_CIENO", string)) )
+text(band=header alignment="2" text="No Parc" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=no_parc_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cie No" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=cie_no_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Emplacement" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=emplacement_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="160" y="476" height="76" width="329" format="[general]" html.valueishtml="0"  name=reception visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="160" y="476" height="76" width="329" format="[general]" html.valueishtml="0"  name=verraterie visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="R$$HEX1$$e900$$ENDHEX$$ception:" border="0" color="33554432" x="27" y="0" height="64" width="279" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression=" reception "border="0" color="33554432" x="334" y="0" height="64" width="265" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Verraterie:" border="0" color="33554432" x="27" y="80" height="64" width="288" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression=" verraterie "border="0" color="33554432" x="334" y="80" height="60" width="215" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Total:" border="0" color="33554432" x="27" y="160" height="64" width="165" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression=" compute_1  +  compute_2 "border="0" color="33554432" x="334" y="160" height="64" width="215" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

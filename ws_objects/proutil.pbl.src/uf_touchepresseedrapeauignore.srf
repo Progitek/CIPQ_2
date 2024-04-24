@@ -1,0 +1,556 @@
+﻿$PBExportHeader$uf_touchepresseedrapeauignore.srf
+global type uf_touchepresseedrapeauignore from function_object
+end type
+
+forward prototypes
+global function character uf_touchepresseedrapeauignore (keycode key, unsignedlong keyflags)
+end prototypes
+
+global function character uf_touchepresseedrapeauignore (keycode key, unsignedlong keyflags);////////////////////////////////////////////
+//
+// Fonction uf_touchePressee(keyCode key, unsignedLong keyflags)
+// 
+// Description :
+//		Cette fonction prend les mêmes paramètres que les événements du type
+//		'key' et retourne le caractère tapé, s'il y a lieu et NULL autrement
+//
+// Note : Ne fonctionne qu'avec un clavier canadien français !
+//
+// Programmée par : Sébastien Tremblay
+// Date programmée : 2005-07-29
+// Modifiée le : 2005-07-29
+//
+/////////////////////////////////////////////
+
+boolean lb_alt
+
+lb_alt = keyDown(keyAlt!)
+
+Choose Case key
+	Case keyQuote!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '#'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '|'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '\'
+		Else
+			Return ''
+		End If
+	Case key1!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '1'
+		ElseIf keyFlags = 1 And Not lb_alt Then
+			Return '!'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '±'
+		Else
+			Return ''
+		End If
+	Case key2!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '2'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '"'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '@'
+		Else
+			Return ''
+		End If
+	Case key3!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '3'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '/'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '£'
+		Else
+			Return ''
+		End If
+	Case key4!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '4'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '$'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '¢'
+		Else
+			Return ''
+		End If
+	Case key5!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '5'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '%'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '¤'
+		Else
+			Return ''
+		End If
+	Case key6!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '6'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '?'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '¬'
+		Else
+			Return ''
+		End If
+	Case key7!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '7'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '&'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '¦'
+		Else
+			Return ''
+		End If
+	Case key8!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '8'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '*'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '²'
+		Else
+			Return ''
+		End If
+	Case key9!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '9'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '('
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '³'
+		Else
+			Return ''
+		End If
+	Case key0!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '0'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return ')'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '¼'
+		Else
+			Return ''
+		End If
+	Case keyDash!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '-'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '_'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '½'
+		Else
+			Return ''
+		End If
+	Case keyEqual!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '='
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '+'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '¾'
+		Else
+			Return ''
+		End If
+	Case keyQ!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'q'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'Q'
+		Else
+			Return ''
+		End If
+	Case keyW!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'w'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'W'
+		Else
+			Return ''
+		End If
+	Case keyE!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'e'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'E'
+		Else
+			Return ''
+		End If
+	Case keyR!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'r'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'R'
+		Else
+			Return ''
+		End If
+	Case keyT!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 't'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'T'
+		Else
+			Return ''
+		End If
+	Case keyY!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'y'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'Y'
+		Else
+			Return ''
+		End If
+	Case keyU!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'u'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'U'
+		Else
+			Return ''
+		End If
+	Case keyI!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'i'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'I'
+		Else
+			Return ''
+		End If
+	Case keyO!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'o'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'O'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '§'
+		Else
+			Return ''
+		End If
+	Case keyP!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'p'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'P'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '¶'
+		Else
+			Return ''
+		End If
+	Case keyLeftBracket!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '^'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '^'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '['
+		Else
+			Return ''
+		End If
+	Case keyRightBracket!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '¸'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '¨'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return ']'
+		Else
+			Return ''
+		End If
+	Case keyA!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'a'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'A'
+		Else
+			Return ''
+		End If
+	Case keyS!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 's'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'S'
+		Else
+			Return ''
+		End If
+	Case keyD!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'd'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'D'
+		Else
+			Return ''
+		End If
+	Case keyF!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'f'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'F'
+		Else
+			Return ''
+		End If
+	Case keyG!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'g'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'G'
+		Else
+			Return ''
+		End If
+	Case keyH!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'h'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'H'
+		Else
+			Return ''
+		End If
+	Case keyJ!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'j'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'J'
+		Else
+			Return ''
+		End If
+	Case keyK!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'k'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'K'
+		Else
+			Return ''
+		End If
+	Case keyL!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'l'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'L'
+		Else
+			Return ''
+		End If
+	Case keySemiColon!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return ';'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return ':'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '~~'
+		Else
+			Return ''
+		End If
+	Case keyBackQuote!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '`'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '`'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '{'
+		Else
+			Return ''
+		End If
+	Case keyBackSlash!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '<'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '>'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '}'
+		Else
+			Return ''
+		End If
+	Case keyZ!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'z'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'Z'
+		Else
+			Return ''
+		End If
+	Case keyX!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'x'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'X'
+		Else
+			Return ''
+		End If
+	Case keyC!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'c'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'C'
+		Else
+			Return ''
+		End If
+	Case keyV!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'v'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'V'
+		Else
+			Return ''
+		End If
+	Case keyB!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'b'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'B'
+		Else
+			Return ''
+		End If
+	Case keyN!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'n'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'N'
+		Else
+			Return ''
+		End If
+	Case keyM!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'm'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'M'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return 'µ'
+		Else
+			Return ''
+		End If
+	Case keyComma!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return ','
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return "'"
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '¯'
+		Else
+			Return ''
+		End If
+	Case keyPeriod!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '.'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '.'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '­'
+		Else
+			Return ''
+		End If
+	Case keySlash!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return 'é'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return 'É'
+		ElseIf keyFlags = 2 And lb_alt Then
+			Return '´'
+		Else
+			Return ''
+		End If
+	Case keyNumpad7!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '7'
+		Else
+			Return ''
+		End If
+	Case keyNumPad8!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '8'
+		Else
+			Return ''
+		End If
+	Case keyNumPad9!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '9'
+		Else
+			Return ''
+		End If
+	Case keyNumPad4!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '4'
+		Else
+			Return ''
+		End If
+	Case keyNumPad5!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '5'
+		Else
+			Return ''
+		End If
+	Case keyNumPad6!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '6'
+		Else
+			Return ''
+		End If
+	Case keyNumPad1!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '1'
+		Else
+			Return ''
+		End If
+	Case keyNumPad2!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '2'
+		Else
+			Return ''
+		End If
+	Case keyNumPad3!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '3'
+		Else
+			Return ''
+		End If
+	Case keyNumPad0!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '0'
+		Else
+			Return ''
+		End If
+	Case keyDivide!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '/'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '/'
+		Else
+			Return ''
+		End If
+	Case keyMultiply!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '*'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '*'
+		Else
+			Return ''
+		End If
+	Case keySubtract!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '-'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '-'
+		Else
+			Return ''
+		End If
+	Case keyAdd!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '+'
+		ElseIf (keyFlags = 1 Or keyFlags = 3) And Not lb_alt Then
+			Return '+'
+		Else
+			Return ''
+		End If
+	Case keyDecimal!
+		If (keyFlags = 0 Or keyFlags = 2) And Not lb_alt Then
+			Return '.'
+		Else
+			Return ''
+		End If
+	Case Else
+		Return ''
+End Choose
+end function
+

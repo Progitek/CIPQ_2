@@ -1,0 +1,25 @@
+﻿$PBExportHeader$swap_dtt.srf
+global type swap_dtt from function_object
+end type
+
+forward prototypes
+global function integer swap_dtt (ref datetime adtt_item1, ref datetime adtt_item2)
+end prototypes
+
+global function integer swap_dtt (ref datetime adtt_item1, ref datetime adtt_item2);// Fonction qui interchange 2 items de type datetime
+// Les 2 items doivent être de même type
+//
+// Retourne un entier
+// 1 - Succès
+// -1 - Échec
+
+datetime ldtt_tmp
+
+ldtt_tmp = adtt_item1
+adtt_item1 = adtt_item2
+adtt_item2 = ldtt_tmp
+
+return 1
+
+end function
+

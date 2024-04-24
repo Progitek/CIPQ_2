@@ -1,0 +1,897 @@
+HA$PBExportHeader$d_r_ventes_depots.srd
+release 10.5;
+datawindow(units=3 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 1 print.margin.left = 635 print.margin.right = 635 print.margin.top = 635 print.margin.bottom = 635 print.paper.source = 0 print.paper.size = 5 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=3651 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=529 color="536870912" )
+detail(height=1508 color="536870912" height.autosize=yes )
+table(column=(type=long updatewhereclause=yes name=t_depot_spa_id_depot dbname="t_depot_spa.id_depot" dbalias=".id_depot" )
+ column=(type=char(50) updatewhereclause=yes name=t_depot_spa_desc_depot dbname="t_depot_spa.desc_depot" dbalias=".desc_depot" )
+ column=(type=char(50) updatewhereclause=yes name=t_depot_spa_localisation dbname="t_depot_spa.localisation" dbalias=".localisation" )
+ column=(type=char(10) updatewhereclause=yes name=date_demande dbname="date_demande" dbalias="date_demande" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie1 dbname="sommedeqte_planifie1" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp1 dbname="sommedeqte_exp1" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie2 dbname="sommedeqte_planifie2" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp2 dbname="sommedeqte_exp2" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie3 dbname="sommedeqte_planifie3" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp3 dbname="sommedeqte_exp3" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie4 dbname="sommedeqte_planifie4" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp4 dbname="sommedeqte_exp4" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie5 dbname="sommedeqte_planifie5" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp5 dbname="sommedeqte_exp5" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie6 dbname="sommedeqte_planifie6" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp6 dbname="sommedeqte_exp6" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie7 dbname="sommedeqte_planifie7" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp7 dbname="sommedeqte_exp7" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie8 dbname="sommedeqte_planifie8" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp8 dbname="sommedeqte_exp8" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie9 dbname="sommedeqte_planifie9" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp9 dbname="sommedeqte_exp9" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie10 dbname="sommedeqte_planifie10" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp10 dbname="sommedeqte_exp10" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie11 dbname="sommedeqte_planifie11" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp11 dbname="sommedeqte_exp11" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie12 dbname="sommedeqte_planifie12" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp12 dbname="sommedeqte_exp12" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie13 dbname="sommedeqte_planifie13" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp13 dbname="sommedeqte_exp13" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie14 dbname="sommedeqte_planifie14" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp14 dbname="sommedeqte_exp14" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie15 dbname="sommedeqte_planifie15" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp15 dbname="sommedeqte_exp15" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie16 dbname="sommedeqte_planifie16" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp16 dbname="sommedeqte_exp16" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie17 dbname="sommedeqte_planifie17" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp17 dbname="sommedeqte_exp17" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie18 dbname="sommedeqte_planifie18" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp18 dbname="sommedeqte_exp18" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie19 dbname="sommedeqte_planifie19" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp19 dbname="sommedeqte_exp19" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie20 dbname="sommedeqte_planifie20" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp20 dbname="sommedeqte_exp20" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie21 dbname="sommedeqte_planifie21" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp21 dbname="sommedeqte_exp21" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie22 dbname="sommedeqte_planifie22" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp22 dbname="sommedeqte_exp22" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie23 dbname="sommedeqte_planifie23" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp23 dbname="sommedeqte_exp23" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie24 dbname="sommedeqte_planifie24" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp24 dbname="sommedeqte_exp24" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie25 dbname="sommedeqte_planifie25" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp25 dbname="sommedeqte_exp25" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie26 dbname="sommedeqte_planifie26" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp26 dbname="sommedeqte_exp26" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie27 dbname="sommedeqte_planifie27" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp27 dbname="sommedeqte_exp27" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie28 dbname="sommedeqte_planifie28" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp28 dbname="sommedeqte_exp28" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie29 dbname="sommedeqte_planifie29" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp29 dbname="sommedeqte_exp29" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie30 dbname="sommedeqte_planifie30" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp30 dbname="sommedeqte_exp30" )
+ column=(type=long updatewhereclause=yes name=sommedeqte_planifie31 dbname="sommedeqte_planifie31" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp31 dbname="sommedeqte_exp31" )
+ retrieve="SELECT	t_Depot_SPA.Id_Depot,
+	t_Depot_SPA.Desc_Depot,
+	t_Depot_SPA.Localisation,
+	:ad_cur as date_demande,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 1 
+	AND d1.id_depot = t_Depot_SPA.id_depot 
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie1 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 1 AND d1.id_depot = t_Depot_SPA.id_depot ) AS SommeDeQTE_EXP1 ,
+	
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 2
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie2 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail d1 
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 2 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP2,
+	
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 3
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie3 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 3 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP3,
+	
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 4
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie4 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 4 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP4,
+	
+	
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 5
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie5 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 5 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP5,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 6
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie6 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 6 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP6,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 7
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie7 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 7 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP7,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 8
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie8 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 8 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP8,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 9
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie9 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 9 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP9,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 10
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie10 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 10 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP10,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 11
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie11 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 11 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP11,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 12
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie12 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 12 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP12,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 13
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie13 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 13 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP13,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 14
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie14 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 14 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP14,
+	
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 15
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie15 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 15 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP15,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 16
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie16 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 16 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP16,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 17
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie17 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 17 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP17,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 18
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie18 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 18 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP18,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 19
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie19 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 19 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP19,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 20
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie20 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 20 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP20,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 21
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie21 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 21 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP21,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 22
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie22 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 22 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP22,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 23
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie23 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 23 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP23,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 24
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie24 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 24 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP24,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 25
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie25 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 25 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP25,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 26
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie26 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 26 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP26,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 27
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie27 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 27 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP27,
+		
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 28
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie28 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 28 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP28,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 29
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie29 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 29 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP29,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 30
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie30 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 30 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP30,
+
+	isnull((SELECT	Sum(d1.Qte_Planifie) AS SommeDeQte_Planifie
+	FROM t_Depot_Planification d1
+	WHERE (((Month(d1.DateDepot))=Month(:ad_cur)) 
+	AND ((Year(d1.DateDepot))=Year(:ad_cur))) AND day(d1.DateDepot) = 31
+	AND d1.id_depot = t_Depot_SPA.id_depot
+	GROUP BY d1.id_depot),0) AS SommeDeQte_Planifie31 ,
+	
+	(SELECT Sum(d1.QTE_EXP) AS SommeDeQTE_EXP
+	FROM #temp_ven_dep_StatFactureDetail  d1
+	WHERE (((Month(Date_Expedie_Depot))=Month(:ad_cur)) 
+	AND ((Year(Date_Expedie_Depot))=Year(:ad_cur))) 
+	AND day(Date_Expedie_Depot) = 31 AND d1.id_depot = t_Depot_SPA.id_depot) AS SommeDeQTE_EXP31
+								
+FROM t_Depot_SPA
+ORDER BY t_Depot_SPA.Id_Depot
+" arguments=(("ad_cur", date))  sort="t_depot_spa_localisation A t_depot_spa_id_depot A " )
+group(level=1 header.height=1190 trailer.height=1613 by=("t_depot_spa_localisation" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Id Depot" border="0" color="33554432" x="10768" y="6985" height="423" width="3095" html.valueishtml="0"  name=t_depot_spa_id_depot_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Localisation" border="0" color="33554432" x="7805" y="6667" height="423" width="3042" html.valueishtml="0"  name=t_depot_spa_localisation_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp1" border="0" color="33554432" x="4418" y="7090" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp1_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp2" border="0" color="33554432" x="4524" y="6482" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp2_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp17" border="0" color="33554432" x="5476" y="7117" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp17_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp18" border="0" color="33554432" x="7037" y="6588" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp18_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp15" border="0" color="33554432" x="1137" y="6402" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp15_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp16" border="0" color="33554432" x="10398" y="7196" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp16_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp19" border="0" color="33554432" x="7937" y="6614" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp19_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp20" border="0" color="33554432" x="9366" y="6985" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp20_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp21" border="0" color="33554432" x="11562" y="6879" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp21_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp22" border="0" color="33554432" x="6905" y="6905" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp22_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp23" border="0" color="33554432" x="11350" y="6985" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp23_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp24" border="0" color="33554432" x="10424" y="6905" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp24_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp25" border="0" color="33554432" x="11747" y="6667" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp25_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp26" border="0" color="33554432" x="10186" y="6535" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp26_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp27" border="0" color="33554432" x="13546" y="6826" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp27_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp28" border="0" color="33554432" x="13387" y="7381" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp28_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp29" border="0" color="33554432" x="15636" y="7328" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp29_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp30" border="0" color="33554432" x="16033" y="7064" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp30_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp31" border="0" color="33554432" x="16404" y="7143" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp31_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp11" border="0" color="33554432" x="4153" y="7143" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp11_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp12" border="0" color="33554432" x="11377" y="6932" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp12_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp13" border="0" color="33554432" x="5503" y="7117" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp13_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp14" border="0" color="33554432" x="6111" y="7249" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp14_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp10" border="0" color="33554432" x="5185" y="6667" height="423" width="3016" html.valueishtml="0"  name=sommedeqte_exp10_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp7" border="0" color="33554432" x="7778" y="6852" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp7_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp8" border="0" color="33554432" x="10080" y="7699" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp8_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp9" border="0" color="33554432" x="11033" y="6535" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp9_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp3" border="0" color="33554432" x="1217" y="6402" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp3_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp4" border="0" color="33554432" x="1587" y="7143" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp4_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp5" border="0" color="33554432" x="291" y="6614" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp5_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sommedeqte Exp6" border="0" color="33554432" x="6958" y="7381" height="423" width="2831" html.valueishtml="0"  name=sommedeqte_exp6_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="132" y="0" height="3571" width="2592" border="0"  name=p_1 visible="1" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="26458" y="79" height="502" width="5476" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Ventes des d$$HEX1$$e900$$ENDHEX$$p$$HEX1$$f400$$ENDHEX$$ts   (vendues/exp$$HEX1$$e900$$ENDHEX$$di$$HEX1$$e900$$ENDHEX$$es)~t~"Ventes des d$$HEX1$$e900$$ENDHEX$$p$$HEX1$$f400$$ENDHEX$$ts de ~" +  t_depot_spa_localisation +~" (vendues/exp$$HEX1$$e900$$ENDHEX$$di$$HEX1$$e900$$ENDHEX$$es)~"" border="0" color="33554432" x="2804" y="26" height="1799" width="23468" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Pour le~t~"Pour le mois de ~" + cf_mois + ~" ~" + string(year(date(  date_demande )))" border="0" color="33554432" x="2804" y="1878" height="608" width="23468" html.valueishtml="0"  name=t_8 visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="13282" y="2645" height="423" width="1587" format="[general]" html.valueishtml="0"  name=date_demande visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="case ( month(  date(date_demande) ) when 1 then 'Janvier' when 2 then 'F$$HEX1$$e900$$ENDHEX$$vrier' when 3 then 'Mars' when 4 then 'Avril' when 5 then 'Mai' when 6 then 'Juin' when 7 then 'Juillet' when 8 then 'Ao$$HEX1$$fb00$$ENDHEX$$t' when 9 then 'Septembre' when 10 then 'Octobre' when 11 then 'Novembre' when 12 then 'D$$HEX1$$e900$$ENDHEX$$cembre')"border="0" color="33554432" x="6932" y="2487" height="608" width="2116" format="[GENERAL]" html.valueishtml="0"  name=cf_mois visible="0"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header.1 id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="4815" y="2460" height="502" width="8096" format="[general]" html.valueishtml="0"  name=t_depot_spa_localisation visible="0" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="0" y1="1111" x2="32649" y2="1111"  name=l_1 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="3" border="0" color="33554432" x="5476" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie3_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="4" border="0" color="33554432" x="6297" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie4_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="5" border="0" color="33554432" x="7117" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie5_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="6" border="0" color="33554432" x="7937" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie6_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="7" border="0" color="33554432" x="8757" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie7_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="8" border="0" color="33554432" x="9577" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie8_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="9" border="0" color="33554432" x="10398" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie9_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="10" border="0" color="33554432" x="11218" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie10_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="12" border="0" color="33554432" x="12858" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie12_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="13" border="0" color="33554432" x="13678" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie13_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="14" border="0" color="33554432" x="14499" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie14_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="15" border="0" color="33554432" x="15319" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie15_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="16" border="0" color="33554432" x="16139" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie16_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="17" border="0" color="33554432" x="16959" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie17_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="18" border="0" color="33554432" x="17780" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie18_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="19" border="0" color="33554432" x="18626" y="132" height="423" width="740" html.valueishtml="0"  name=sommedeqte_planifie19_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="20" border="0" color="33554432" x="19446" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie20_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="21" border="0" color="33554432" x="20267" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie21_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="22" border="0" color="33554432" x="21087" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie22_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="23" border="0" color="33554432" x="21907" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie23_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="24" border="0" color="33554432" x="22727" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie24_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="25" border="0" color="33554432" x="23547" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie25_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="26" border="0" color="33554432" x="24368" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie26_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="27" border="0" color="33554432" x="25188" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie27_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="28" border="0" color="33554432" x="26008" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie28_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="29" border="0" color="33554432" x="26828" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie29_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="30" border="0" color="33554432" x="27648" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie30_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="31" border="0" color="33554432" x="28469" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie31_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Total" border="0" color="33554432" x="29395" y="132" height="423" width="1587" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="%" border="0" color="33554432" x="31062" y="132" height="423" width="1534" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="11" border="0" color="33554432" x="12038" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie11_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="2" border="0" color="33554432" x="4656" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie2_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="1" border="0" color="33554432" x="3836" y="132" height="423" width="767" html.valueishtml="0"  name=sommedeqte_planifie1_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-1~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="3836" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_65 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-2~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="4656" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_66 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-3~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="5476" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_68 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-4~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="6297" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_69 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-5~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="7117" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_70 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-6~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="7937" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_71 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-7~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="8757" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_72 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-8~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="9577" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_73 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-9~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="10398" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_74 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-10~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="11218" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_75 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-11~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="12038" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_76 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-12~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="12858" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_77 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-13~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="13678" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_78 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-14~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="14499" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_79 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-15~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="15319" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_80 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-16~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="16139" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_81 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-17~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="16959" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_82 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-18~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="17780" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_83 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-19~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="18626" y="661" height="608" width="740" format="[GENERAL]" html.valueishtml="0"  name=compute_84 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-20~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="19446" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_85 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-21~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="20267" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_86 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-22~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="21087" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_87 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-23~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="21907" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_88 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-24~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="22727" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_89 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-25~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="23547" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_90 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-26~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="24368" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_91 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-27~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="25188" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_92 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-28~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="26008" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_93 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-29~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="26828" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_94 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-30~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="27648" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_95 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="case( daynumber(date(string(  year(date( date_demande )) + ~"-~" + month(date(date_demande )) + ~"-31~"    )) ) when 1 then 'Dim' when 2 then 'Lun' when 3 then 'Mar' when 4 then 'Mer' when 5 then 'Jeu' when 6 then 'Ven' when 7 then 'Sam')"border="0" color="33554432" x="28469" y="661" height="608" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_96 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="0" y1="1164" x2="32649" y2="1164"  name=l_33 visible="1" pen.style="0" pen.width="52" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="D$$HEX1$$e900$$ENDHEX$$p$$HEX1$$f400$$ENDHEX$$t" border="0" color="33554432" x="105" y="132" height="476" width="3651" html.valueishtml="0"  name=t_depot_spa_desc_depot_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="52" y="2805" height="502" width="1905" format="[general]" html.valueishtml="0"  name=t_depot_spa_id_depot visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="3175" y="2805" height="502" width="1905" format="[general]" html.valueishtml="0"  name=t_depot_spa_desc_depot visible="0" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="3862" y1="609" x2="4630" y2="609"  name=l_2 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="5503" y1="609" x2="6270" y2="609"  name=l_4 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="6323" y1="609" x2="7090" y2="609"  name=l_5 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="7143" y1="609" x2="7911" y2="609"  name=l_6 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="7963" y1="609" x2="8731" y2="609"  name=l_7 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="8784" y1="609" x2="9551" y2="609"  name=l_8 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="9604" y1="609" x2="10371" y2="609"  name=l_9 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="10424" y1="609" x2="11191" y2="609"  name=l_10 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="11244" y1="609" x2="12012" y2="609"  name=l_11 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="12065" y1="609" x2="12832" y2="609"  name=l_12 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="12885" y1="609" x2="13652" y2="609"  name=l_13 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="13705" y1="609" x2="14472" y2="609"  name=l_14 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="14525" y1="609" x2="15292" y2="609"  name=l_15 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="15345" y1="609" x2="16113" y2="609"  name=l_16 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="16166" y1="609" x2="16933" y2="609"  name=l_17 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="16986" y1="609" x2="17753" y2="609"  name=l_18 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="17806" y1="609" x2="18573" y2="609"  name=l_19 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="18626" y1="609" x2="19393" y2="609"  name=l_20 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="19446" y1="609" x2="20214" y2="609"  name=l_21 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="20267" y1="609" x2="21034" y2="609"  name=l_22 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="21087" y1="609" x2="21854" y2="609"  name=l_23 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="21907" y1="609" x2="22674" y2="609"  name=l_24 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="22727" y1="609" x2="23495" y2="609"  name=l_25 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="23547" y1="609" x2="24315" y2="609"  name=l_26 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="24368" y1="609" x2="25135" y2="609"  name=l_27 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="25188" y1="609" x2="25955" y2="609"  name=l_28 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="26008" y1="609" x2="26775" y2="609"  name=l_29 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="26828" y1="609" x2="27596" y2="609"  name=l_30 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="27648" y1="609" x2="28416" y2="609"  name=l_31 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="28469" y1="609" x2="29236" y2="609"  name=l_32 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="29421" y1="609" x2="31009" y2="609"  name=l_34 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="0" color="33554432" x="4683" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp2 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="0" color="33554432" x="5503" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp3 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="2" tabsequence=32766 border="0" color="33554432" x="6323" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp4 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="0" color="33554432" x="7143" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp5 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="2" tabsequence=32766 border="0" color="33554432" x="7990" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp6 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="2" tabsequence=32766 border="0" color="33554432" x="8784" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp7 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="2" tabsequence=32766 border="0" color="33554432" x="9604" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp8 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="2" tabsequence=32766 border="0" color="33554432" x="10424" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp9 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="2" tabsequence=32766 border="0" color="33554432" x="11244" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp10 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="2" tabsequence=32766 border="0" color="33554432" x="12065" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp11 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="2" tabsequence=32766 border="0" color="33554432" x="12885" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp12 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="2" tabsequence=32766 border="0" color="33554432" x="13705" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp13 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="2" tabsequence=32766 border="0" color="33554432" x="14525" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp14 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="2" tabsequence=32766 border="0" color="33554432" x="15345" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp15 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=36 alignment="2" tabsequence=32766 border="0" color="33554432" x="16166" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp16 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=38 alignment="2" tabsequence=32766 border="0" color="33554432" x="16986" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp17 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=40 alignment="2" tabsequence=32766 border="0" color="33554432" x="17806" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp18 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=42 alignment="2" tabsequence=32766 border="0" color="33554432" x="18653" y="27" height="502" width="740" format="[general]" html.valueishtml="0"  name=sommedeqte_exp19 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=44 alignment="2" tabsequence=32766 border="0" color="33554432" x="19473" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp20 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=46 alignment="2" tabsequence=32766 border="0" color="33554432" x="20293" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp21 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=48 alignment="2" tabsequence=32766 border="0" color="33554432" x="21113" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp22 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=50 alignment="2" tabsequence=32766 border="0" color="33554432" x="21933" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp23 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=52 alignment="2" tabsequence=32766 border="0" color="33554432" x="22754" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp24 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=54 alignment="2" tabsequence=32766 border="0" color="33554432" x="23574" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp25 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=56 alignment="2" tabsequence=32766 border="0" color="33554432" x="24394" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp26 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=58 alignment="2" tabsequence=32766 border="0" color="33554432" x="25214" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp27 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=60 alignment="2" tabsequence=32766 border="0" color="33554432" x="26035" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp28 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=62 alignment="2" tabsequence=32766 border="0" color="33554432" x="26855" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp29 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=64 alignment="2" tabsequence=32766 border="0" color="33554432" x="27675" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp30 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=66 alignment="2" tabsequence=32766 border="0" color="33554432" x="28495" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp31 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="4683" y1="609" x2="5450" y2="609"  name=l_3 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="3862" y="27" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_exp1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if(isnull(sommedeqte_exp1),0,sommedeqte_exp1) + 
+if(isnull(sommedeqte_exp2),0,sommedeqte_exp2) + 
+if(isnull(sommedeqte_exp3),0,sommedeqte_exp3) + 
+if(isnull(sommedeqte_exp4),0,sommedeqte_exp4) + 
+if(isnull(sommedeqte_exp5),0,sommedeqte_exp5) + 
+if(isnull(sommedeqte_exp6),0,sommedeqte_exp6) + 
+if(isnull(sommedeqte_exp7),0,sommedeqte_exp7) + 
+if(isnull(sommedeqte_exp8),0,sommedeqte_exp8) + 
+if(isnull(sommedeqte_exp9),0,sommedeqte_exp9) + 
+if(isnull(sommedeqte_exp10),0,sommedeqte_exp10) + 
+if(isnull(sommedeqte_exp11),0,sommedeqte_exp11) + 
+if(isnull(sommedeqte_exp12),0,sommedeqte_exp12) + 
+if(isnull(sommedeqte_exp13),0,sommedeqte_exp13) + 
+if(isnull(sommedeqte_exp14),0,sommedeqte_exp14) + 
+if(isnull(sommedeqte_exp15),0,sommedeqte_exp15) + 
+if(isnull(sommedeqte_exp16),0,sommedeqte_exp16) + 
+if(isnull(sommedeqte_exp17),0,sommedeqte_exp17) + 
+if(isnull(sommedeqte_exp18),0,sommedeqte_exp18) + 
+if(isnull(sommedeqte_exp19),0,sommedeqte_exp19) + 
+if(isnull(sommedeqte_exp20),0,sommedeqte_exp20) + 
+if(isnull(sommedeqte_exp21),0,sommedeqte_exp21) + 
+if(isnull(sommedeqte_exp22),0,sommedeqte_exp22) + 
+if(isnull(sommedeqte_exp23),0,sommedeqte_exp23) + 
+if(isnull(sommedeqte_exp24),0,sommedeqte_exp24) + 
+if(isnull(sommedeqte_exp25),0,sommedeqte_exp25) + 
+if(isnull(sommedeqte_exp26),0,sommedeqte_exp26) + 
+if(isnull(sommedeqte_exp27),0,sommedeqte_exp27) + 
+if(isnull(sommedeqte_exp28),0,sommedeqte_exp28) + 
+if(isnull(sommedeqte_exp29),0,sommedeqte_exp29) + 
+if(isnull(sommedeqte_exp30),0,sommedeqte_exp30) + 
+if(isnull(sommedeqte_exp31),0,sommedeqte_exp31)"border="0" color="33554432" x="29421" y="27" height="423" width="1587" format="[GENERAL]" html.valueishtml="0"  name=cf_totalvente visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round(((if(isnull(sommedeqte_exp1),0,sommedeqte_exp1) + 
+if(isnull(sommedeqte_exp2),0,sommedeqte_exp2) + 
+if(isnull(sommedeqte_exp3),0,sommedeqte_exp3) + 
+if(isnull(sommedeqte_exp4),0,sommedeqte_exp4) + 
+if(isnull(sommedeqte_exp5),0,sommedeqte_exp5) + 
+if(isnull(sommedeqte_exp6),0,sommedeqte_exp6) + 
+if(isnull(sommedeqte_exp7),0,sommedeqte_exp7) + 
+if(isnull(sommedeqte_exp8),0,sommedeqte_exp8) + 
+if(isnull(sommedeqte_exp9),0,sommedeqte_exp9) + 
+if(isnull(sommedeqte_exp10),0,sommedeqte_exp10) + 
+if(isnull(sommedeqte_exp11),0,sommedeqte_exp11) + 
+if(isnull(sommedeqte_exp12),0,sommedeqte_exp12) + 
+if(isnull(sommedeqte_exp13),0,sommedeqte_exp13) + 
+if(isnull(sommedeqte_exp14),0,sommedeqte_exp14) + 
+if(isnull(sommedeqte_exp15),0,sommedeqte_exp15) + 
+if(isnull(sommedeqte_exp16),0,sommedeqte_exp16) + 
+if(isnull(sommedeqte_exp17),0,sommedeqte_exp17) + 
+if(isnull(sommedeqte_exp18),0,sommedeqte_exp18) + 
+if(isnull(sommedeqte_exp19),0,sommedeqte_exp19) + 
+if(isnull(sommedeqte_exp20),0,sommedeqte_exp20) + 
+if(isnull(sommedeqte_exp21),0,sommedeqte_exp21) + 
+if(isnull(sommedeqte_exp22),0,sommedeqte_exp22) + 
+if(isnull(sommedeqte_exp23),0,sommedeqte_exp23) + 
+if(isnull(sommedeqte_exp24),0,sommedeqte_exp24) + 
+if(isnull(sommedeqte_exp25),0,sommedeqte_exp25) + 
+if(isnull(sommedeqte_exp26),0,sommedeqte_exp26) + 
+if(isnull(sommedeqte_exp27),0,sommedeqte_exp27) + 
+if(isnull(sommedeqte_exp28),0,sommedeqte_exp28) + 
+if(isnull(sommedeqte_exp29),0,sommedeqte_exp29) + 
+if(isnull(sommedeqte_exp30),0,sommedeqte_exp30) + 
+if(isnull(sommedeqte_exp31),0,sommedeqte_exp31)  ) / ( cf_1 +  cf_2 +  cf_3 +  cf_4 + cf_5  + cf_6  +  cf_7 +  cf_8 +  cf_9 +  cf_10 +  cf_11 + cf_12 +  cf_13 +  cf_14  +  cf_15 + cf_16 + cf_17 + cf_18 + cf_19 + cf_20 +  cf_21 + cf_22 + cf_23 + cf_24 + cf_25 + cf_26 + cf_27 +  cf_28 + cf_29 + cf_30 +  cf_31 )) * 100,0)"border="0" color="33554432" x="31088" y="344" height="423" width="1111" format="[GENERAL]" html.valueishtml="0"  name=cf_pourc visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="%" border="0" color="33554432" x="32252" y="344" height="423" width="343" html.valueishtml="0"  name=t_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=detail x1="0" y1="1376" x2="32649" y2="1376"  name=l_36 visible="1" pen.style="0" pen.width="52" pen.color="12632256"  background.mode="2" background.color="1073741824" )
+column(band=detail id=21 alignment="2" tabsequence=32766 border="0" color="33554432" x="10424" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie9 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=33 alignment="2" tabsequence=32766 border="0" color="33554432" x="15345" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie15 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression=" sommedeqte_planifie1 +  sommedeqte_planifie2 +  sommedeqte_planifie3 +  sommedeqte_planifie4 + sommedeqte_planifie5  + sommedeqte_planifie6  +  sommedeqte_planifie7 +  sommedeqte_planifie8 +  sommedeqte_planifie9 +  sommedeqte_planifie10 +  sommedeqte_planifie11 + sommedeqte_planifie12 +  sommedeqte_planifie13 +  sommedeqte_planifie14  +  sommedeqte_planifie15 + sommedeqte_planifie16 + sommedeqte_planifie17 + sommedeqte_planifie18 + sommedeqte_planifie19 + sommedeqte_planifie20 +  sommedeqte_planifie21 + sommedeqte_planifie22 + sommedeqte_planifie23 + sommedeqte_planifie24 + sommedeqte_planifie25 + sommedeqte_planifie26 + sommedeqte_planifie27 +  sommedeqte_planifie28 + sommedeqte_planifie29 + sommedeqte_planifie30 +  sommedeqte_planifie31 "border="0" color="33554432" x="29421" y="715" height="423" width="1587" format="[General]" html.valueishtml="0"  name=cf_planifie visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="3862" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie1 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="0" color="33554432" x="5503" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie3 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="33554432" x="4683" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie2 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="0" color="33554432" x="6323" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie4 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="2" tabsequence=32766 border="0" color="33554432" x="9604" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie8 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="2" tabsequence=32766 border="0" color="33554432" x="8784" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie7 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="0" color="33554432" x="7963" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie6 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="0" color="33554432" x="7143" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie5 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="2" tabsequence=32766 border="0" color="33554432" x="11244" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie10 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="2" tabsequence=32766 border="0" color="33554432" x="12065" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie11 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="2" tabsequence=32766 border="0" color="33554432" x="12885" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie12 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="2" tabsequence=32766 border="0" color="33554432" x="14525" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie14 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="2" tabsequence=32766 border="0" color="33554432" x="13705" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie13 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="2" tabsequence=32766 border="0" color="33554432" x="16166" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie16 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=37 alignment="2" tabsequence=32766 border="0" color="33554432" x="16986" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie17 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=39 alignment="2" tabsequence=32766 border="0" color="33554432" x="17806" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie18 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=41 alignment="2" tabsequence=32766 border="0" color="33554432" x="18653" y="715" height="502" width="740" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie19 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=43 alignment="2" tabsequence=32766 border="0" color="33554432" x="19473" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie20 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=49 alignment="2" tabsequence=32766 border="0" color="33554432" x="21933" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie23 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=47 alignment="2" tabsequence=32766 border="0" color="33554432" x="21113" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie22 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=45 alignment="2" tabsequence=32766 border="0" color="33554432" x="20293" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie21 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=51 alignment="2" tabsequence=32766 border="0" color="33554432" x="22754" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie24 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=53 alignment="2" tabsequence=32766 border="0" color="33554432" x="23574" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie25 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=55 alignment="2" tabsequence=32766 border="0" color="33554432" x="24394" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie26 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=57 alignment="2" tabsequence=32766 border="0" color="33554432" x="25214" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie27 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=59 alignment="2" tabsequence=32766 border="0" color="33554432" x="26035" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie28 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=61 alignment="2" tabsequence=32766 border="0" color="33554432" x="26855" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie29 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=63 alignment="2" tabsequence=32766 border="0" color="33554432" x="27675" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie30 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=65 alignment="2" tabsequence=32766 border="0" color="33554432" x="28495" y="715" height="502" width="767" format="[general]" html.valueishtml="0"  name=sommedeqte_planifie31 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp1 >  sommedeqte_planifie1 ,  sommedeqte_exp1 ,  sommedeqte_planifie1 )"border="0" color="33554432" x="3862" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_1 visible="1~tif(cf_1 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp3 >  sommedeqte_planifie3 ,  sommedeqte_exp3 ,  sommedeqte_planifie3 )"border="0" color="33554432" x="5503" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_3 visible="1~tif(cf_3 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp2 >  sommedeqte_planifie2 ,  sommedeqte_exp2 ,  sommedeqte_planifie2 )"border="0" color="33554432" x="4683" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_2 visible="1~tif(cf_2 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp4 >  sommedeqte_planifie4 ,  sommedeqte_exp4 ,  sommedeqte_planifie4 )"border="0" color="33554432" x="6323" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_4 visible="1~tif(cf_4 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp8 >  sommedeqte_planifie8 ,  sommedeqte_exp8 ,  sommedeqte_planifie8 )"border="0" color="33554432" x="9604" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_8 visible="1~tif(cf_8 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp7 >  sommedeqte_planifie7 ,  sommedeqte_exp7 ,  sommedeqte_planifie7 )"border="0" color="33554432" x="8784" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_7 visible="1~tif(cf_7 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp6 >  sommedeqte_planifie6 ,  sommedeqte_exp6 ,  sommedeqte_planifie6 )"border="0" color="33554432" x="7963" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_6 visible="1~tif(cf_6 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp5 >  sommedeqte_planifie5 ,  sommedeqte_exp5 ,  sommedeqte_planifie5 )"border="0" color="33554432" x="7143" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_5 visible="1~tif(cf_5 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp9 >  sommedeqte_planifie9 ,  sommedeqte_exp9 ,  sommedeqte_planifie9 )"border="0" color="33554432" x="10398" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_9 visible="1~tif(cf_9 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp10 >  sommedeqte_planifie10 ,  sommedeqte_exp10 ,  sommedeqte_planifie10 )"border="0" color="33554432" x="11244" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_10 visible="1~tif(cf_10 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp11 >  sommedeqte_planifie11 ,  sommedeqte_exp11 ,  sommedeqte_planifie11 )"border="0" color="33554432" x="12065" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_11 visible="1~tif(cf_11 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp12 >  sommedeqte_planifie12 ,  sommedeqte_exp12 ,  sommedeqte_planifie12 )"border="0" color="33554432" x="12885" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_12 visible="1~tif(cf_12 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp14 >  sommedeqte_planifie14 ,  sommedeqte_exp14 ,  sommedeqte_planifie14 )"border="0" color="33554432" x="14525" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_14 visible="1~tif(cf_14 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp13 >  sommedeqte_planifie13 ,  sommedeqte_exp13 ,  sommedeqte_planifie13 )"border="0" color="33554432" x="13705" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_13 visible="1~tif(cf_13 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp15 >  sommedeqte_planifie15 ,  sommedeqte_exp15 ,  sommedeqte_planifie15 )"border="0" color="33554432" x="15319" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_15 visible="1~tif(cf_15 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp16 >  sommedeqte_planifie16 ,  sommedeqte_exp16 ,  sommedeqte_planifie16 )"border="0" color="33554432" x="16166" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_16 visible="1~tif(cf_16 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp17 >  sommedeqte_planifie17 ,  sommedeqte_exp17 ,  sommedeqte_planifie17 )"border="0" color="33554432" x="16986" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_17 visible="1~tif(cf_17 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp18 >  sommedeqte_planifie18 ,  sommedeqte_exp18 ,  sommedeqte_planifie18 )"border="0" color="33554432" x="17806" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_18 visible="1~tif(cf_18 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp19 >  sommedeqte_planifie19 ,  sommedeqte_exp19 ,  sommedeqte_planifie19 )"border="0" color="33554432" x="18653" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_19 visible="1~tif(cf_19 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp20 >  sommedeqte_planifie20 ,  sommedeqte_exp20 ,  sommedeqte_planifie20 )"border="0" color="33554432" x="19473" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_20 visible="1~tif(cf_20 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp23 >  sommedeqte_planifie23 ,  sommedeqte_exp23 ,  sommedeqte_planifie23 )"border="0" color="33554432" x="21933" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_23 visible="1~tif(cf_23 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp22 >  sommedeqte_planifie22 ,  sommedeqte_exp22 ,  sommedeqte_planifie22 )"border="0" color="33554432" x="21113" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_22 visible="1~tif(cf_22 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp21 >  sommedeqte_planifie21 ,  sommedeqte_exp21 ,  sommedeqte_planifie21 )"border="0" color="33554432" x="20293" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_21 visible="1~tif(cf_21 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp24 >  sommedeqte_planifie24 ,  sommedeqte_exp24 ,  sommedeqte_planifie24 )"border="0" color="33554432" x="22754" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_24 visible="1~tif(cf_24 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp25 >  sommedeqte_planifie25 ,  sommedeqte_exp25 ,  sommedeqte_planifie25 )"border="0" color="33554432" x="23574" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_25 visible="1~tif(cf_25 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp26 >  sommedeqte_planifie26 ,  sommedeqte_exp26 ,  sommedeqte_planifie26 )"border="0" color="33554432" x="24394" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_26 visible="1~tif(cf_26 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp27 >  sommedeqte_planifie27 ,  sommedeqte_exp27 ,  sommedeqte_planifie27 )"border="0" color="33554432" x="25214" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_27 visible="1~tif(cf_27 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp28 >  sommedeqte_planifie28 ,  sommedeqte_exp28 ,  sommedeqte_planifie28 )"border="0" color="33554432" x="26035" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_28 visible="1~tif(cf_28 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp29 >  sommedeqte_planifie29 ,  sommedeqte_exp29 ,  sommedeqte_planifie29 )"border="0" color="33554432" x="26855" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_29 visible="1~tif(cf_29 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp30 >  sommedeqte_planifie30 ,  sommedeqte_exp30 ,  sommedeqte_planifie30 )"border="0" color="33554432" x="27675" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_30 visible="1~tif(cf_30 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( sommedeqte_exp31 >  sommedeqte_planifie31 ,  sommedeqte_exp31 ,  sommedeqte_planifie31 )"border="0" color="33554432" x="28495" y="715" height="423" width="767" format="[GENERAL]" html.valueishtml="0"  name=cf_31 visible="1~tif(cf_31 > 0 , 1,0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression=" cf_1 + cf_2 +  cf_3 +  cf_4 + cf_5  + cf_6  +  cf_7 +  cf_8 +  cf_9 +  cf_10 +  cf_11 + cf_12 +  cf_13 +  cf_14  +  cf_15 + cf_16 + cf_17 + cf_18 + cf_19 + cf_20 +  cf_21 + cf_22 + cf_23 + cf_24 + cf_25 + cf_26 + cf_27 +  cf_28 + cf_29 + cf_30 +  cf_31 "border="0" color="33554432" x="29421" y="715" height="423" width="1587" format="[General]" html.valueishtml="0"  name=cf_planifie_cf visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" t_depot_spa_id_depot +  ~" ~" + t_depot_spa_desc_depot "border="0" color="33554432" x="105" y="27" height="502" width="3651" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+line(band=trailer.1 x1="3862" y1="662" x2="4630" y2="662"  name=l_37 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="4683" y1="662" x2="5450" y2="662"  name=l_38 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="5503" y1="662" x2="6270" y2="662"  name=l_39 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="6323" y1="662" x2="7090" y2="662"  name=l_40 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="7143" y1="662" x2="7911" y2="662"  name=l_41 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="7963" y1="662" x2="8731" y2="662"  name=l_42 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="8784" y1="662" x2="9551" y2="662"  name=l_43 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="9604" y1="662" x2="10371" y2="662"  name=l_44 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="10424" y1="662" x2="11191" y2="662"  name=l_45 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="11244" y1="662" x2="12012" y2="662"  name=l_46 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="12065" y1="662" x2="12832" y2="662"  name=l_47 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="12885" y1="662" x2="13652" y2="662"  name=l_48 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="13705" y1="662" x2="14472" y2="662"  name=l_49 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="14525" y1="662" x2="15292" y2="662"  name=l_50 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="15345" y1="662" x2="16113" y2="662"  name=l_51 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="16166" y1="662" x2="16933" y2="662"  name=l_52 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="16986" y1="662" x2="17753" y2="662"  name=l_53 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="17806" y1="662" x2="18573" y2="662"  name=l_54 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="18626" y1="662" x2="19393" y2="662"  name=l_55 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="19446" y1="662" x2="20214" y2="662"  name=l_56 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="20267" y1="662" x2="21034" y2="662"  name=l_57 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="21087" y1="662" x2="21854" y2="662"  name=l_58 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="21907" y1="662" x2="22674" y2="662"  name=l_59 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="22727" y1="662" x2="23495" y2="662"  name=l_60 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="23547" y1="662" x2="24315" y2="662"  name=l_61 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="24368" y1="662" x2="25135" y2="662"  name=l_62 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="25188" y1="662" x2="25955" y2="662"  name=l_63 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="26008" y1="662" x2="26775" y2="662"  name=l_64 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="26828" y1="662" x2="27596" y2="662"  name=l_65 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="27648" y1="662" x2="28416" y2="662"  name=l_66 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="28469" y1="662" x2="29236" y2="662"  name=l_67 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="29421" y1="662" x2="31009" y2="662"  name=l_68 visible="1" pen.style="0" pen.width="26" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp1  for group 1)"border="0" color="33554432" x="3862" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp3  for group 1)"border="0" color="33554432" x="5503" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp4  for group 1)"border="0" color="33554432" x="6323" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp5  for group 1)"border="0" color="33554432" x="7143" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp6  for group 1)"border="0" color="33554432" x="7963" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp7  for group 1)"border="0" color="33554432" x="8784" y="53" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp8  for group 1)"border="0" color="33554432" x="9604" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp9  for group 1)"border="0" color="33554432" x="10424" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp10  for group 1)"border="0" color="33554432" x="11244" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_12 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp11  for group 1)"border="0" color="33554432" x="12065" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_14 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp12  for group 1)"border="0" color="33554432" x="12885" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_13 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp13  for group 1)"border="0" color="33554432" x="13705" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_15 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp14  for group 1)"border="0" color="33554432" x="14525" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_16 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp15  for group 1)"border="0" color="33554432" x="15345" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_17 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp16  for group 1)"border="0" color="33554432" x="16166" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_18 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp17  for group 1)"border="0" color="33554432" x="16986" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_19 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp18  for group 1)"border="0" color="33554432" x="17806" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_20 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp19  for group 1)"border="0" color="33554432" x="18653" y="80" height="502" width="740" format="[GENERAL]" html.valueishtml="0"  name=compute_21 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp20  for group 1)"border="0" color="33554432" x="19473" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_22 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp21  for group 1)"border="0" color="33554432" x="20293" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_23 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp22  for group 1)"border="0" color="33554432" x="21113" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_24 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp23  for group 1)"border="0" color="33554432" x="21933" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_25 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp24  for group 1)"border="0" color="33554432" x="22754" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_26 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp25  for group 1)"border="0" color="33554432" x="23574" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_27 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp26  for group 1)"border="0" color="33554432" x="24394" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_28 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp27  for group 1)"border="0" color="33554432" x="25214" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_29 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp28  for group 1)"border="0" color="33554432" x="26035" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_30 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp29  for group 1)"border="0" color="33554432" x="26855" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_31 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp30  for group 1)"border="0" color="33554432" x="27675" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_32 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp2  for group 1)"border="0" color="33554432" x="4683" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_1 for group 1)"border="0" color="33554432" x="3862" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_34 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_2 for group 1)"border="0" color="33554432" x="4683" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_35 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_3 for group 1)"border="0" color="33554432" x="5503" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_36 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_4 for group 1)"border="0" color="33554432" x="6323" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_37 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_5 for group 1)"border="0" color="33554432" x="7143" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_38 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_6 for group 1)"border="0" color="33554432" x="7963" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_39 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_7 for group 1)"border="0" color="33554432" x="8784" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_40 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_8 for group 1)"border="0" color="33554432" x="9604" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_41 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_9 for group 1)"border="0" color="33554432" x="10424" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_42 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_10 for group 1)"border="0" color="33554432" x="11244" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_43 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_11 for group 1)"border="0" color="33554432" x="12065" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_44 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_12 for group 1)"border="0" color="33554432" x="12885" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_45 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_13 for group 1)"border="0" color="33554432" x="13705" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_46 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_14 for group 1)"border="0" color="33554432" x="14525" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_47 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_15 for group 1)"border="0" color="33554432" x="15345" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_48 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_16 for group 1)"border="0" color="33554432" x="16166" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_49 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_17 for group 1)"border="0" color="33554432" x="16986" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_50 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_18 for group 1)"border="0" color="33554432" x="17806" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_51 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_19 for group 1)"border="0" color="33554432" x="18653" y="847" height="502" width="740" format="[GENERAL]" html.valueishtml="0"  name=compute_52 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_20 for group 1)"border="0" color="33554432" x="19473" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_53 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_21 for group 1)"border="0" color="33554432" x="20293" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_54 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_22 for group 1)"border="0" color="33554432" x="21113" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_55 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_23 for group 1)"border="0" color="33554432" x="21933" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_56 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_24 for group 1)"border="0" color="33554432" x="22754" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_57 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_25 for group 1)"border="0" color="33554432" x="23574" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_58 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_26 for group 1)"border="0" color="33554432" x="24394" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_59 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_27 for group 1)"border="0" color="33554432" x="25214" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_60 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_28 for group 1)"border="0" color="33554432" x="26035" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_61 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_29 for group 1)"border="0" color="33554432" x="26855" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_62 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_30 for group 1)"border="0" color="33554432" x="27675" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_63 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_31 for group 1)"border="0" color="33554432" x="28495" y="847" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_64 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( sommedeqte_exp31  for group 1)"border="0" color="33554432" x="28495" y="80" height="502" width="767" format="[GENERAL]" html.valueishtml="0"  name=compute_33 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  cf_totalvente for group 1)"border="0" color="33554432" x="29421" y="80" height="502" width="1587" format="[GENERAL]" html.valueishtml="0"  name=cf_totalvente_group visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(   cf_planifie_cf for group 1)"border="0" color="33554432" x="29421" y="847" height="502" width="1587" format="[GENERAL]" html.valueishtml="0"  name=cf_planifie_group visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="round(( cf_totalvente_group /   cf_planifie_group ) * 100,0)"border="0" color="33554432" x="31088" y="476" height="423" width="1111" format="[GENERAL]" html.valueishtml="0"  name=compute_67 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="%" border="0" color="33554432" x="32252" y="476" height="423" width="343" html.valueishtml="0"  name=t_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=trailer.1 alignment="2" text="Total pour~t~"Total pour ~~r~~n~" +  t_depot_spa_localisation " border="0" color="33554432" x="52" y="53" height="1428" width="3704" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="79" height="423" width="32490" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

@@ -1,0 +1,14 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "cipq_no_auto.pbl" "";
+@end;
+@begin Objects
+ "ds_statfacture_no_auto.srd" "cipq_no_auto.pbl";
+ "ds_commande_no_auto.srd" "cipq_no_auto.pbl";
+ "ds_livreur_no_auto.srd" "cipq_no_auto.pbl";
+ "ds_groupe_facturation_no_auto.srd" "cipq_no_auto.pbl";
+ "ds_commande_repetitive_no_auto.srd" "cipq_no_auto.pbl";
+ "ds_classe_economie_no_auto.srd" "cipq_no_auto.pbl";
+ "ds_classe_produit_no_auto.srd" "cipq_no_auto.pbl";
+ "ds_transporteur_no_auto.srd" "cipq_no_auto.pbl";
+@end;

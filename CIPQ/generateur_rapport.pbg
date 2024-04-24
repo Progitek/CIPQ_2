@@ -1,0 +1,18 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "generateur_rapport.pbl" "";
+@end;
+@begin Objects
+ "d_dropped_champs_rapport_simple.srd" "generateur_rapport.pbl";
+ "d_taille_colonne_rapport_simple.srd" "generateur_rapport.pbl";
+ "n_cst_param_rapport_simple.sru" "generateur_rapport.pbl";
+ "w_enregistrer_conf_rap.srw" "generateur_rapport.pbl";
+ "n_cst_rapport_simple.sru" "generateur_rapport.pbl";
+ "d_liste_sauv_rap.srd" "generateur_rapport.pbl";
+ "w_rapport_simple.srw" "generateur_rapport.pbl";
+ "d_liste_sauv_rap_detail.srd" "generateur_rapport.pbl";
+ "w_selectionner_conf_rap.srw" "generateur_rapport.pbl";
+ "d_liste_sauv_rap_charg_toutes.srd" "generateur_rapport.pbl";
+ "d_selectionner_champs_rapport_simple.srd" "generateur_rapport.pbl";
+ "w_selectionner_champs_rapport_simple.srw" "generateur_rapport.pbl";
+@end;

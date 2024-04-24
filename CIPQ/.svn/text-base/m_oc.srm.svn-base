@@ -1,0 +1,20 @@
+HA$PBExportHeader$m_oc.srm
+$PBExportComments$Extension Ole Control menu class
+forward
+global type m_oc from pro_m_oc
+end type
+end forward
+
+global type m_oc from pro_m_oc
+end type
+global m_oc m_oc
+
+on m_oc.create
+m_oc=this
+call super::create
+end on
+
+on m_oc.destroy
+call super::destroy
+end on
+

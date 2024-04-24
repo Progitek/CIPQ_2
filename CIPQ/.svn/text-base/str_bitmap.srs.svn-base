@@ -1,0 +1,11 @@
+HA$PBExportHeader$str_bitmap.srs
+global type str_bitmap from structure
+	long		bmtype
+	long		bmwidth
+	long		bmheight
+	long		bmwidthbytes
+	long		bmplanes
+	long		bmbitspixel
+	blob		bmbits
+end type
+

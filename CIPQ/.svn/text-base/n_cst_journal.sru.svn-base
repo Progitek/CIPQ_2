@@ -1,0 +1,130 @@
+HA$PBExportHeader$n_cst_journal.sru
+forward
+global type n_cst_journal from nonvisualobject
+end type
+end forward
+
+global type n_cst_journal from nonvisualobject
+end type
+global n_cst_journal n_cst_journal
+
+forward prototypes
+public function integer of_imprimerjournal ()
+end prototypes
+
+public function integer of_imprimerjournal ();//////////////////////////////////////////////////////////////////////////////
+//
+// M$$HEX1$$e900$$ENDHEX$$thode:		of_ImprimerJournal
+//
+// Acc$$HEX1$$e800$$ENDHEX$$s:		Public
+//
+// Argument:	Aucun
+//
+// Retourne:	Integer, 1 si succes, 0 si rien $$HEX2$$e0002000$$ENDHEX$$imprimer, -1 si erreur
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// Historique
+//
+// Date			Programmeur				Description
+//	2008-05-14	S$$HEX1$$e900$$ENDHEX$$bastien Tremblay	Imprimer le journal (log)  
+// 2008-09-25	Mathieu Gendron		Paper feed
+//	2008-11-02	Mathieu Gendron		Ajout de la table de log de pr$$HEX1$$e900$$ENDHEX$$impression
+//
+//////////////////////////////////////////////////////////////////////////////
+
+long 		ll_nb_rows//, ll_cpt
+n_ds 		lds_journal
+integer 	li_fich
+string 	ls_port, ls_descriptioncommande, ls_source, ls_left, ls_fin
+datetime	ld_now
+
+ld_now = datetime(today(), now())
+
+lds_journal = create n_ds
+
+lds_journal.dataobject = "d_r_journalcommandes"
+lds_journal.setTransObject(SQLCA)
+
+ll_nb_rows = lds_journal.retrieve()
+
+// Si aucune rang$$HEX1$$e900$$ENDHEX$$e, on retourne 0,
+// si erreur, on le signale dans la valeur de retour
+choose case ll_nb_rows
+	// Aucune commande $$HEX2$$e0002000$$ENDHEX$$imprimer
+	case 0
+		return 0
+	// Erreur
+	case is < 0
+		return -1
+end choose
+
+// Impression
+// Ancienne ligne, on change la fa$$HEX1$$e700$$ENDHEX$$on de faire parce que $$HEX1$$e700$$ENDHEX$$a paper feed quand l'impression est termin$$HEX1$$e900$$ENDHEX$$e
+// if lds_journal.print(false, false) < 1 then return -1
+
+
+ls_port = gnv_app.of_getValeurIni("IMPRIMANTE", "Journalcommande")
+if ls_port = "" then
+	IF gnv_app.of_getcompagniedefaut( ) = "112" THEN
+		ls_port = "LPT2"
+	ELSE 
+		ls_port = "LPT1"
+	END IF
+end if
+
+li_fich = fileOpen(ls_port, linemode!, write!)
+
+do while ll_nb_rows > 0
+	
+//	FOR ll_cpt = ll_nb_rows TO 1 STEP -1
+	ls_descriptioncommande = lds_journal.object.descriptioncommande[1]
+	
+	INSERT INTO t_log_commande VALUES (:ld_now , :ls_descriptioncommande) USING SQLCA;
+	COMMIT USING SQLCA;
+	
+	ls_left = LEFT(ls_descriptioncommande, 62)
+	ls_fin = MID(ls_descriptioncommande, 63)
+	ls_source = lds_journal.object.source[1]
+	IF IsNull(ls_source) THEN ls_source = ""
+	fileWrite(li_fich, ls_left + ls_source)
+	IF Not IsNull(ls_fin) AND ls_fin <> "" THEN
+		fileWrite(li_fich, ls_fin)
+	END IF
+	//D$$HEX1$$e900$$ENDHEX$$truire la ligne
+	lds_journal.DeleteRow(1)
+	if lds_journal.event pfc_update(true, true) < 1 then return -1
+//	END FOR
+	
+	// Suppression 
+	//if lds_journal.rowsMove(1, ll_nb_rows, Primary!, lds_journal, 1, Delete!) < 1 then return -1
+	//do while yield()
+	//loop
+	//
+	//if lds_journal.event pfc_update(true, true) < 1 then return -1
+	
+	// On r$$HEX1$$e900$$ENDHEX$$cup$$HEX1$$e800$$ENDHEX$$re la ligne suivante
+	ll_nb_rows = lds_journal.retrieve()
+loop
+
+fileClose(li_fich)
+
+do while yield()
+loop
+
+if isValid(lds_journal) then destroy(lds_journal)
+
+return 1
+
+end function
+
+on n_cst_journal.create
+call super::create
+TriggerEvent( this, "constructor" )
+end on
+
+on n_cst_journal.destroy
+TriggerEvent( this, "destructor" )
+call super::destroy
+end on
+

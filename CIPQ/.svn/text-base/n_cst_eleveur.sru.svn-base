@@ -1,0 +1,56 @@
+HA$PBExportHeader$n_cst_eleveur.sru
+forward
+global type n_cst_eleveur from n_base
+end type
+end forward
+
+global type n_cst_eleveur from n_base autoinstantiate
+end type
+
+forward prototypes
+public function boolean of_formationgedis (long al_noeleveur)
+end prototypes
+
+public function boolean of_formationgedis (long al_noeleveur);//////////////////////////////////////////////////////////////////////////////
+//
+//	M$$HEX1$$e900$$ENDHEX$$thode:  		of_formationgedis
+//
+//	Acc$$HEX1$$e800$$ENDHEX$$s:  			Public
+//
+//	Argument:		no d'$$HEX1$$e900$$ENDHEX$$leveur
+//
+//	Retourne:  		TRUE - il est formation g$$HEX1$$e900$$ENDHEX$$dis
+//
+// Description:	Fonction pour trouver si l'$$HEX1$$e900$$ENDHEX$$leveur est g$$HEX1$$e900$$ENDHEX$$dis
+//						
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Historique
+//
+//	Date			Programmeur			Description
+//	2007-11-22	Mathieu Gendron	Cr$$HEX1$$e900$$ENDHEX$$ation
+//
+//////////////////////////////////////////////////////////////////////////////
+
+long ll_gedis = 0
+
+SELECT 	FormationGedis INTO :ll_gedis
+FROM 		t_eleveur
+WHERE		no_eleveur = :al_noeleveur
+USING 	SQLCA;
+
+IF ll_gedis = 1 THEN
+	RETURN TRUE
+ELSE
+	RETURN FALSE
+END IF
+end function
+
+on n_cst_eleveur.create
+call super::create
+end on
+
+on n_cst_eleveur.destroy
+call super::destroy
+end on
+

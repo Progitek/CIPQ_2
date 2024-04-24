@@ -1,0 +1,70 @@
+﻿$PBExportHeader$iin.srf
+global type iin from function_object
+end type
+
+forward prototypes
+global function boolean iin (string as_val, string as_arr[])
+global function boolean iin (ref powerobject ao_val, ref powerobject ao_arr[])
+global function boolean iin (long al_val, long al_arr[])
+end prototypes
+
+global function boolean iin (string as_val, string as_arr[]);
+int	i
+int	li_upper_bound
+
+li_upper_bound = UpperBound(as_arr[])
+for i = 1 to li_upper_bound
+	if as_arr[i] = as_val then
+		return true
+	end if
+next
+
+return false
+end function
+
+global function boolean iin (ref powerobject apo_val, ref powerobject apo_arr[]);
+int	i
+int	li_upper_bound
+
+li_upper_bound = UpperBound(apo_arr[])
+for i = 1 to li_upper_bound
+	if apo_arr[i] = apo_val then
+		return true
+	end if
+next
+
+return false
+end function
+
+global function boolean iin (long al_val, long al_arr[]);/**********************************************************************************************************************
+Dscr:	Reports if a value, passed as the 1st argument, appears in the array, passed as the 2ndt argument.
+		Mimics the action of SQL's IN clause. See here: http://forum.powerbuilder.us/viewtopic.php?f=4&t=6
+		
+		Examples of use:
+		 
+		if iin(ll_cust_id, ll_best_customers_arr[]) then...
+		if iin(ls_city, ls_best_cities_arr[]) then...
+		
+		The values list can be inserted inline using brackets - {..., ...} - to avoid the need to declare an array:
+		
+		if iin(ll_cust_id, {123, 456, 789}) then...
+		if iin(ls_city, {"Toronto", "Ottawa"}) then...
+-----------------------------------------------------------------------------------------------------------------------
+Arg:	value to be checked (can be of types long, int, char, string, PowerObject)
+		array to search in (must be of the same type as the first argument)
+-----------------------------------------------------------------------------------------------------------------------
+Ret:	boolean
+**********************************************************************************************************************/
+int	i
+int	li_upper_bound
+
+li_upper_bound = UpperBound(al_arr[])
+for i = 1 to li_upper_bound
+	if al_arr[i] = al_val then
+		return true
+	end if
+next
+
+return false
+end function
+

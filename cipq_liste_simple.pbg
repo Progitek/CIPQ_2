@@ -1,0 +1,46 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "cipq_liste_simple.pbl" "";
+@end;
+@begin Objects
+ "d_r_usagers_groupes_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_code_transport_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_droits_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_region_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_verrat_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_depot_spa_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_code_taxes_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_pharmacie_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_observation_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_centrescipq_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_livreur_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_origine_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_produit_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_recolte_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_race_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_technicien_lab_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_type_emballage_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_eleveur_detaille_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_isolement_principal_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_type_semence_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_localisation_depot_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_emplacement_section_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_eleveur_info_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_representant_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_type_telephone_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_site_verrat_isolement_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_cause_verrat_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_classe_verrat_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_cote_fertilite_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_groupe_facturation_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_transporteur_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_isolement_verrat_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_puce_employe_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_code_hebergeur_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_economie_volume_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_prepose_recolte_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_classe_produit_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_famille_produit_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_destination_verrat_simple.srd" "cipq_liste_simple.pbl";
+ "d_r_sous_groupe_verrat_simple.srd" "cipq_liste_simple.pbl";
+@end;

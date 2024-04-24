@@ -1,0 +1,25 @@
+HA$PBExportHeader$swap_ui.srf
+global type swap_ui from function_object
+end type
+
+forward prototypes
+global function integer swap_ui (ref unsignedinteger ai_item1, ref unsignedinteger ai_item2)
+end prototypes
+
+global function integer swap_ui (ref unsignedinteger ai_item1, ref unsignedinteger ai_item2);// Fonction qui interchange 2 items de type unsigned integer
+// Les 2 items doivent $$HEX1$$ea00$$ENDHEX$$tre de m$$HEX1$$ea00$$ENDHEX$$me type
+//
+// Retourne un entier
+// 1 - Succ$$HEX1$$e800$$ENDHEX$$s
+// -1 - $$HEX1$$c900$$ENDHEX$$chec
+
+unsignedinteger li_tmp
+
+li_tmp = ai_item1
+ai_item1 = ai_item2
+ai_item2 = li_tmp
+
+return 1
+
+end function
+

@@ -1,0 +1,33 @@
+HA$PBExportHeader$gf_binary.srf
+global type gf_binary from function_object
+end type
+
+forward prototypes
+global function string gf_binary (decimal ad_decimal)
+end prototypes
+
+global function string gf_binary (decimal ad_decimal);integer	li_remainder
+string	ls_binary = ''
+
+//Check parameters
+If IsNull(ad_decimal) or ad_decimal < 0 Then
+	string ls_null
+	SetNull(ls_null)
+	Return ls_null
+End If
+
+If ad_decimal = 0 Then
+	Return '0'
+End If
+
+Do Until ad_decimal = 0
+	li_remainder = mod(ad_decimal, 2)
+	ad_decimal = truncate(ad_decimal / 2, 0)
+	
+	//Build binary string
+	ls_binary = string(li_remainder) + ls_binary
+Loop
+Return ls_binary
+
+end function
+

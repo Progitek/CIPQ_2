@@ -1,0 +1,38 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "cipq_facturation.pbl" "";
+@end;
+@begin Objects
+ "w_exportation_facture.srw" "cipq_facturation.pbl";
+ "ds_selection_facture.srd" "cipq_facturation.pbl";
+ "d_facture_critere.srd" "cipq_facturation.pbl";
+ "ds_ldec_totprod_groupe.srd" "cipq_facturation.pbl";
+ "ds_exportation_eleveur.srd" "cipq_facturation.pbl";
+ "d_bon_expedition.srd" "cipq_facturation.pbl";
+ "w_facture_critere.srw" "cipq_facturation.pbl";
+ "ds_facturecalcultaxe.srd" "cipq_facturation.pbl";
+ "ds_sumexped_groupe.srd" "cipq_facturation.pbl";
+ "d_facture_correction.srd" "cipq_facturation.pbl";
+ "w_facture_correction.srw" "cipq_facturation.pbl";
+ "d_compte_exportation.srd" "cipq_facturation.pbl";
+ "w_bon_expedition.srw" "cipq_facturation.pbl";
+ "ds_facturation_hebergement.srd" "cipq_facturation.pbl";
+ "w_facturation_hebergement.srw" "cipq_facturation.pbl";
+ "d_bon_expedition_detail.srd" "cipq_facturation.pbl";
+ "d_facture_correction_detail.srd" "cipq_facturation.pbl";
+ "ds_facturation_bon_pas_detail.srd" "cipq_facturation.pbl";
+ "ds_facturation_mensuelle_normal_count.srd" "cipq_facturation.pbl";
+ "ds_rechd.srd" "cipq_facturation.pbl";
+ "ds_facturation_mensuelle.srd" "cipq_facturation.pbl";
+ "ds_verification_correction.srd" "cipq_facturation.pbl";
+ "w_facturation_mensuelle.srw" "cipq_facturation.pbl";
+ "d_bon_expedition_critere.srd" "cipq_facturation.pbl";
+ "w_bon_expedition_critere.srw" "cipq_facturation.pbl";
+ "ds_rechh.srd" "cipq_facturation.pbl";
+ "d_facture_correction_livraison.srd" "cipq_facturation.pbl";
+ "ds_facturation_mensuelle_reimp.srd" "cipq_facturation.pbl";
+ "d_facturation_mensuelle_groupe.srd" "cipq_facturation.pbl";
+ "ds_facturation_mensuelle_normal.srd" "cipq_facturation.pbl";
+ "ds_apok.srd" "cipq_facturation.pbl";
+ "ds_correction_livraison.srd" "cipq_facturation.pbl";
+@end;

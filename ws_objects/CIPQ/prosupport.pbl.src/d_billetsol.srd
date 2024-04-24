@@ -1,0 +1,46 @@
+﻿$PBExportHeader$d_billetsol.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 0 print.margin.right = 0 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=3488 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=id_billet dbname="t_billets.id_billet" )
+ column=(type=long update=yes updatewhereclause=yes name=id_patient dbname="t_billets.id_patient" )
+ column=(type=char(101) updatewhereclause=yes name=patnom dbname="patnom" )
+ column=(type=long update=yes updatewhereclause=yes name=id_projet dbname="t_billets.id_projet" )
+ column=(type=long update=yes updatewhereclause=yes name=id_module dbname="t_billets.id_module" )
+ column=(type=long update=yes updatewhereclause=yes name=id_etat dbname="t_billets.id_etat" )
+ column=(type=long update=yes updatewhereclause=yes name=id_user dbname="t_billets.id_user" )
+ column=(type=long update=yes updatewhereclause=yes name=degre dbname="t_billets.degre" values="Très urgent	10/Urgent	20/Moyen	30/Peu attendre	40/Faible	50/" )
+ column=(type=date update=yes updatewhereclause=yes name=bdate dbname="t_billets.bdate" )
+ column=(type=time update=yes updatewhereclause=yes name=bheure dbname="t_billets.bheure" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=description dbname="t_billets.description" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=appelant dbname="t_billets.appelant" )
+ column=(type=char(5000) update=yes updatewhereclause=yes name=solution dbname="t_billets.solution" )
+ retrieve="  SELECT t_billets.id_billet,
+			t_billets.id_patient, 
+         (select t_patients.prenom + ' ' + t_patients.nom from t_patients where t_patients.id_patient = t_billets.id_patient) as patnom,   
+         t_billets.id_projet,   
+         t_billets.id_module,   
+         t_billets.id_etat,   
+         t_billets.id_user,   
+         t_billets.degre,   
+         t_billets.bdate,   
+         t_billets.bheure,   
+         t_billets.description,
+			t_billets.appelant,
+			t_billets.solution  
+    FROM t_billets
+	WHERE t_billets.id_billet = :ra_idbillet" update="t_billets" updatewhere=0 updatekeyinplace=no arguments=(("ra_idbillet", number)) )
+column(band=detail id=13 alignment="0" tabsequence=70 border="5" color="33554432" x="9" y="4" height="832" width="3520" format="[general]" html.valueishtml="0"  name=solution visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,63 @@
+HA$PBExportHeader$d_commande_repetitive_item.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=15793151 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=132 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="536870912" )
+table(column=(type=char(3) update=yes updatewhereclause=yes key=yes name=cieno dbname="t_commanderepetitivedetail.cieno" )
+ column=(type=char(6) update=yes updatewhereclause=yes key=yes name=norepeat dbname="t_commanderepetitivedetail.norepeat" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=noligne dbname="t_commanderepetitivedetail.noligne" )
+ column=(type=real update=yes updatewhereclause=yes name=qtecommande dbname="t_commanderepetitivedetail.qtecommande" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=choix dbname="t_commanderepetitivedetail.choix" )
+ column=(type=char(16) update=yes updatewhereclause=yes name=noproduit dbname="t_commanderepetitivedetail.noproduit" )
+ column=(type=char(12) update=yes updatewhereclause=yes name=codeverrat dbname="t_commanderepetitivedetail.codeverrat" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=description dbname="t_commanderepetitivedetail.description" )
+ column=(type=long update=yes updatewhereclause=yes name=noligneheader dbname="t_commanderepetitivedetail.noligneheader" )
+ column=(type=long update=yes updatewhereclause=yes name=noitem dbname="t_commanderepetitivedetail.noitem" )
+ column=(type=char(100) updatewhereclause=yes name=t_produit_nomproduit dbname="t_produit.nomproduit" )
+ retrieve="  SELECT t_commanderepetitivedetail.cieno,   
+         t_commanderepetitivedetail.norepeat,   
+         t_commanderepetitivedetail.noligne,   
+         t_commanderepetitivedetail.qtecommande,   
+         t_commanderepetitivedetail.choix,   
+         t_commanderepetitivedetail.noproduit,   
+         t_commanderepetitivedetail.codeverrat,   
+         t_commanderepetitivedetail.description,   
+         t_commanderepetitivedetail.noligneheader,   
+         t_commanderepetitivedetail.noitem,
+			t_produit.nomproduit
+    FROM t_commanderepetitivedetail  
+LEFT JOIN t_produit ON upper(t_commanderepetitivedetail.noproduit) = upper(t_produit.noproduit)
+   WHERE ( t_commanderepetitivedetail.cieno = :as_cie ) AND  
+         ( t_commanderepetitivedetail.norepeat = :as_norepeat )    
+" update="t_commanderepetitivedetail" updatewhere=0 updatekeyinplace=yes arguments=(("as_cie", string),("as_norepeat", string))  sort="noligne A " )
+text(band=header alignment="2" text="Qt$$HEX2$$e9002000$$ENDHEX$$command$$HEX1$$e900$$ENDHEX$$e" border="0" color="33554432" x="155" y="12" height="64" width="430" html.valueishtml="0"  name=qtecommande_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Cieno" border="0" color="33554432" x="2880" y="340" height="64" width="146" html.valueishtml="0"  name=cieno_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Noligne" border="0" color="33554432" x="1198" y="360" height="64" width="329" html.valueishtml="0"  name=noligne_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=10 border="5" color="33554432" x="155" y="8" height="80" width="430" format="[general]" html.valueishtml="0"  name=qtecommande visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=detail id=6 alignment="0" tabsequence=20 border="5" color="33554432" x="613" y="8" height="80" width="521" format="[general]" html.valueishtml="0"  name=noproduit visible="1" dddw.name=dddw_produit_commande dddw.displaycolumn=noproduit dddw.datacolumn=noproduit dddw.percentwidth=330 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=upper dddw.required=yes dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="4142" y="4" height="76" width="311" format="[general]" html.valueishtml="0"  name=description visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="3739" y="4" height="76" width="389" format="[general]" html.valueishtml="0"  name=noitem visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="4462" y="4" height="76" width="393" format="[general]" html.valueishtml="0"  name=noligneheader visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="1961" y="240" height="76" width="178" format="[general]" html.valueishtml="0"  name=cieno visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="2144" y="240" height="76" width="311" format="[general]" html.valueishtml="0"  name=norepeat visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="2459" y="240" height="76" width="251" format="[general]" html.valueishtml="0"  name=noligne visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2725" y="240" height="76" width="142" format="[general]" html.valueishtml="0"  name=choix visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="151" y1="112" x2="3186" y2="112"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="151" y1="120" x2="3186" y2="120"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="No verrat" border="0" color="33554432" x="2478" y="12" height="64" width="695" html.valueishtml="0"  name=codeverrat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=30 border="5" color="33554432" x="2478" y="8" height="80" width="695" format="[general]" html.valueishtml="0"  name=codeverrat visible="1" dddw.name=dddw_verrat_tatouage dddw.displaycolumn=codeverrat dddw.datacolumn=codeverrat dddw.percentwidth=300 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=upper dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+text(band=header alignment="2" text="Produit" border="0" color="32768" x="613" y="12" height="64" width="1847" html.valueishtml="0"  name=noproduit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="1147" y="4" height="80" width="1312" format="[general]" html.valueishtml="0"  name=t_produit_nomproduit visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

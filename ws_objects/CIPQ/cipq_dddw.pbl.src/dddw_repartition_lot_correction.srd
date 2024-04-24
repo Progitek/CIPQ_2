@@ -1,0 +1,54 @@
+﻿$PBExportHeader$dddw_repartition_lot_correction.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=108 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(12) updatewhereclause=yes name=t_recolte_gestionlot_produit_nolot dbname="t_recolte_gestionlot_produit.nolot" dbalias=".nolot" )
+ column=(type=char(30) updatewhereclause=yes name=cc_produit dbname="cc_produit" )
+ column=(type=long updatewhereclause=yes name=t_recolte_gestionlot_produit_qtedistribue_qtedistribue dbname="t_recolte_gestionlot_produit_qtedistribue.qtedistribue" dbalias=".qtedistribue" )
+ column=(type=long updatewhereclause=yes name=t_recolte_gestionlot_produit_qtedistribue_compteur dbname="t_recolte_gestionlot_produit_qtedistribue.compteur" dbalias=".compteur" )
+ retrieve="SELECT 
+t_Recolte_GestionLot_Produit.NoLot, 
+upper(if t_Recolte_GestionLot_Produit.CodeVerrat is null OR t_Recolte_GestionLot_Produit.CodeVerrat = '' then
+	t_Recolte_GestionLot_Produit.NoProduit
+else
+	t_Recolte_GestionLot_Produit.CodeVerrat + ' (' + t_Recolte_GestionLot_Produit.NoProduit + ')'
+endif) as cc_produit,
+
+t_Recolte_GestionLot_Produit_QteDistribue.QteDistribue, 
+t_Recolte_GestionLot_Produit_QteDistribue.Compteur 
+
+FROM 
+t_Recolte_GestionLot_Produit 
+INNER JOIN t_Recolte_GestionLot_Produit_QteDistribue 
+ON (t_Recolte_GestionLot_Produit.Compteur = t_Recolte_GestionLot_Produit_QteDistribue.Compteur) 
+AND (upper(t_Recolte_GestionLot_Produit.NoProduit) = upper(t_Recolte_GestionLot_Produit_QteDistribue.NoProduit)) 
+AND (t_Recolte_GestionLot_Produit.NoLot = t_Recolte_GestionLot_Produit_QteDistribue.NoLot) 
+AND (upper(t_Recolte_GestionLot_Produit.Famille) = upper(t_Recolte_GestionLot_Produit_QteDistribue.Famille)) 
+AND (t_Recolte_GestionLot_Produit.DateRecolte = t_Recolte_GestionLot_Produit_QteDistribue.DateRecolte) 
+
+WHERE date(t_Recolte_GestionLot_Produit.DateRecolte)= Date(today()) AND ( cc_produit = upper(:as_produit) OR :as_produit is null)
+
+ORDER BY t_Recolte_GestionLot_Produit.NoLot" arguments=(("as_produit", string)) )
+text(band=header alignment="2" text="Nolot" border="0" color="33554432" x="5" y="4" height="64" width="357" html.valueishtml="0"  name=t_recolte_gestionlot_produit_nolot_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Produit" border="0" color="33554432" x="375" y="4" height="64" width="695" html.valueishtml="0"  name=cc_produit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qté distribuée" border="0" color="33554432" x="1079" y="4" height="64" width="370" html.valueishtml="0"  name=t_recolte_gestionlot_produit_qtedistribue_qtedistribue_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Compteur" border="0" color="33554432" x="1472" y="4" height="64" width="256" html.valueishtml="0"  name=t_recolte_gestionlot_produit_qtedistribue_compteur_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="5" y1="92" x2="1733" y2="92"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="76" width="357" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_nolot visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="375" y="4" height="76" width="695" format="[general]" html.valueishtml="0"  name=cc_produit visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="1079" y="4" height="76" width="370" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_qtedistribue_qtedistribue visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1472" y="4" height="76" width="256" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_qtedistribue_compteur visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

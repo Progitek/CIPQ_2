@@ -1,0 +1,86 @@
+HA$PBExportHeader$d_r_verrat_famille_frequence_recolte_moyenne.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=15793151 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=336 color="536870912" )
+table(column=(type=char(250) update=yes updatewhereclause=yes key=yes name=famille dbname="t_moyenne_commorig_melange_36.famille" )
+ column=(type=number update=yes updatewhereclause=yes name=sem1 dbname="sem1" )
+ column=(type=number update=yes updatewhereclause=yes name=sem2 dbname="sem2" )
+ column=(type=number update=yes updatewhereclause=yes name=sem3 dbname="sem3" )
+ column=(type=number update=yes updatewhereclause=yes name=sem4 dbname="sem4" )
+ column=(type=number update=yes updatewhereclause=yes name=sem5 dbname="sem5" )
+ column=(type=number update=yes updatewhereclause=yes name=sem6 dbname="sem6" )
+ column=(type=long updatewhereclause=yes name=sem1_orig dbname="sem1_orig" )
+ column=(type=long updatewhereclause=yes name=sem2_orig dbname="sem2_orig" )
+ column=(type=long updatewhereclause=yes name=sem3_orig dbname="sem3_orig" )
+ column=(type=long updatewhereclause=yes name=sem4_orig dbname="sem4_orig" )
+ column=(type=long updatewhereclause=yes name=sem5_orig dbname="sem5_orig" )
+ column=(type=long updatewhereclause=yes name=sem6_orig dbname="sem6_orig" )
+ column=(type=decimal(2) updatewhereclause=yes name=cc_nb_dose dbname="cc_nb_dose" )
+ retrieve="  SELECT famille,
+			round((isnull(cast(sem1 as double), 0)/6),0) as sem1,   
+			round((isnull(cast(sem2 as double), 0)/6),0) as sem2,   
+			round((isnull(cast(sem3 as double), 0)/6),0) as sem3,   
+			round((isnull(cast(sem4 as double), 0)/6),0) as sem4,   
+			round((isnull(cast(sem5 as double), 0)/6),0) as sem5,   
+			round((isnull(cast(sem6 as double), 0)/6),0) as sem6,
+			isnull(t_moyenne_commorig_melange_36.sem1, 0) as sem1_orig,
+			isnull(t_moyenne_commorig_melange_36.sem2, 0) as sem2_orig,
+			isnull(t_moyenne_commorig_melange_36.sem3, 0) as sem3_orig,
+			isnull(t_moyenne_commorig_melange_36.sem4, 0) as sem4_orig,
+			isnull(t_moyenne_commorig_melange_36.sem5, 0) as sem5_orig,
+			isnull(t_moyenne_commorig_melange_36.sem6, 0) as sem6_orig,
+			cast(:al_nb_dose as decimal(10,2)) as cc_nb_dose
+    FROM t_moyenne_commorig_melange_36
+   WHERE famille = :as_famille    
+" update="t_moyenne_commorig_melange_36" updatewhere=0 updatekeyinplace=no arguments=(("as_famille", string),("al_nb_dose", number)) )
+text(band=header alignment="2" text="1" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=c_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="2" border="0" color="33554432" x="338" y="4" height="64" width="329" html.valueishtml="0"  name=c_t_1_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="3" border="0" color="33554432" x="672" y="4" height="64" width="329" html.valueishtml="0"  name=c_t_2_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="4" border="0" color="33554432" x="1006" y="4" height="64" width="329" html.valueishtml="0"  name=c_t_3_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="5" border="0" color="33554432" x="1339" y="4" height="64" width="329" html.valueishtml="0"  name=c_t_4_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="6" border="0" color="33554432" x="1673" y="4" height="64" width="329" html.valueishtml="0"  name=c_t_5_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="521" y="0" height="100" width="3113"  name=r_1 visible="1" brush.hatch="6" brush.color="23770623" pen.style="0" pen.width="5" pen.color="1073741824"  background.mode="2" background.color="33554432" )
+compute(band=detail alignment="2" expression="round((  sem1_orig  +  sem2_orig +  sem3_orig +  sem4_orig +  sem5_orig +  sem6_orig ), 0)"border="0" color="33554432" x="558" y="1024" height="76" width="430" format="[GENERAL]" html.valueishtml="0"  name=cf_total_quantite visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1449" y="1044" height="64" width="430" format="[general]" html.valueishtml="0"  name=sem2_orig visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="1006" y="1036" height="64" width="430" format="[general]" html.valueishtml="0"  name=sem1_orig visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="105" y="1132" height="64" width="2135" format="[general]" html.valueishtml="0"  name=sem3_orig visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="91" y="1216" height="64" width="2135" format="[general]" html.valueishtml="0"  name=sem4_orig visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="119" y="1320" height="64" width="2135" format="[general]" html.valueishtml="0"  name=sem5_orig visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="119" y="1428" height="64" width="2135" format="[general]" html.valueishtml="0"  name=sem6_orig visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Nb dose/pr$$HEX1$$e900$$ENDHEX$$l$$HEX1$$e800$$ENDHEX$$vement:" border="0" color="33554432" x="32" y="148" height="64" width="686" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Nb pr$$HEX1$$e900$$ENDHEX$$l$$HEX1$$e800$$ENDHEX$$vements:" border="0" color="33554432" x="1207" y="148" height="64" width="521" html.valueishtml="0"  name=t_21 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Fr$$HEX1$$e900$$ENDHEX$$quence sugg$$HEX1$$e900$$ENDHEX$$r$$HEX1$$e900$$ENDHEX$$e:" border="0" color="33554432" x="2144" y="148" height="64" width="626" html.valueishtml="0"  name=t_22 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="727" y="148" height="64" width="265" format="[general]" html.valueishtml="0"  name=cc_nb_dose visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="ROUND(  cf_total_moyenne /  cc_nb_dose , 0)"border="0" color="33554432" x="1746" y="148" height="64" width="215" format="[GENERAL]" html.valueishtml="0"  name=cc_nb_prelevement visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" round(cc_nb_prelevement / f_nb_verrat( famille ),2)"border="0" color="33554432" x="2779" y="148" height="64" width="215" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Moyenne" border="0" color="33554432" x="32" y="20" height="64" width="430" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="2" expression="f_nb_verrat(famille)"border="0" color="33554432" x="46" y="260" height="64" width="466" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="530" y="12" height="76" width="416" format="[general]" html.valueishtml="0"  name=sem1 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="960" y="12" height="76" width="416" format="[general]" html.valueishtml="0"  name=sem2 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1394" y="12" height="76" width="416" format="[general]" html.valueishtml="0"  name=sem3 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="1829" y="12" height="76" width="416" format="[general]" html.valueishtml="0"  name=sem4 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="2272" y="12" height="76" width="416" format="[general]" html.valueishtml="0"  name=sem5 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="33554432" x="2715" y="12" height="76" width="416" format="[general]" html.valueishtml="0"  name=sem6 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round((  sem1_orig  +  sem2_orig +  sem3_orig +  sem4_orig +  sem5_orig +  sem6_orig ) / 6, 0)"border="0" color="33554432" x="3186" y="12" height="76" width="430" format="[GENERAL]" html.valueishtml="0"  name=cf_total_moyenne visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="521" y="248" height="88" width="3113"  name=r_2 visible="1" brush.hatch="6" brush.color="15780518" pen.style="0" pen.width="5" pen.color="1073741824"  background.mode="2" background.color="23770623" )
+compute(band=detail alignment="2" expression="round( sem1 /  cc_nb_dose ,0)"border="0" color="33554432" x="530" y="256" height="64" width="416" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round( sem2 /  cc_nb_dose ,0)"border="0" color="33554432" x="960" y="256" height="64" width="416" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round( sem3 /  cc_nb_dose ,0)"border="0" color="33554432" x="1394" y="256" height="64" width="416" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round( sem4 /  cc_nb_dose ,0)"border="0" color="33554432" x="1829" y="256" height="64" width="416" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round( sem5 /  cc_nb_dose ,0)"border="0" color="33554432" x="2272" y="256" height="64" width="416" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round( sem6 /  cc_nb_dose ,0)"border="0" color="33554432" x="2715" y="256" height="64" width="416" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round( cf_total_moyenne /  cc_nb_dose ,0)"border="0" color="33554432" x="3186" y="256" height="64" width="416" format="[GENERAL]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

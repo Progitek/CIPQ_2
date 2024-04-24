@@ -1,0 +1,9 @@
+HA$PBExportHeader$str_bitmapheader.srs
+global type str_bitmapheader from structure
+	character		bftype[2]
+	unsignedlong		bfsize
+	integer		bfreserved1
+	integer		bfreserved2
+	unsignedlong		bfoffbits
+end type
+

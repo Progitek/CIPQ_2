@@ -1,0 +1,17 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "advguicontrols.pbl" "";
+@end;
+@begin Objects
+ "uo_bouton.sru" "advguicontrols.pbl";
+ "u_cst_buttonlistbar.sru" "advguicontrols.pbl";
+ "u_cst_tabpage.sru" "advguicontrols.pbl";
+ "u_cst_xpheader.sru" "advguicontrols.pbl";
+ "u_cst_shortcutbar.sru" "advguicontrols.pbl";
+ "st_uo_transparent.sru" "advguicontrols.pbl";
+ "u_cst_xplistbar.sru" "advguicontrols.pbl";
+ "u_cst_toolbarstrip.sru" "advguicontrols.pbl";
+ "u_picturebutton.sru" "advguicontrols.pbl";
+ "u_cst_tabcontrol.sru" "advguicontrols.pbl";
+ "u_statictext.sru" "advguicontrols.pbl";
+@end;

@@ -1,0 +1,47 @@
+HA$PBExportHeader$ds_tmp_recolte_validation.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=15793151 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=132 color="536870912" )
+table(column=(type=number update=yes updatewhereclause=yes name=validation dbname="t_verrat_classe.validation" dbalias=".validation" )
+ column=(type=char(3) updatewhereclause=yes key=yes name=cie_no dbname="t_verrat_classe.cie_no" dbalias=".cie_no" )
+ column=(type=char(15) updatewhereclause=yes name=famille dbname="t_verrat_classe.famille" dbalias=".famille" )
+ column=(type=long updatewhereclause=yes key=yes name=norecolte dbname="t_verrat_classe.norecolte" dbalias=".norecolte" )
+ column=(type=char(12) updatewhereclause=yes name=codeverrat dbname="t_verrat_classe.codeverrat" dbalias=".codeverrat" )
+ column=(type=datetime updatewhereclause=yes name=date_recolte dbname="t_verrat_classe.date_recolte" dbalias=".date_recolte" )
+ column=(type=datetime updatewhereclause=yes name=date2 dbname="date2" )
+ retrieve="SELECT 
+#Tmp_Recolte.validation, 
+#Tmp_Recolte.CIE_NO, 
+t_Verrat_Classe.Famille, 
+#Tmp_Recolte.NoRecolte,
+#Tmp_Recolte.codeverrat,
+DATE_recolte,
+(select max(date_recolte) FROM #Tmp_MaleRecolte WHERE #Tmp_MaleRecolte.cie_no = #Tmp_Recolte.cie_no AND #Tmp_MaleRecolte.CodeVerrat = #Tmp_Recolte.CodeVerrat ) as date2
+FROM t_Verrat_Classe 
+INNER JOIN (#Tmp_Recolte 
+INNER JOIN t_Verrat 
+ON ((#Tmp_Recolte.CodeVerrat) = (t_Verrat.CodeVerrat)) 
+AND (#Tmp_Recolte.CIE_NO = t_Verrat.CIE_NO)) ON t_Verrat_Classe.ClasseVerrat = t_Verrat.Classe 
+WHERE #Tmp_Recolte.CIE_NO = :as_cie AND t_Verrat_Classe.Famille = :as_famille
+ORDER BY DATE_recolte, date2" update="#Tmp_Recolte" updatewhere=0 updatekeyinplace=yes arguments=(("as_cie", string),("as_famille", string)) )
+text(band=detail alignment="1" text="Validation:" border="0" color="33554432" x="37" y="4" height="64" width="279" html.valueishtml="0"  name=validation_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="33554432" x="334" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=validation visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="663" y="0" height="64" width="82" format="[general]" html.valueishtml="0"  name=cie_no visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="745" y="0" height="64" width="407" format="[general]" html.valueishtml="0"  name=famille visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1243" y="16" height="64" width="270" format="[general]" html.valueishtml="0"  name=norecolte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=20 border="0" color="33554432" x="2267" y="44" height="64" width="430" format="[shortdate] [time]" html.valueishtml="0"  name=date2 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="255" x="1522" y="32" height="64" width="325" html.valueishtml="0"  name=codeverrat visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=40 border="0" color="33554432" x="1865" y="12" height="64" width="370" html.valueishtml="0"  name=date_recolte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

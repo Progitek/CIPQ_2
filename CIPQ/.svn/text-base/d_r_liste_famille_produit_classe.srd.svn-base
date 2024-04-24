@@ -1,0 +1,53 @@
+HA$PBExportHeader$d_r_liste_famille_produit_classe.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=660 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=76 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(15) updatewhereclause=yes name=t_produit_famille_famille dbname="t_produit_famille.famille" )
+ column=(type=char(50) updatewhereclause=yes name=t_produit_famille_descriptionfamille dbname="t_produit_famille.descriptionfamille" )
+ column=(type=char(20) updatewhereclause=yes name=t_verrat_classe_classeverrat dbname="t_verrat_classe.classeverrat" )
+ column=(type=char(50) updatewhereclause=yes name=t_verrat_classe_classeverratdesc dbname="t_verrat_classe.classeverratdesc" )
+ column=(type=number updatewhereclause=yes name=t_produit_famille_inactif dbname="t_produit_famille.inactif" )
+ retrieve="SELECT 
+t_Produit_Famille.Famille, 
+t_Produit_Famille.DescriptionFamille, 
+t_Verrat_Classe.ClasseVerrat, 
+t_Verrat_Classe.ClasseVerratDesc, 
+t_Produit_Famille.Inactif 
+FROM t_Produit_Famille 
+LEFT JOIN t_Verrat_Classe 
+ON t_Produit_Famille.Famille = t_Verrat_Classe.Famille 
+WHERE t_Verrat_Classe.Inactif = 0 "  sort="t_produit_famille_famille A t_verrat_classe_classeverrat A " )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1  tag="exclure_mr" visible="1" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2112" y="4" height="76" width="1330" format="[general]" html.valueishtml="0"  name=t_verrat_classe_classeverratdesc visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1591" y="4" height="76" width="498" format="[general]" html.valueishtml="0"  name=t_verrat_classe_classeverrat visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="357" y="4" height="76" width="1225" format="[general]" html.valueishtml="0"  name=t_produit_famille_descriptionfamille visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="18" y="4" height="76" width="325" format="[general]" html.valueishtml="0"  name=t_produit_famille_famille visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="174" y="192" height="64" width="667" format="[general]" html.valueishtml="0"  name=t_produit_famille_inactif visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Inactif" border="0" color="33554432" x="1189" y="328" height="64" width="160" html.valueishtml="0"  name=t_produit_famille_inactif_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="8" height="64" width="3465" html.valueishtml="0"  name=t_3  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Liste des familles des produits 
+avec les classes de verrat" border="0" color="33554432" x="480" y="8" height="312" width="2025" html.valueishtml="0"  name=t_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2523" y1="96" x2="3470" y2="96"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2523" y="12" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="108" height="64" width="946" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="5" y1="648" x2="3433" y2="648"  name=l_1  tag="exclure_mr" visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="0" y1="656" x2="3429" y2="656"  name=l_2  tag="exclure_mr" visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Description de classe" border="0" color="33554432" x="2107" y="568" height="64" width="1330" html.valueishtml="0"  name=t_verrat_classe_classeverratdesc_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Famille" border="0" color="33554432" x="14" y="568" height="64" width="329" html.valueishtml="0"  name=t_produit_famille_famille_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="0" color="33554432" x="352" y="568" height="64" width="1225" html.valueishtml="0"  name=t_produit_famille_descriptionfamille_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Classe de verrat" border="0" color="33554432" x="1586" y="568" height="64" width="498" html.valueishtml="0"  name=t_verrat_classe_classeverrat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+
+sparse(names="t_produit_famille_famille	t_produit_famille_descriptionfamille")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

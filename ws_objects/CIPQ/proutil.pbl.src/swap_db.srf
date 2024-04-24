@@ -1,0 +1,25 @@
+﻿$PBExportHeader$swap_db.srf
+global type swap_db from function_object
+end type
+
+forward prototypes
+global function integer swap_db (ref double adb_item1, ref double adb_item2)
+end prototypes
+
+global function integer swap_db (ref double adb_item1, ref double adb_item2);// Fonction qui interchange 2 items de type double
+// Les 2 items doivent être de même type
+//
+// Retourne un entier
+// 1 - Succès
+// -1 - Échec
+
+double ldb_tmp
+
+ldb_tmp = adb_item1
+adb_item1 = adb_item2
+adb_item2 = ldb_tmp
+
+return 1
+
+end function
+

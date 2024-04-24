@@ -1,0 +1,20 @@
+﻿$PBExportHeader$unsplit.srf
+global type unsplit from function_object
+end type
+
+forward prototypes
+global function string unsplit (readonly any aa_vect[], readonly string as_del)
+end prototypes
+
+global function string unsplit (readonly any aa_vect[], readonly string as_del);long i
+string ls_list = ""
+
+for i = lowerbound(aa_vect) to upperbound(aa_vect)
+	if not isNull(aa_vect[i]) then ls_list += string(aa_vect[i])
+	ls_list += as_del
+next
+
+return left(ls_list, len(ls_list) - len(as_del))
+
+end function
+

@@ -1,0 +1,77 @@
+HA$PBExportHeader$d_r_sommaire_recolte_journ_verrat.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=datetime update=yes updatewhereclause=yes name=daterecolte dbname="t_recolte_gestionlot_famille.daterecolte" dbalias=".daterecolte" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="t_recolte_gestionlot_famille.type" dbalias=".type" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=famille dbname="t_recolte_gestionlot_famille.famille" dbalias=".famille" )
+ column=(type=char(12) update=yes updatewhereclause=yes name=nolot dbname="t_recolte_gestionlot_famille.nolot" dbalias=".nolot" )
+ column=(type=char(12) update=yes updatewhereclause=yes name=codeverrat dbname="t_recolte_gestionlot_famille.codeverrat" dbalias=".codeverrat" )
+ column=(type=long updatewhereclause=yes name=qtedosemelange dbname="t_recolte_gestionlot_famille.qtedosemelange" dbalias=".qtedosemelange" )
+ column=(type=long updatewhereclause=yes name=qtedosepure dbname="t_recolte_gestionlot_famille.qtedosepure" dbalias=".qtedosepure" )
+ column=(type=long update=yes updatewhereclause=yes name=qtedose dbname="qtedose" )
+ column=(type=datetime updatewhereclause=yes name=t_recolte_heure_recolte dbname="t_recolte.heure_recolte" dbalias=".heure_recolte" )
+ retrieve="SELECT 
+t_Recolte_GestionLot_Detail.DateRecolte, 
+t_Recolte_GestionLot_Famille.Type, 
+t_Recolte_GestionLot_Famille.Famille, 
+t_Recolte_GestionLot_Detail.NoLot, 
+t_Recolte_GestionLot_Detail.CodeVerrat, 
+QteDoseMelange,
+QteDosePure ,
+(If t_Recolte_GestionLot_Famille.Type = 1 THEN QteDoseMelange else QteDosePure endif) AS QteDose,
+t_recolte.heure_recolte
+FROM 
+t_Recolte_GestionLot_Famille 
+INNER JOIN (t_Recolte_GestionLot_Lot INNER JOIN t_Recolte_GestionLot_Detail ON 
+(t_Recolte_GestionLot_Lot.NoLot = t_Recolte_GestionLot_Detail.NoLot) AND (t_Recolte_GestionLot_Lot.Famille = t_Recolte_GestionLot_Detail.Famille) AND 
+(t_Recolte_GestionLot_Lot.DateRecolte = t_Recolte_GestionLot_Detail.DateRecolte)) ON (t_Recolte_GestionLot_Famille.Famille = t_Recolte_GestionLot_Lot.Famille) AND 
+(t_Recolte_GestionLot_Famille.DateRecolte = t_Recolte_GestionLot_Lot.DateRecolte)
+INNER JOIN t_recolte	ON t_Recolte_GestionLot_Detail.codeverrat = t_recolte.codeverrat 
+AND t_Recolte_GestionLot_Detail.daterecolte = t_recolte.date_recolte 
+WHERE
+t_Recolte_GestionLot_Famille.DateRecolte = :ad_cur AND
+t_Recolte_GestionLot_Famille.Famille = :as_famille AND
+t_Recolte_GestionLot_Lot.NoLot = :as_lot
+ORDER BY 
+t_Recolte_GestionLot_Famille.Type, 
+t_Recolte_GestionLot_Famille.Famille, 
+t_Recolte_GestionLot_Detail.NoLot, 
+t_Recolte_GestionLot_Detail.CodeVerrat" arguments=(("ad_cur", date),("as_famille", string),("as_lot", string)) )
+group(level=1 header.height=0 trailer.height=180 by=("daterecolte" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("famille" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("nolot" ) header.color="536870912" trailer.color="536870912" )
+text(band=detail alignment="2" text="Daterecolte" border="0" color="33554432" x="64" y="540" height="64" width="603" html.valueishtml="0"  name=daterecolte_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="59" y="612" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=daterecolte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Type" border="0" color="33554432" x="50" y="688" height="64" width="329" html.valueishtml="0"  name=type_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="33554432" x="55" y="764" height="76" width="329" format="[general]" html.valueishtml="0"  name=type visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Famille" border="0" color="33554432" x="37" y="852" height="64" width="357" html.valueishtml="0"  name=famille_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="37" y="936" height="76" width="357" format="[general]" html.valueishtml="0"  name=famille visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="33554432" x="32" y="1072" height="76" width="357" format="[general]" html.valueishtml="0"  name=nolot visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Nolot" border="0" color="33554432" x="27" y="1008" height="64" width="357" html.valueishtml="0"  name=nolot_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Codeverrat" border="0" color="33554432" x="23" y="1184" height="64" width="361" html.valueishtml="0"  name=codeverrat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Qtedose" border="0" color="33554432" x="50" y="1252" height="64" width="329" html.valueishtml="0"  name=qtedose_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=70 border="0" color="33554432" x="5" y="108" height="64" width="416" format="[general]" html.valueishtml="0"  name=qtedosemelange visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=80 border="0" color="33554432" x="0" y="180" height="64" width="416" format="[general]" html.valueishtml="0"  name=qtedosepure visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=90 border="0" color="134217857" x="462" y="116" height="76" width="128" format="[general]" html.valueishtml="0"  name=type_1 visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="33554432" x="18" y="8" height="76" width="416" format="[general]" html.valueishtml="0"  name=codeverrat visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=60 border="0" color="33554432" x="485" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtedose visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.3 alignment="2" text="Doses totales:" border="0" color="33554432" x="5" y="16" height="64" width="430" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum( qtedose for group 3)"border="0" color="33554432" x="485" y="16" height="64" width="329" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="Total:" border="0" color="33554432" x="0" y="36" height="64" width="169" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="0" expression="sum( qtedose for group 1)"border="0" color="33554432" x="485" y="36" height="64" width="329" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=100 border="0" color="33554432" x="882" y="8" height="64" width="306" html.valueishtml="0"  name=t_recolte_heure_recolte visible="1" editmask.mask="hh:mm" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,26 @@
+HA$PBExportHeader$rep.srf
+global type rep from function_object
+end type
+
+forward prototypes
+global function string rep (string oldstring, readonly string string1, readonly string string2)
+end prototypes
+
+global function string rep (string oldstring, readonly string string1, readonly string string2);long p
+
+if isNull(oldString) or isNull(string1) or isNull(string2) then
+	setNull(oldString)
+	return oldString
+end if
+
+p = pos(oldString,string1)
+
+do while p <> 0
+	oldString = Replace(oldString,p,len(string1),string2)
+	p = pos(oldString,string1, p + len(string2))
+loop
+
+return oldString
+
+end function
+

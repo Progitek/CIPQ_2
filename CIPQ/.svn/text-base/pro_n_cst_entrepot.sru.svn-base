@@ -1,0 +1,172 @@
+HA$PBExportHeader$pro_n_cst_entrepot.sru
+$PBExportComments$Service d'entrep$$HEX1$$f400$$ENDHEX$$t non global
+forward
+global type pro_n_cst_entrepot from nonvisualobject
+end type
+end forward
+
+global type pro_n_cst_entrepot from nonvisualobject autoinstantiate
+end type
+
+type variables
+any 		ia_Entrepot[]
+string 	is_Identifiant[]
+
+long 		il_Compteur
+end variables
+
+forward prototypes
+public function any of_demande (string as_identifiant)
+public function integer of_entrepose (string as_identifiant, any aa_objet)
+private function long of_retourneposition (string as_identifiant)
+public function any of_demande (string as_identifiant, boolean ab_reset)
+end prototypes
+
+public function any of_demande (string as_identifiant);//////////////////////////////////////////////////////////////////////////////
+//
+//	M$$HEX1$$e900$$ENDHEX$$thode:  		of_Demande
+//
+//	Acc$$HEX1$$e800$$ENDHEX$$s:  			Public
+//
+//	Argument:		as_identifiant - identifiant de l'item recherch$$HEX1$$e900$$ENDHEX$$
+//
+//	Retourne:  		valeur any						
+//
+//	Description:	Cette fonction permet de retourner une valeur (any) sauvegard$$HEX1$$e900$$ENDHEX$$e
+//						auparavent contenue dans l'entrep$$HEX1$$f400$$ENDHEX$$t (valeur toujours disponible)
+//						selon l'identifiant
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Historique
+//
+//	Date			Programmeur			Description
+//
+//////////////////////////////////////////////////////////////////////////////
+
+RETURN THIS.of_demande( as_identifiant, TRUE)
+end function
+
+public function integer of_entrepose (string as_identifiant, any aa_objet);//////////////////////////////////////////////////////////////////////////////
+//
+//	M$$HEX1$$e900$$ENDHEX$$thode:  		of_Entrepose
+//
+//	Acc$$HEX1$$e800$$ENDHEX$$s:  			Public
+//
+//	Arguments:		as_identifiant - identifiant de l'$$HEX1$$e900$$ENDHEX$$l$$HEX1$$e900$$ENDHEX$$ment $$HEX2$$e0002000$$ENDHEX$$stocker
+//						aa_objet			- $$HEX1$$e900$$ENDHEX$$l$$HEX1$$e900$$ENDHEX$$ment $$HEX2$$e0002000$$ENDHEX$$stocker
+//
+//	Retourne:  		1 si la fonction a bien fonctionn$$HEX1$$e900$$ENDHEX$$
+//
+//	Description:	Cette fonction permet d'entreposer une valeur (any) dans l'entrep$$HEX1$$f400$$ENDHEX$$t 
+//						(valeur toujours disponible) avec un identifiant
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Historique
+//
+//	Date			Programmeur			Description
+//
+//////////////////////////////////////////////////////////////////////////////
+
+long		ll_Position
+
+ll_Position = THIS.of_RetournePosition(as_Identifiant)
+
+IF ll_Position > 0 THEN
+	is_Identifiant[ll_Position] = as_Identifiant
+	ia_Entrepot[ll_Position] = aa_Objet
+ELSE
+	il_Compteur++
+	is_Identifiant[il_Compteur] = as_Identifiant
+	ia_Entrepot[il_Compteur] = aa_Objet
+END IF
+
+RETURN 1
+end function
+
+private function long of_retourneposition (string as_identifiant);//////////////////////////////////////////////////////////////////////////////
+//
+//	M$$HEX1$$e900$$ENDHEX$$thode:  		of_RetournePosition
+//
+//	Acc$$HEX1$$e800$$ENDHEX$$s:  			Private
+//
+//	Argument:		as_identifiant - identifiant de l'$$HEX1$$e900$$ENDHEX$$l$$HEX1$$e900$$ENDHEX$$ment $$HEX2$$e0002000$$ENDHEX$$rechercher
+//
+//	Retourne:  		La position si l'$$HEX1$$e900$$ENDHEX$$l$$HEX1$$e900$$ENDHEX$$ment a $$HEX1$$e900$$ENDHEX$$t$$HEX2$$e9002000$$ENDHEX$$trouv$$HEX1$$e900$$ENDHEX$$, sinon retourne 0
+//
+//	Description:	Permet de trouver la position d'un identifiant dans l'entrep$$HEX1$$f400$$ENDHEX$$t
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Historique
+//
+//	Date			Programmeur			Description
+//
+//////////////////////////////////////////////////////////////////////////////
+
+long		ll_Position
+
+FOR ll_Position = 1 TO il_Compteur
+	IF is_identifiant[ll_position] = as_identifiant THEN
+		RETURN ll_Position
+	END IF
+NEXT
+
+RETURN 0
+end function
+
+public function any of_demande (string as_identifiant, boolean ab_reset);//////////////////////////////////////////////////////////////////////////////
+//
+//	M$$HEX1$$e900$$ENDHEX$$thode:  		of_Demande
+//
+//	Acc$$HEX1$$e800$$ENDHEX$$s:  			Public
+//
+//	Argument:		as_identifiant - identifiant de l'item recherch$$HEX1$$e900$$ENDHEX$$
+//						ab_reset			- Vid$$HEX2$$e9002000$$ENDHEX$$la variable apr$$HEX1$$e800$$ENDHEX$$s?
+//
+//	Retourne:  		valeur any						
+//
+//	Description:	Cette fonction permet de retourner une valeur (any) sauvegard$$HEX1$$e900$$ENDHEX$$e
+//						auparavent contenue dans l'entrep$$HEX1$$f400$$ENDHEX$$t (valeur toujours disponible)
+//						selon l'identifiant
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Historique
+//
+//	Date			Programmeur			Description
+//	2008-01-07	Mathieu Gendron	Reset du contenu de la variable
+//
+//////////////////////////////////////////////////////////////////////////////
+
+long		ll_Position
+string 	ls_Null
+any		la_local, la_null
+SetNull(ls_Null)
+
+ll_Position = of_RetournePosition(as_Identifiant)
+IF ll_Position > 0 THEN
+	la_local = ia_entrepot[ll_Position]
+	IF ab_reset THEN
+		la_null = la_local
+		SetNull(la_null)
+		ia_entrepot[ll_Position] = la_null
+	END IF
+	
+	RETURN la_local
+ELSE
+	RETURN ls_Null
+END IF
+end function
+
+on pro_n_cst_entrepot.create
+call super::create
+TriggerEvent( this, "constructor" )
+end on
+
+on pro_n_cst_entrepot.destroy
+TriggerEvent( this, "destructor" )
+call super::destroy
+end on
+

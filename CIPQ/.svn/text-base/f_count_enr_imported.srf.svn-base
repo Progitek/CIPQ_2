@@ -1,0 +1,76 @@
+HA$PBExportHeader$f_count_enr_imported.srf
+global type f_Count_Enr_Imported from function_object
+end type
+
+forward prototypes
+global function long f_count_enr_imported (string as_tblname, string as_centre, string as_datetransfert)
+end prototypes
+
+global function long f_count_enr_imported (string as_tblname, string as_centre, string as_datetransfert);//f_Count_Enr_Imported
+//Pour le rpt Transfert r$$HEX1$$e900$$ENDHEX$$ception
+//Sert $$HEX2$$e0002000$$ENDHEX$$compter le nombre d'enregistrement marqu$$HEX2$$e9002000$$ENDHEX$$comme export$$HEX4$$e9002000e0002000$$ENDHEX$$une date donn$$HEX1$$e900$$ENDHEX$$e.
+
+date		ld_cur
+long		ll_retour = 0
+string	ls_sql
+
+ld_cur = Date(as_datetransfert)
+
+CHOOSE CASE lower(as_tblname)
+		
+	Case "t_commandeoriginale" //REC 110
+		SELECT 	Count(0) AS TotRec 
+		INTO		:ll_retour
+		FROM 		t_commandeoriginale
+		WHERE 	t_commandeoriginale.CieNo = :as_centre AND date(t_commandeoriginale.TransDate) = :ld_cur ;
+		
+	CASE "t_recolte" //REC 110
+		//J'aime pas ca
+//		IF as_centre = "111" OR as_centre = "115" THEN
+//			SELECT 	Count(0) AS TotRec 
+//			INTO		:ll_retour
+//			FROM 		t_recolte
+//			WHERE 	(t_recolte.CieNo = '110' OR t_recolte.CieNo = '115') AND date(t_recolte.TransDate) = :ld_cur ;
+//		ELSE
+			SELECT 	Count(0) AS TotRec 
+			INTO		:ll_retour
+			FROM 		t_recolte
+			WHERE 	t_recolte.CieNo = :as_centre AND date(t_recolte.TransDate) = :ld_cur ;
+//		END IF
+		
+	CASE "t_statfacture" //REC 110
+//		IF as_centre = "111" OR as_centre = "115" THEN
+//			SELECT 	Count(0) AS TotRec 
+//			INTO		:ll_retour
+//			FROM 		t_StatFacture
+//			WHERE 	(t_StatFacture.CieNo = '110' OR t_StatFacture.CieNo = '115') AND date(t_StatFacture.TransDate) = :ld_cur ;
+//		ELSE
+			SELECT 	Count(0) AS TotRec
+			INTO		:ll_retour
+			FROM 		t_StatFacture
+			WHERE 	t_StatFacture.CieNo = :as_centre AND date(t_StatFacture.TransDate) = :ld_cur ;
+//		END IF
+	
+	Case "t_statfacturedetail" //REC 110
+		SELECT 	Count(0) AS TotRec 
+		INTO		:ll_retour
+		FROM 		T_StatFacture INNER JOIN T_StatFactureDetail
+		ON 		(T_StatFacture.LIV_NO = T_StatFactureDetail.LIV_NO) AND (T_StatFacture.CIE_NO = T_StatFactureDetail.CIE_NO)
+		WHERE 	t_StatFacture.CIE_NO = :as_centre AND date(T_StatFacture.TransDate) = :ld_cur;
+		
+	Case "t_alliancematernelle_recolte_gestionlot_verrat" //REC 110
+		SELECT 	Count(0) AS TotRec
+		INTO		:ll_retour
+		FROM 		t_AllianceMaternelle_Recolte_GestionLot_Verrat 
+		WHERE 	t_AllianceMaternelle_Recolte_GestionLot_Verrat.CIE_NO = :as_centre 
+					AND date(t_AllianceMaternelle_Recolte_GestionLot_Verrat.TransDate) = :ld_cur));
+		
+	CASE ELSE
+		ls_sql = "SELECT Count(0) FROM " + as_tblname 
+		ll_retour = gnv_app.of_dynamic_count( ls_sql )
+		
+END CHOOSE
+
+RETURN ll_retour
+end function
+

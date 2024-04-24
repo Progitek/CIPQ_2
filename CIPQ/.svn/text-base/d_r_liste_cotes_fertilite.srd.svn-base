@@ -1,0 +1,58 @@
+HA$PBExportHeader$d_r_liste_cotes_fertilite.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=756 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=68 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cote dbname="cote" )
+ column=(type=number updatewhereclause=yes name=heb dbname="t_RecolteCote.heb" )
+ column=(type=char(50) updatewhereclause=yes name=typeproduit dbname="typeproduit" )
+ column=(type=char(1) updatewhereclause=yes name=typeabrege dbname="typeabrege" )
+ column=(type=number updatewhereclause=yes name=inactif dbname="t_RecolteCote.inactif" )
+ column=(type=decimal(2) updatewhereclause=yes name=concentration dbname="concentration" )
+ retrieve="SELECT
+cote,
+heb,
+typeproduit,
+typeabrege,
+inactif,
+concentration
+FROM
+t_RecolteCote" )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="Abr$$HEX1$$e900$$ENDHEX$$viation du type de produit" border="0" color="33554432" x="1061" y="592" height="132" width="535" html.valueishtml="0"  name=typeabrege_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H$$HEX1$$e900$$ENDHEX$$bergement" border="0" color="33554432" x="1627" y="592" height="64" width="535" html.valueishtml="0"  name=heb_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Inactif" border="0" color="33554432" x="2194" y="592" height="64" width="329" html.valueishtml="0"  name=inactif_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Description   (Type de produit)" border="0" color="33554432" x="448" y="592" height="132" width="535" html.valueishtml="0"  name=typeproduit_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Concentration (X1 000 000 000)" border="0" color="33554432" x="2555" y="592" height="128" width="530" html.valueishtml="0"  name=concentration_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="9" y1="736" x2="3447" y2="736"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="5" y1="744" x2="3442" y2="744"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Cote" border="0" color="33554432" x="96" y="592" height="64" width="270" html.valueishtml="0"  name=cote_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="2190" y="80" height="76" width="329" format="[general]" html.valueishtml="0"  name=inactif visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="1618" y="84" height="76" width="535" format="[general]" html.valueishtml="0"  name=heb visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="370" y="4" height="76" width="672" format="[general]" html.valueishtml="0"  name=typeproduit visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1051" y="4" height="76" width="535" format="[general]" html.valueishtml="0"  name=typeabrege visible="1" edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="1829" y="0" height="84" width="101"  name=r_2 visible="1" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="134217746"  background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="X" border="0" color="33554432" x="1851" y="8" height="64" width="50" html.valueishtml="0"  name=t_2 visible="1~tif(  heb = 1, 1, 0 )"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="2551" y="4" height="76" width="530" format="[general]" html.valueishtml="0"  name=concentration visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="2304" y="0" height="84" width="101"  name=r_3 visible="1" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="134217746"  background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="X" border="0" color="33554432" x="2327" y="8" height="64" width="50" html.valueishtml="0"  name=t_3 visible="1~tif( inactif = 1, 1, 0 )"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="96" y="4" height="76" width="270" format="[general]" html.valueishtml="0"  name=cote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="9" y="4" height="64" width="3465" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2523" y="12" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Liste des cotes de fertilit$$HEX1$$e900$$ENDHEX$$" border="0" color="33554432" x="480" y="8" height="156" width="2034" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="" border="0" color="33554432" x="480" y="180" height="272" width="2034" html.valueishtml="0"  name=t_criteres visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="104" height="344" width="942" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2519" y1="96" x2="3461" y2="96"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

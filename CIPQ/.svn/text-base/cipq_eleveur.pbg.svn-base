@@ -1,0 +1,17 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "cipq_eleveur.pbl" "";
+@end;
+@begin Objects
+ "w_eleveur.srw" "cipq_eleveur.pbl";
+ "d_eleveur_telephone.srd" "cipq_eleveur.pbl";
+ "u_tabpg_eleveur_info.sru" "cipq_eleveur.pbl";
+ "d_eleveur_info.srd" "cipq_eleveur.pbl";
+ "d_filtre_eleveur.srd" "cipq_eleveur.pbl";
+ "d_eleveur_liv.srd" "cipq_eleveur.pbl";
+ "d_eleveur_code_hebergeur.srd" "cipq_eleveur.pbl";
+ "w_filtre_eleveur.srw" "cipq_eleveur.pbl";
+ "n_cst_eleveur.sru" "cipq_eleveur.pbl";
+ "u_tab_eleveur.sru" "cipq_eleveur.pbl";
+ "u_tabpg_eleveur_adresse.sru" "cipq_eleveur.pbl";
+@end;

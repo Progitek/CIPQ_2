@@ -1,0 +1,20 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "prownsrv.pbl" "";
+@end;
+@begin Objects
+ "pro_n_cst_resizeattrib.sru" "prownsrv.pbl";
+ "pro_n_cst_menu.sru" "prownsrv.pbl";
+ "pro_n_cst_winsrv_sheetmanager.sru" "prownsrv.pbl";
+ "pro_m_frame.srm" "prownsrv.pbl";
+ "pro_w_toolbars.srw" "prownsrv.pbl";
+ "pro_n_cst_winsrv_sheetmanagerattrib.sru" "prownsrv.pbl";
+ "pro_n_cst_resize.sru" "prownsrv.pbl";
+ "pro_w_statusbar.srw" "prownsrv.pbl";
+ "pro_n_cst_toolbarattrib.sru" "prownsrv.pbl";
+ "pro_n_cst_winsrv_preference.sru" "prownsrv.pbl";
+ "pro_m_master.srm" "prownsrv.pbl";
+ "pro_n_cst_winsrv.sru" "prownsrv.pbl";
+ "pro_n_cst_winsrv_statusbarattrib.sru" "prownsrv.pbl";
+ "pro_n_cst_winsrv_statusbar.sru" "prownsrv.pbl";
+@end;

@@ -1,0 +1,10 @@
+﻿$PBExportHeader$str_lignefact.srs
+global type str_lignefact from structure
+	integer		i_type
+	string		s_noproduit
+	string		s_descproduit
+	double		dbl_prixproduit
+	double		dbl_qteproduit
+	long		l_grpproduit
+end type
+

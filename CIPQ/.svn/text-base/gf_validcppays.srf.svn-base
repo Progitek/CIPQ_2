@@ -1,0 +1,30 @@
+HA$PBExportHeader$gf_validcppays.srf
+global type gf_validcppays from function_object
+end type
+
+forward prototypes
+global function boolean gf_validcppays (string as_cp, character ac_pays)
+end prototypes
+
+global function boolean gf_validcppays (string as_cp, character ac_pays);integer i
+
+if upper(ac_pays) = 'C' then
+	if len(as_cp) <> 6 then return false
+	for i = 1 to 5 step 2
+		if asc(upper(mid(as_cp,i,1)))	< 65 or asc(upper(mid(as_cp,i,1))) > 90 then return false
+	next
+	for i = 2 to 6 step 2
+		if not isNumber(mid(as_cp,i,1)) then return false
+	next
+	return true
+elseif upper(ac_pays) = 'U' then
+	if len(as_cp) <> 5 and len(as_cp) <> 9 then return false
+	for i = 1 to len(as_cp)
+		if not isNumber(mid(as_cp,i,1)) then return false
+	next
+	return true
+else
+	return false
+end if
+end function
+

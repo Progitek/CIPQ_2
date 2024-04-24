@@ -1,0 +1,8 @@
+HA$PBExportHeader$str_mail.srs
+global type str_mail from structure
+	string		as_sujet
+	string		as_message
+	string		as_attachment
+	string		as_destinataire
+end type
+

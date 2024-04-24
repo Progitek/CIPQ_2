@@ -1,0 +1,11 @@
+HA$PBExportHeader$f_nb_verrat.srf
+global type f_nb_verrat from function_object
+end type
+
+forward prototypes
+global function long f_nb_verrat (string as_famille)
+end prototypes
+
+global function long f_nb_verrat (string as_famille);RETURN gnv_app.of_findnbverratfamille( as_famille)
+end function
+

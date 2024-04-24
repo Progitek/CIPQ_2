@@ -1,0 +1,42 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "advguiobjects.pbl" "";
+@end;
+@begin Objects
+ "tabstrip.srs" "advguiobjects.pbl";
+ "m_shortcutoptions_silver.srm" "advguiobjects.pbl";
+ "u_cst_xplistbarheader.sru" "advguiobjects.pbl";
+ "buttons.srs" "advguiobjects.pbl";
+ "point.srs" "advguiobjects.pbl";
+ "u_cst_toolbarstripbutton.sru" "advguiobjects.pbl";
+ "u_cst_tabstripnavigate.sru" "advguiobjects.pbl";
+ "m_shortcutoptions_blue.srm" "advguiobjects.pbl";
+ "u_cst_xplistbarscroll.sru" "advguiobjects.pbl";
+ "u_cst_shortcutheader.sru" "advguiobjects.pbl";
+ "u_cst_xplistbaritem.sru" "advguiobjects.pbl";
+ "n_cst_buttonlistbar_gradient.sru" "advguiobjects.pbl";
+ "u_cst_tabstripclose.sru" "advguiobjects.pbl";
+ "u_cst_shortcutsplitbar.sru" "advguiobjects.pbl";
+ "u_cst_xplistbargroup.sru" "advguiobjects.pbl";
+ "n_cst_shortcutbar_gradient.sru" "advguiobjects.pbl";
+ "trackmouseevent.srs" "advguiobjects.pbl";
+ "u_cst_shortcutitem.sru" "advguiobjects.pbl";
+ "u_cst_toolbarstripitem.sru" "advguiobjects.pbl";
+ "m_shortcutoptions.srm" "advguiobjects.pbl";
+ "n_cst_toolbarstrip_gradient.sru" "advguiobjects.pbl";
+ "n_cst_theme.sru" "advguiobjects.pbl";
+ "n_cst_tabstrip_gradient.sru" "advguiobjects.pbl";
+ "n_cst_xpheader_gradient.sru" "advguiobjects.pbl";
+ "n_cst_xplistbar_gradient.sru" "advguiobjects.pbl";
+ "coloradjustment.srs" "advguiobjects.pbl";
+ "n_cst_tooltip.sru" "advguiobjects.pbl";
+ "u_cst_chevron.sru" "advguiobjects.pbl";
+ "m_shortcutoptions_classic.srm" "advguiobjects.pbl";
+ "u_cst_icontray.sru" "advguiobjects.pbl";
+ "u_cst_icon.sru" "advguiobjects.pbl";
+ "u_cst_tabstrip.sru" "advguiobjects.pbl";
+ "m_shortcutoptions_olive.srm" "advguiobjects.pbl";
+ "u_cst_toolbarstripseparator.sru" "advguiobjects.pbl";
+ "u_cst_buttonlistbarscroll.sru" "advguiobjects.pbl";
+ "u_canvas.sru" "advguiobjects.pbl";
+@end;

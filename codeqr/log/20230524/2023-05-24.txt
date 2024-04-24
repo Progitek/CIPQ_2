@@ -1,0 +1,201 @@
+*****************************************************************************************
+CIPQ operation 2023-05-24 13:31:59
+Request xml
+<?xml version="1.0"?>
+<bibliotheque>
+<cie_no id="116">
+<liv_no id="25179">
+<bonlivraison>
+<ligne_no>0</ligne_no>
+<prod_no>LMAI</prod_no>
+<qte_comm>0</qte_comm>
+<qte_exp>1</qte_exp>
+<description>LIVRAISON</description>
+<melange></melange>
+<qteinit>0</qteinit>
+<reg_agr>03</reg_agr>
+<liv_date>15-03-2023</liv_date>
+<ampm>PM</ampm>
+<credit>1</credit>
+<message_liv></message_liv>
+<boncommande></boncommande>
+<groupe></groupe>
+<sousgroupe></sousgroupe>
+<transporteur>BÉCANCOUR</transporteur>
+<noeleveur>1995</noeleveur>
+<nomeleveur><![CDATA[GROUPE CERES INC]]></nomeleveur>
+<adresseeleveur>845</adresseeleveur>
+<rueeleveur>RTE MARIE-VICTORIN LOCAL-02</rueeleveur>
+<villeeleveur>LÉVIS</villeeleveur>
+<conteeleveur>QUEBEC</conteeleveur>
+<provinceeleveur></provinceeleveur>
+<codeposteleveur>G7A3S8</codeposteleveur>
+<telephoneeleveur>4188316070</telephoneeleveur>
+<adresseeleveur_a>845 MARIE-VICTORIN (PORTE 12)</adresseeleveur_a>
+<villeeleveur_a>ST-NICOLAS</villeeleveur_a>
+<codeposteleveur_a>G7A3S8</codeposteleveur_a>
+<telephoneeleveur_a>4189564980</telephoneeleveur_a>
+<conteeleveur_a>QUEBEC</conteeleveur_a>
+<noroute>24</noroute>
+</bonlivraison>
+<bonlivraison>
+<ligne_no>618693</ligne_no>
+<prod_no>M-ALPHA</prod_no>
+<qte_comm>6</qte_comm>
+<qte_exp>6</qte_exp>
+<description>DUROC ALPHA - 2 A, 2 B, 2 C, 2 D, 2 E, 2 F, 2 G, 2 H, 2 I, 2 J, 2 K, 2 L, 2 M, 2 N, 2 O, 2 P, 2 Q, 2 R, 2 S, 2 T, 2 U, 2 V, 2 W, 2 X, 2 Y, 2 Z</description>
+<melange>2 A, 2 B, 2 C, 2 D, 2 E, 2 F, 2 G, 2 H, 2 I, 2 J, 2 K, 2 L, 2 M, 2 N, 2 O, 2 P, 2 Q, 2 R, 2 S, 2 T, 2 U, 2 V, 2 W, 2 X, 2 Y, 2 Z</melange>
+<qteinit>6</qteinit>
+<reg_agr>03</reg_agr>
+<liv_date>15-03-2023</liv_date>
+<ampm>PM</ampm>
+<credit>1</credit>
+<message_liv></message_liv>
+<boncommande></boncommande>
+<groupe></groupe>
+<sousgroupe></sousgroupe>
+<transporteur>BÉCANCOUR</transporteur>
+<noeleveur>1995</noeleveur>
+<nomeleveur><![CDATA[GROUPE CERES INC]]></nomeleveur>
+<adresseeleveur>845</adresseeleveur>
+<rueeleveur>RTE MARIE-VICTORIN LOCAL-02</rueeleveur>
+<villeeleveur>LÉVIS</villeeleveur>
+<conteeleveur>QUEBEC</conteeleveur>
+<provinceeleveur></provinceeleveur>
+<codeposteleveur>G7A3S8</codeposteleveur>
+<telephoneeleveur>4188316070</telephoneeleveur>
+<adresseeleveur_a>845 MARIE-VICTORIN (PORTE 12)</adresseeleveur_a>
+<villeeleveur_a>ST-NICOLAS</villeeleveur_a>
+<codeposteleveur_a>G7A3S8</codeposteleveur_a>
+<telephoneeleveur_a>4189564980</telephoneeleveur_a>
+<conteeleveur_a>QUEBEC</conteeleveur_a>
+<noroute>24</noroute>
+</bonlivraison>
+</liv_no>
+</cie_no>
+</bibliotheque>
+Reponse 
+On ne reçoit aucune donnée de L'API
+*****************************************************************************************
+CIPQ operation 2023-05-24 13:33:17
+Request xml
+<?xml version="1.0"?>
+<bibliotheque>
+<cie_no id="116">
+<liv_no id="25180">
+<bonlivraison>
+<ligne_no>0</ligne_no>
+<prod_no>LG</prod_no>
+<qte_comm>0</qte_comm>
+<qte_exp>1</qte_exp>
+<description>LIVRAISON GRATUITE</description>
+<melange></melange>
+<qteinit>0</qteinit>
+<reg_agr>16</reg_agr>
+<liv_date>15-03-2023</liv_date>
+<ampm>PM</ampm>
+<credit>1</credit>
+<message_liv>ECHANTILLON</message_liv>
+<boncommande></boncommande>
+<groupe></groupe>
+<sousgroupe></sousgroupe>
+<transporteur>ST-HYACINTHE</transporteur>
+<noeleveur>1614</noeleveur>
+<nomeleveur><![CDATA[R. ROBITAILLE ET FILS]]></nomeleveur>
+<adresseeleveur>190</adresseeleveur>
+<rueeleveur>RUE COMEAU</rueeleveur>
+<villeeleveur>FARNHAM</villeeleveur>
+<conteeleveur>QUEBEC</conteeleveur>
+<provinceeleveur></provinceeleveur>
+<codeposteleveur>J2N2N4</codeposteleveur>
+<telephoneeleveur>4503479633</telephoneeleveur>
+<adresseeleveur_a>52 RANG 5</adresseeleveur_a>
+<villeeleveur_a>MONT ST-GREGOIRE</villeeleveur_a>
+<codeposteleveur_a>J0J1K0</codeposteleveur_a>
+<telephoneeleveur_a>4502933106</telephoneeleveur_a>
+<conteeleveur_a>QUEBEC</conteeleveur_a>
+<noroute>22</noroute>
+</bonlivraison>
+</liv_no>
+</cie_no>
+</bibliotheque>
+Reponse 
+0000001819
+*****************************************************************************************
+CIPQ operation 2023-05-24 13:37:13
+Request xml
+<?xml version="1.0"?>
+<bibliotheque>
+<cie_no id="116">
+<liv_no id="25179">
+<bonlivraison>
+<ligne_no>0</ligne_no>
+<prod_no>LMAI</prod_no>
+<qte_comm>0</qte_comm>
+<qte_exp>1</qte_exp>
+<description>LIVRAISON</description>
+<melange></melange>
+<qteinit>0</qteinit>
+<reg_agr>03</reg_agr>
+<liv_date>15-03-2023</liv_date>
+<ampm>PM</ampm>
+<credit>1</credit>
+<message_liv></message_liv>
+<boncommande></boncommande>
+<groupe></groupe>
+<sousgroupe></sousgroupe>
+<transporteur>BÉCANCOUR</transporteur>
+<noeleveur>1995</noeleveur>
+<nomeleveur><![CDATA[GROUPE CERES INC]]></nomeleveur>
+<adresseeleveur>845</adresseeleveur>
+<rueeleveur>RTE MARIE-VICTORIN LOCAL-02</rueeleveur>
+<villeeleveur>LÉVIS</villeeleveur>
+<conteeleveur>QUEBEC</conteeleveur>
+<provinceeleveur></provinceeleveur>
+<codeposteleveur>G7A3S8</codeposteleveur>
+<telephoneeleveur>4188316070</telephoneeleveur>
+<adresseeleveur_a>845 MARIE-VICTORIN (PORTE 12)</adresseeleveur_a>
+<villeeleveur_a>ST-NICOLAS</villeeleveur_a>
+<codeposteleveur_a>G7A3S8</codeposteleveur_a>
+<telephoneeleveur_a>4189564980</telephoneeleveur_a>
+<conteeleveur_a>QUEBEC</conteeleveur_a>
+<noroute>24</noroute>
+</bonlivraison>
+<bonlivraison>
+<ligne_no>618693</ligne_no>
+<prod_no>M-ALPHA</prod_no>
+<qte_comm>6</qte_comm>
+<qte_exp>6</qte_exp>
+<description>DUROC ALPHA - 2 A, 2 B, 2 C, 2 D, 2 E, 2 F, 2 G, 2 H, 2 I, 2 J, 2 K, 2 L, 2 M, 2 N, 2 O, 2 P, 2 Q, 2 R, 2 S, 2 T, 2 U, 2 V, 2 W, 2 X, 2 Y, 2 Z</description>
+<melange>2 A, 2 B, 2 C, 2 D, 2 E, 2 F, 2 G, 2 H, 2 I, 2 J, 2 K, 2 L, 2 M, 2 N, 2 O, 2 P, 2 Q, 2 R, 2 S, 2 T, 2 U, 2 V, 2 W, 2 X, 2 Y, 2 Z</melange>
+<qteinit>6</qteinit>
+<reg_agr>03</reg_agr>
+<liv_date>15-03-2023</liv_date>
+<ampm>PM</ampm>
+<credit>1</credit>
+<message_liv></message_liv>
+<boncommande></boncommande>
+<groupe></groupe>
+<sousgroupe></sousgroupe>
+<transporteur>BÉCANCOUR</transporteur>
+<noeleveur>1995</noeleveur>
+<nomeleveur><![CDATA[GROUPE CERES INC]]></nomeleveur>
+<adresseeleveur>845</adresseeleveur>
+<rueeleveur>RTE MARIE-VICTORIN LOCAL-02</rueeleveur>
+<villeeleveur>LÉVIS</villeeleveur>
+<conteeleveur>QUEBEC</conteeleveur>
+<provinceeleveur></provinceeleveur>
+<codeposteleveur>G7A3S8</codeposteleveur>
+<telephoneeleveur>4188316070</telephoneeleveur>
+<adresseeleveur_a>845 MARIE-VICTORIN (PORTE 12)</adresseeleveur_a>
+<villeeleveur_a>ST-NICOLAS</villeeleveur_a>
+<codeposteleveur_a>G7A3S8</codeposteleveur_a>
+<telephoneeleveur_a>4189564980</telephoneeleveur_a>
+<conteeleveur_a>QUEBEC</conteeleveur_a>
+<noroute>24</noroute>
+</bonlivraison>
+</liv_no>
+</cie_no>
+</bibliotheque>
+Reponse 
+On ne reçoit aucune donnée de L'API

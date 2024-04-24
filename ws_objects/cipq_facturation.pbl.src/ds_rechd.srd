@@ -1,0 +1,51 @@
+﻿$PBExportHeader$ds_rechd.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=classe dbname="classe" )
+ column=(type=char(3) updatewhereclause=yes name=cie dbname="cie" )
+ column=(type=char(8) updatewhereclause=yes name=fact_no dbname="t_statfacture.fact_no" dbalias=".fact_no" )
+ column=(type=char(16) updatewhereclause=yes name=noproduit dbname="t_statfacture.noproduit" dbalias=".noproduit" )
+ column=(type=number updatewhereclause=yes name=amount dbname="amount" )
+ retrieve="SELECT  
+IsNull(t_Transport.NoClasse,t_produit.NoClasse) AS Classe, 
+If IsNull(t_Transport.NoClasse,t_produit.NoClasse) = 19 And actif = 0 then
+	IsNull(t_Verrat.CIE_NO, t_StatFactureDetail.CIE_NO)
+ELSE
+	t_StatFactureDetail.CIE_NO
+ENDIF AS cie, 
+t_StatFacture.FACT_NO, 
+t_produit.NoProduit, 
+qte_exp * UPrix AS Amount 
+FROM t_StatFacture 
+INNER JOIN (((t_StatFactureDetail 
+LEFT JOIN t_produit ON (t_StatFactureDetail.PROD_NO) = (t_produit.NoProduit)) 
+LEFT JOIN t_Transport ON (t_StatFactureDetail.PROD_NO) = (t_Transport.CodeTransport)) 
+LEFT JOIN T_Verrat ON (substr(t_Produit.NoProduit, 5)) = (T_Verrat.CodeVerrat) ANd T_Verrat.CodeVerrat <> '1' ) 
+ON (t_StatFacture.LIV_NO = t_StatFactureDetail.LIV_NO) AND (t_StatFacture.CIE_NO = t_StatFactureDetail.CIE_NO)
+WHERE FACT_NO = :as_fact AND (qte_exp * UPrix )<> 0 AND Month(FACT_DATE) = Month(:ad_cur) AND Year(FACT_DATE)=  Year(:ad_cur) 
+" arguments=(("ad_cur", date),("as_fact", string)) )
+text(band=header alignment="2" text="Classe" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=classe_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cie" border="0" color="33554432" x="338" y="4" height="64" width="110" html.valueishtml="0"  name=cie_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fact No" border="0" color="33554432" x="453" y="4" height="64" width="247" html.valueishtml="0"  name=fact_no_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Noproduit" border="0" color="33554432" x="704" y="4" height="64" width="439" html.valueishtml="0"  name=noproduit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Amount" border="0" color="33554432" x="1152" y="4" height="64" width="329" html.valueishtml="0"  name=amount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=classe visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="338" y="4" height="76" width="110" format="[general]" html.valueishtml="0"  name=cie visible="1" edit.limit=3 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="453" y="4" height="76" width="247" format="[general]" html.valueishtml="0"  name=fact_no visible="1" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="704" y="4" height="76" width="439" format="[general]" html.valueishtml="0"  name=noproduit visible="1" edit.limit=16 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1152" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=amount visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

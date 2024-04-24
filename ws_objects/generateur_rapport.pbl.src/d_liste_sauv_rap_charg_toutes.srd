@@ -1,0 +1,51 @@
+﻿$PBExportHeader$d_liste_sauv_rap_charg_toutes.srd
+$PBExportComments$Pour afficher la liste des recherches sauvegardés
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=68 color="553648127" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="553648127" )
+table(column=(type=char(40) update=yes updatewhereclause=yes name=nom_sauv_rapport_simple dbname="SAUV_RAPPORT_SIMPLE.nom_sauv_rapport_simple" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=type_sauv_rapport_simple dbname="SAUV_RAPPORT_SIMPLE.type_sauv_rapport_simple" values="Personnelle	SP/Générale	SG/" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_creation dbname="SAUV_RAPPORT_SIMPLE.date_creation" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=rapport_simple dbname="SAUV_RAPPORT_SIMPLE.rapport_simple" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=titre dbname="SAUV_RAPPORT_SIMPLE.titre" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=orientation dbname="SAUV_RAPPORT_SIMPLE.orientation" )
+ column=(type=char(16) update=yes updatewhereclause=yes name=login_usager dbname="SAUV_RAPPORT_SIMPLE.login_usager" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=format_papier dbname="SAUV_RAPPORT_SIMPLE.format_papier" )
+ column=(type=char(1) updatewhereclause=yes name=affiche_direct dbname="SAUV_RAPPORT_SIMPLE.affiche_direct" )
+ retrieve="  SELECT SAUV_RAPPORT_SIMPLE.nom_sauv_rapport_simple, 
+         SAUV_RAPPORT_SIMPLE.type_sauv_rapport_simple,  
+			SAUV_RAPPORT_SIMPLE.date_creation,   
+			SAUV_RAPPORT_SIMPLE.rapport_simple,   
+         SAUV_RAPPORT_SIMPLE.titre,   
+         SAUV_RAPPORT_SIMPLE.orientation,   
+         SAUV_RAPPORT_SIMPLE.login_usager, 
+			SAUV_RAPPORT_SIMPLE.format_papier,  
+			SAUV_RAPPORT_SIMPLE.affiche_direct 
+    FROM SAUV_RAPPORT_SIMPLE  
+   WHERE ( SAUV_RAPPORT_SIMPLE.code_syst = :as_code_syst ) AND  
+         ( ( SAUV_RAPPORT_SIMPLE.login_usager = :as_login_usager )  OR
+			( SAUV_RAPPORT_SIMPLE.type_sauv_rapport_simple = 'SG' ))
+            " arguments=(("as_code_syst", string),("as_login_usager", string))  sort="type_sauv_rapport_simple D nom_sauv_rapport_simple A " )
+text(band=header alignment="0" text="Orientation" border="6" color="33554432" x="5093" y="4" height="56" width="567" html.valueishtml="0"  name=orientation_t visible="0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Login Usager" border="6" color="33554432" x="5669" y="4" height="56" width="503" html.valueishtml="0"  name=login_usager_t visible="0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Format Papier" border="6" color="33554432" x="6181" y="4" height="56" width="567" html.valueishtml="0"  name=format_papier_t visible="0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Titre" border="6" color="33554432" x="3813" y="4" height="56" width="1271" html.valueishtml="0"  name=titre_t visible="0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Rapport Simple" border="0" color="33554432" x="2533" y="4" height="56" width="1271" html.valueishtml="0"  name=rapport_simple_t visible="0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Nom de la personnalisation" border="6" color="33554432" x="9" y="4" height="56" width="1152" html.valueishtml="0"  name=nom_sauv_rapport_simple_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="30927338" )
+text(band=header alignment="2" text="Type" border="6" color="33554432" x="1170" y="4" height="56" width="402" html.valueishtml="0"  name=type_sauv_rapport_simple_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="30927338" )
+text(band=header alignment="2" text="Mise à jour le" border="6" color="33554432" x="1582" y="4" height="56" width="315" html.valueishtml="0"  name=date_creation_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="30927338" )
+text(band=header alignment="0" text="Affiche Direct" border="0" color="33554432" x="1906" y="4" height="76" width="617" html.valueishtml="0"  name=affiche_direct_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="6" color="33554432" x="5093" y="0" height="76" width="567" format="[general]" html.valueishtml="0"  name=orientation visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="6" color="33554432" x="5669" y="0" height="76" width="503" format="[general]" html.valueishtml="0"  name=login_usager visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="6" color="33554432" x="6181" y="0" height="76" width="567" format="[general]" html.valueishtml="0"  name=format_papier visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="6" color="33554432" x="3813" y="0" height="76" width="1271" format="[general]" html.valueishtml="0"  name=titre visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="6" color="33554432" x="2533" y="0" height="76" width="1271" format="[general]" html.valueishtml="0"  name=rapport_simple visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="0" height="56" width="1152" format="[general]" html.valueishtml="0"  name=nom_sauv_rapport_simple visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1170" y="0" height="56" width="402" format="[general]" html.valueishtml="0"  name=type_sauv_rapport_simple visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1582" y="0" height="56" width="315" format="[shortdate] [time]" html.valueishtml="0"  name=date_creation visible="1" editmask.mask="yyyy-mm-dd" editmask.imemode=0 editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1906" y="0" height="56" width="617" format="[general]" html.valueishtml="0"  name=affiche_direct visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )

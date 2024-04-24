@@ -1,0 +1,8 @@
+HA$PBExportHeader$trackmouseevent.srs
+global type trackmouseevent from structure
+	unsignedlong		cbsize
+	unsignedlong		dwflags
+	unsignedlong		hwndtrack
+	unsignedlong		dwhovertime
+end type
+

@@ -1,0 +1,79 @@
+﻿$PBExportHeader$d_repartition_produitnonattribue.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=15793151 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=t_recolte_gestionlot_produit_famille dbname="t_recolte_gestionlot_produit.famille" )
+ column=(type=char(30) updatewhereclause=yes name=cc_noproduit dbname="cc_noproduit" )
+ column=(type=char(12) updatewhereclause=yes name=t_recolte_gestionlot_produit_nolot dbname="t_recolte_gestionlot_produit.nolot" )
+ column=(type=char(1) updatewhereclause=yes name=t_recolte_gestionlot_produit_typeabrege dbname="t_recolte_gestionlot_produit.typeabrege" )
+ column=(type=long updatewhereclause=yes name=dosemelange dbname="dosemelange" )
+ column=(type=long updatewhereclause=yes name=sommedeqtedistribue dbname="sommedeqtedistribue" )
+ column=(type=long updatewhereclause=yes name=qtedisponible dbname="qtedisponible" )
+ retrieve="SELECT 
+t_Recolte_GestionLot_Produit.Famille, 
+
+upper(if t_Recolte_GestionLot_Produit.CodeVerrat is null OR t_Recolte_GestionLot_Produit.CodeVerrat = '' then
+	t_Recolte_GestionLot_Produit.NoProduit
+else
+	t_Recolte_GestionLot_Produit.CodeVerrat + ' (' + t_Recolte_GestionLot_Produit.NoProduit + ')'
+endif) as cc_NoProduit,
+
+t_Recolte_GestionLot_Produit.NoLot, 
+t_Recolte_GestionLot_Produit.TypeAbrege, 
+isnull(Sum(t_Recolte_GestionLot_Produit.QteDoseMelange),0) AS DoseMelange, 
+isnull(Sum(t_Recolte_GestionLot_Produit_QteDistribue.QteDistribue),0) AS SommeDeQteDistribue, 
+Sum(isnull(QteDoseMelange,0) - isnull(QteDistribue,0)) AS QteDisponible 
+
+FROM t_Recolte_GestionLot_Produit 
+LEFT JOIN t_Recolte_GestionLot_Produit_QteDistribue 
+ON (t_Recolte_GestionLot_Produit.Compteur = t_Recolte_GestionLot_Produit_QteDistribue.Compteur) AND 
+( upper(t_Recolte_GestionLot_Produit.NoProduit) = upper(t_Recolte_GestionLot_Produit_QteDistribue.NoProduit)) AND 
+(t_Recolte_GestionLot_Produit.NoLot = t_Recolte_GestionLot_Produit_QteDistribue.NoLot) AND 
+(upper(t_Recolte_GestionLot_Produit.Famille) = upper(t_Recolte_GestionLot_Produit_QteDistribue.Famille)) 
+AND (date(t_Recolte_GestionLot_Produit.DateRecolte) = date(t_Recolte_GestionLot_Produit_QteDistribue.DateRecolte)) 
+
+WHERE 
+date(t_Recolte_GestionLot_Produit.DateRecolte) = :ad_cur AND 
+t_Recolte_GestionLot_Produit.QteDoseMelange <> 0 
+
+GROUP BY 
+t_Recolte_GestionLot_Produit.Famille, 
+cc_NoProduit, 
+t_Recolte_GestionLot_Produit.NoLot, 
+t_Recolte_GestionLot_Produit.TypeAbrege 
+HAVING QteDisponible <> 0 
+
+ORDER BY 
+t_Recolte_GestionLot_Produit.Famille, 
+cc_noproduit, 
+t_Recolte_GestionLot_Produit.NoLot" arguments=(("ad_cur", date)) )
+text(band=header alignment="2" text="Famille" border="0" color="33554432" x="5" y="4" height="64" width="471" html.valueishtml="0"  name=t_recolte_gestionlot_produit_famille_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Produit" border="0" color="33554432" x="480" y="4" height="64" width="741" html.valueishtml="0"  name=cc_noproduit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="No lot" border="0" color="33554432" x="1225" y="4" height="64" width="357" html.valueishtml="0"  name=t_recolte_gestionlot_produit_nolot_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type abregé" border="0" color="33554432" x="1591" y="4" height="64" width="329" html.valueishtml="0"  name=t_recolte_gestionlot_produit_typeabrege_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Distribué" border="0" color="33554432" x="2290" y="4" height="64" width="329" html.valueishtml="0"  name=sommedeqtedistribue_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mélangé" border="0" color="33554432" x="1929" y="4" height="64" width="352" html.valueishtml="0"  name=dosemelange_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Disponible" border="0" color="255" x="2633" y="4" height="64" width="306" html.valueishtml="0"  name=qtedisponible_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="0" y1="84" x2="2949" y2="84"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="76" width="471" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_famille visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="480" y="4" height="76" width="741" format="[general]" html.valueishtml="0"  name=cc_noproduit visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1225" y="4" height="76" width="357" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_nolot visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1591" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_typeabrege visible="1" edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="2290" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=sommedeqtedistribue visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="1929" y="4" height="76" width="352" format="[general]" html.valueishtml="0"  name=dosemelange visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="33554432" x="2633" y="4" height="76" width="306" format="[general]" html.valueishtml="0"  name=qtedisponible visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="0" y1="92" x2="2949" y2="92"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="8421504"  background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

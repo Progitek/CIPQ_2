@@ -1,0 +1,70 @@
+﻿$PBExportHeader$d_r_conciliation_factures_hebergement.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=680 color="536870912" )
+summary(height=96 color="536870912" )
+footer(height=72 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=no_eleveur dbname="t_statfacturedetail.no_eleveur" )
+ column=(type=char(8) updatewhereclause=yes name=fact_no dbname="t_statfacturedetail.fact_no" )
+ column=(type=char(30) updatewhereclause=yes name=nom dbname="t_statfacturedetail.nom" )
+ column=(type=datetime updatewhereclause=yes name=fact_date dbname="t_statfacturedetail.fact_date" )
+ column=(type=long updatewhereclause=yes name=nbconcillation dbname="nbconcillation" )
+ retrieve="SELECT 
+T_StatFacture.No_Eleveur, 
+T_StatFacture.FACT_NO, 
+t_ELEVEUR.NOM, 
+T_StatFacture.FACT_DATE, 
+Count(T_StatFactureDetail.LIGNE_NO) AS NbConcillation 
+FROM 
+(T_StatFacture INNER JOIN t_ELEVEUR ON 
+T_StatFacture.No_Eleveur = t_ELEVEUR.No_Eleveur) INNER JOIN 
+T_StatFactureDetail ON 
+(T_StatFacture.LIV_NO = T_StatFactureDetail.LIV_NO) AND 
+(T_StatFacture.CIE_NO = T_StatFactureDetail.CIE_NO) 
+WHERE 
+(T_StatFactureDetail.PROD_NO Like 'HEB%' And 
+T_StatFactureDetail.PROD_NO <> 'HEB-QUA' And 
+T_StatFactureDetail.PROD_NO <> 'HEB-Prel') AND 
+(T_StatFactureDetail.QTE_EXP * T_StatFactureDetail.UPRIX) <> 0 
+GROUP BY 
+T_StatFacture.No_Eleveur, 
+T_StatFacture.FACT_NO, 
+t_ELEVEUR.NOM, 
+T_StatFacture.FACT_DATE 
+HAVING 
+date(T_StatFacture.FACT_DATE) = :ad_cur  
+ORDER BY 
+T_StatFacture.No_Eleveur;" arguments=(("ad_cur", date)) )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="18" y="12" height="540" width="448" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="Fact No" border="0" color="33554432" x="366" y="1280" height="64" width="247" html.valueishtml="0"  name=fact_no_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fact Date" border="0" color="33554432" x="1367" y="1332" height="64" width="603" html.valueishtml="0"  name=fact_date_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="32" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=no_eleveur visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="361" y="472" height="76" width="247" format="[general]" html.valueishtml="0"  name=fact_no visible="0" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1449" y="372" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=fact_date visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="4" height="76" width="997" format="[general]" html.valueishtml="0"  name=nom visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="1728" y="4" height="76" width="709" format="[general]" html.valueishtml="0"  name=nbconcillation visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="1" text="Total:" border="0" color="33554432" x="1522" y="20" height="64" width="169" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="2" expression="sum( nbconcillation for all )"border="0" color="33554432" x="1728" y="20" height="64" width="709" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="9" y="4" height="64" width="3474" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="" border="0" color="33554432" x="2437" y="104" height="448" width="946" html.valueishtml="0"  name=t_filtre visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Facturé au" border="0" color="33554432" x="32" y="580" height="64" width="329" html.valueishtml="0"  name=no_eleveur_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="9" y1="664" x2="3419" y2="664"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="5" y1="672" x2="3415" y2="672"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Nombre de concilations" border="0" color="33554432" x="1728" y="580" height="64" width="709" html.valueishtml="0"  name=nbconcillation_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nom du client" border="0" color="33554432" x="549" y="580" height="64" width="997" html.valueishtml="0"  name=nom_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2441" y="12" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2441" y1="96" x2="3387" y2="96"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Conciliation des factures en Hébergement" border="0" color="33554432" x="480" y="8" height="316" width="1947" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="2" expression="~"Pour le: ~" +  ad_cur "border="0" color="33554432" x="480" y="352" height="76" width="1947" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

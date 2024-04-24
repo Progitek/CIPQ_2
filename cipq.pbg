@@ -1,0 +1,42 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "cipq.pbl" "";
+@end;
+@begin Objects
+ "f_no_tvq.srf" "cipq.pbl";
+ "m_mdi.srm" "cipq.pbl";
+ "f_finddescriptionproduct.srf" "cipq.pbl";
+ "cipq.sra" "cipq.pbl";
+ "p_cipq.srj" "cipq.pbl";
+ "n_cst_cipq_appmanager.sru" "cipq.pbl";
+ "m_navigateur_principal.srm" "cipq.pbl";
+ "w_navigateur_principal.srw" "cipq.pbl";
+ "ds_expheb_cipq_eleveur.srd" "cipq.pbl";
+ "ds_expheb_eleveur.srd" "cipq.pbl";
+ "f_chkifaffdesc.srf" "cipq.pbl";
+ "ds_expheb_cipq_produit.srd" "cipq.pbl";
+ "ds_expheb_produit.srd" "cipq.pbl";
+ "f_count_enr_imported.srf" "cipq.pbl";
+ "m_rapport_transfert.srm" "cipq.pbl";
+ "d_r_entete_entreprise.srd" "cipq.pbl";
+ "f_finddescprod.srf" "cipq.pbl";
+ "f_tofindproduct.srf" "cipq.pbl";
+ "ds_eleveur_code_hebergeur.srd" "cipq.pbl";
+ "w_sheet_frame.srw" "cipq.pbl";
+ "d_r_entete_entreprise_land_8_11.srd" "cipq.pbl";
+ "d_r_entete_entreprise_land_8_14.srd" "cipq.pbl";
+ "m_application.srm" "cipq.pbl";
+ "d_dosspatcorrletter.srd" "cipq.pbl";
+ "w_rappelrecurrentpopup.srw" "cipq.pbl";
+ "w_application.srw" "cipq.pbl";
+ "f_ecart_reel_comp_melange.srf" "cipq.pbl";
+ "d_rpt_pp_summary_dummy_page_break.srd" "cipq.pbl";
+ "f_cntheb.srf" "cipq.pbl";
+ "f_getgroupefacturationaccpac.srf" "cipq.pbl";
+ "f_nb_verrat.srf" "cipq.pbl";
+ "w_cipq_logon.srw" "cipq.pbl";
+ "n_cst_audit.sru" "cipq.pbl";
+ "n_cst_transfert_internet.sru" "cipq.pbl";
+ "f_no_tps.srf" "cipq.pbl";
+ "m_rapport.srm" "cipq.pbl";
+@end;

@@ -1,0 +1,557 @@
+﻿$PBExportHeader$w_selectionner_conf_rap.srw
+$PBExportComments$Fenêtre pour sélectionner les tris enregistrés
+forward
+global type w_selectionner_conf_rap from w_response
+end type
+type uo_toolbar_delete from u_cst_toolbarstrip within w_selectionner_conf_rap
+end type
+type uo_toolbar from u_cst_toolbarstrip within w_selectionner_conf_rap
+end type
+type uo_toolbar2 from u_cst_toolbarstrip within w_selectionner_conf_rap
+end type
+type st_cache from statictext within w_selectionner_conf_rap
+end type
+type pb_aide from u_pb within w_selectionner_conf_rap
+end type
+type dw_liste_conf from u_dw within w_selectionner_conf_rap
+end type
+type cb_annuler from u_cb within w_selectionner_conf_rap
+end type
+type cb_ok from u_cb within w_selectionner_conf_rap
+end type
+type cb_detruire from u_cb within w_selectionner_conf_rap
+end type
+type rr_1 from roundrectangle within w_selectionner_conf_rap
+end type
+end forward
+
+global type w_selectionner_conf_rap from w_response
+boolean visible = false
+integer width = 2217
+integer height = 1100
+string title = "Sélectionner une personnalisation"
+long backcolor = 15780518
+event ue_detruire ( )
+event ue_ok ( )
+event ue_annuler ( )
+uo_toolbar_delete uo_toolbar_delete
+uo_toolbar uo_toolbar
+uo_toolbar2 uo_toolbar2
+st_cache st_cache
+pb_aide pb_aide
+dw_liste_conf dw_liste_conf
+cb_annuler cb_annuler
+cb_ok cb_ok
+cb_detruire cb_detruire
+rr_1 rr_1
+end type
+global w_selectionner_conf_rap w_selectionner_conf_rap
+
+type variables
+w_selectionner_champs_rapport_simple				iw_param
+
+n_ds 		ids_sauv_detail
+boolean 	ib_erreur_connect = FALSE, ib_rechdirecte
+string	is_type_from_menu
+end variables
+
+forward prototypes
+public function long of_recupererconfligne ()
+public subroutine of_populerconf ()
+end prototypes
+
+event ue_detruire();long		ll_rangee
+integer	li_status, li_cpt
+string	ls_login, ls_code_syst
+
+SetPointer(Hourglass!)
+
+ls_login = gnv_app.inv_EntrepotGlobal.of_RetourneDonnee("Login usager", FALSE)
+ls_code_syst = gnv_app.inv_EntrepotGlobal.of_RetourneDonnee("Code application", FALSE)
+
+ll_rangee = dw_liste_conf.GetSelectedRow(0)
+
+IF ll_rangee = 0 THEN
+	gnv_app.inv_Error.of_Message("PRO0006")	//Aucune rangée n'est disponible pour la suppression
+	RETURN
+END IF
+
+//Valider si la personne a le droit de détruire cette recherche (ça doit être
+//elle qui l'a créée)
+IF dw_liste_conf.Object.type_sauv_rapport_simple[ll_rangee] = "SP" AND &
+	gnv_app.inv_EntrepotGlobal.of_RetourneDonnee("Login usager", FALSE) <> &
+	dw_liste_conf.Object.login_usager[ll_rangee] THEN
+
+	gnv_app.inv_Error.of_Message("PRO0007")
+	RETURN
+	
+ELSEIF dw_liste_conf.Object.type_sauv_rapport_simple[ll_rangee] = "SG" THEN
+	//Valider si cette personne a le droit de créer des SG et donc des 
+
+	IF gnv_app.ib_administrateur = FALSE THEN
+		gnv_app.inv_Error.of_Message("PRO0007")
+		RETURN
+	END IF
+
+END IF
+
+IF gnv_app.inv_Error.of_Message("PRO0008") = 2 	THEN	//Confirmation de suppression
+	RETURN
+END IF
+
+THIS.of_recupererconfligne()
+
+FOR li_cpt = ids_sauv_detail.RowCount() TO 1 STEP -1
+	
+	ids_sauv_detail.DeleteRow(li_cpt)
+	ids_sauv_detail.Update(True,True)
+	commit using SQLCA;
+	IF SQLCA.SQLCODE < 0 THEN
+		gnv_app.inv_error.of_message("PRO0005", {SQLCA.SQLReturnData, SQLCA.SQLErrText})
+		RETURN
+	END IF
+	
+END FOR
+
+dw_liste_conf.DeleteRow(ll_rangee)
+li_status = dw_liste_conf.Update(True,True)
+
+IF li_status = 1 THEN
+	commit using SQLCA;
+ELSE
+	ids_sauv_detail.Reset()
+	dw_liste_conf.ResetUpdate()
+END IF
+
+dw_liste_conf.SetFocus()
+end event
+
+event ue_ok();long		ll_rangee
+String 	ls_nom_conf, ls_type_conf
+
+SetPointer(HourGlass!)
+ll_rangee = dw_liste_conf.GetSelectedRow(0)
+
+IF ll_rangee = 0 THEN
+	gnv_app.inv_Error.of_Message("PR0009")
+	cb_annuler.SetFocus()
+	RETURN
+END IF
+
+ls_nom_conf = dw_liste_conf.GetItemString(ll_rangee,"nom_sauv_rapport_simple")
+ls_type_conf = dw_liste_conf.GetItemString(ll_rangee,"type_sauv_rapport_simple")
+IF ls_type_conf = "SP" THEN
+	ls_type_conf = "personnelle"
+ELSE
+	ls_type_conf = "générale"
+END IF
+
+THIS.of_RecupererConfLigne()
+
+// Populer la fenêtre avec les valeurs récupérées
+THIS.of_PopulerConf()
+
+iw_param.is_nom_conf = ls_nom_conf
+iw_param.is_type_conf = ls_type_conf
+iw_param.ib_conf_enr_modifie = FALSE
+iw_param.title = "Impression d'un rapport simple - " + ls_nom_conf + " (" + ls_type_conf + ")"
+
+Close(This)
+end event
+
+event ue_annuler;Close(This)
+end event
+
+public function long of_recupererconfligne ();//////////////////////////////////////////////////////////////////////////////
+//
+//	Méthode:  		of_RecupererConfLigne
+//
+//	Accès:  			Public
+//
+//	Argument:		Aucun
+//
+//	Retourne:  		nb de lignes trouvées
+//
+//	Description:	Fonction pour charger les lignes de la configuration 
+//						sélectionnée
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Historique
+//
+//	Date			Programmeur			Description
+//
+//////////////////////////////////////////////////////////////////////////////
+
+long		ll_rangee, ll_nbrangee
+string	ls_rapport, ls_type_conf, ls_nom_conf
+
+ll_rangee = dw_liste_conf.GetSelectedRow(0)
+
+ls_nom_conf = dw_liste_conf.GetItemString( ll_rangee, "nom_sauv_rapport_simple" )
+ls_type_conf = dw_liste_conf.GetItemString( ll_rangee, "type_sauv_rapport_simple" )
+ls_rapport = iw_param.inv_param.is_dw_source
+
+ll_nbrangee = ids_sauv_detail.Retrieve( gnv_app.inv_EntrepotGlobal.of_RetourneDonnee("Code application", FALSE), &
+ ls_rapport, & 
+ ls_type_conf, &
+ ls_nom_conf, &
+ gnv_app.inv_EntrepotGlobal.of_RetourneDonnee("Login usager", FALSE))
+
+RETURN ll_nbrangee
+end function
+
+public subroutine of_populerconf ();//////////////////////////////////////////////////////////////////////////////
+//
+//	Méthode:			of_PopulerConf
+//
+//	Accès:  			Public
+//
+//	Argument:  		Aucun
+//
+//	Retourne:  		Rien
+//
+//	Description:	Fonction qui popule la fenêtre de configuration avec ce 
+//						qu'il y avait de sauvegardé pour la ligne sélectionnée par
+//						l'utilisateur.
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Historique
+//
+//	Date			Programmeur			Description
+//
+//////////////////////////////////////////////////////////////////////////////
+
+string	ls_titre, ls_colonne, ls_db_colonne
+integer	li_orientation, li_format
+long		ll_rangee, ll_cpt, ll_cpt_aff, ll_rtn
+dec		ldec_taille
+
+SetPointer(HourGlass!)
+iw_param.SetRedraW(FALSE)
+
+//Vider la liste des colonnes
+FOR ll_cpt = iw_param.dw_dropped.RowCount() to 1
+	iw_param.dw_dropped.Deleterow(ll_cpt)
+END FOR
+//Rafraichir l'aperçu
+iw_param.dw_apercu.create( iw_param.is_syntaxe_initiale)
+
+
+//config
+ll_rangee = dw_liste_conf.GetRow()
+ls_titre = dw_liste_conf.Object.titre[ll_rangee]
+li_orientation = dw_liste_conf.Object.orientation[ll_rangee]
+li_format = dw_liste_conf.Object.format_papier[ll_rangee]
+
+iw_param.sle_titre.text = ls_titre
+IF li_orientation = 1 THEN
+	iw_param.rb_portrait.Checked = TRUE
+	iw_param.rb_paysage.checked = FALSE
+ELSE
+	iw_param.rb_portrait.Checked = FALSE
+	iw_param.rb_paysage.checked = TRUE
+END IF
+
+IF li_format = 1 THEN
+	iw_param.rb_811.Checked = TRUE
+	iw_param.rb_814.Checked = FALSE
+ELSE
+	iw_param.rb_811.Checked = FALSE
+	iw_param.rb_814.Checked = TRUE
+END IF
+
+//config detail
+FOR ll_cpt = 1 TO ids_sauv_detail.RowCount()
+	ls_db_colonne = ""
+	ls_colonne = ids_sauv_detail.object.colonne[ll_cpt]
+	ldec_taille = ids_sauv_detail.object.taille[ll_cpt]
+	//Trouver la colonne dans la liste de gauche
+	FOR ll_cpt_aff = 1 TO iw_param.dw_selection.RowCount()
+		IF iw_param.dw_selection.object.colonne[ll_cpt_aff] = ls_colonne THEN
+			ls_db_colonne = iw_param.dw_selection.object.colonne_db[ll_cpt_aff]
+			exit
+		END IF
+	END FOR
+	
+	IF ls_db_colonne <> "" THEN
+		//Ajouter la colonne
+		ll_rtn = iw_param.dw_dropped.insertrow(0)
+		iw_param.dw_dropped.object.colonne[ll_rtn] = ls_colonne
+		iw_param.dw_dropped.object.colonne_db[ll_rtn] = ls_db_colonne
+		iw_param.dw_dropped.object.taille[ll_rtn] = ldec_taille		
+		iw_param.il_rendu = ll_cpt
+		iw_param.of_ajouter_colonne(ls_db_colonne,ls_colonne,ldec_taille)
+		iw_param.il_rendu = 0
+		
+	END IF
+	
+	iw_param.of_calcul_taille_max()
+END FOR
+
+iw_param.SetRedraW(TRUE)
+end subroutine
+
+on w_selectionner_conf_rap.create
+int iCurrent
+call super::create
+this.uo_toolbar_delete=create uo_toolbar_delete
+this.uo_toolbar=create uo_toolbar
+this.uo_toolbar2=create uo_toolbar2
+this.st_cache=create st_cache
+this.pb_aide=create pb_aide
+this.dw_liste_conf=create dw_liste_conf
+this.cb_annuler=create cb_annuler
+this.cb_ok=create cb_ok
+this.cb_detruire=create cb_detruire
+this.rr_1=create rr_1
+iCurrent=UpperBound(this.Control)
+this.Control[iCurrent+1]=this.uo_toolbar_delete
+this.Control[iCurrent+2]=this.uo_toolbar
+this.Control[iCurrent+3]=this.uo_toolbar2
+this.Control[iCurrent+4]=this.st_cache
+this.Control[iCurrent+5]=this.pb_aide
+this.Control[iCurrent+6]=this.dw_liste_conf
+this.Control[iCurrent+7]=this.cb_annuler
+this.Control[iCurrent+8]=this.cb_ok
+this.Control[iCurrent+9]=this.cb_detruire
+this.Control[iCurrent+10]=this.rr_1
+end on
+
+on w_selectionner_conf_rap.destroy
+call super::destroy
+destroy(this.uo_toolbar_delete)
+destroy(this.uo_toolbar)
+destroy(this.uo_toolbar2)
+destroy(this.st_cache)
+destroy(this.pb_aide)
+destroy(this.dw_liste_conf)
+destroy(this.cb_annuler)
+destroy(this.cb_ok)
+destroy(this.cb_detruire)
+destroy(this.rr_1)
+end on
+
+event close;call super::close;If isValid( ids_sauv_detail) Then Destroy  ids_sauv_detail
+end event
+
+event pfc_preopen;call super::pfc_preopen;is_type_from_menu = gnv_app.inv_entrepotglobal.of_retournedonnee("Lien type sauv", FALSE)
+
+string	ls_nom_rapport, ls_nom
+long		ll_trouve
+
+iw_param = Message.PowerObjectParm
+
+//this.inv_base.of_Center()
+
+ids_sauv_detail = create n_ds
+ids_sauv_detail.dataobject = "d_liste_sauv_rap_detail"
+
+dw_liste_conf.SetTransObject( SQLCA )
+ids_sauv_detail.SetTransObject( SQLCA )
+
+ls_nom_rapport = iw_param.inv_param.is_dw_source
+
+dw_liste_conf.Retrieve( gnv_app.inv_EntrepotGlobal.of_RetourneDonnee("Code application", FALSE), &
+	ls_nom_rapport, gnv_app.inv_EntrepotGlobal.of_RetourneDonnee("Login usager", FALSE))
+
+dw_liste_conf.POST SetFocus()
+
+
+IF is_type_from_menu <> "" AND IsNull(is_type_from_menu) = FALSE THEN
+	ls_nom = gnv_app.inv_entrepotglobal.of_retournedonnee("Lien nom sauv")
+	ll_trouve = dw_liste_conf.Find("nom_sauv_rapport_simple = '" + ls_nom + "' AND  type_sauv_rapport_simple = '" + is_type_from_menu + "'", 1,dw_liste_conf.RowCount())
+	IF ll_trouve > 0 THEN
+		dw_liste_conf.SelectRow(ll_trouve, TRUE)
+		dw_liste_conf.SetRow(ll_trouve)
+		THIS.Event ue_ok()
+		Close(THIS)
+	ELSE
+		//La personnalisation n'existe pas
+		Close(THIS)
+	END IF
+		
+END IF
+
+
+end event
+
+event pfc_postopen;call super::pfc_postopen;IF is_type_from_menu = "" OR IsNull(is_type_from_menu) THEN
+	THIS.visible = TRUE
+END IF
+
+uo_toolbar.of_settheme("classic")
+uo_toolbar.of_DisplayBorder(true)
+uo_toolbar2.of_settheme("classic")
+uo_toolbar2.of_DisplayBorder(true)
+uo_toolbar_delete.of_settheme("classic")
+uo_toolbar_delete.of_DisplayBorder(true)
+
+uo_toolbar.of_AddItem("OK", "C:\ii4net\CIPQ\images\ok.gif")
+uo_toolbar2.of_AddItem("Annuler", "C:\ii4net\CIPQ\images\annuler.gif")
+uo_toolbar_delete.of_AddItem("Supprimer", "NotFound!")
+uo_toolbar.POST of_displaytext(true)
+uo_toolbar2.POST of_displaytext(true)
+uo_toolbar_delete.POST of_displaytext(true)
+
+
+
+end event
+
+type uo_toolbar_delete from u_cst_toolbarstrip within w_selectionner_conf_rap
+event destroy ( )
+integer x = 32
+integer y = 876
+integer width = 507
+integer taborder = 10
+boolean bringtotop = true
+end type
+
+on uo_toolbar_delete.destroy
+call u_cst_toolbarstrip::destroy
+end on
+
+event ue_clicked_anywhere;call super::ue_clicked_anywhere;PARENT.cb_detruire.Event Clicked()
+end event
+
+type uo_toolbar from u_cst_toolbarstrip within w_selectionner_conf_rap
+event destroy ( )
+integer x = 1115
+integer y = 876
+integer width = 507
+integer taborder = 10
+boolean bringtotop = true
+end type
+
+on uo_toolbar.destroy
+call u_cst_toolbarstrip::destroy
+end on
+
+event ue_clicked_anywhere;call super::ue_clicked_anywhere;PARENT.cb_ok.Event Clicked()
+end event
+
+type uo_toolbar2 from u_cst_toolbarstrip within w_selectionner_conf_rap
+event destroy ( )
+integer x = 1664
+integer y = 876
+integer width = 507
+integer taborder = 10
+boolean bringtotop = true
+end type
+
+on uo_toolbar2.destroy
+call u_cst_toolbarstrip::destroy
+end on
+
+event ue_clicked_anywhere;call super::ue_clicked_anywhere;PARENT.cb_annuler.Event Clicked()
+end event
+
+type st_cache from statictext within w_selectionner_conf_rap
+integer x = 78
+integer y = 548
+integer width = 37
+integer height = 64
+integer textsize = -8
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "MS Sans Serif"
+long textcolor = 33554432
+long backcolor = 30927338
+alignment alignment = center!
+boolean focusrectangle = false
+end type
+
+type pb_aide from u_pb within w_selectionner_conf_rap
+integer x = 50
+integer y = 1176
+integer width = 96
+integer taborder = 10
+boolean bringtotop = true
+string text = ""
+boolean originalsize = false
+string picturename = "aide.bmp"
+string disabledname = "aide_dis.bmp"
+string powertiptext = "Afficher l~'aide de la sélection de tri / regroupement"
+end type
+
+event clicked;call super::clicked;Run("hh " + gnv_app.of_GetHelpFile() + "::/04.01%20Selectionner%20rapport%20personnalise.htm",Normal!)
+end event
+
+type dw_liste_conf from u_dw within w_selectionner_conf_rap
+integer x = 91
+integer y = 84
+integer width = 2025
+integer height = 700
+integer taborder = 0
+boolean bringtotop = true
+string dataobject = "d_liste_sauv_rap"
+boolean border = true
+end type
+
+event constructor;call super::constructor;This.of_SetRowManager(True)
+
+This.of_SetSort(True)
+inv_sort.of_Setstyle(INV_SORT.SIMPLE)
+inv_sort.of_Setcolumndisplaynamestyle(INV_SORT.HEADER)
+inv_sort.of_Setcolumnheader(True)
+
+THIS.of_SetRowSelect(TRUE)
+end event
+
+event rbuttonup;//Override
+end event
+
+event doubleclicked;IF row = 0 THEN RETURN
+
+Parent.Event ue_ok()
+end event
+
+type cb_annuler from u_cb within w_selectionner_conf_rap
+integer x = 1499
+integer y = 1216
+integer taborder = 40
+boolean bringtotop = true
+string text = "Annuler"
+boolean cancel = true
+end type
+
+event clicked;call super::clicked;Parent.TriggerEvent("ue_annuler")
+end event
+
+type cb_ok from u_cb within w_selectionner_conf_rap
+integer x = 1029
+integer y = 1200
+integer taborder = 30
+boolean bringtotop = true
+string text = "&Sélectionner"
+boolean default = true
+end type
+
+event clicked;call super::clicked;Parent.TriggerEvent("ue_ok")
+end event
+
+type cb_detruire from u_cb within w_selectionner_conf_rap
+integer x = 165
+integer y = 1188
+integer taborder = 20
+string text = "S&upprimer"
+end type
+
+event clicked;call super::clicked;Parent.TriggerEvent("ue_detruire")
+end event
+
+type rr_1 from roundrectangle within w_selectionner_conf_rap
+long linecolor = 8421504
+integer linethickness = 4
+long fillcolor = 1073741824
+integer x = 32
+integer y = 28
+integer width = 2144
+integer height = 808
+integer cornerheight = 40
+integer cornerwidth = 46
+end type
+

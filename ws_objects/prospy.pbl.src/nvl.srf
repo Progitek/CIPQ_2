@@ -1,0 +1,32 @@
+﻿$PBExportHeader$nvl.srf
+global type NVL from function_object
+end type
+
+forward prototypes
+global function any nvl (any aa_val_to_return_if_it_is_not_null, any aa_val_to_return_if_first_arg_is_null)
+end prototypes
+
+global function any nvl (any aa_val_to_return_if_it_is_not_null, any aa_val_to_return_if_first_arg_is_null);/**********************************************************************************************************************
+Dscr:	If the first arg is not null then the function returns it; otherwise it returns the second arg
+		(similar to NVL function of Oracle). See http://forum.powerbuilder.us/viewtopic.php?f=4&t=5
+		
+		Examples of use:
+		
+		ls_full_name = ls_first_name + " " + nvl(ls_mid_name + " ", "") + ls_last_name // only first and last names are required
+		
+		ls_err_msg = "Argument as_mode contains invalid value '" + nvl(as_mode, "<NULL>") + "'. // prevent NULLifying of result string
+-----------------------------------------------------------------------------------------------------------------------
+Arg:	aa_val_to_return_if_it_is_not_null (any)
+		aa_val_to_return_if_first_arg_is_null (any)
+-----------------------------------------------------------------------------------------------------------------------
+Ret:	any
+**********************************************************************************************************************/
+string ls_val
+
+if not IsNull(aa_val_to_return_if_it_is_not_null) then
+	return aa_val_to_return_if_it_is_not_null
+end if
+
+return aa_val_to_return_if_first_arg_is_null
+end function
+

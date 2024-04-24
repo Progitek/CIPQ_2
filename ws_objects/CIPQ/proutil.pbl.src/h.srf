@@ -1,0 +1,49 @@
+﻿$PBExportHeader$h.srf
+global type H from function_object
+end type
+
+forward prototypes
+global function long h (string as_hex)
+end prototypes
+
+global function long h (string as_hex);string ls_ch
+long ll_val = 0
+int i
+
+if isNull(as_hex) then
+	setNull(ll_val)
+	return ll_val
+end if
+
+if match(as_hex, '[^0-9a-fA-F]') then return 0
+
+if Len(as_hex) <= 8 then
+	as_hex = Fill('0', 8 - Len(as_hex)) + as_hex
+else
+	as_hex = Right(as_hex, 8)
+end if
+
+for i = 0 to 7
+	ls_ch = Left(Right(as_hex,1 + i),1)
+	
+	choose case ls_ch
+		case 'a', 'A'
+			ll_val += 10 * 16^i
+		case 'b', 'B'
+			ll_val += 11 * 16^i
+		case 'c', 'C'
+			ll_val += 12 * 16^i
+		case 'd', 'D'
+			ll_val += 13 * 16^i
+		case 'e', 'E'
+			ll_val += 14 * 16^i
+		case 'f', 'F'
+			ll_val += 15 * 16^i
+		case else
+			if isNumber(ls_ch) then ll_val += Long(ls_ch) * 16^i
+	end choose
+next
+
+return ll_val
+end function
+

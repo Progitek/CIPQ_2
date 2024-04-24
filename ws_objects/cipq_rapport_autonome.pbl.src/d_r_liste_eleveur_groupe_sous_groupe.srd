@@ -1,0 +1,49 @@
+﻿$PBExportHeader$d_r_liste_eleveur_groupe_sous_groupe.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=736 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=124 color="536870912" height.autosize=yes )
+table(column=(type=char(255) updatewhereclause=yes name=temp_eleveur_groupe_groupe dbname="temp_eleveur_groupe.groupe" )
+ column=(type=char(255) updatewhereclause=yes name=temp_eleveur_groupe_sous_groupe dbname="temp_eleveur_groupe.sous_groupe" )
+ column=(type=long updatewhereclause=yes name=temp_eleveur_groupe_no_eleveur dbname="temp_eleveur_groupe.no_eleveur" )
+ column=(type=char(30) updatewhereclause=yes name=t_eleveur_nom dbname="t_eleveur.nom" )
+ retrieve="SELECT DISTINCT
+#Temp_Eleveur_Groupe.Groupe, 
+#Temp_Eleveur_Groupe.Sous_groupe, 
+#Temp_Eleveur_Groupe.No_Eleveur, 
+t_Eleveur.NOM 
+FROM #Temp_Eleveur_Groupe 
+INNER JOIN t_Eleveur ON #Temp_Eleveur_Groupe.No_Eleveur = t_Eleveur.No_Eleveur 
+WHERE t_Eleveur.chkActivite = 1"  sort="temp_eleveur_groupe_groupe A temp_eleveur_groupe_sous_groupe A temp_eleveur_groupe_no_eleveur A " )
+group(level=1 header.height=80 trailer.height=0 by=("temp_eleveur_groupe_groupe" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=92 trailer.height=0 by=("temp_eleveur_groupe_sous_groupe" ) header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1 visible="1" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2523" y="92" height="76" width="933" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Liste des éleveurs par groupes et sous-groupes" border="0" color="33554432" x="480" y="88" height="344" width="2034" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="9" y1="700" x2="3419" y2="700"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Groupe" border="0" color="33554432" x="233" y="620" height="64" width="357" html.valueishtml="0"  name=temp_eleveur_groupe_groupe_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sous-groupe" border="0" color="33554432" x="928" y="620" height="64" width="379" html.valueishtml="0"  name=temp_eleveur_groupe_sous_groupe_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Hébergeur" border="0" color="33554432" x="2747" y="620" height="64" width="315" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ancien No" border="0" color="33554432" x="3081" y="620" height="64" width="315" html.valueishtml="0"  name=t_4 visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="5" y1="708" x2="3415" y2="708"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="0" y="8" height="76" width="1554" format="[general]" html.valueishtml="0"  name=temp_eleveur_groupe_groupe visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=header.2 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="558" y="8" height="76" width="1157" format="[general]" html.valueishtml="0"  name=temp_eleveur_groupe_sous_groupe visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+line(band=detail x1="5" y1="104" x2="3415" y2="104"  name=l_3 visible="1"  slideup=allabove pen.style="0" pen.width="5" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+report(band=detail dataobject="d_r_liste_eleveur_gsg_hebergeur" x="2752" y="8" height="84" width="389" border="0"  height.autosize=yes criteria="" nest_arguments=((" temp_eleveur_groupe_no_eleveur ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="4" height="64" width="3442" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="No d'éleveur" border="0" color="33554432" x="1422" y="620" height="64" width="375" html.valueishtml="0"  name=temp_eleveur_groupe_no_eleveur_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1422" y="4" height="76" width="375" format="[general]" html.valueishtml="0"  name=temp_eleveur_groupe_no_eleveur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nom" border="0" color="33554432" x="1801" y="620" height="64" width="937" html.valueishtml="0"  name=t_eleveur_nom_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1801" y="4" height="76" width="937" format="[general]" html.valueishtml="0"  name=t_eleveur_nom visible="1" height.autosize=yes edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

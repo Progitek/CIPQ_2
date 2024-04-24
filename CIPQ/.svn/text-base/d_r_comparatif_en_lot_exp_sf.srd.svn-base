@@ -1,0 +1,43 @@
+HA$PBExportHeader$d_r_comparatif_en_lot_exp_sf.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=date updatewhereclause=yes name=liv_date dbname="liv_date" )
+ column=(type=char(15) updatewhereclause=yes name=familleproduit dbname="familleproduit" )
+ column=(type=number updatewhereclause=yes name=qteexpediee dbname="qteexpediee" )
+ retrieve="SELECT
+date(#temp_com_en_lot_statfacture.LIV_DATE) as liv_date, 
+If VERRAT_NO is not null then
+	'Pure'
+else
+	Famille
+endif AS FamilleProduit, 
+Sum(#temp_com_en_lot_statfactureDetail.QTE_EXP) AS QteExpediee 
+FROM #temp_com_en_lot_statfacture 
+INNER JOIN (#temp_com_en_lot_statfactureDetail 
+LEFT JOIN t_Produit ON #temp_com_en_lot_statfactureDetail.PROD_NO = t_Produit.NoProduit) 
+ON (#temp_com_en_lot_statfacture.LIV_NO = #temp_com_en_lot_statfactureDetail.LIV_NO) 
+AND (#temp_com_en_lot_statfacture.CIE_NO = #temp_com_en_lot_statfactureDetail.CIE_NO) 
+WHERE date(#temp_com_en_lot_statfacture.LIV_DATE) = date(:adt_cur) AND FamilleProduit = :as_famille
+GROUP BY date(#temp_com_en_lot_statfacture.LIV_DATE), FamilleProduit
+HAVING FamilleProduit is not null AND QteExpediee <> 0" arguments=(("adt_cur", datetime),("as_famille", string),("al_qtemiseenlot", number)) )
+text(band=detail alignment="1" text="Liv Date:" border="0" color="33554432" x="14" y="388" height="64" width="133" html.valueishtml="0"  name=liv_date_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Familleproduit:" border="0" color="33554432" x="14" y="524" height="64" width="133" html.valueishtml="0"  name=familleproduit_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Qteexpediee:" border="0" color="33554432" x="14" y="660" height="64" width="133" html.valueishtml="0"  name=qteexpediee_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="187" y="516" height="76" width="46" format="[general]" html.valueishtml="0"  name=familleproduit visible="0" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="187" y="388" height="76" width="46" format="[shortdate] [time]" html.valueishtml="0"  name=liv_date visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=qteexpediee visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (isnull( al_qtemiseenlot ), 0 ,  al_qtemiseenlot ) -  if(isnull(qteexpediee ), 0,  qteexpediee )"border="0" color="33554432" x="443" y="4" height="76" width="539" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

@@ -1,0 +1,24 @@
+HA$PBExportHeader$inversevect.srf
+global type inverseVect from function_object
+end type
+
+forward prototypes
+global function any inversevect (any aa_vecteur[])
+end prototypes
+
+global function any inversevect (any aa_vecteur[]);any la_tmp
+long ll_lng, ll_ub, i
+
+ll_lng = int((upperbound(aa_vecteur) - lowerbound(aa_vecteur) + 1) / 2)
+ll_ub = upperbound(aa_vecteur) + 1
+
+for i = lowerbound(aa_vecteur) to ll_lng
+	la_tmp = aa_vecteur[i]
+	aa_vecteur[i] = aa_vecteur[ll_ub - i]
+	aa_vecteur[ll_ub - i] = la_tmp
+next
+
+return aa_vecteur
+
+end function
+

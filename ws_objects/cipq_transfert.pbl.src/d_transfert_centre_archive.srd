@@ -1,0 +1,92 @@
+﻿$PBExportHeader$d_transfert_centre_archive.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=15793151 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=compteur dbname="t_transfertcommande.compteur" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=cieno dbname="t_transfertcommande.cieno" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=nocommande dbname="t_transfertcommande.nocommande" )
+ column=(type=long update=yes updatewhereclause=yes name=noligne dbname="t_transfertcommande.noligne" )
+ column=(type=datetime update=yes updatewhereclause=yes name=datecommande dbname="t_transfertcommande.datecommande" )
+ column=(type=long update=yes updatewhereclause=yes name=no_eleveur dbname="t_transfertcommande.no_eleveur" )
+ column=(type=char(16) update=yes updatewhereclause=yes name=noproduit dbname="t_transfertcommande.noproduit" )
+ column=(type=char(12) update=yes updatewhereclause=yes name=codeverrat dbname="t_transfertcommande.codeverrat" )
+ column=(type=real update=yes updatewhereclause=yes name=qtetransfert dbname="t_transfertcommande.qtetransfert" )
+ column=(type=long update=yes updatewhereclause=yes name=noligneheader dbname="t_transfertcommande.noligneheader" )
+ column=(type=long update=yes updatewhereclause=yes name=choix dbname="t_transfertcommande.choix" )
+ column=(type=long update=yes updatewhereclause=yes name=noitem dbname="t_transfertcommande.noitem" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=nomfichier dbname="t_transfertcommande.nomfichier" )
+ column=(type=datetime update=yes updatewhereclause=yes name=heuretransfert dbname="t_transfertcommande.heuretransfert" )
+ column=(type=datetime update=yes updatewhereclause=yes name=reception dbname="t_transfertcommande.reception" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=newnocommande dbname="t_transfertcommande.newnocommande" )
+ retrieve="  SELECT t_transfertcommande.compteur,   
+         t_transfertcommande.cieno,   
+         t_transfertcommande.nocommande,   
+         t_transfertcommande.noligne,   
+         t_transfertcommande.datecommande,   
+         t_transfertcommande.no_eleveur,   
+         t_transfertcommande.noproduit,   
+         t_transfertcommande.codeverrat,   
+         t_transfertcommande.qtetransfert,   
+         t_transfertcommande.noligneheader,   
+         t_transfertcommande.choix,   
+         t_transfertcommande.noitem,   
+         t_transfertcommande.nomfichier,   
+         t_transfertcommande.heuretransfert,   
+         t_transfertcommande.reception,   
+         t_transfertcommande.newnocommande  
+    FROM t_transfertcommande  
+   WHERE date(t_TransfertCommande.DateCommande) = :ad_cur  
+ORDER BY t_transfertcommande.reception ASC,   
+         t_transfertcommande.datecommande ASC,   
+         t_transfertcommande.heuretransfert ASC,   
+         t_transfertcommande.cieno ASC,   
+         t_transfertcommande.nocommande ASC,   
+         t_transfertcommande.noligne ASC   
+" update="t_transfertcommande" updatewhere=1 updatekeyinplace=no arguments=(("ad_cur", date)) )
+line(band=header x1="5" y1="96" x2="4325" y2="96"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="5" y1="104" x2="4325" y2="104"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Transféré à" border="0" color="33554432" x="9" y="12" height="64" width="361" html.valueishtml="0"  name=heuretransfert_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Éleveur" border="0" color="33554432" x="375" y="12" height="64" width="288" html.valueishtml="0"  name=no_eleveur_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Commande" border="0" color="33554432" x="667" y="12" height="64" width="393" html.valueishtml="0"  name=nocommande_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Choix" border="0" color="33554432" x="1065" y="12" height="64" width="215" html.valueishtml="0"  name=choix_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qté transferée" border="0" color="33554432" x="1285" y="12" height="64" width="453" html.valueishtml="0"  name=qtetransfert_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="No produit" border="0" color="33554432" x="1742" y="12" height="64" width="402" html.valueishtml="0"  name=noproduit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nom du fichier" border="0" color="33554432" x="2560" y="12" height="64" width="1019" html.valueishtml="0"  name=nomfichier_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Code verrat" border="0" color="33554432" x="2158" y="12" height="64" width="398" html.valueishtml="0"  name=codeverrat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Réception" border="0" color="33554432" x="3584" y="12" height="64" width="603" html.valueishtml="0"  name=reception_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=130 border="0" color="33554432" x="9" y="8" height="76" width="361" format="[shortdate] [time]" html.valueishtml="0"  name=heuretransfert visible="1" editmask.mask="hh:mm:ss" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=50 border="0" color="33554432" x="375" y="8" height="76" width="288" format="[general]" html.valueishtml="0"  name=no_eleveur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=20 border="0" color="33554432" x="667" y="8" height="76" width="393" format="[general]" html.valueishtml="0"  name=nocommande visible="1" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=100 border="0" color="33554432" x="1065" y="8" height="76" width="215" format="[general]" html.valueishtml="0"  name=choix visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=80 border="0" color="33554432" x="1285" y="8" height="76" width="453" format="[general]" html.valueishtml="0"  name=qtetransfert visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="0" color="33554432" x="1742" y="8" height="76" width="402" format="[general]" html.valueishtml="0"  name=noproduit visible="1" edit.limit=16 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=120 border="0" color="33554432" x="2565" y="8" height="76" width="1019" format="[general]" html.valueishtml="0"  name=nomfichier visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=70 border="0" color="33554432" x="2158" y="8" height="76" width="398" format="[general]" html.valueishtml="0"  name=codeverrat visible="1" edit.limit=12 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="517" y="120" height="76" width="329" format="[general]" html.valueishtml="0"  name=compteur visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="33554432" x="517" y="256" height="76" width="110" format="[general]" html.valueishtml="0"  name=cieno visible="0" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Compteur:" border="0" color="33554432" x="9" y="120" height="64" width="489" html.valueishtml="0"  name=compteur_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Cieno:" border="0" color="33554432" x="9" y="256" height="64" width="489" html.valueishtml="0"  name=cieno_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=30 border="0" color="33554432" x="1376" y="152" height="76" width="329" format="[general]" html.valueishtml="0"  name=noligne visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="0" color="33554432" x="1376" y="288" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=datecommande visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Noligne:" border="0" color="33554432" x="869" y="152" height="64" width="489" html.valueishtml="0"  name=noligne_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Datecommande:" border="0" color="33554432" x="869" y="288" height="64" width="489" html.valueishtml="0"  name=datecommande_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=90 border="0" color="33554432" x="507" y="352" height="76" width="329" format="[general]" html.valueishtml="0"  name=noligneheader visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Noligneheader:" border="0" color="33554432" x="0" y="352" height="64" width="489" html.valueishtml="0"  name=noligneheader_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=110 border="0" color="33554432" x="1390" y="388" height="76" width="329" format="[general]" html.valueishtml="0"  name=noitem visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Noitem:" border="0" color="33554432" x="882" y="388" height="64" width="489" html.valueishtml="0"  name=noitem_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=150 border="0" color="33554432" x="2423" y="136" height="76" width="192" format="[general]" html.valueishtml="0"  name=newnocommande visible="0" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Newnocommande:" border="0" color="33554432" x="1893" y="136" height="64" width="535" html.valueishtml="0"  name=newnocommande_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="2" tabsequence=140 border="0" color="33554432" x="3584" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=reception visible="1" editmask.mask="yyyy-mm-dd hh:mm:ss" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

@@ -1,0 +1,71 @@
+HA$PBExportHeader$h64.srf
+global type h64 from function_object
+end type
+
+forward prototypes
+global function decimal h64 (string as_hex)
+end prototypes
+
+global function decimal h64 (string as_hex);string ls_ch
+ulong lul_highword = 0, lul_lowword = 0
+int i
+
+if isNull(as_hex) then
+	dec{0} li_ret
+	setNull(li_ret)
+	return li_ret
+end if
+
+if match(as_hex, '[^0-9a-fA-F]') then return 0
+
+if Len(as_hex) <= 16 then
+	as_hex = Fill('0', 16 - Len(as_hex)) + as_hex
+else
+	as_hex = Right(as_hex, 16)
+end if
+
+for i = 0 to 7
+	ls_ch = Left(Right(as_hex,1 + i),1)
+	
+	choose case ls_ch
+		case 'a', 'A'
+			lul_lowword += 10 * 16^i
+		case 'b', 'B'
+			lul_lowword += 11 * 16^i
+		case 'c', 'C'
+			lul_lowword += 12 * 16^i
+		case 'd', 'D'
+			lul_lowword += 13 * 16^i
+		case 'e', 'E'
+			lul_lowword += 14 * 16^i
+		case 'f', 'F'
+			lul_lowword += 15 * 16^i
+		case else
+			if isNumber(ls_ch) then lul_lowword += Long(ls_ch) * 16^i
+	end choose
+next
+
+for i = 8 to 15
+	ls_ch = Left(Right(as_hex,1 + i),1)
+	
+	choose case ls_ch
+		case 'a', 'A'
+			lul_highword += 10 * 16^i
+		case 'b', 'B'
+			lul_highword += 11 * 16^i
+		case 'c', 'C'
+			lul_highword += 12 * 16^i
+		case 'd', 'D'
+			lul_highword += 13 * 16^i
+		case 'e', 'E'
+			lul_highword += 14 * 16^i
+		case 'f', 'F'
+			lul_highword += 15 * 16^i
+		case else
+			if isNumber(ls_ch) then lul_highword += Long(ls_ch) * 16^i
+	end choose
+next
+
+return lul_highword * 2^32 + lul_lowword
+end function
+

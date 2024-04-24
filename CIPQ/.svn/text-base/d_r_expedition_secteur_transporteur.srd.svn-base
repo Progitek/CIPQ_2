@@ -1,0 +1,82 @@
+HA$PBExportHeader$d_r_expedition_secteur_transporteur.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=556 color="536870912" )
+summary(height=252 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(3) updatewhereclause=yes name=cie_no dbname="#temp_exp_sec_tra_statfacture.cie_no" )
+ column=(type=char(40) updatewhereclause=yes name=ville dbname="t_CentreCIPQ.ville" )
+ column=(type=long updatewhereclause=yes name=idtransporteur dbname="#temp_exp_sec_tra_statfacture.idtransporteur" )
+ column=(type=char(100) updatewhereclause=yes name=secteur dbname="t_Transporteur.secteur" )
+ column=(type=char(16) updatewhereclause=yes name=prod_no dbname="#temp_exp_sec_tra_statfactureDetail.prod_no" )
+ column=(type=char(100) updatewhereclause=yes name=nomproduit dbname="t_Produit.nomproduit" )
+ column=(type=number updatewhereclause=yes name=sommedeqte_exp dbname="sommedeqte_exp" )
+ retrieve="SELECT #temp_exp_sec_tra_statfacture.CIE_NO, 
+t_CentreCIPQ.VILLE,
+#temp_exp_sec_tra_statfacture.IDTransporteur, 
+t_Transporteur.Secteur,
+#temp_exp_sec_tra_statfactureDetail.PROD_NO, 
+t_Produit.NomProduit,
+isnull(Sum(#temp_exp_sec_tra_statfactureDetail.QTE_EXP),0) AS SommeDeQTE_EXP 
+FROM ((#temp_exp_sec_tra_statfacture 
+INNER JOIN t_CentreCIPQ ON #temp_exp_sec_tra_statfacture.CIE_NO = t_CentreCIPQ.CIE) 
+INNER JOIN t_Transporteur ON #temp_exp_sec_tra_statfacture.IDTransporteur = t_Transporteur.IDTransporteur) 
+INNER JOIN (#temp_exp_sec_tra_statfactureDetail 
+INNER JOIN t_Produit ON #temp_exp_sec_tra_statfactureDetail.PROD_NO = t_Produit.NoProduit) 
+ON (#temp_exp_sec_tra_statfacture.LIV_NO = #temp_exp_sec_tra_statfactureDetail.LIV_NO) 
+AND (#temp_exp_sec_tra_statfacture.CIE_NO = #temp_exp_sec_tra_statfactureDetail.CIE_NO) 
+WHERE t_Produit.Special= 1 
+GROUP BY 
+#temp_exp_sec_tra_statfacture.CIE_NO,
+t_CentreCIPQ.VILLE, 
+#temp_exp_sec_tra_statfacture.IDTransporteur,
+t_Transporteur.Secteur, 
+#temp_exp_sec_tra_statfactureDetail.PROD_NO,
+t_Produit.NomProduit 
+HAVING SommeDeQTE_EXP <> 0" arguments=(("ad_de", date),("ad_au", date))  sort="idtransporteur A cie_no A prod_no A " )
+group(level=1 header.height=168 trailer.height=196 by=("idtransporteur" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=104 trailer.height=144 by=("cie_no" ) header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="18" y="12" height="540" width="448" border="0"  name=p_1 visible="1" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2441" y="12" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Exp$$HEX1$$e900$$ENDHEX$$ditions par produits par secteur de transporteur" border="0" color="33554432" x="485" y="4" height="388" width="1952" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="2" expression="~"Pour la p$$HEX1$$e900$$ENDHEX$$riode du ~" +  ad_de + ~" au ~" +  ad_au "border="0" color="33554432" x="485" y="404" height="116" width="1952" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2441" y="104" height="444" width="946" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2437" y1="96" x2="3383" y2="96"  name=l_7 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="No secteur:" border="0" color="33554432" x="443" y="112" height="64" width="480" html.valueishtml="0"  name=idtransporteur_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Secteur:" border="0" color="33554432" x="18" y="20" height="100" width="357" html.valueishtml="0"  name=secteur_t visible="1"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="393" y="20" height="100" width="329" format="[general]" html.valueishtml="0"  name=idtransporteur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="750" y="20" height="100" width="2647" format="[general]" html.valueishtml="0"  name=secteur visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="9" y1="136" x2="3392" y2="136"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+text(band=header.2 alignment="0" text="Centre:" border="0" color="33554432" x="297" y="4" height="76" width="288" html.valueishtml="0"  name=cie_no_t visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="617" y="4" height="76" width="215" format="[general]" html.valueishtml="0"  name=cie_no visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="850" y="4" height="76" width="1125" format="[general]" html.valueishtml="0"  name=ville visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.2 x1="293" y1="92" x2="3392" y2="92"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="832" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=prod_no visible="1" edit.limit=16 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1280" y="8" height="76" width="1710" format="[general]" html.valueishtml="0"  name=nomproduit visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ville:" border="0" color="33554432" x="137" y="896" height="64" width="480" html.valueishtml="0"  name=ville_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="No produit" border="0" color="33554432" x="37" y="548" height="64" width="480" html.valueishtml="0"  name=prod_no_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Nom produit:" border="0" color="33554432" x="37" y="684" height="64" width="480" html.valueishtml="0"  name=nomproduit_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Sommedeqte Exp:" border="0" color="33554432" x="37" y="820" height="64" width="480" html.valueishtml="0"  name=sommedeqte_exp_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="3058" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=sommedeqte_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.2 x1="2976" y1="4" x2="3401" y2="4"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+compute(band=trailer.2 alignment="1" expression="sum(  sommedeqte_exp for group 2)"border="0" color="33554432" x="2981" y="36" height="88" width="407" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="~"Total pour le centre - ~" +  cie_no + ~" :~""border="0" color="33554432" x="1262" y="36" height="88" width="1719" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="2976" y1="24" x2="3401" y2="24"  name=l_4 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="1" expression="sum(  sommedeqte_exp for group 1)"border="0" color="33554432" x="2981" y="44" height="104" width="407" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="~"Total pour le secteur - ~" +  idtransporteur  + ~" :~""border="0" color="33554432" x="1106" y="44" height="104" width="1874" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="2976" y1="40" x2="3401" y2="40"  name=l_5 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="1073741824" )
+line(band=summary x1="2976" y1="56" x2="3401" y2="56"  name=l_6 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="1" expression="sum(  sommedeqte_exp for all)"border="0" color="33554432" x="2770" y="84" height="128" width="617" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-18" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"Grand total:~""border="0" color="33554432" x="722" y="84" height="128" width="2048" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-18" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="4" height="64" width="3474" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

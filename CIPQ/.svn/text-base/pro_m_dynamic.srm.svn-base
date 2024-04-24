@@ -1,0 +1,115 @@
+HA$PBExportHeader$pro_m_dynamic.srm
+$PBExportComments$a menu object instantiated for use as a dynamic menu item
+forward
+global type pro_m_dynamic from menu
+end type
+end forward
+
+global type pro_m_dynamic from menu
+end type
+global pro_m_dynamic pro_m_dynamic
+
+type variables
+/*	standard data types		*/
+public:
+
+pro_dyn_menu im_dynmenu
+
+private:
+integer	ii_modal_menu_index
+
+long	il_prjct_id
+
+string	is_mode
+
+end variables
+
+forward prototypes
+public function long fmgetid ()
+public subroutine fmsetid (long al_prjct_id)
+public subroutine fmsettext (string as_menu_text)
+public subroutine mfchecked (boolean ab_checked)
+public function long mfgetid ()
+public subroutine mfsetid (long al_prjct_id)
+public subroutine mfsettext (string as_menu_text)
+public subroutine fmchecked (boolean ab_checked)
+public function string mf_get_text ()
+public subroutine setmenu (pro_dyn_menu m_dynmenu)
+end prototypes
+
+public function long fmgetid ();/*	return the ID assigned to this menu item. */
+return il_prjct_id
+
+end function
+
+public subroutine fmsetid (long al_prjct_id);/*	assign an ID to this menu item. */
+il_prjct_id = al_prjct_id
+
+end subroutine
+
+public subroutine fmsettext (string as_menu_text);/*	set the text for m_dynamic_item to the text passed in. */
+this.text = as_menu_text
+
+end subroutine
+
+public subroutine mfchecked (boolean ab_checked);/*	set checked state to value in ab_checked. */
+this.checked = ab_checked
+
+end subroutine
+
+public function long mfgetid ();/*	return the ID assigned to this menu item. */
+return il_prjct_id
+
+end function
+
+public subroutine mfsetid (long al_prjct_id);/*	assign an ID to this menu item. */
+il_prjct_id = al_prjct_id
+
+end subroutine
+
+public subroutine mfsettext (string as_menu_text);/*	set the text for m_dynamic_item to the text passed in. */
+this.text = as_menu_text
+
+end subroutine
+
+public subroutine fmchecked (boolean ab_checked);/*	set checked state to value in ab_checked. */
+this.checked = ab_checked
+
+end subroutine
+
+public function string mf_get_text ();return this.text
+
+end function
+
+public subroutine setmenu (pro_dyn_menu m_dynmenu);im_dynmenu = m_dynmenu
+end subroutine
+
+on pro_m_dynamic.create
+pro_m_dynamic=this
+call super::create
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on pro_m_dynamic.destroy
+call super::destroy
+end on
+
+event clicked;/*	here is where you either execute some code or call a function in the menu item mgr. */
+//messagebox( "I've been clicked!", "My text is '" + this.text + "' and my ID is " + string( fmGetID() ) + "." )
+im_dynmenu.event pro_clicked(this)
+end event
+

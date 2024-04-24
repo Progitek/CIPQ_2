@@ -1,0 +1,6 @@
+HA$PBExportHeader$str_bitmapinfo.srs
+global type str_bitmapinfo from structure
+	str_bitmapinfoheader		bmiheader
+	ulong		bmicolor[]
+end type
+

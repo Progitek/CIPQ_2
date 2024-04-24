@@ -1,0 +1,16 @@
+﻿$PBExportHeader$f_finddescriptionproduct.srf
+global type f_finddescriptionproduct from function_object
+end type
+
+forward prototypes
+global function long f_finddescprod (string as_famille)
+global function string f_finddescriptionproduct (string as_noproduit, string as_noverrat, string as_codeheb)
+end prototypes
+
+global function long f_finddescprod (string as_famille);RETURN gnv_app.of_findnbverratfamille( as_famille)
+end function
+
+global function string f_finddescriptionproduct (string as_noproduit, string as_noverrat, string as_codeheb);
+RETURN gnv_app.of_finddescriptionproduct( as_noproduit, as_noverrat, as_codeheb)
+end function
+

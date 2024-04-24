@@ -1,0 +1,25 @@
+HA$PBExportHeader$swap_dt.srf
+global type swap_dt from function_object
+end type
+
+forward prototypes
+global function integer swap_dt (ref date adt_item1, ref date adt_item2)
+end prototypes
+
+global function integer swap_dt (ref date adt_item1, ref date adt_item2);// Fonction qui interchange 2 items de type date
+// Les 2 items doivent $$HEX1$$ea00$$ENDHEX$$tre de m$$HEX1$$ea00$$ENDHEX$$me type
+//
+// Retourne un entier
+// 1 - Succ$$HEX1$$e800$$ENDHEX$$s
+// -1 - $$HEX1$$c900$$ENDHEX$$chec
+
+date ldt_tmp
+
+ldt_tmp = adt_item1
+adt_item1 = adt_item2
+adt_item2 = ldt_tmp
+
+return 1
+
+end function
+

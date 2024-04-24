@@ -1,0 +1,18 @@
+﻿$PBExportHeader$gf_validcp.srf
+global type gf_validcp from function_object
+end type
+
+forward prototypes
+global function boolean gf_validcp (string as_cp)
+end prototypes
+
+global function boolean gf_validcp (string as_cp);choose case asc(left(as_cp,1))
+	case 65 to 90, 97 to 122
+		return gf_validcppays(as_cp,'C')
+	case 48 to 57
+		return gf_validcppays(as_cp,'U')
+	case else
+		return false
+end choose
+end function
+

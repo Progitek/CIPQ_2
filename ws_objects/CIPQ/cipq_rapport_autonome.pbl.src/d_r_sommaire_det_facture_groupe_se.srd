@@ -1,0 +1,64 @@
+﻿$PBExportHeader$d_r_sommaire_det_facture_groupe_se.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=400 color="536870912" )
+table(column=(type=char(8) updatewhereclause=yes name=fact_no dbname="#temp_som_det_fac_statfacture.fact_no" dbalias=".fact_no" )
+ column=(type=long updatewhereclause=yes name=t_eleveur_no_eleveur dbname="t_eleveur.no_eleveur" dbalias=".no_eleveur" )
+ column=(type=real updatewhereclause=yes name=taxe_fede dbname="#temp_som_det_fac_statfacture.taxe_fede" dbalias=".taxe_fede" )
+ column=(type=real updatewhereclause=yes name=taxe_prov dbname="#temp_som_det_fac_statfacture.taxe_prov" dbalias=".taxe_prov" )
+ column=(type=number updatewhereclause=yes name=soustotal dbname="soustotal" )
+ column=(type=number updatewhereclause=yes name=tps dbname="tps" )
+ column=(type=number updatewhereclause=yes name=tvq dbname="tvq" )
+ column=(type=number updatewhereclause=yes name=gtotal dbname="gtotal" )
+ retrieve="SELECT 
+#temp_som_det_fac_statfacture.FACT_NO, 
+t_ELEVEUR.No_Eleveur, 
+#temp_som_det_fac_statfacture.Pourc_Fed AS taxe_fede, 
+#temp_som_det_fac_statfacture.Pourc_Prov AS taxe_prov, 
+Sum(#temp_som_det_fac_statfacture.VENTE) AS SousTotal, 
+Round(( SousTotal * taxe_fede )  ,0) / 100 AS TPS, 
+Round(( (SousTotal + TPS) * taxe_prov ) ,0) / 100 AS TVQ, 
+round(SousTotal + TPS + TVQ , 2) AS GTotal 
+FROM t_ELEVEUR 
+INNER JOIN #temp_som_det_fac_statfacture 
+ON t_ELEVEUR.No_Eleveur = #temp_som_det_fac_statfacture.No_Eleveur
+WHERE  t_ELEVEUR.No_Eleveur = :al_noeleveur AND #temp_som_det_fac_statfacture.FACT_NO = :as_nofact 
+GROUP BY 
+#temp_som_det_fac_statfacture.FACT_NO, 
+t_ELEVEUR.No_Eleveur, 
+#temp_som_det_fac_statfacture.Pourc_Fed, 
+#temp_som_det_fac_statfacture.Pourc_Prov 
+HAVING GTotal <> 0
+ORDER BY #temp_som_det_fac_statfacture.FACT_NO, 
+t_ELEVEUR.No_Eleveur" arguments=(("al_noeleveur", number),("as_nofact", string)) )
+text(band=detail alignment="0" text="Total:" border="0" color="33554432" x="5" y="12" height="64" width="306" html.valueishtml="0"  name=soustotal_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="539" y="12" height="76" width="466" format="[general]" html.valueishtml="0"  name=soustotal visible="1" editmask.mask="[currency(7)]" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="GRAND TOTAL:" border="0" color="33554432" x="14" y="300" height="64" width="425" html.valueishtml="0"  name=gtotal_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="T.P.S.:" border="0" color="33554432" x="9" y="100" height="64" width="201" html.valueishtml="0"  name=tps_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="T.V.Q.:" border="0" color="33554432" x="9" y="188" height="64" width="201" html.valueishtml="0"  name=tvq_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="434" y="1128" height="76" width="247" format="[general]" html.valueishtml="0"  name=fact_no visible="0" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="434" y="1264" height="76" width="329" format="[general]" html.valueishtml="0"  name=t_eleveur_no_eleveur visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Fact No:" border="0" color="33554432" x="114" y="1128" height="64" width="302" html.valueishtml="0"  name=fact_no_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="No Eleveur:" border="0" color="33554432" x="82" y="1264" height="64" width="334" html.valueishtml="0"  name=t_eleveur_no_eleveur_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="%" border="0" color="33554432" x="320" y="100" height="64" width="64" html.valueishtml="0"  name=taxe_fede_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="%" border="0" color="33554432" x="320" y="188" height="64" width="64" html.valueishtml="0"  name=taxe_prov_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="5" y1="4" x2="1010" y2="4"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=detail x1="5" y1="272" x2="1010" y2="272"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="677" y="100" height="76" width="329" format="[general]" html.valueishtml="0"  name=tps visible="1" editmask.mask="[currency(7)]" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="677" y="188" height="76" width="329" format="[general]" html.valueishtml="0"  name=tvq visible="1" editmask.mask="[currency(7)]" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="544" y="300" height="76" width="462" format="[general]" html.valueishtml="0"  name=gtotal visible="1" editmask.mask="[currency(7)]" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="219" y="100" height="76" width="87" format="[general]" html.valueishtml="0"  name=taxe_fede visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="219" y="188" height="76" width="87" format="[general]" html.valueishtml="0"  name=taxe_prov visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

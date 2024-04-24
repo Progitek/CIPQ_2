@@ -1,0 +1,58 @@
+HA$PBExportHeader$d_r_audit.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=604 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=84 color="536870912" )
+detail(height=276 color="536870912" height.autosize=yes )
+table(column=(type=char(255) updatewhereclause=yes name=login_usager dbname="t_audit.login_usager" dbalias=".login_usager" )
+ column=(type=char(255) updatewhereclause=yes name=type_maj dbname="t_audit.type_maj" dbalias=".type_maj" )
+ column=(type=datetime updatewhereclause=yes name=date_maj dbname="t_audit.date_maj" dbalias=".date_maj" )
+ column=(type=char(255) updatewhereclause=yes name=nom_table dbname="t_audit.nom_table" dbalias=".nom_table" )
+ column=(type=char(1000) updatewhereclause=yes name=primarykey dbname="t_audit.primarykey" dbalias=".primarykey" )
+ column=(type=char(1000) updatewhereclause=yes name=sql_maj dbname="t_audit.sql_maj" dbalias=".sql_maj" )
+ column=(type=char(0) updatewhereclause=yes name=cc_criteres dbname="cc_criteres" )
+ retrieve="  SELECT TOP 10000 t_audit.login_usager,   
+         t_audit.type_maj,   
+         t_audit.date_maj,   
+         t_audit.nom_table,   
+         t_audit.primarykey,   
+         t_audit.sql_maj,   
+         '' as cc_criteres  
+    FROM t_audit  
+   WHERE t_audit.nom_fenetre = :as_fenetre    
+ORDER BY t_audit.date_maj DESC
+" retrieve.asneeded=yes arguments=(("as_fenetre", string))  sort="date_maj D " )
+line(band=header x1="2510" y1="160" x2="3474" y2="160"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2523" y="172" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2523" y="84" height="64" width="942" format="[general]" html.valueishtml="0"  name=cc_criteres visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Rapport d'audit" border="0" color="33554432" x="475" y="112" height="156" width="2039" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="32" y="4" height="484" width="411" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="Date" border="0" color="33554432" x="37" y="488" height="64" width="352" html.valueishtml="0"  name=date_maj_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Usager" border="0" color="33554432" x="425" y="488" height="64" width="370" html.valueishtml="0"  name=login_usager_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Action" border="0" color="33554432" x="846" y="488" height="64" width="503" html.valueishtml="0"  name=type_maj_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Table" border="0" color="33554432" x="1403" y="488" height="64" width="791" html.valueishtml="0"  name=nom_table_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="41" y1="576" x2="3429" y2="576"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="41" y1="584" x2="3429" y2="584"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Occurence" border="0" color="33554432" x="2231" y="488" height="64" width="1166" html.valueishtml="0"  name=primarykey_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="37" y="28" height="76" width="352" format="[shortdate] [time]" html.valueishtml="0"  name=date_maj visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="443" y="28" height="76" width="370" format="[general]" html.valueishtml="0"  name=login_usager visible="1" edit.limit=255 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="846" y="28" height="76" width="503" format="[general]" html.valueishtml="0"  name=type_maj visible="1" edit.limit=255 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1403" y="28" height="76" width="791" format="[general]" html.valueishtml="0"  name=nom_table visible="1" edit.limit=255 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2231" y="28" height="76" width="1166" format="[general]" html.valueishtml="0"  name=primarykey visible="1" height.autosize=yes edit.limit=1000 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="192" y="484" height="64" width="3195" format="[general]" html.valueishtml="0"  name=sql_maj visible="0" height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="D$$HEX1$$e900$$ENDHEX$$tail:" border="0" color="33554432" x="41" y="144" height="64" width="169" html.valueishtml="0"  name=sql_maj_t visible="1"  slideup=allabove  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=detail x1="41" y1="248" x2="3429" y2="248"  name=l_3 visible="1"  slideup=allabove pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if(pos(  upper(sql_maj) , ~"SET~", 1 ) > 0 AND pos(  upper(sql_maj) , ~"WHERE~", 1 ) > 0 , mid( sql_maj, pos(  upper(sql_maj) , ~"SET~", 1 ) + 4, pos(  upper(sql_maj) , ~"WHERE~", 1 ) - ( (pos(  upper(sql_maj) , ~"SET~", 1 ) + 4)) ) , ~"~") "border="0" color="33554432" x="229" y="144" height="64" width="3186" format="[GENERAL]" html.valueishtml="0"  name=cf_detail visible="1"  slideup=allabove  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="4" height="64" width="3465" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,25 @@
+﻿$PBExportHeader$swap_r.srf
+global type swap_r from function_object
+end type
+
+forward prototypes
+global function integer swap_r (ref real ar_item1, ref real ar_item2)
+end prototypes
+
+global function integer swap_r (ref real ar_item1, ref real ar_item2);// Fonction qui interchange 2 items de type real
+// Les 2 items doivent être de même type
+//
+// Retourne un entier
+// 1 - Succès
+// -1 - Échec
+
+real lr_tmp
+
+lr_tmp = ar_item1
+ar_item1 = ar_item2
+ar_item2 = lr_tmp
+
+return 1
+
+end function
+

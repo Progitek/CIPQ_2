@@ -1,0 +1,135 @@
+﻿$PBExportHeader$d_r_stat_vente_race_sommaire.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=352 color="536870912" )
+summary(height=124 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=totqteexp dbname="totqteexp" )
+ column=(type=number updatewhereclause=yes name=totprix dbname="totprix" )
+ column=(type=number updatewhereclause=yes name=totqteexpan dbname="totqteexpan" )
+ column=(type=number updatewhereclause=yes name=totprixan dbname="totprixan" )
+ column=(type=char(100) updatewhereclause=yes name=descrace dbname="t_race.descrace" )
+ column=(type=char(4) updatewhereclause=yes name=racecode dbname="t_race.racecode" )
+ retrieve="SELECT 
+round(isnull(Sum(isnull(#temp_sta_ven_rac_statfactureDetail.QTE_EXP,0)),0),2) AS TotQteExp, 
+round(isnull(Sum(isnull(#temp_sta_ven_rac_statfactureDetail.UPRIX,0) * isnull(#temp_sta_ven_rac_statfactureDetail.QTE_EXP,0)),0),2) AS TotPrix,
+
+round(isnull((
+SELECT Sum(isnull(g1.QTE_EXP,0)) 
+FROM t_race a1
+INNER JOIN ( t_classe b1 
+INNER JOIN ( t_produit c1
+INNER JOIN (#temp_sta_ven_rac_statfacture d1
+INNER JOIN (t_Verrat e1
+RIGHT JOIN (t_AssociationRaceProd f1
+RIGHT JOIN #temp_sta_ven_rac_statfactureDetail g1 ON (f1.CodeProd) = (g1.PROD_NO)) 
+ON e1.CodeVerrat = g1.VERRAT_NO) 
+ON (d1.LIV_NO = g1.LIV_NO) 
+AND (d1.CIE_NO = g1.CIE_NO))
+ON (c1.NoProduit) = (g1.PROD_NO))
+ON c1.NoClasse = b1.NoClasse)
+ON a1.coderace = 
+(If g1.VERRAT_NO is not null then e1.CodeRace else f1.CodeRace endif)
+WHERE (g1.PROD_NO Like 'HEB%' OR b1.Semence = 1) 
+AND
+(
+(If g1.VERRAT_NO is not null then e1.CodeRace else f1.CodeRace endif) = (If #temp_sta_ven_rac_statfactureDetail.VERRAT_NO is not null then t_Verrat.CodeRace else 	t_AssociationRaceProd.CodeRace endif )
+)
+)
+,0),2) AS TotQteExpAn,
+
+round(isnull((SELECT Sum(isnull(g1.QTE_EXP,0) * isnull(g1.UPRIX,0)) 
+FROM t_race a1
+INNER JOIN ( t_classe b1 
+INNER JOIN ( t_produit c1
+INNER JOIN (#temp_sta_ven_rac_statfacture d1
+INNER JOIN (t_Verrat e1
+RIGHT JOIN (t_AssociationRaceProd f1
+RIGHT JOIN #temp_sta_ven_rac_statfactureDetail g1 ON (f1.CodeProd) = (g1.PROD_NO)) 
+ON e1.CodeVerrat = g1.VERRAT_NO) 
+ON (d1.LIV_NO = g1.LIV_NO) 
+AND (d1.CIE_NO = g1.CIE_NO))
+ON (c1.NoProduit) = (g1.PROD_NO))
+ON c1.NoClasse = b1.NoClasse)
+ON a1.coderace = 
+(If g1.VERRAT_NO is not null then e1.CodeRace else f1.CodeRace endif)
+
+WHERE (g1.PROD_NO Like 'HEB%' OR b1.Semence = 1)
+AND
+(
+(If g1.VERRAT_NO is not null then e1.CodeRace else f1.CodeRace endif) = (If #temp_sta_ven_rac_statfactureDetail.VERRAT_NO is not null then t_Verrat.CodeRace else 	t_AssociationRaceProd.CodeRace endif )
+)
+
+),0),2) AS TotPrixAn,
+
+
+t_Race.DescRace,  
+If #temp_sta_ven_rac_statfactureDetail.VERRAT_NO is not null then 
+	t_Verrat.CodeRace
+else 
+	t_AssociationRaceProd.CodeRace
+endif AS RaceCode
+
+
+FROM t_race 
+INNER JOIN ( t_classe
+INNER JOIN ( t_produit
+INNER JOIN (#temp_sta_ven_rac_statfacture 
+INNER JOIN (t_Verrat 
+RIGHT JOIN (t_AssociationRaceProd 
+RIGHT JOIN #temp_sta_ven_rac_statfactureDetail ON (t_AssociationRaceProd.CodeProd) = (#temp_sta_ven_rac_statfactureDetail.PROD_NO)) 
+ON t_Verrat.CodeVerrat = #temp_sta_ven_rac_statfactureDetail.VERRAT_NO) 
+ON (#temp_sta_ven_rac_statfacture.LIV_NO = #temp_sta_ven_rac_statfactureDetail.LIV_NO) 
+AND (#temp_sta_ven_rac_statfacture.CIE_NO = #temp_sta_ven_rac_statfactureDetail.CIE_NO))
+ON (t_Produit.NoProduit) = (#temp_sta_ven_rac_statfactureDetail.PROD_NO))
+ON t_Produit.NoClasse = t_Classe.NoClasse)
+
+ON t_Race.coderace = RaceCode
+
+
+WHERE #temp_sta_ven_rac_statfacture.FACT_DATE >= :ad_debut And #temp_sta_ven_rac_statfacture.FACT_DATE <= :ad_fin
+AND (#temp_sta_ven_rac_statfactureDetail.PROD_NO Like 'HEB%' OR t_Classe.Semence = 1)
+GROUP BY 
+t_Race.DescRace,
+RaceCode  
+HAVING RaceCode Is NOT Null AND TotQteExp <> 0" arguments=(("ad_debut", date),("ad_fin", date))  sort="racecode A " )
+text(band=header alignment="2" text="Code race" border="0" color="33554432" x="23" y="192" height="136" width="265" html.valueishtml="0"  name=racecode_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="0" color="33554432" x="306" y="252" height="64" width="334" html.valueishtml="0"  name=descrace_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cumulatif" border="2" color="33554432" x="1920" y="180" height="144" width="814" html.valueishtml="0"  name=t_4  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mois courant" border="2" color="33554432" x="1225" y="180" height="144" width="681" html.valueishtml="0"  name=t_2  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qté" border="0" color="33554432" x="1234" y="256" height="64" width="338" html.valueishtml="0"  name=totqteexp_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dollars" border="0" color="33554432" x="1545" y="256" height="64" width="357" html.valueishtml="0"  name=totprix_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="%" border="2" color="33554432" x="2747" y="180" height="144" width="466" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dollars" border="0" color="33554432" x="2985" y="256" height="64" width="224" html.valueishtml="0"  name=t_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dollars" border="0" color="33554432" x="2295" y="256" height="64" width="430" html.valueishtml="0"  name=totprixan_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qté" border="0" color="33554432" x="1925" y="256" height="64" width="361" html.valueishtml="0"  name=totqteexpan_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qté" border="0" color="33554432" x="2752" y="256" height="64" width="224" html.valueishtml="0"  name=t_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="14" y1="340" x2="3227" y2="340"  name=l_1  tag="exclure_mr" visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="9" y1="348" x2="3223" y2="348"  name=l_2  tag="exclure_mr" visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Sommaire" border="4" color="33554432" x="18" y="16" height="100" width="498" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-16" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="27" y="8" height="76" width="265" format="[general]" html.valueishtml="0"  name=racecode  tag="exclure_mr" visible="1" edit.limit=4 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="302" y="8" height="76" width="937" format="[general]" html.valueishtml="0"  name=descrace  tag="exclure_mr" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="1239" y="8" height="76" width="338" format="[general]" html.valueishtml="0"  name=totqteexp  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1929" y="8" height="76" width="361" format="[general]" html.valueishtml="0"  name=totqteexpan  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="1550" y="8" height="76" width="366" format="[general]" html.valueishtml="0"  name=totprix  tag="exclure_mr" visible="1" editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="2299" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=totprixan  tag="exclure_mr" visible="1" editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="round(if ( sum(totqteexp) > 0  ,( totqteexp /  sum(totqteexp)) * 100 , 0),2)"border="0" color="33554432" x="2757" y="8" height="76" width="224" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="string(round(if ( sum( totprix ) > 0  ,( totprix /  sum(totprix )) * 100 , 0),2),~"###,###.00~")"border="0" color="33554432" x="2994" y="8" height="76" width="224" format="[General]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="~"Grand total:~""border="2" color="33554432" x="5" y="4" height="100" width="3214" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum( totqteexp for all)"border="0" color="33554432" x="1216" y="20" height="76" width="338" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="string(round(sum(  totprix  for all),2), ~"###,###.00~")"border="0" color="33554432" x="1527" y="20" height="76" width="366" format="[General]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  totqteexpan  for all)"border="0" color="33554432" x="1906" y="20" height="76" width="338" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="string(round(sum(  totprixan  for all),2), ~"###,###.00~")"border="0" color="33554432" x="2277" y="20" height="76" width="430" format="[General]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="2" text="100" border="0" color="33554432" x="2757" y="20" height="64" width="224" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=summary alignment="2" text="100" border="0" color="33554432" x="2994" y="20" height="64" width="219" html.valueishtml="0"  name=t_8 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

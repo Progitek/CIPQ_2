@@ -1,0 +1,25 @@
+HA$PBExportHeader$swap_t.srf
+global type swap_t from function_object
+end type
+
+forward prototypes
+global function integer swap_t (ref time at_item1, ref time at_item2)
+end prototypes
+
+global function integer swap_t (ref time at_item1, ref time at_item2);// Fonction qui interchange 2 items de type time
+// Les 2 items doivent $$HEX1$$ea00$$ENDHEX$$tre de m$$HEX1$$ea00$$ENDHEX$$me type
+//
+// Retourne un entier
+// 1 - Succ$$HEX1$$e800$$ENDHEX$$s
+// -1 - $$HEX1$$c900$$ENDHEX$$chec
+
+time lt_tmp
+
+lt_tmp = at_item1
+at_item1 = at_item2
+at_item2 = lt_tmp
+
+return 1
+
+end function
+

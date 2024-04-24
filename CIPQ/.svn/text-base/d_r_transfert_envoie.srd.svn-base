@@ -1,0 +1,63 @@
+HA$PBExportHeader$d_r_transfert_envoie.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=820 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=76 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=datejour dbname="t_transfere_log.datejour" )
+ column=(type=datetime updatewhereclause=yes name=heurejour dbname="t_transfere_log.heurejour" )
+ column=(type=datetime updatewhereclause=yes name=datetransf dbname="t_transfere_log.datetransf" )
+ column=(type=char(255) updatewhereclause=yes name=tbltransf dbname="t_transfere_log.tbltransf" )
+ column=(type=long updatewhereclause=yes name=nbenregistrement dbname="t_transfere_log.nbenregistrement" )
+ column=(type=long updatewhereclause=yes name=nbexportable dbname="nbexportable" )
+ column=(type=char(3) updatewhereclause=yes name=t_parametre_centre dbname="t_parametre.centre" )
+ column=(type=char(40) updatewhereclause=yes name=t_centrecipq_ville dbname="t_centrecipq.ville" )
+ retrieve="SELECT 
+T_Transfere_Log.DateJour, 
+t_Transfere_Log.HeureJour, 
+t_Transfere_Log.DateTransf, 
+t_Transfere_Log.tblTransf, 
+t_Transfere_Log.NbEnregistrement, 
+1 AS NbExportable,
+t_parametre.centre,
+t_centrecipq.ville 
+FROM t_Transfere_Log,
+	  t_parametre inner join t_centrecipq on t_parametre.centre = t_centrecipq.cie
+WHERE date(t_Transfere_Log.DateJour)=Date(:ra_datejour) " arguments=(("ra_datejour", date))  sort="datejour A heurejour A datetransf A tbltransf A " )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="23" y="4" height="540" width="448" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="Transferts export$$HEX1$$e900$$ENDHEX$$s" border="0" color="33554432" x="485" y="8" height="156" width="1984" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2478" y="8" height="76" width="919" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2478" y1="88" x2="3392" y2="88"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="18" y1="808" x2="3419" y2="808"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="18" y1="816" x2="3419" y2="816"  name=l_5 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Date initiale" border="0" color="33554432" x="791" y="728" height="64" width="489" html.valueishtml="0"  name=datetransf_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Nom de la table" border="0" color="33554432" x="1294" y="728" height="64" width="855" html.valueishtml="0"  name=tbltransf_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="$$HEX2$$c0002000$$ENDHEX$$exporter" border="0" color="33554432" x="2176" y="728" height="64" width="558" html.valueishtml="0"  name=nbenregistrement_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Export$$HEX1$$e900$$ENDHEX$$" border="0" color="33554432" x="2834" y="728" height="64" width="558" html.valueishtml="0"  name=nbexportable_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Date et heure transf$$HEX1$$e900$$ENDHEX$$r$$HEX1$$e900$$ENDHEX$$" border="0" color="33554432" x="23" y="728" height="64" width="718" html.valueishtml="0"  name=datejour_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Centre:" border="0" color="33554432" x="82" y="608" height="92" width="283" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="t_parametre_centre"border="0" color="33554432" x="370" y="608" height="92" width="242" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression=" t_centrecipq_ville "border="0" color="33554432" x="617" y="608" height="92" width="1038" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Heurejour:" border="0" color="33554432" x="37" y="140" height="64" width="489" html.valueishtml="0"  name=heurejour_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="23" y="4" height="76" width="306" format="[shortdate] [time]" html.valueishtml="0"  name=datejour visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="347" y="4" height="76" width="306" format="[shortdate] [time]" html.valueishtml="0"  name=heurejour visible="1" editmask.mask="hh:mm:ss" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="791" y="4" height="76" width="489" format="[shortdate] [time]" html.valueishtml="0"  name=datetransf visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1294" y="4" height="76" width="855" format="[general]" html.valueishtml="0"  name=tbltransf visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="2176" y="4" height="76" width="558" format="[general]" html.valueishtml="0"  name=nbenregistrement visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="2834" y="4" height="76" width="558" format="[general]" html.valueishtml="0"  name=nbexportable visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2249" y="136" height="64" width="82" format="[general]" html.valueishtml="0"  name=t_parametre_centre visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2331" y="136" height="64" width="1079" format="[general]" html.valueishtml="0"  name=t_centrecipq_ville visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="4" height="64" width="3465" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="2" expression="~"Pour le: ~" + string(  ra_datejour  , ~"yyyy-mm-dd~")"border="0" color="33554432" x="480" y="308" height="112" width="1989" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

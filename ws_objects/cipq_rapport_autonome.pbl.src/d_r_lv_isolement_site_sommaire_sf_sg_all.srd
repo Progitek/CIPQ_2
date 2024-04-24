@@ -1,0 +1,38 @@
+﻿$PBExportHeader$d_r_lv_isolement_site_sommaire_sf_sg_all.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=code_hebergeur dbname="t_isolementsite.code_hebergeur" )
+ column=(type=long updatewhereclause=yes name=comptecodehebergeur dbname="comptecodehebergeur" )
+ retrieve="SELECT 
+t_IsolementVerrat.Code_Hebergeur, 
+Count(t_IsolementVerrat.Code_Hébergeur) AS CompteCodeHebergeur 
+FROM t_IsolementSite 
+INNER JOIN (t_IsolementLot 
+INNER JOIN t_IsolementVerrat ON t_IsolementLot.NoLot = t_IsolementVerrat.NoLot) 
+ON t_IsolementSite.NoSite = t_IsolementLot.NoSite 
+WHERE (((t_IsolementVerrat.DateSortieVerrat) Is Null) 
+And ((t_IsolementVerrat.Code_Hébergeur) Is Not Null))
+GROUP BY 
+t_IsolementVerrat.Code_Hebergeur 
+ORDER BY 
+t_IsolementVerrat.Code_Hebergeur" )
+text(band=detail alignment="1" text="Site:" border="0" color="33554432" x="14" y="340" height="64" width="617" html.valueishtml="0"  name=site_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Code Hebergeur:" border="0" color="33554432" x="14" y="476" height="64" width="617" html.valueishtml="0"  name=code_hebergeur_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Comptecodehebergeur:" border="0" color="33554432" x="14" y="612" height="64" width="617" html.valueishtml="0"  name=comptecodehebergeur_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="14" y="0" height="76" width="183" format="[general]" html.valueishtml="0"  name=code_hebergeur visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="206" y="0" height="76" width="329" format="[general]" html.valueishtml="0"  name=comptecodehebergeur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

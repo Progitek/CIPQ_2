@@ -1,0 +1,158 @@
+﻿$PBExportHeader$d_r_etiquette_eleveur_adm.srd
+release 10.5;
+datawindow(units=3 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 635 print.margin.right = 0 print.margin.top = 0 print.margin.bottom = 635 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no print.columns=2 print.columns.width=9929 )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=3757 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=no_eleveur dbname="t_eleveur.no_eleveur" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=nom dbname="t_eleveur.nom" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=adresse dbname="t_eleveur.adresse" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=rue dbname="t_eleveur.rue" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=ville dbname="t_eleveur.ville" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=conte dbname="t_eleveur.conte" )
+ column=(type=char(7) update=yes updatewhereclause=yes name=code_post dbname="t_eleveur.code_post" )
+ column=(type=char(3) updatewhereclause=yes name=cie_no dbname="t_eleveur.cie_no" )
+ column=(type=number updatewhereclause=yes name=livraisonspecial dbname="t_eleveur.livraisonspecial" )
+ column=(type=long updatewhereclause=yes name=secteur_transporteur dbname="t_eleveur.secteur_transporteur" )
+ column=(type=char(30) updatewhereclause=yes name=province dbname="t_eleveur.province" )
+ column=(type=char(2) updatewhereclause=yes name=reg_agr dbname="t_eleveur.reg_agr" )
+ column=(type=char(14) updatewhereclause=yes name=telephone dbname="t_eleveur.telephone" )
+ column=(type=char(100) updatewhereclause=yes name=af_nom dbname="t_eleveur.af_nom" )
+ column=(type=char(100) updatewhereclause=yes name=af_rue dbname="t_eleveur.af_rue" )
+ column=(type=char(20) updatewhereclause=yes name=af_adresse dbname="t_eleveur.af_adresse" )
+ column=(type=char(100) updatewhereclause=yes name=af_ville dbname="t_eleveur.af_ville" )
+ column=(type=char(50) updatewhereclause=yes name=af_conte dbname="t_eleveur.af_conte" )
+ column=(type=char(2) updatewhereclause=yes name=af_reg_agr dbname="t_eleveur.af_reg_agr" )
+ column=(type=char(7) updatewhereclause=yes name=af_cod_pos dbname="t_eleveur.af_cod_pos" )
+ column=(type=char(14) updatewhereclause=yes name=af_telepho dbname="t_eleveur.af_telepho" )
+ column=(type=char(2) updatewhereclause=yes name=genr_elev dbname="t_eleveur.genr_elev" )
+ column=(type=number updatewhereclause=yes name=nb_truie dbname="t_eleveur.nb_truie" )
+ column=(type=number updatewhereclause=yes name=nb_catal dbname="t_eleveur.nb_catal" )
+ column=(type=char(1) updatewhereclause=yes name=mode_catal dbname="t_eleveur.mode_catal" )
+ column=(type=datetime updatewhereclause=yes name=inscrip dbname="t_eleveur.inscrip" )
+ column=(type=datetime updatewhereclause=yes name=annulation dbname="t_eleveur.annulation" )
+ column=(type=long updatewhereclause=yes name=no_vend dbname="t_eleveur.no_vend" )
+ column=(type=char(50) updatewhereclause=yes name=per_res dbname="t_eleveur.per_res" )
+ column=(type=decimal(2) updatewhereclause=yes name=taux_int dbname="t_eleveur.taux_int" )
+ column=(type=decimal(2) updatewhereclause=yes name=nbre_jrs dbname="t_eleveur.nbre_jrs" )
+ column=(type=decimal(2) updatewhereclause=yes name=taxe_prov dbname="t_eleveur.taxe_prov" )
+ column=(type=decimal(2) updatewhereclause=yes name=taxe_fede dbname="t_eleveur.taxe_fede" )
+ column=(type=char(150) updatewhereclause=yes name=liv_adr_a dbname="t_eleveur.liv_adr_a" )
+ column=(type=char(50) updatewhereclause=yes name=liv_vil_a dbname="t_eleveur.liv_vil_a" )
+ column=(type=char(6) updatewhereclause=yes name=liv_cod_a dbname="t_eleveur.liv_cod_a" )
+ column=(type=char(14) updatewhereclause=yes name=liv_tel_a dbname="t_eleveur.liv_tel_a" )
+ column=(type=char(50) updatewhereclause=yes name=liv_conte dbname="t_eleveur.liv_conte" )
+ column=(type=long updatewhereclause=yes name=liv_notran dbname="t_eleveur.liv_notran" )
+ column=(type=char(1) updatewhereclause=yes name=cli_langue dbname="t_eleveur.cli_langue" )
+ column=(type=char(12) updatewhereclause=yes name=codetransport dbname="t_eleveur.codetransport" )
+ column=(type=number updatewhereclause=yes name=plivrgratuit dbname="t_eleveur.plivrgratuit" )
+ column=(type=datetime updatewhereclause=yes name=daterenouvellement dbname="t_eleveur.daterenouvellement" )
+ column=(type=datetime updatewhereclause=yes name=dateannulation dbname="t_eleveur.dateannulation" )
+ column=(type=long updatewhereclause=yes name=livgratuiteannee dbname="t_eleveur.livgratuiteannee" )
+ column=(type=long updatewhereclause=yes name=livgratuitemois dbname="t_eleveur.livgratuitemois" )
+ column=(type=datetime updatewhereclause=yes name=livgratuitedate dbname="t_eleveur.livgratuitedate" )
+ column=(type=datetime updatewhereclause=yes name=transdate dbname="t_eleveur.transdate" )
+ column=(type=char(50) updatewhereclause=yes name=livraisonspecialmsg dbname="t_eleveur.livraisonspecialmsg" )
+ column=(type=char(100) updatewhereclause=yes name=liv_nom dbname="t_eleveur.liv_nom" )
+ column=(type=number updatewhereclause=yes name=verrat_en_loc dbname="t_eleveur.verrat_en_loc" )
+ column=(type=long updatewhereclause=yes name=groupe dbname="t_eleveur.groupe" )
+ column=(type=number updatewhereclause=yes name=plivrgratuittot dbname="t_eleveur.plivrgratuittot" )
+ column=(type=number updatewhereclause=yes name=rouge dbname="t_eleveur.rouge" )
+ column=(type=char(6) updatewhereclause=yes name=billing_cycle_code dbname="t_eleveur.billing_cycle_code" )
+ column=(type=char(2) updatewhereclause=yes name=id_rep dbname="t_eleveur.id_rep" )
+ column=(type=number updatewhereclause=yes name=chkactivite dbname="t_eleveur.chkactivite" )
+ column=(type=char(100) updatewhereclause=yes name=courriel dbname="t_eleveur.courriel" )
+ column=(type=number updatewhereclause=yes name=principal dbname="t_eleveur.principal" )
+ column=(type=number updatewhereclause=yes name=formationgedis dbname="t_eleveur.formationgedis" )
+ column=(type=long updatewhereclause=yes name=groupesecondaire dbname="t_eleveur.groupesecondaire" )
+ column=(type=number updatewhereclause=yes name=droitverratexclusif dbname="t_eleveur.droitverratexclusif" )
+ column=(type=char(2) updatewhereclause=yes name=codetaxe dbname="t_eleveur.codetaxe" )
+ column=(type=number updatewhereclause=yes name=droitalliancematernelle dbname="t_eleveur.droitalliancematernelle" )
+ retrieve="  SELECT ~"t_eleveur~".~"no_eleveur~",   
+         ~"t_eleveur~".~"nom~",   
+         ~"t_eleveur~".~"adresse~",   
+         ~"t_eleveur~".~"rue~",   
+         ~"t_eleveur~".~"ville~",   
+         ~"t_eleveur~".~"conte~",   
+         ~"t_eleveur~".~"code_post~",   
+         ~"t_eleveur~".~"cie_no~",   
+         ~"t_eleveur~".~"livraisonspecial~",   
+         ~"t_eleveur~".~"secteur_transporteur~",   
+         ~"t_eleveur~".~"province~",   
+         ~"t_eleveur~".~"reg_agr~",   
+         ~"t_eleveur~".~"telephone~",   
+         ~"t_eleveur~".~"af_nom~",   
+         ~"t_eleveur~".~"af_rue~",   
+         ~"t_eleveur~".~"af_adresse~",   
+         ~"t_eleveur~".~"af_ville~",   
+         ~"t_eleveur~".~"af_conte~",   
+         ~"t_eleveur~".~"af_reg_agr~",   
+         ~"t_eleveur~".~"af_cod_pos~",   
+         ~"t_eleveur~".~"af_telepho~",   
+         ~"t_eleveur~".~"genr_elev~",   
+         ~"t_eleveur~".~"nb_truie~",   
+         ~"t_eleveur~".~"nb_catal~",   
+         ~"t_eleveur~".~"mode_catal~",   
+         ~"t_eleveur~".~"inscrip~",   
+         ~"t_eleveur~".~"annulation~",   
+         ~"t_eleveur~".~"no_vend~",   
+         ~"t_eleveur~".~"per_res~",   
+         ~"t_eleveur~".~"taux_int~",   
+         ~"t_eleveur~".~"nbre_jrs~",   
+         ~"t_eleveur~".~"taxe_prov~",   
+         ~"t_eleveur~".~"taxe_fede~",   
+         ~"t_eleveur~".~"liv_adr_a~",   
+         ~"t_eleveur~".~"liv_vil_a~",   
+         ~"t_eleveur~".~"liv_cod_a~",   
+         ~"t_eleveur~".~"liv_tel_a~",   
+         ~"t_eleveur~".~"liv_conte~",   
+         ~"t_eleveur~".~"liv_notran~",   
+         ~"t_eleveur~".~"cli_langue~",   
+         ~"t_eleveur~".~"codetransport~",   
+         ~"t_eleveur~".~"plivrgratuit~",   
+         ~"t_eleveur~".~"daterenouvellement~",   
+         ~"t_eleveur~".~"dateannulation~",   
+         ~"t_eleveur~".~"livgratuiteannee~",   
+         ~"t_eleveur~".~"livgratuitemois~",   
+         ~"t_eleveur~".~"livgratuitedate~",   
+         ~"t_eleveur~".~"transdate~",   
+         ~"t_eleveur~".~"livraisonspecialmsg~",   
+         ~"t_eleveur~".~"liv_nom~",   
+         ~"t_eleveur~".~"verrat_en_loc~",   
+         ~"t_eleveur~".~"groupe~",   
+         ~"t_eleveur~".~"plivrgratuittot~",   
+         ~"t_eleveur~".~"rouge~",   
+         ~"t_eleveur~".~"billing_cycle_code~",   
+         ~"t_eleveur~".~"id_rep~",   
+         ~"t_eleveur~".~"chkactivite~",   
+         ~"t_eleveur~".~"courriel~",   
+         ~"t_eleveur~".~"principal~",   
+         ~"t_eleveur~".~"formationgedis~",   
+         ~"t_eleveur~".~"groupesecondaire~",   
+         ~"t_eleveur~".~"droitverratexclusif~",   
+         ~"t_eleveur~".~"codetaxe~",   
+         ~"t_eleveur~".~"droitalliancematernelle~"  
+    FROM ~"t_eleveur~"   
+" update="t_eleveur" updatewhere=1 updatekeyinplace=no  sort="no_eleveur A " )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="10424" y="5795" height="502" width="793" format="[general]" html.valueishtml="0"  name=nom visible="0" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="4339" y="5768" height="502" width="1905" format="[general]" html.valueishtml="0"  name=no_eleveur visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="6376" y="5742" height="502" width="1905" format="[general]" html.valueishtml="0"  name=adresse visible="0" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="8334" y="5715" height="502" width="1905" format="[general]" html.valueishtml="0"  name=rue visible="0" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="846" y="2699" height="502" width="3466" format="[general]" html.valueishtml="0"  name=code_post visible="1" editmask.mask="!#! #!#" editmask.focusrectangle=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="846" y="1641" height="502" width="7567" format="[general]" html.valueishtml="0"  name=ville visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="846" y="2170" height="502" width="7567" format="[general]" html.valueishtml="0"  name=conte visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="nom"border="0" color="33554432" x="846" y="556" height="502" width="5397" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if (isnull( adresse ), ~"~",   adresse + ~", ~") + if (isnull( rue ), ~"~",   rue )"border="0" color="33554432" x="846" y="1085" height="529" width="7567" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="6270" y="556" height="502" width="2143" format="[general]" html.valueishtml="0"  name=no_eleveur_1 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

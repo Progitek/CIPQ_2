@@ -1,0 +1,67 @@
+HA$PBExportHeader$d_r_integrite_fact.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=576 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=76 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(3) updatewhereclause=yes name=t_statfacture_cie_no dbname="t_statfacture.cie_no" dbalias=".cie_no" )
+ column=(type=char(7) updatewhereclause=yes name=t_statfacture_liv_no dbname="t_statfacture.liv_no" dbalias=".liv_no" )
+ column=(type=datetime updatewhereclause=yes name=t_statfacture_liv_date dbname="t_statfacture.liv_date" dbalias=".liv_date" )
+ column=(type=char(8) updatewhereclause=yes name=t_statfacture_fact_no dbname="t_statfacture.fact_no" dbalias=".fact_no" )
+ column=(type=datetime updatewhereclause=yes name=t_statfacture_fact_date dbname="t_statfacture.fact_date" dbalias=".fact_date" )
+ column=(type=long updatewhereclause=yes name=t_statfacture_no_eleveur dbname="t_statfacture.no_eleveur" dbalias=".no_eleveur" )
+ column=(type=real updatewhereclause=yes name=t_statfacture_vente dbname="t_statfacture.vente" dbalias=".vente" )
+ column=(type=real updatewhereclause=yes name=t_statfacture_taxep dbname="t_statfacture.taxep" dbalias=".taxep" )
+ column=(type=real updatewhereclause=yes name=t_statfacture_taxef dbname="t_statfacture.taxef" dbalias=".taxef" )
+ retrieve="SELECT t_StatFacture.CIE_NO, 
+t_StatFacture.LIV_NO, 
+t_StatFacture.LIV_DATE, 
+t_StatFacture.FACT_NO, 
+t_StatFacture.FACT_DATE, 
+t_StatFacture.No_Eleveur, 
+t_StatFacture.VENTE, 
+t_StatFacture.TAXEP, 
+t_StatFacture.TAXEF
+FROM t_StatFacture 
+LEFT JOIN t_StatFactureDetail ON (t_StatFacture.LIV_NO = t_StatFactureDetail.LIV_NO) AND (t_StatFacture.CIE_NO = t_StatFactureDetail.CIE_NO)
+WHERE ((t_StatFactureDetail.CIE_NO Is Null AND t_StatFactureDetail.LIV_NO Is Null) OR t_StatFactureDetail.QTE_EXP Is Null) AND
+( year(FACT_DATE) = year(:ad_cur) AND month(FACT_DATE) = month(:ad_cur)  )  AND t_StatFacture.No_Eleveur <> 1724
+" arguments=(("ad_cur", date))  sort="t_statfacture_fact_date D t_statfacture_fact_no A " )
+group(level=1 header.height=232 trailer.height=176 by=("t_statfacture_fact_date" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="V$$HEX1$$e900$$ENDHEX$$rification de l'int$$HEX1$$e900$$ENDHEX$$grit$$HEX2$$e9002000$$ENDHEX$$des factures" border="0" color="33554432" x="466" y="64" height="352" width="2048" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1 visible="1" )
+line(band=header x1="2510" y1="68" x2="3474" y2="68"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2523" y="80" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header.1 id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="622" y="4" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=t_statfacture_fact_date visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Date de facturation:" border="0" color="33554432" x="9" y="4" height="64" width="608" html.valueishtml="0"  name=t_statfacture_fact_date_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="5" y1="220" x2="3438" y2="220"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+line(band=header.1 x1="5" y1="220" x2="3438" y2="220"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="$$HEX1$$c900$$ENDHEX$$leveur" border="0" color="33554432" x="434" y="132" height="64" width="398" html.valueishtml="0"  name=t_statfacture_no_eleveur_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Centre" border="0" color="33554432" x="837" y="132" height="64" width="398" html.valueishtml="0"  name=t_statfacture_cie_no_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="No livraison" border="0" color="33554432" x="1248" y="132" height="64" width="398" html.valueishtml="0"  name=t_statfacture_liv_no_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Livr$$HEX2$$e9002000$$ENDHEX$$le" border="0" color="33554432" x="1659" y="132" height="64" width="407" html.valueishtml="0"  name=t_statfacture_liv_date_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Vente" border="0" color="33554432" x="2075" y="132" height="64" width="398" html.valueishtml="0"  name=t_statfacture_vente_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="TPS" border="0" color="33554432" x="2487" y="132" height="64" width="398" html.valueishtml="0"  name=t_statfacture_taxef_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="TVQ" border="0" color="33554432" x="2894" y="132" height="64" width="398" html.valueishtml="0"  name=t_statfacture_taxep_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="No de facture" border="0" color="33554432" x="23" y="132" height="64" width="402" html.valueishtml="0"  name=t_statfacture_fact_no_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="434" y="20" height="76" width="398" format="[general]" html.valueishtml="0"  name=t_statfacture_no_eleveur visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="837" y="16" height="76" width="398" format="[general]" html.valueishtml="0"  name=t_statfacture_cie_no visible="1" edit.limit=3 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1248" y="16" height="76" width="398" format="[general]" html.valueishtml="0"  name=t_statfacture_liv_no visible="1" edit.limit=7 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1659" y="16" height="76" width="407" format="[shortdate] [time]" html.valueishtml="0"  name=t_statfacture_liv_date visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2075" y="16" height="76" width="398" format="[general]" html.valueishtml="0"  name=t_statfacture_vente visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2519" y="12" height="76" width="329" format="[general]" html.valueishtml="0"  name=t_statfacture_taxef visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2894" y="8" height="76" width="398" format="[general]" html.valueishtml="0"  name=t_statfacture_taxep visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="23" y="20" height="76" width="402" format="[general]" html.valueishtml="0"  name=t_statfacture_fact_no visible="1" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="4" height="64" width="3465" html.valueishtml="0"  name=t_9 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

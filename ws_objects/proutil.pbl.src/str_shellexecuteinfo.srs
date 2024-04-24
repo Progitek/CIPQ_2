@@ -1,0 +1,20 @@
+﻿$PBExportHeader$str_shellexecuteinfo.srs
+global type str_shellexecuteinfo from structure
+	unsignedlong		cbsize
+	UnSignedLong fmask
+   UnSignedLong hwnd
+   String lpverb
+	String lpfile
+	String lpparameters
+	String lpdirectory
+	UnSignedLong nshow
+	UnSignedLong hinstapp
+	UnSignedLong lpidlist
+	String lpclass
+	UnSignedLong hkeyclass
+	UnSignedLong dwhotkey
+	UnSignedLong hicon
+	UnSignedLong hprocess
+
+end type
+

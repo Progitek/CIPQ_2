@@ -1,0 +1,29 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "cipq_transfert.pbl" "";
+@end;
+@begin Objects
+ "ds_tmplt_commande.srd" "cipq_transfert.pbl";
+ "w_exportation_pilotage.srw" "cipq_transfert.pbl";
+ "ds_transfertafaire.srd" "cipq_transfert.pbl";
+ "d_transfert_centre.srd" "cipq_transfert.pbl";
+ "u_tab_transfert_centre.sru" "cipq_transfert.pbl";
+ "w_transfert_adm.srw" "cipq_transfert.pbl";
+ "u_tabpg_transfert.sru" "cipq_transfert.pbl";
+ "n_cst_transfert_centre_adm.sru" "cipq_transfert.pbl";
+ "ds_transfert_env.srd" "cipq_transfert.pbl";
+ "ds_tmplt_commandedetail.srd" "cipq_transfert.pbl";
+ "d_fichiers_importes.srd" "cipq_transfert.pbl";
+ "ds_tmplt_commande_specifique.srd" "cipq_transfert.pbl";
+ "ds_t_recolte_commande_112.srd" "cipq_transfert.pbl";
+ "ds_tmplt_commandedetail_specifique.srd" "cipq_transfert.pbl";
+ "w_importation.srw" "cipq_transfert.pbl";
+ "ds_centres_transferables.srd" "cipq_transfert.pbl";
+ "d_transfert_centre_archive.srd" "cipq_transfert.pbl";
+ "u_tabpg_transfert_archive.sru" "cipq_transfert.pbl";
+ "ds_commandes_a_transferer.srd" "cipq_transfert.pbl";
+ "n_cst_transfert_inter_centre.sru" "cipq_transfert.pbl";
+ "d_table_export.srd" "cipq_transfert.pbl";
+ "w_transfert.srw" "cipq_transfert.pbl";
+ "ds_t_recolte_112.srd" "cipq_transfert.pbl";
+@end;

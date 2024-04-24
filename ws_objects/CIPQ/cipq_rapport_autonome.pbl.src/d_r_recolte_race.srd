@@ -1,0 +1,99 @@
+﻿$PBExportHeader$d_r_recolte_race.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=556 color="536870912" )
+summary(height=160 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(3) update=yes updatewhereclause=yes name=cie_no dbname="t_Verrat.cie_no" )
+ column=(type=char(4) update=yes updatewhereclause=yes key=yes name=coderace dbname="t_Verrat.coderace" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=vrairace dbname="t_Verrat.vrairace" )
+ column=(type=long update=yes updatewhereclause=yes name=nbre dbname="t_race.nbre" )
+ column=(type=number update=yes updatewhereclause=yes name=ddose dbname="t_race.ddose" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=ville dbname="t_race.ville" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=descrace dbname="t_race.descrace" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=descvrai dbname="t_race.descvrai" )
+ column=(type=char(35) updatewhereclause=yes name=prepnom dbname="t_PrepRecolte.prepnom" )
+ retrieve="SELECT 
+QryRecolteRace.CIE_NO, 
+QryRecolteRace.CodeRACE, 
+QryRecolteRace.VRAIRACE, 
+QryRecolteRace.NbRe, 
+QryRecolteRace.DDose, 
+t_CentreCIPQ.VILLE, 
+t_Race.DescRace, 
+t_Race_1.DescRace AS DescVrai,
+QryRecolteRace.prepnom
+FROM 
+((
+(
+SELECT 
+t_Verrat.CIE_NO, 
+t_Verrat.CodeRACE, 
+t_Verrat.VRAIRACE, 
+Count(1) AS NbRe, 
+Sum(t_Recolte.AMPO_TOTAL) AS DDose,
+t_PrepRecolte.prepnom
+FROM t_Recolte 
+INNER JOIN t_Verrat ON t_Recolte.CodeVerrat = t_Verrat.CodeVerrat
+INNER JOIN t_PrepRecolte ON t_Recolte.Prepose = t_PrepRecolte.prepcode
+WHERE t_Recolte.DATE_recolte >= :ad_de AND t_Recolte.DATE_recolte <= :ad_au
+GROUP BY t_Verrat.CIE_NO, t_Verrat.CodeRACE, t_Verrat.VRAIRACE, t_PrepRecolte.prepnom
+)
+as QryRecolteRace 
+INNER JOIN t_CentreCIPQ ON QryRecolteRace.CIE_NO = t_CentreCIPQ.CIE) 
+LEFT JOIN t_Race ON QryRecolteRace.CodeRACE = t_Race.CodeRace) 
+LEFT JOIN t_Race AS t_Race_1 ON QryRecolteRace.VRAIRACE = t_Race_1.CodeRace" update="t_Race" updatewhere=1 updatekeyinplace=no arguments=(("ad_de", date),("ad_au", date))  sort="cie_no A coderace A vrairace A " )
+group(level=1 header.height=264 trailer.height=116 by=("cie_no" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=80 trailer.height=0 by=("coderace" , "vrairace" ) header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1  tag="exclure_mr" visible="1" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2523" y="4" height="76" width="910" format="[GENERAL]" html.valueishtml="0"  name=compute_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="88" height="444" width="914" html.valueishtml="0"  name=filtre_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2519" y1="80" x2="3433" y2="80"  name=l_4  tag="exclure_mr" visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Récoltes par race" border="0" color="33554432" x="571" y="0" height="156" width="1838" html.valueishtml="0"  name=t_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="2" expression="~"Pour la période du ~" +  ad_de + ~" au ~" +  ad_au "border="0" color="33554432" x="571" y="176" height="84" width="1838" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Ville:" border="0" color="33554432" x="2450" y="28" height="64" width="270" html.valueishtml="0"  name=ville_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Centre:" border="0" color="33554432" x="5" y="12" height="104" width="320" html.valueishtml="0"  name=cie_no_t  tag="" visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="366" y="12" height="104" width="178" format="[general]" html.valueishtml="0"  name=cie_no  tag="exclure_mr" visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=6 alignment="0" tabsequence=60 border="0" color="33554432" x="590" y="12" height="104" width="1522" format="[general]" html.valueishtml="0"  name=ville  tag="exclure_mr" visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Groupe" border="0" color="33554432" x="18" y="164" height="64" width="302" html.valueishtml="0"  name=coderace_t  tag="" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="9" y1="244" x2="3419" y2="244"  name=l_1  tag="exclure_mr" visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="Race" border="0" color="33554432" x="1051" y="164" height="64" width="274" html.valueishtml="0"  name=vrairace_t  tag="" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Récoltes" border="0" color="33554432" x="2089" y="168" height="64" width="421" html.valueishtml="0"  name=nbre_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Moyenne" border="0" color="33554432" x="2944" y="164" height="64" width="462" html.valueishtml="0"  name=t_3  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="5" y1="252" x2="3415" y2="252"  name=l_2  tag="exclure_mr" visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Descrace:" border="0" color="33554432" x="9" y="820" height="64" width="297" html.valueishtml="0"  name=descrace_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Descvrai:" border="0" color="33554432" x="27" y="956" height="64" width="279" html.valueishtml="0"  name=descvrai_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=90 border="0" color="33554432" x="722" y="236" height="92" width="416" format="[general]" html.valueishtml="0"  name=prepnom visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Préposé" border="0" color="33554432" x="1467" y="260" height="92" width="302" html.valueishtml="0"  name=prepnom_t visible="0"  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="5" y1="104" x2="3415" y2="104"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="0" expression="~"Total pour le centre ~" +  cie_no + ~":~""border="0" color="33554432" x="0" y="8" height="76" width="1678" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( nbre for group 1)"border="0" color="33554432" x="2089" y="8" height="92" width="421" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="string(sum(  ddose for group 1), ~"###,###~")"border="0" color="33554432" x="2528" y="4" height="92" width="421" format="[General]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="string(sum(  ddose for group 1) / sum(   nbre  for group 1) , ~"###,###.00~")"border="0" color="33554432" x="2944" y="0" height="92" width="462" format="[General]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="Grand total:" border="0" color="33554432" x="0" y="20" height="104" width="1678" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="2" expression="sum( nbre for all)"border="0" color="33554432" x="2089" y="20" height="92" width="421" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="string(sum(  ddose for all), ~"###,###~")"border="0" color="33554432" x="2528" y="20" height="92" width="421" format="[General]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="string(sum(  ddose for all) / sum(   nbre  for all) , ~"###,###.00~")"border="0" color="33554432" x="2944" y="20" height="92" width="462" format="[General]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="8" height="64" width="3442" html.valueishtml="0"  name=t_2  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.2 id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="9" y="4" height="76" width="270" format="[general]" html.valueishtml="0"  name=coderace  tag="exclure_mr" visible="1" edit.limit=4 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=7 alignment="0" tabsequence=70 border="0" color="33554432" x="288" y="4" height="76" width="745" format="[general]" html.valueishtml="0"  name=descrace  tag="exclure_mr" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="1042" y="4" height="76" width="274" format="[general]" html.valueishtml="0"  name=vrairace  tag="exclure_mr" visible="1" edit.limit=4 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=8 alignment="0" tabsequence=80 border="0" color="33554432" x="1330" y="4" height="76" width="745" format="[general]" html.valueishtml="0"  name=descvrai  tag="exclure_mr" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Doses" border="0" color="33554432" x="2519" y="164" height="64" width="421" html.valueishtml="0"  name=ddose_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.2 alignment="2" expression="sum( nbre for group 2)"border="0" color="33554432" x="2089" y="4" height="72" width="421" format="[GENERAL]" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=50 border="0" color="33554432" x="2519" y="4" height="76" width="421" format="[general]" html.valueishtml="0"  name=ddose  tag="exclure_mr" visible="0" editmask.mask="###,###.0" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=40 border="0" color="33554432" x="2089" y="4" height="76" width="421" format="[general]" html.valueishtml="0"  name=nbre  tag="exclure_mr" visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.2 alignment="2" expression="sum( ddose for group 2)"border="0" color="33554432" x="2519" y="4" height="72" width="421" format="[GENERAL]" html.valueishtml="0"  name=compute_12 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.2 alignment="2" expression="string( sum(ddose for group 2) /  sum(nbre for group 2), ~"###,###.00~")"border="0" color="33554432" x="2944" y="4" height="72" width="462" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

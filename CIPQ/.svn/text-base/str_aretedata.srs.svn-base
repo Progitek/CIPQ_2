@@ -1,0 +1,6 @@
+HA$PBExportHeader$str_aretedata.srs
+global type str_aretedata from structure
+	string		s_etiquette
+	double		db_poids
+end type
+

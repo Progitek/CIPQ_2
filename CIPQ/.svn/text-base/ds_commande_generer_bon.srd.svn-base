@@ -1,0 +1,44 @@
+HA$PBExportHeader$ds_commande_generer_bon.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=15793151 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(3) update=yes updatewhereclause=yes key=yes name=cieno dbname="t_commande.cieno" dbalias=".cieno" )
+ column=(type=char(6) update=yes updatewhereclause=yes key=yes name=nocommande dbname="t_commande.nocommande" dbalias=".nocommande" )
+ column=(type=number update=yes updatewhereclause=yes name=imprimer dbname="t_commande.imprimer" dbalias=".imprimer" )
+ column=(type=char(7) update=yes updatewhereclause=yes name=nobonexpe dbname="t_commande.nobonexpe" dbalias=".nobonexpe" )
+ retrieve="SELECT 	DISTINCT t_Commande.CieNo, t_Commande.NoCommande, imprimer, nobonexpe 
+FROM 		t_commande 
+WHERE 	t_Commande.Traiter = 1 AND t_Commande.Imprimer = 0 AND  (t_Commande.Locked ='P' OR :ad_cur <> date(today())) AND
+			date(t_Commande.DateCommande) = :ad_cur AND t_Commande.CieNo = :as_cie AND
+				NOT EXISTS(
+				
+					SELECT 		1
+					FROM 			t_CommandeDetail 
+					LEFT JOIN 	t_Produit ON (upper(t_CommandeDetail.NoProduit) = upper(t_Produit.NoProduit)) 
+					WHERE	 		t_CommandeDetail.QteCommande <> 0 AND 
+									( t_Produit.CodeTemporaire = 1 OR t_CommandeDetail.QteExpedie = 0 OR t_CommandeDetail.QteExpedie is null ) AND
+									t_Commande.NoCommande = t_CommandeDetail.NoCommande 
+									AND t_Commande.CieNo = t_CommandeDetail.CieNo
+					
+				)
+					" update="t_commande" updatewhere=1 updatekeyinplace=no arguments=(("ad_cur", date),("as_cie", string)) )
+text(band=header alignment="2" text="Cieno" border="0" color="33554432" x="5" y="4" height="64" width="146" html.valueishtml="0"  name=cieno_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nocommande" border="0" color="33554432" x="155" y="4" height="64" width="357" html.valueishtml="0"  name=nocommande_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="5" y="4" height="76" width="110" format="[general]" html.valueishtml="0"  name=cieno visible="1" edit.limit=3 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="155" y="4" height="76" width="192" format="[general]" html.valueishtml="0"  name=nocommande visible="1" edit.limit=6 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="512" y="0" height="64" width="2135" format="[general]" html.valueishtml="0"  name=imprimer visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="1" color="33554432" x="2647" y="0" height="64" width="411" format="[general]" html.valueishtml="0"  name=nobonexpe visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

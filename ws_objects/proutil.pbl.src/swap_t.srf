@@ -1,0 +1,25 @@
+﻿$PBExportHeader$swap_t.srf
+global type swap_t from function_object
+end type
+
+forward prototypes
+global function integer swap_t (ref time at_item1, ref time at_item2)
+end prototypes
+
+global function integer swap_t (ref time at_item1, ref time at_item2);// Fonction qui interchange 2 items de type time
+// Les 2 items doivent être de même type
+//
+// Retourne un entier
+// 1 - Succès
+// -1 - Échec
+
+time lt_tmp
+
+lt_tmp = at_item1
+at_item1 = at_item2
+at_item2 = lt_tmp
+
+return 1
+
+end function
+

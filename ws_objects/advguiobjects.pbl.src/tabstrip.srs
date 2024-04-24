@@ -1,0 +1,19 @@
+﻿$PBExportHeader$tabstrip.srs
+global type tabstrip from structure
+	string		as_tab_text
+	long		al_pic_index
+	boolean		ab_selected
+	boolean		ab_mouseover
+	u_cst_tabpage		ado_object
+	point		ast_point[]
+	long		al_textx
+	long		al_textwidth
+	boolean		ab_enabled
+	long		al_backcolor1
+	long		al_backcolor2
+	long		al_bordercolor
+	string		as_tooltip
+	long		al_textcolor
+	boolean		ab_visible
+end type
+

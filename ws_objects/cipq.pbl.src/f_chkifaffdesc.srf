@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_chkifaffdesc.srf
+global type f_chkifaffdesc from function_object
+end type
+
+forward prototypes
+global function long f_finddescprod (string as_famille)
+global function string f_chkifaffdesc (string as_noproduit, string as_noverrat)
+global function boolean f_chkifaffdesc (string as_noverrat)
+end prototypes
+
+global function long f_finddescprod (string as_famille);RETURN gnv_app.of_findnbverratfamille( as_famille)
+end function
+
+global function string f_chkifaffdesc (string as_noproduit, string as_noverrat);RETURN gnv_app.of_FindDescProd( as_noproduit, as_noverrat)
+end function
+
+global function boolean f_chkifaffdesc (string as_noverrat);RETURN gnv_app.of_chkifaffdesc( as_noverrat)
+end function
+

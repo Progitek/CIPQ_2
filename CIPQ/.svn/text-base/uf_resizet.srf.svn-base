@@ -1,0 +1,20 @@
+HA$PBExportHeader$uf_resizet.srf
+global type uf_resizet from function_object
+end type
+
+forward prototypes
+global subroutine uf_resizet (w_main win, tab ao_tab)
+end prototypes
+
+global subroutine uf_resizet (w_main win, tab ao_tab);long i,j
+
+for i = 1 to upperbound(ao_tab.control[])
+	for j = 1 to upperbound(ao_tab.control[i].control[])
+		win.inv_resize.of_Register(ao_tab.control[i].control[j], win.inv_resize.SCALE)
+		if ao_tab.control[i].control[j].typeOf() = Tab! then
+			uf_resizet(win,ao_tab.control[i].control[j])
+		end if
+	next
+next
+end subroutine
+

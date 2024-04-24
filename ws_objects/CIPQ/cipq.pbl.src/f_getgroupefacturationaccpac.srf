@@ -1,0 +1,11 @@
+﻿$PBExportHeader$f_getgroupefacturationaccpac.srf
+global type f_GetGroupeFacturationAccPac from function_object
+end type
+
+forward prototypes
+global function string f_getgroupefacturationaccpac (long al_no_eleveur, string as_cyclecode, string as_adesc, long al_typepayeur, string as_anomgroupsec, long al_nonpayeur, long al_pouraccpac)
+end prototypes
+
+global function string f_getgroupefacturationaccpac (long al_no_eleveur, string as_cyclecode, string as_adesc, long al_typepayeur, string as_anomgroupsec, long al_nonpayeur, long al_pouraccpac);RETURN gnv_app.of_GetGroupeFacturationAccPac(al_no_eleveur, as_CycleCode, as_aDesc, al_TypePayeur, as_aNomGroupSec, al_NonPayeur, al_PourAccPac)
+end function
+

@@ -1,0 +1,152 @@
+﻿$PBExportHeader$d_r_expedition_cipq.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=548 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(100) updatewhereclause=yes name=nomproduit dbname="t_verrat.nomproduit" )
+ column=(type=long updatewhereclause=yes name=no_eleveur dbname="t_verrat.no_eleveur" )
+ column=(type=char(30) updatewhereclause=yes name=nom dbname="t_verrat.nom" )
+ column=(type=char(16) updatewhereclause=yes name=prod_no dbname="t_verrat.prod_no" )
+ column=(type=char(12) updatewhereclause=yes name=verrat_no dbname="t_verrat.verrat_no" )
+ column=(type=number updatewhereclause=yes name=sumofqte_exp dbname="t_verrat.sumofqte_exp" )
+ column=(type=long updatewhereclause=yes name=pure dbname="t_verrat.pure" )
+ column=(type=long updatewhereclause=yes name=idgroup dbname="t_Eleveur_Group.idgroup" )
+ column=(type=char(50) updatewhereclause=yes name=description dbname="t_Eleveur_Group.description" )
+ column=(type=char(35) updatewhereclause=yes name=nom_verrat dbname="t_verrat.nom" )
+ column=(type=char(20) updatewhereclause=yes name=tatouage dbname="t_verrat.tatouage" )
+ column=(type=number updatewhereclause=yes name=hor_qu dbname="t_verrat.hor_qu" )
+ column=(type=char(2) updatewhereclause=yes name=reg_agr dbname="t_verrat.reg_agr" )
+ column=(type=char(2) updatewhereclause=yes name=region dbname="t_verrat.region" )
+ column=(type=long updatewhereclause=yes name=idgroupsecondaire dbname="t_ELEVEUR_GroupSecondaire.idgroupsecondaire" )
+ column=(type=char(50) updatewhereclause=yes name=nomgroupsecondaire dbname="t_ELEVEUR_GroupSecondaire.nomgroupsecondaire" )
+ retrieve="SELECT 
+t_Produit.NomProduit, 
+t_Eleveur.No_Eleveur, 
+t_Eleveur.NOM, 
+QryVentCipq.PROD_NO,
+QryVentCipq.VERRAT_NO, 
+QryVentCipq.SumOfQTE_EXP, 
+If VERRAT_NO is null then
+	0
+else
+	1
+endif AS Pure, 
+t_Eleveur_Group.IDGroup,
+t_Eleveur_Group.Description, 
+t_Verrat.NOM, 
+t_Verrat.TATOUAGE, 
+t_RegionAgri.HOR_QU, 
+t_Eleveur.REG_AGR, 
+t_RegionAgri.REGION,
+t_ELEVEUR_GroupSecondaire.IDGroupSecondaire, 
+t_ELEVEUR_GroupSecondaire.NomGroupSecondaire
+FROM t_Verrat 
+RIGHT JOIN (((t_RegionAgri 
+INNER JOIN (t_Eleveur_Group 
+INNER JOIN t_Eleveur ON t_Eleveur_Group.IDGroup = t_Eleveur.Groupe) 
+ON t_RegionAgri.REGION = t_Eleveur.REG_AGR) 
+INNER JOIN 
+(
+
+SELECT 
+#Temp_exped_cipq_StatFacture.No_Eleveur, 
+#Temp_exped_cipq_StatFactureDetail.PROD_NO, 
+#Temp_exped_cipq_StatFactureDetail.VERRAT_NO, 
+Sum(#Temp_exped_cipq_StatFactureDetail.QTE_EXP) AS SumOfQTE_EXP, 
+t_Produit.NoClasse, 
+If IsNumeric( Left(#Temp_exped_cipq_StatFactureDetail.VERRAT_NO,1) ) = 1 then
+	null
+else
+	Left(VERRAT_NO,1)
+endif AS CodeHebVerrat
+FROM #Temp_exped_cipq_StatFacture 
+INNER JOIN (#Temp_exped_cipq_StatFactureDetail 
+INNER JOIN t_Produit ON #Temp_exped_cipq_StatFactureDetail.PROD_NO = t_Produit.NoProduit) 
+ON (#Temp_exped_cipq_StatFacture.LIV_NO = #Temp_exped_cipq_StatFactureDetail.LIV_NO) 
+AND (#Temp_exped_cipq_StatFacture.CIE_NO = #Temp_exped_cipq_StatFactureDetail.CIE_NO)
+GROUP BY 
+#Temp_exped_cipq_StatFacture.No_Eleveur, 
+#Temp_exped_cipq_StatFactureDetail.PROD_NO, 
+#Temp_exped_cipq_StatFactureDetail.VERRAT_NO, 
+t_Produit.NoClasse
+HAVING SumOfQTE_EXP > 0 AND t_Produit.NoClasse <> 9 AND (CodeHebVerrat is null)
+
+) as QryVentCipq ON t_Eleveur.No_Eleveur = QryVentCipq.No_Eleveur) 
+INNER JOIN t_Produit ON QryVentCipq.PROD_NO = t_Produit.NoProduit) 
+ON t_Verrat.CodeVerrat = QryVentCipq.VERRAT_NO 
+LEFT JOIN t_ELEVEUR_GroupSecondaire ON t_ELEVEUR_GroupSecondaire.IDGroupSecondaire = t_ELEVEUR.GroupeSecondaire
+WHERE ( (verrat_no is not null) 
+AND t_Produit.Special <> 0) 
+OR t_Produit.Special <> 0" arguments=(("ad_de", date),("ad_au", date))  sort="description A no_eleveur A verrat_no A prod_no A " )
+group(level=1 header.height=352 trailer.height=396 by=("idgroup" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=148 trailer.height=152 by=("no_eleveur" ) header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1  tag="exclure_mr" visible="1" )
+text(band=header alignment="2" text="Expéditions CIPQ" border="0" color="33554432" x="507" y="8" height="156" width="1943" html.valueishtml="0"  name=t_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="2" expression="~"Pour la période du ~" +  ad_de + ~" au ~" + ad_au "border="0" color="33554432" x="507" y="276" height="76" width="1943" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2469" y="12" height="76" width="987" format="[GENERAL]" html.valueishtml="0"  name=compute_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2469" y="108" height="432" width="987" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2464" y1="100" x2="3451" y2="100"  name=l_6 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="No groupe:" border="0" color="33554432" x="37" y="620" height="64" width="384" html.valueishtml="0"  name=idgroup_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="439" y="620" height="76" width="329" format="[general]" html.valueishtml="0"  name=idgroup  tag="" visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="654" y="12" height="100" width="1870" format="[general]" html.valueishtml="0"  name=description  tag="" visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="654" y="120" height="96" width="1600" format="[general]" html.valueishtml="0"  name=nomgroupsecondaire visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header.1 x1="18" y1="332" x2="3461" y2="332"  name=l_1  tag="exclure_mr" visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="No verrat" border="0" color="33554432" x="507" y="256" height="64" width="407" html.valueishtml="0"  name=verrat_no_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Nom" border="0" color="33554432" x="923" y="256" height="64" width="1243" html.valueishtml="0"  name=nom_verrat_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="Quantité" border="0" color="33554432" x="3008" y="256" height="64" width="425" html.valueishtml="0"  name=sumofqte_exp_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Tatouage" border="0" color="33554432" x="2176" y="256" height="64" width="809" html.valueishtml="0"  name=tatouage_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="18" y1="340" x2="3461" y2="340"  name=l_3  tag="exclure_mr" visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="No produit" border="0" color="33554432" x="110" y="256" height="64" width="384" html.valueishtml="0"  name=prod_no_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Groupe:" border="0" color="33554432" x="18" y="12" height="92" width="530" html.valueishtml="0"  name=description_t  tag="" visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Sous-groupe:" border="0" color="33554432" x="18" y="120" height="92" width="613" html.valueishtml="0"  name=idgroupsecondaire_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header.2 alignment="0" text="No Eleveur:" border="0" color="33554432" x="1957" y="24" height="64" width="384" html.valueishtml="0"  name=no_eleveur_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="791" y="16" height="80" width="1257" format="[general]" html.valueishtml="0"  name=nom  tag="exclure_mr" visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="448" y="16" height="80" width="329" format="[general]" html.valueishtml="0"  name=no_eleveur  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Éleveur:" border="0" color="33554432" x="110" y="16" height="80" width="306" html.valueishtml="0"  name=nom_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="439" y="1500" height="76" width="329" format="[general]" html.valueishtml="0"  name=hor_qu  tag="exclure_mr" visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="439" y="1636" height="76" width="82" format="[general]" html.valueishtml="0"  name=reg_agr  tag="exclure_mr" visible="0" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="439" y="1772" height="76" width="82" format="[general]" html.valueishtml="0"  name=region  tag="exclure_mr" visible="0" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Hor Qu:" border="0" color="33554432" x="37" y="1500" height="64" width="384" html.valueishtml="0"  name=hor_qu_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Reg Agr:" border="0" color="33554432" x="37" y="1636" height="64" width="384" html.valueishtml="0"  name=reg_agr_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Region:" border="0" color="33554432" x="37" y="1772" height="64" width="384" html.valueishtml="0"  name=region_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="439" y="1228" height="76" width="987" format="[general]" html.valueishtml="0"  name=nom_verrat  tag="exclure_mr" visible="0" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="430" y="1116" height="76" width="2770" format="[general]" html.valueishtml="0"  name=nomproduit  tag="exclure_mr" visible="0" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Nomproduit:" border="0" color="33554432" x="27" y="1116" height="64" width="384" html.valueishtml="0"  name=nomproduit_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="55" y="956" height="76" width="439" format="[general]" html.valueishtml="0"  name=prod_no  tag="exclure_mr" visible="0" edit.limit=16 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="507" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=verrat_no  tag="exclure_mr" visible="1" edit.limit=12 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" if ( isnull( verrat_no ),  nomproduit ,  nom_verrat ) "border="0" color="33554432" x="923" y="8" height="64" width="1243" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="2176" y="8" height="76" width="809" format="[general]" html.valueishtml="0"  name=tatouage  tag="exclure_mr" visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1897" y="92" height="76" width="329" format="[general]" html.valueishtml="0"  name=pure  tag="exclure_mr" visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Pure:" border="0" color="33554432" x="1495" y="92" height="64" width="384" html.valueishtml="0"  name=pure_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="3008" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=sumofqte_exp  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if( pure = 1, sumofqte_exp, 0)"border="0" color="33554432" x="2871" y="92" height="64" width="256" format="[GENERAL]" html.valueishtml="0"  name=cf_pure visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if( pure = 0, sumofqte_exp, 0)"border="0" color="33554432" x="3173" y="88" height="64" width="256" format="[GENERAL]" html.valueishtml="0"  name=cf_melange visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( isnull( verrat_no ),  prod_no , '')"border="0" color="33554432" x="110" y="8" height="64" width="384" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="0" expression="~"Total pour ~" + string( no_eleveur ) + ~" - ~" + nom + ~" :~""border="0" color="33554432" x="123" y="32" height="80" width="2496" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.2 x1="18" y1="136" x2="3461" y2="136"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+line(band=trailer.2 x1="2679" y1="16" x2="3438" y2="16"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+compute(band=trailer.2 alignment="1" expression="sum( sumofqte_exp for group 2)"border="0" color="33554432" x="2661" y="24" height="76" width="773" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="0" expression="~"Totaux :~""border="0" color="33554432" x="50" y="12" height="76" width="1431" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="1" text="Pure:" border="0" color="33554432" x="2427" y="76" height="76" width="201" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="1" text="Mélange:" border="0" color="33554432" x="2286" y="168" height="76" width="343" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="1" text="Total:" border="0" color="33554432" x="2286" y="308" height="76" width="343" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="2679" y1="288" x2="3438" y2="288"  name=l_5 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+compute(band=trailer.1 alignment="1" expression="sum( sumofqte_exp for group 1)"border="0" color="33554432" x="2661" y="304" height="76" width="773" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum( cf_pure for group 1)"border="0" color="33554432" x="2661" y="72" height="76" width="773" format="[GENERAL]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum( cf_melange for group 1)"border="0" color="33554432" x="2661" y="168" height="76" width="773" format="[GENERAL]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.1 id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="5" y="132" height="76" width="384" format="[general]" html.valueishtml="0"  name=idgroupsecondaire visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=trailer.1 alignment="0" text="Nom sous-groupe" border="0" color="33554432" x="965" y="300" height="76" width="581" html.valueishtml="0"  name=nomgroupsecondaire_t visible="0"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="0" expression="~"Pour le groupe ~" +  description  + ~" :~""border="0" color="33554432" x="832" y="216" height="76" width="1431" format="[GENERAL]" html.valueishtml="0"  name=compute_11 visible="0"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="8" height="64" width="3465" html.valueishtml="0"  name=t_3  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

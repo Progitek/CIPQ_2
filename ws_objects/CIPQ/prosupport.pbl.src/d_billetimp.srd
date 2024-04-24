@@ -1,0 +1,84 @@
+﻿$PBExportHeader$d_billetimp.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 0 print.margin.right = 0 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=3488 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=id_billet dbname="t_billets.id_billet" )
+ column=(type=long update=yes updatewhereclause=yes name=id_patient dbname="t_billets.id_patient" )
+ column=(type=char(101) updatewhereclause=yes name=patnom dbname="patnom" )
+ column=(type=long update=yes updatewhereclause=yes name=id_projet dbname="t_billets.id_projet" )
+ column=(type=long update=yes updatewhereclause=yes name=id_module dbname="t_billets.id_module" )
+ column=(type=long update=yes updatewhereclause=yes name=id_etat dbname="t_billets.id_etat" )
+ column=(type=long update=yes updatewhereclause=yes name=id_user dbname="t_billets.id_user" )
+ column=(type=long update=yes updatewhereclause=yes name=degre dbname="t_billets.degre" values="Très urgent	10/Urgent	20/Moyen	30/Peu attendre	40/Faible	50/" )
+ column=(type=date update=yes updatewhereclause=yes name=bdate dbname="t_billets.bdate" )
+ column=(type=time update=yes updatewhereclause=yes name=bheure dbname="t_billets.bheure" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=description dbname="t_billets.description" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=appelant dbname="t_billets.appelant" )
+ column=(type=long updatewhereclause=yes name=id_prog dbname="t_billets.id_prog" )
+ column=(type=datetime updatewhereclause=yes name=datedebut dbname="t_billets.datedebut" )
+ column=(type=datetime updatewhereclause=yes name=datefin dbname="t_billets.datefin" )
+ column=(type=char(5000) updatewhereclause=yes name=solution dbname="t_billets.solution" )
+ retrieve="  SELECT t_billets.id_billet,
+			t_billets.id_patient, 
+         (select t_patients.prenom + ' ' + t_patients.nom from t_patients where t_patients.id_patient = t_billets.id_patient) as patnom,   
+         t_billets.id_projet,   
+         t_billets.id_module,   
+         t_billets.id_etat,   
+         t_billets.id_user,   
+         t_billets.degre,   
+         t_billets.bdate,   
+         t_billets.bheure,   
+         t_billets.description,
+			t_billets.appelant,
+			t_billets.id_prog,
+			t_billets.datedebut,
+			t_billets.datefin,
+			t_billets.solution  
+    FROM t_billets
+	WHERE t_billets.id_billet = :ra_idbillet" update="t_billets" updatewhere=0 updatekeyinplace=no arguments=(("ra_idbillet", number)) )
+groupbox(band=detail text="Développeur"border="2" color="8388608" x="1902" y="316" height="512" width="1554"  name=gb_4 visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+groupbox(band=detail text="Description"border="2" color="8388608" x="37" y="836" height="960" width="3419"  name=gb_3 visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+groupbox(band=detail text="Client"border="2" color="8388608" x="37" y="316" height="512" width="1819"  name=gb_2 visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+groupbox(band=detail text="Identification"border="2" color="8388608" x="37" y="0" height="296" width="3424"  name=gb_1 visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="Numéro du billet:" border="0" color="33554432" x="123" y="88" height="64" width="448" html.valueishtml="0"  name=id_billet_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Appel pris par:" border="0" color="33554432" x="123" y="188" height="64" width="448" html.valueishtml="0"  name=id_user_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Priorité:" border="0" color="33554432" x="91" y="652" height="64" width="315" html.valueishtml="0"  name=degre_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Module:" border="0" color="33554432" x="91" y="564" height="64" width="315" html.valueishtml="0"  name=id_module_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Projet:" border="0" color="33554432" x="91" y="476" height="64" width="315" html.valueishtml="0"  name=id_projet_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="0" color="33554432" x="425" y="476" height="64" width="1385" format="[general]" html.valueishtml="0"  name=id_projet visible="1" dddw.name=dddw_projet dddw.displaycolumn=projet dddw.datacolumn=id_projet dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Client:" border="0" color="33554432" x="91" y="388" height="64" width="315" html.valueishtml="0"  name=id_patient_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="425" y="388" height="64" width="1385" format="[general]" html.valueishtml="0"  name=id_patient visible="1" dddw.name=dddw_patient dddw.displaycolumn=compute_1 dddw.datacolumn=id_patient dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=30 border="0" color="33554432" x="425" y="652" height="64" width="599" format="[general]" html.valueishtml="0"  name=degre visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Heure:" border="0" color="33554432" x="1874" y="188" height="64" width="315" html.valueishtml="0"  name=bheure_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Date:" border="0" color="33554432" x="1874" y="88" height="64" width="315" html.valueishtml="0"  name=bdate_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="590" y="88" height="64" width="1280" format="[general]" html.valueishtml="0"  name=id_billet visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="590" y="188" height="64" width="1280" format="[general]" html.valueishtml="0"  name=id_user visible="1" dddw.name=dddw_users dddw.displaycolumn=compute_1 dddw.datacolumn=id_user dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2208" y="88" height="64" width="398" format="[general]" html.valueishtml="0"  name=bdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="2208" y="188" height="64" width="398" format="[time]" html.valueishtml="0"  name=bheure visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Appelant:" border="0" color="33554432" x="91" y="740" height="64" width="315" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="33554432" x="425" y="564" height="64" width="1385" format="[general]" html.valueishtml="0"  name=id_module visible="1" dddw.name=dddw_module dddw.displaycolumn=module dddw.datacolumn=id_module dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="0" tabsequence=40 border="0" color="33554432" x="425" y="736" height="64" width="1385" format="[general]" html.valueishtml="0"  name=appelant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+groupbox(band=detail text="Solution"border="2" color="8388608" x="37" y="1808" height="960" width="3419"  name=gb_5 visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Développeur:" border="0" color="33554432" x="1943" y="416" height="64" width="398" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="0" color="33554432" x="2373" y="748" height="64" width="709" format="[general]" html.valueishtml="0"  name=id_etat visible="1" dddw.name=dddw_billetetat dddw.displaycolumn=etat dddw.datacolumn=id_etat dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Date fermeture:" border="0" color="33554432" x="1934" y="636" height="64" width="407" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="État du billet:" border="0" color="33554432" x="1934" y="748" height="64" width="407" html.valueishtml="0"  name=id_etat_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Date ouverture:" border="0" color="33554432" x="1943" y="524" height="64" width="398" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=70 border="0" color="33554432" x="2373" y="416" height="64" width="1051" html.valueishtml="0"  name=id_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="0" tabsequence=80 border="0" color="33554432" x="2373" y="524" height="64" width="786" html.valueishtml="0"  name=datedebut visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=15 alignment="0" tabsequence=90 border="0" color="33554432" x="2373" y="636" height="64" width="782" html.valueishtml="0"  name=datefin visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="0" tabsequence=100 border="0" color="33554432" x="69" y="1868" height="884" width="3351" html.valueishtml="0"  name=solution visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="0" tabsequence=60 border="0" color="33554432" x="69" y="896" height="884" width="3351" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

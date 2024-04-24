@@ -1,0 +1,72 @@
+﻿$PBExportHeader$d_gestion_lot_verratnonattribue.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=15793151 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=104 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=date_recolte dbname="t_recolte.date_recolte" )
+ column=(type=char(12) updatewhereclause=yes name=codeverrat dbname="t_recolte.codeverrat" )
+ column=(type=char(20) updatewhereclause=yes name=classe dbname="t_recolte.classe" )
+ column=(type=number updatewhereclause=yes name=exclusif dbname="t_recolte.exclusif" values="	1/	0" )
+ column=(type=number updatewhereclause=yes name=gedis dbname="t_recolte.gedis" values="	1/	0" )
+ column=(type=number updatewhereclause=yes name=qterecolte dbname="t_recolte.qterecolte" )
+ column=(type=long updatewhereclause=yes name=pure dbname="pure" )
+ column=(type=long updatewhereclause=yes name=melange dbname="melange" )
+ column=(type=number updatewhereclause=yes name=qtedisponible dbname="qtedisponible" )
+ retrieve="SELECT 
+t_RECOLTE.DATE_recolte, 
+t_RECOLTE.CodeVerrat, 
+t_RECOLTE.Classe, 
+t_RECOLTE.Exclusif, 
+t_RECOLTE.Gedis, 
+t_RECOLTE.AMPO_TOTAL AS QteRecolte, 
+
+(SELECT Sum(t_Recolte_GestionLot_Detail.QteDosePure) AS Pure 
+FROM t_Recolte_GestionLot_Detail
+WHERE date(t_Recolte_GestionLot_Detail.DateRecolte) = date(t_RECOLTE.DATE_recolte)
+AND upper(t_Recolte_GestionLot_Detail.CodeVerrat) = upper(t_RECOLTE.CodeVerrat)
+) as Pure,
+
+(SELECT Sum(t_Recolte_GestionLot_Detail.QteDoseMelange) AS Melange
+FROM t_Recolte_GestionLot_Detail
+WHERE date(t_Recolte_GestionLot_Detail.DateRecolte) = date(t_RECOLTE.DATE_recolte) 
+AND upper(t_Recolte_GestionLot_Detail.CodeVerrat) = upper(t_RECOLTE.CodeVerrat)
+) as Melange,
+
+AMPO_TOTAL - (isnull(Pure,0) + isnull(Melange,0)) AS Qtedisponible 
+FROM t_RECOLTE 
+WHERE date(t_RECOLTE.DATE_recolte) = Date(:ad_date) AND 
+(isnull(AMPO_TOTAL,0) - (isnull(Pure,0) + isnull(Melange,0)) <> 0)
+ORDER BY t_RECOLTE.CodeVerrat" arguments=(("ad_date", date)) )
+text(band=header alignment="2" text="Verrat" border="0" color="33554432" x="23" y="4" height="64" width="357" html.valueishtml="0"  name=codeverrat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Classe" border="0" color="33554432" x="384" y="4" height="64" width="430" html.valueishtml="0"  name=classe_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Gédis" border="0" color="33554432" x="818" y="4" height="64" width="242" html.valueishtml="0"  name=gedis_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Exclusif" border="0" color="33554432" x="1065" y="4" height="64" width="283" html.valueishtml="0"  name=exclusif_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qté récolté" border="0" color="33554432" x="1353" y="4" height="64" width="325" html.valueishtml="0"  name=qterecolte_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Utilisé en pure" border="0" color="33554432" x="1705" y="4" height="64" width="375" html.valueishtml="0"  name=pure_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Utilisé en mélange" border="0" color="33554432" x="2121" y="4" height="64" width="480" html.valueishtml="0"  name=melange_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="14" y1="84" x2="3031" y2="84"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="14" y1="92" x2="3031" y2="92"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Disponible" border="0" color="33554432" x="2638" y="4" height="64" width="375" html.valueishtml="0"  name=qtedisponible_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="818" y="12" height="64" width="242" format="[general]" html.valueishtml="0"  name=gedis visible="0" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Date Recolte" border="0" color="33554432" x="18" y="540" height="64" width="603" html.valueishtml="0"  name=date_recolte_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="37" y="644" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=date_recolte visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="1353" y="4" height="76" width="325" format="[general]" html.valueishtml="0"  name=qterecolte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1065" y="12" height="64" width="283" format="[general]" html.valueishtml="0"  name=exclusif visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="33554432" x="1705" y="4" height="76" width="375" format="[general]" html.valueishtml="0"  name=pure visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="0" color="33554432" x="2121" y="4" height="76" width="480" format="[general]" html.valueishtml="0"  name=melange visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="0" color="33554432~tif( right( classe ,2 ) = '-p' or  right( classe , 2 ) = '-P' , rgb( 0, 128, 0), rgb( 0, 0, 0) )" x="2638" y="4" height="76" width="375" format="[general]" html.valueishtml="0"  name=qtedisponible visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="384" y="4" height="76" width="430" format="[general]" html.valueishtml="0"  name=classe visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="23" y="4" height="76" width="357" format="[general]" html.valueishtml="0"  name=codeverrat visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

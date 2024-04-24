@@ -1,0 +1,35 @@
+﻿$PBExportHeader$uf_resizew.srf
+global type uf_resizew from function_object
+end type
+
+forward prototypes
+global subroutine uf_resizew (w_master win, long x, long y)
+end prototypes
+
+global subroutine uf_resizew (w_master win, long x, long y);long i
+//int ScreenX 
+//int ScreenY
+
+//ScreenX = GetSystemMetrics(0); 
+//ScreenY = GetSystemMetrics(1);
+
+// Convert Scrren (pixel) coordinates to powerbuilder units
+//ScreenX = PixelsToUnits(ScreenX, XPixelsToUnits!);
+//ScreenY = PixelsToUnits(ScreenY, YPixelsToUnits!);
+
+//if not(ScreenX = 800 and ScreenY = 600) then
+	
+	win.of_setResize(TRUE)
+	
+	win.inv_resize.of_setOrigSize(win.width, win.height)
+	win.inv_resize.of_SetMinSize(x, y)
+	
+	for i = 1 to upperbound(win.control[])
+		win.inv_resize.of_Register(win.control[i], win.inv_resize.SCALE)
+		if win.control[i].typeOf() = Tab! then
+			uf_resizet(win,win.control[i])
+		end if
+	next
+//end if
+end subroutine
+

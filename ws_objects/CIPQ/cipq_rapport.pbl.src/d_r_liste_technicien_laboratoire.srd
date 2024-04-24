@@ -1,0 +1,57 @@
+﻿$PBExportHeader$d_r_liste_technicien_laboratoire.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=556 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=84 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(3) updatewhereclause=yes name=t_preplabo_cie_no dbname="t_preplabo.cie_no" )
+ column=(type=char(40) updatewhereclause=yes name=t_centrecipq_ville dbname="t_centrecipq.ville" )
+ column=(type=long updatewhereclause=yes name=t_preplabo_prepid dbname="t_preplabo.prepid" )
+ column=(type=char(35) updatewhereclause=yes name=t_preplabo_prepnom dbname="t_preplabo.prepnom" )
+ column=(type=number updatewhereclause=yes name=t_preplabo_actif dbname="t_preplabo.actif" values="	1/	0" )
+ retrieve="SELECT 
+t_PrepLabo.CIE_NO, 
+t_CentreCIPQ.VILLE, 
+t_PrepLabo.PrepId, 
+t_PrepLabo.PrepNom, 
+t_PrepLabo.Actif 
+FROM t_CentreCIPQ 
+INNER JOIN t_PrepLabo ON t_CentreCIPQ.CIE = t_PrepLabo.CIE_NO 
+ORDER BY t_PrepLabo.CIE_NO, t_PrepLabo.PrepId" )
+group(level=1 header.height=268 trailer.height=496 by=("t_preplabo_cie_no" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="23" y="4" height="540" width="448" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="Liste des technicien(ne)s de laboratoire" border="0" color="33554432" x="475" y="12" height="336" width="1979" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2478" y1="92" x2="3392" y2="92"  name=l_4 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="844" height="64" width="3465" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="9" y="4" height="64" width="3465" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.1 alignment="0" text="Ville:" border="0" color="33554432" x="2263" y="36" height="64" width="256" html.valueishtml="0"  name=t_centrecipq_ville_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Centre" border="0" color="33554432" x="23" y="20" height="76" width="256" html.valueishtml="0"  name=t_preplabo_cie_no_t visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="325" y="20" height="76" width="338" format="[general]" html.valueishtml="0"  name=t_preplabo_cie_no visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="704" y="20" height="76" width="1394" format="[general]" html.valueishtml="0"  name=t_centrecipq_ville visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="101" y1="252" x2="3392" y2="252"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header.1 x1="101" y1="260" x2="3392" y2="260"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="Code du tech." border="0" color="33554432" x="110" y="164" height="64" width="421" html.valueishtml="0"  name=t_preplabo_prepid_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="110" y="8" height="76" width="421" format="[general]" html.valueishtml="0"  name=t_preplabo_prepid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Nom du tech." border="0" color="33554432" x="581" y="164" height="64" width="402" html.valueishtml="0"  name=t_preplabo_prepnom_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Actif" border="0" color="33554432" x="1714" y="172" height="64" width="256" html.valueishtml="0"  name=t_preplabo_actif_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="581" y="8" height="76" width="1088" format="[general]" html.valueishtml="0"  name=t_preplabo_prepnom visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="1714" y="8" height="76" width="256" format="[general]" html.valueishtml="0"  name=t_preplabo_actif visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="CIPQ-F-64 (mai 2006)" border="0" color="33554432" x="2473" y="348" height="64" width="667" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2478" y="12" height="76" width="919" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2478" y="104" height="236" width="919" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="________________________________" border="0" color="33554432" x="1234" y="180" height="64" width="1170" html.valueishtml="0"  name=t_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="________________________________" border="0" color="33554432" x="1234" y="292" height="64" width="311" html.valueishtml="0"  name=t_8 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="Approuvé par: " border="0" color="33554432" x="759" y="180" height="64" width="457" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="Date:" border="0" color="33554432" x="1024" y="292" height="64" width="165" html.valueishtml="0"  name=t_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

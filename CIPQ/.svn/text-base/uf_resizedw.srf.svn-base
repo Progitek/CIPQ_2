@@ -1,0 +1,63 @@
+HA$PBExportHeader$uf_resizedw.srf
+global type uf_resizedw from function_object
+end type
+
+forward prototypes
+global subroutine uf_resizedw (u_dw dwo)
+end prototypes
+
+global subroutine uf_resizedw (u_dw dwo);string ls_object, ls_objname, ls_objtype, ls_coltype
+long ll_nbcol, i, ll_tab, ll_height, ll_y
+double ldb_parm
+//int ScreenX 
+//int ScreenY
+
+//ScreenX= GetSystemMetrics(0); 
+//ScreenY = GetSystemMetrics(1);
+
+// Convert Scrren (pixel) coordinates to powerbuilder units
+//ScreenX = PixelsToUnits(ScreenX, XPixelsToUnits!);
+//ScreenY = PixelsToUnits(ScreenY, YPixelsToUnits!);
+
+//if not(ScreenX = 800 and ScreenY = 600) then
+	dwo.of_setResize(TRUE)
+	ls_object = dwo.object.datawindow.objects
+	DO WHILE pos(ls_object,'~t') <> 0
+		ls_objname = left(ls_object, pos(ls_object,'~t') - 1)
+		ls_objtype = dwo.Describe(ls_objname+".Type")
+		if ls_objtype = 'line' then
+			ll_height = dwo.height
+			ll_y = long(dwo.describe(ls_objname+".Y1"))
+			ll_height = ll_y / ll_height * 100
+			dwo.inv_resize.of_Register(ls_objname,0,ll_height,100,0)
+		else
+			dwo.inv_resize.of_Register(ls_objname, dwo.inv_resize.SCALE)
+
+			// Si c'est une colonne
+//			if ls_objtype = 'column' then
+//				ls_coltype = dwo.Describe(ls_objname+".ColType")
+//				if ls_coltype = 'date' or ls_coltype = 'datetime' then
+//					ldb_parm = message.doubleparm
+//					dwo.of_setDropDownCalendar(true)
+//					message.doubleparm = ldb_parm
+//					dwo.iuo_calendar.of_Register(ls_objname, dwo.iuo_calendar.DDLB)
+//				end if
+//			end if
+		end if
+		ls_object = right(ls_object,len(ls_object) - pos(ls_object,'~t'))
+	LOOP
+	dwo.inv_resize.of_Register(ls_object, dwo.inv_resize.SCALE)
+	
+	ll_nbcol = long(dwo.describe("datawindow.column.count"))
+	
+	for i = 1 to ll_nbcol
+		ll_tab = dwo.setTaborder(i,1)
+		dwo.setColumn(i)
+		ls_objname = dwo.getColumnname()
+		dwo.inv_resize.of_Register(ls_objname, dwo.inv_resize.SCALE)
+		dwo.setTaborder(i,ll_tab)
+	next
+//end if
+
+end subroutine
+

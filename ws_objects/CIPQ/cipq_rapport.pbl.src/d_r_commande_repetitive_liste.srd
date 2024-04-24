@@ -1,0 +1,99 @@
+﻿$PBExportHeader$d_r_commande_repetitive_liste.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=620 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=92 color="536870912" )
+detail(height=104 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=no_eleveur dbname="t_commanderepetitivedetail.no_eleveur" )
+ column=(type=char(8) updatewhereclause=yes name=norepeat dbname="t_commanderepetitivedetail.norepeat" )
+ column=(type=long updatewhereclause=yes name=noligne dbname="t_commanderepetitivedetail.noligne" )
+ column=(type=char(30) updatewhereclause=yes name=nom dbname="t_commanderepetitivedetail.nom" )
+ column=(type=char(20) updatewhereclause=yes name=adresse dbname="t_commanderepetitivedetail.adresse" )
+ column=(type=char(100) updatewhereclause=yes name=rue dbname="t_commanderepetitivedetail.rue" )
+ column=(type=char(100) updatewhereclause=yes name=ville dbname="t_commanderepetitivedetail.ville" )
+ column=(type=char(50) updatewhereclause=yes name=conte dbname="t_commanderepetitivedetail.conte" )
+ column=(type=char(30) updatewhereclause=yes name=province dbname="t_commanderepetitivedetail.province" )
+ column=(type=char(7) updatewhereclause=yes name=code_post dbname="t_commanderepetitivedetail.code_post" )
+ column=(type=char(14) updatewhereclause=yes name=telephone dbname="t_commanderepetitivedetail.telephone" )
+ column=(type=datetime updatewhereclause=yes name=datedernierrepeat dbname="t_commanderepetitivedetail.datedernierrepeat" )
+ column=(type=char(12) updatewhereclause=yes name=codetransport dbname="t_commanderepetitivedetail.codetransport" )
+ column=(type=long updatewhereclause=yes name=frequence dbname="t_commanderepetitivedetail.frequence" )
+ column=(type=char(75) updatewhereclause=yes name=message_commande dbname="t_commanderepetitivedetail.message_commande" )
+ column=(type=char(16) updatewhereclause=yes name=noproduit dbname="t_commanderepetitivedetail.noproduit" )
+ column=(type=char(12) updatewhereclause=yes name=codeverrat dbname="t_commanderepetitivedetail.codeverrat" )
+ column=(type=real updatewhereclause=yes name=qtecommande dbname="t_commanderepetitivedetail.qtecommande" )
+ column=(type=char(50) updatewhereclause=yes name=description dbname="t_commanderepetitivedetail.description" )
+ column=(type=long updatewhereclause=yes name=noligneheader dbname="t_commanderepetitivedetail.noligneheader" )
+ column=(type=long updatewhereclause=yes name=choix dbname="t_commanderepetitivedetail.choix" )
+ column=(type=char(10) updatewhereclause=yes name=cc_debut dbname="t_commanderepetitivedetail.cc_debut" )
+ column=(type=char(10) updatewhereclause=yes name=cc_fin dbname="t_commanderepetitivedetail.cc_fin" )
+ retrieve="SELECT 
+t_CommandeRepetitive.No_Eleveur, 
+t_CommandeRepetitive.NoRepeat, 
+t_CommandeRepetitiveDetail.NoLigne, 
+t_ELEVEUR.NOM, 
+t_ELEVEUR.ADRESSE, 
+t_ELEVEUR.RUE, 
+t_ELEVEUR.VILLE, 
+t_ELEVEUR.CONTE, 
+t_ELEVEUR.Province, 
+t_ELEVEUR.CODE_POST, 
+t_ELEVEUR.TELEPHONE, 
+t_CommandeRepetitive.DateDernierRepeat, 
+t_CommandeRepetitive.CodeTransport, 
+t_CommandeRepetitive.Frequence, 
+t_CommandeRepetitive.message_commande, 
+t_CommandeRepetitiveDetail.NoProduit, 
+t_CommandeRepetitiveDetail.CodeVerrat, 
+t_CommandeRepetitiveDetail.QteCommande, 
+t_CommandeRepetitiveDetail.Description, 
+t_CommandeRepetitiveDetail.NoLigneHeader, 
+t_CommandeRepetitiveDetail.Choix,
+:ad_debut as cc_debut,
+:ad_fin as cc_fin
+FROM (t_ELEVEUR 
+INNER JOIN t_CommandeRepetitive ON t_ELEVEUR.No_Eleveur = t_CommandeRepetitive.No_Eleveur) 
+INNER JOIN t_CommandeRepetitiveDetail ON (t_CommandeRepetitive.NoRepeat = t_CommandeRepetitiveDetail.NoRepeat) AND (t_CommandeRepetitive.CieNo = t_CommandeRepetitiveDetail.CieNo) 
+WHERE	date(DateDernierRepeat) >= :ad_debut AND date(DateDernierRepeat) <= :ad_fin
+ORDER BY t_CommandeRepetitive.No_Eleveur, t_CommandeRepetitive.NoRepeat, t_CommandeRepetitiveDetail.NoLigne
+" arguments=(("ad_debut", date),("ad_fin", date)) )
+group(level=1 header.height=0 trailer.height=0 by=("no_eleveur" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=364 trailer.height=136 by=("datedernierrepeat" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Liste des commandes répétitives " border="0" color="33554432" x="494" y="84" height="364" width="2002" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1 visible="1" )
+line(band=header x1="2510" y1="160" x2="3474" y2="160"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2523" y="172" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="De:" border="0" color="33554432" x="2519" y="84" height="64" width="110" html.valueishtml="0"  name=t_de visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="18" y1="588" x2="3447" y2="588"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="18" y1="596" x2="3447" y2="596"  name=l_5 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="à:" border="0" color="33554432" x="2962" y="84" height="64" width="73" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="2638" y="84" height="64" width="302" format="[general]" html.valueishtml="0"  name=cc_debut visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="3045" y="84" height="64" width="302" format="[general]" html.valueishtml="0"  name=cc_fin visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=header.2 x="2235" y="4" height="296" width="1211"  name=r_1 visible="1" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=header.2 id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="329" y="8" height="76" width="178" format="[general]" html.valueishtml="0"  name=no_eleveur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="539" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=nom visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="1842" y="8" height="76" width="311" format="[shortdate] [time]" html.valueishtml="0"  name=datedernierrepeat visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Éleveur:" border="0" color="33554432" x="32" y="8" height="64" width="270" html.valueishtml="0"  name=no_eleveur_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Notes:" border="0" color="33554432" x="2267" y="12" height="64" width="192" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="1847" y="104" height="76" width="329" format="[general]" html.valueishtml="0"  name=frequence visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Repeat:" border="0" color="33554432" x="1504" y="8" height="64" width="311" html.valueishtml="0"  name=datedernierrepeat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Fréquence:" border="0" color="33554432" x="1504" y="108" height="64" width="329" html.valueishtml="0"  name=frequence_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Quantité" border="0" color="33554432" x="59" y="252" height="64" width="306" html.valueishtml="0"  name=qtecommande_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Produit" border="0" color="33554432" x="448" y="252" height="64" width="567" html.valueishtml="0"  name=noproduit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.2 x1="18" y1="336" x2="3447" y2="336"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="33554432" x="59" y="16" height="76" width="306" format="[general]" html.valueishtml="0"  name=qtecommande visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="2" tabsequence=32766 border="0" color="33554432" x="448" y="16" height="76" width="567" format="[general]" html.valueishtml="0"  name=noproduit visible="1" edit.limit=16 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="1024" y="20" height="64" width="2405" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=trailer.2 x1="18" y1="72" x2="3447" y2="72"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="8" height="64" width="3465" html.valueishtml="0"  name=t_9 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

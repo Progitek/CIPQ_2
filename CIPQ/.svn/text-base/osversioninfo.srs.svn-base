@@ -1,0 +1,15 @@
+HA$PBExportHeader$osversioninfo.srs
+global type osversioninfo from structure
+	unsignedlong		dwosversioninfosize
+	unsignedlong		dwmajorversion
+	unsignedlong		dwminorversion
+	unsignedlong		dwbuildnumber
+	unsignedlong		dwplatformid
+	character		szcsdversion[128]
+	integer		spmajor
+	integer		spminor
+	integer		suite
+	character		product
+	character		reserved
+end type
+

@@ -1,0 +1,55 @@
+﻿$PBExportHeader$d_r_changement_no_verrat.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=580 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=84 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=date_recolte dbname="t_recolte.date_recolte" )
+ column=(type=char(3) updatewhereclause=yes name=cie_no dbname="t_recolte.cie_no" )
+ column=(type=datetime updatewhereclause=yes name=heure_analyse dbname="t_recolte.heure_analyse" )
+ column=(type=char(12) updatewhereclause=yes name=ancien_codeverrat dbname="t_recolte.ancien_codeverrat" )
+ column=(type=datetime updatewhereclause=yes name=heure_edition dbname="t_recolte.heure_edition" )
+ column=(type=char(12) updatewhereclause=yes name=codeverrat dbname="t_recolte.codeverrat" )
+ retrieve="SELECT 
+t_RECOLTE.DATE_recolte, 
+t_RECOLTE.CIE_NO, 
+t_RECOLTE.Heure_Analyse, 
+t_RECOLTE.Ancien_CodeVerrat, 
+t_RECOLTE.Heure_Edition, 
+t_RECOLTE.CodeVerrat 
+FROM t_RECOLTE 
+WHERE date(t_RECOLTE.DATE_recolte) = :ad_cur AND (t_RECOLTE.Ancien_CodeVerrat Is Not Null)" arguments=(("ad_cur", date))  sort="date_recolte A cie_no A " )
+group(level=1 header.height=244 trailer.height=0 by=("cie_no" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1 visible="1" )
+compute(band=header alignment="0" expression="~"Pour le : ~" +  date_recolte "border="0" color="33554432" x="489" y="356" height="96" width="2011" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="2601" y="328" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=date_recolte visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date Recolte" border="0" color="33554432" x="2665" y="216" height="64" width="603" html.valueishtml="0"  name=date_recolte_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="120" height="444" width="946" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2519" y1="112" x2="3465" y2="112"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2523" y="28" height="76" width="933" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Liste des changements de numéro de verrat" border="0" color="33554432" x="489" y="24" height="312" width="2021" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="311" y="16" height="92" width="489" format="[general]" html.valueishtml="0"  name=cie_no visible="1" edit.limit=3 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Centre:" border="0" color="33554432" x="9" y="16" height="92" width="283" html.valueishtml="0"  name=cie_no_t visible="1"  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="9" y1="220" x2="3419" y2="220"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header.1 x1="5" y1="228" x2="3415" y2="228"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="Heure d'analyse" border="0" color="33554432" x="805" y="140" height="64" width="507" html.valueishtml="0"  name=heure_analyse_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Ancien code de verrat" border="0" color="33554432" x="1330" y="140" height="64" width="663" html.valueishtml="0"  name=ancien_codeverrat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Heure d'édition" border="0" color="33554432" x="2043" y="140" height="64" width="603" html.valueishtml="0"  name=heure_edition_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Code de verrat actuel" border="0" color="33554432" x="2711" y="140" height="64" width="649" html.valueishtml="0"  name=codeverrat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="805" y="4" height="76" width="507" format="[shortdate] [time]" html.valueishtml="0"  name=heure_analyse visible="1" editmask.mask="hh:mm" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1330" y="4" height="76" width="663" format="[general]" html.valueishtml="0"  name=ancien_codeverrat visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="2043" y="4" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=heure_edition visible="1" editmask.mask="hh:mm" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="2711" y="4" height="76" width="649" format="[general]" html.valueishtml="0"  name=codeverrat visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="8" height="64" width="3442" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

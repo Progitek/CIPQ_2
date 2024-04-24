@@ -1,0 +1,27 @@
+﻿$PBExportHeader$gf_enleveraccents.srf
+global type gf_enleveraccents from function_object
+end type
+
+forward prototypes
+global function string gf_enleveraccents (string as_string)
+end prototypes
+
+global function string gf_enleveraccents (string as_string);string ls_caract[52], ls_setnull
+int i, li_nb
+
+setnull(ls_setnull)
+
+if isnull(as_string) then return ls_setnull
+
+ls_caract = {'À', 'Â', 'Ä', 'É', 'È', 'Ë', 'Ê', 'Î', 'Ï', 'Ô', 'Ö', 'Û', 'Ü', &
+'à', 'â', 'ä', 'é', 'è', 'ë', 'ê', 'î', 'ï', 'ô', 'ö', 'û', 'ü', &
+'A', 'A', 'A', 'E', 'E', 'E', 'E', 'I', 'I', 'O', 'O', 'U', 'U', &
+'a', 'a', 'a', 'e', 'e', 'e', 'e', 'i', 'i', 'o', 'o', 'u', 'u'}
+
+for i = 1 to 26
+	as_string = rep(as_string, ls_caract[i], ls_caract[i + 26])
+next
+
+return as_string
+end function
+

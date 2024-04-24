@@ -1,0 +1,51 @@
+HA$PBExportHeader$d_r_liste_verrat_lus_non_entre.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=584 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=72 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(15) updatewhereclause=yes name=punch_no_job dbname="punch.no_job" dbalias=".no_job" )
+ column=(type=long updatewhereclause=yes identity=yes name=punch_compteur dbname="punch.compteur" dbalias=".compteur" )
+ column=(type=char(2) updatewhereclause=yes name=punch_terminal dbname="punch.terminal" dbalias=".terminal" )
+ column=(type=datetime updatewhereclause=yes name=punch_date dbname="punch.date" dbalias=".date" )
+ column=(type=datetime updatewhereclause=yes name=punch_jour_heure dbname="punch.jour_heure" dbalias=".jour_heure" )
+ column=(type=char(15) updatewhereclause=yes name=punch_no_employe dbname="punch.no_employe" dbalias=".no_employe" )
+ retrieve="SELECT 
+Punch.no_job, 
+Punch.Compteur, 
+Punch.Terminal, 
+Punch.~"Date~", 
+Punch.Jour_heure, Punch.no_employe
+FROM Punch 
+LEFT JOIN t_recolte ON trim(Punch.no_job) = t_recolte.CodeVerrat AND date(t_recolte.date_recolte) = date(Today())
+WHERE trim(Punch.no_job) <> '1' AND date(Punch.~"Date~") = date(today()) AND t_recolte.CodeVerrat Is Null " )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="Verrats lus en verraterie mais non-entr$$HEX1$$e900$$ENDHEX$$s dans les r$$HEX1$$e900$$ENDHEX$$coltes" border="0" color="33554432" x="480" y="8" height="316" width="2030" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprim$$HEX2$$e9002000$$ENDHEX$$le: ~" + today()"border="0" color="33554432" x="2523" y="16" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="0" y1="572" x2="3470" y2="572"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="0" y1="580" x2="3470" y2="580"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Compteur punch" border="0" color="33554432" x="928" y="488" height="64" width="485" html.valueishtml="0"  name=punch_compteur_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Terminal" border="0" color="33554432" x="1449" y="488" height="64" width="329" html.valueishtml="0"  name=punch_terminal_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Heure" border="0" color="33554432" x="1824" y="488" height="64" width="347" html.valueishtml="0"  name=punch_jour_heure_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Employ$$HEX1$$e900$$ENDHEX$$" border="0" color="33554432" x="2254" y="488" height="64" width="1189" html.valueishtml="0"  name=punch_no_employe_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Verrat" border="0" color="33554432" x="517" y="488" height="64" width="398" html.valueishtml="0"  name=punch_no_job_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Date Punch:" border="0" color="33554432" x="5" y="412" height="64" width="361" html.valueishtml="0"  name=punch_date_punch_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="928" y="4" height="76" width="485" format="[general]" html.valueishtml="0"  name=punch_compteur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1449" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=punch_terminal visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="1824" y="4" height="76" width="347" format="[time]" html.valueishtml="0"  name=punch_jour_heure visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2254" y="4" height="76" width="1189" format="[general]" html.valueishtml="0"  name=punch_no_employe visible="1" dddw.name=dddw_prepose_centre_no_arg dddw.displaycolumn=prepnom dddw.datacolumn=prepcode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="965" y="320" height="64" width="1595" format="[shortdate] [time]" html.valueishtml="0"  name=punch_date visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="517" y="4" height="76" width="398" format="[general]" html.valueishtml="0"  name=punch_no_job visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="4" height="64" width="3465" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

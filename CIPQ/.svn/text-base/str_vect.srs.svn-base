@@ -1,0 +1,5 @@
+HA$PBExportHeader$str_vect.srs
+global type str_vect from structure
+	any		items[]
+end type
+

@@ -1,0 +1,94 @@
+﻿$PBExportHeader$d_r_sommaire_recolte_journ_produit.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=176 color="536870912" height.autosize=yes )
+footer(height=0 color="536870912" )
+detail(height=100 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=t_recolte_gestionlot_produit_daterecolte dbname="t_recolte_gestionlot_produit.daterecolte" )
+ column=(type=char(50) updatewhereclause=yes name=t_recolte_gestionlot_produit_famille dbname="t_recolte_gestionlot_produit.famille" )
+ column=(type=char(12) updatewhereclause=yes name=t_recolte_gestionlot_produit_nolot dbname="t_recolte_gestionlot_produit.nolot" )
+ column=(type=char(31) updatewhereclause=yes name=produit dbname="produit" )
+ column=(type=long updatewhereclause=yes name=t_recolte_gestionlot_produit_qtedosemelange dbname="t_recolte_gestionlot_produit.qtedosemelange" )
+ column=(type=long updatewhereclause=yes name=qtedistribue dbname="qtedistribue" )
+ column=(type=long updatewhereclause=yes name=solde dbname="solde" )
+ column=(type=long updatewhereclause=yes name=qtedoseverrat dbname="qtedoseverrat" )
+ column=(type=long updatewhereclause=yes name=qtedoseutilisees dbname="qtedoseutilisees" )
+ retrieve="SELECT 
+t_Recolte_GestionLot_Produit.DateRecolte, 
+t_Recolte_GestionLot_Produit.Famille, 
+t_Recolte_GestionLot_Produit.NoLot, 
+if t_Recolte_GestionLot_Produit.CodeVerrat is null then
+	t_Recolte_GestionLot_Produit.NoProduit
+else
+	t_Recolte_GestionLot_Produit.CodeVerrat + ' (' + t_Recolte_GestionLot_Produit.NoProduit + ')'
+endif as Produit,
+t_Recolte_GestionLot_Produit.QteDoseMelange, 
+isnull(QteDistribue,0) AS QteDistribue, 
+isnull(QteDoseMelange,0)- isnull(QteDistribue,0) AS Solde,
+
+(SELECT 
+sum(t_Recolte_GestionLot_Detail.QteDoseRecolte) AS QteDose
+//sum(If t_Recolte_GestionLot_Famille.Type = 1 THEN QteDoseMelange else QteDosePure endif) AS QteDose
+FROM
+t_Recolte_GestionLot_Detail
+WHERE
+t_Recolte_GestionLot_Detail.DateRecolte = t_Recolte_GestionLot_Produit.DateRecolte AND
+t_Recolte_GestionLot_Detail.Famille = t_Recolte_GestionLot_Produit.Famille AND
+t_Recolte_GestionLot_Detail.NoLot = t_Recolte_GestionLot_Produit.NoLot
+) as qtedoseverrat,
+(SELECT sum(isnull(qtedosepure, 0) + isnull(qtedosemelange, 0))
+FROM T_Recolte_GestionLot_Detail
+WHERE daterecolte = :ad_cur
+AND CodeVerrat = any (select CodeVerrat
+								from T_Recolte_GestionLot_Detail
+							  where DateRecolte = t_Recolte_GestionLot_Produit.DateRecolte
+								 and Famille = t_Recolte_GestionLot_Produit.Famille
+								 and NoLot = t_Recolte_GestionLot_Produit.NoLot)) as qtedoseutilisees
+FROM t_Recolte_GestionLot_Produit 
+LEFT JOIN t_Recolte_GestionLot_Produit_QteDistribue ON 
+(t_Recolte_GestionLot_Produit.Compteur = t_Recolte_GestionLot_Produit_QteDistribue.Compteur) AND 
+(t_Recolte_GestionLot_Produit.NoProduit = t_Recolte_GestionLot_Produit_QteDistribue.NoProduit) AND 
+(t_Recolte_GestionLot_Produit.NoLot = t_Recolte_GestionLot_Produit_QteDistribue.NoLot) AND 
+(t_Recolte_GestionLot_Produit.Famille = t_Recolte_GestionLot_Produit_QteDistribue.Famille) AND 
+(t_Recolte_GestionLot_Produit.DateRecolte = t_Recolte_GestionLot_Produit_QteDistribue.DateRecolte) 
+WHERE (t_Recolte_GestionLot_Produit.QteDoseMelange <> 0 OR isnull(QteDistribue,0) <> 0 OR isnull(QteDoseMelange,0) - isnull(QteDistribue,0) <> 0)  AND
+(date(t_Recolte_GestionLot_Produit.DateRecolte) = :ad_cur AND
+t_Recolte_GestionLot_Produit.Famille = :as_famille AND
+t_Recolte_GestionLot_Produit.NoLot = :as_lot) " arguments=(("ad_cur", date),("as_famille", string),("as_lot", string)) )
+text(band=detail alignment="2" text="T Recolte Gestionlot Produit
+Qtedosemelange" border="0" color="33554432" x="763" y="436" height="128" width="722" html.valueishtml="0"  name=t_recolte_gestionlot_produit_qtedosemelange_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Produit" border="0" color="33554432" x="23" y="156" height="64" width="722" html.valueishtml="0"  name=produit_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="T Recolte Gestionlot Produit
+Daterecolte" border="0" color="33554432" x="55" y="496" height="128" width="722" html.valueishtml="0"  name=t_recolte_gestionlot_produit_daterecolte_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="55" y="632" height="76" width="722" format="[shortdate] [time]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_daterecolte visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="T Recolte Gestionlot Produit
+Famille" border="0" color="33554432" x="73" y="244" height="128" width="722" html.valueishtml="0"  name=t_recolte_gestionlot_produit_famille_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="384" height="76" width="722" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_famille visible="0" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="T Recolte Gestionlot Produit
+Nolot" border="0" color="33554432" x="754" y="156" height="128" width="722" html.valueishtml="0"  name=t_recolte_gestionlot_produit_nolot_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="846" y="328" height="76" width="722" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_nolot visible="0" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Qtedistribue" border="0" color="33554432" x="302" y="860" height="64" width="329" html.valueishtml="0"  name=qtedistribue_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Solde" border="0" color="33554432" x="635" y="860" height="64" width="329" html.valueishtml="0"  name=solde_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="14" y="16" height="76" width="526" format="[general]" html.valueishtml="0"  name=produit visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="951" y="620" height="64" width="411" format="[general]" html.valueishtml="0"  name=qtedoseverrat visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="33554432" x="1339" y="16" height="76" width="389" format="[general]" html.valueishtml="0"  name=solde visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="965" y="16" height="76" width="357" format="[general]" html.valueishtml="0"  name=qtedistribue visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="553" y="16" height="76" width="343" format="[general]" html.valueishtml="0"  name=t_recolte_gestionlot_produit_qtedosemelange visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="max( qtedoseverrat )"border="0" color="33554432" x="571" y="96" height="64" width="215" format="[GENERAL]" html.valueishtml="0"  name=cf_maxverrat visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="2" text="Total:" border="0" color="33554432" x="361" y="8" height="64" width="169" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="0" expression="if ( isnull(cf_maxverrat), 0, cf_maxverrat) - round( qtedoseutilisees, 0)"border="0" color="33554432" x="1440" y="8" height="64" width="178" format="[GENERAL]" html.valueishtml="0"  name=cf_total visible="1~tif (cf_total = 0, 0, 1)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="Doses 
+non-préparées:" border="0" color="33554432" x="965" y="0" height="128" width="466" html.valueishtml="0"  name=t_2 visible="1~tif (cf_total = 0, 0, 1)"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="0" expression="sum( t_recolte_gestionlot_produit_qtedosemelange )"border="0" color="33554432" x="553" y="8" height="64" width="343" format="[GENERAL]" html.valueishtml="0"  name=cf_prepare visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

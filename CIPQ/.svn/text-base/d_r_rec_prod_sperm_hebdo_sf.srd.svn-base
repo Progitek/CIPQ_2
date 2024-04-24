@@ -1,0 +1,292 @@
+HA$PBExportHeader$d_r_rec_prod_sperm_hebdo_sf.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=216 color="536870912" )
+table(column=(type=char(3) updatewhereclause=yes name=cie_no dbname="cie_no" )
+ column=(type=long updatewhereclause=yes name=joursem dbname="joursem" )
+ column=(type=long updatewhereclause=yes name=recsem1 dbname="recsem1" )
+ column=(type=long updatewhereclause=yes name=recsem2 dbname="recsem2" )
+ column=(type=long updatewhereclause=yes name=recsem3 dbname="recsem3" )
+ column=(type=long updatewhereclause=yes name=recsem4 dbname="recsem4" )
+ column=(type=long updatewhereclause=yes name=recsem5 dbname="recsem5" )
+ column=(type=long updatewhereclause=yes name=recsem6 dbname="recsem6" )
+ column=(type=long updatewhereclause=yes name=recsem7 dbname="recsem7" )
+ column=(type=long updatewhereclause=yes name=recsem8 dbname="recsem8" )
+ column=(type=long updatewhereclause=yes name=recsem9 dbname="recsem9" )
+ column=(type=long updatewhereclause=yes name=recsem10 dbname="recsem10" )
+ column=(type=long updatewhereclause=yes name=recsem11 dbname="recsem11" )
+ column=(type=long updatewhereclause=yes name=recsem12 dbname="recsem12" )
+ column=(type=long updatewhereclause=yes name=totrec dbname="totrec" )
+ column=(type=number updatewhereclause=yes name=dosesem1 dbname="dosesem1" )
+ column=(type=number updatewhereclause=yes name=dosesem2 dbname="dosesem2" )
+ column=(type=number updatewhereclause=yes name=dosesem3 dbname="dosesem3" )
+ column=(type=number updatewhereclause=yes name=dosesem4 dbname="dosesem4" )
+ column=(type=number updatewhereclause=yes name=dosesem5 dbname="dosesem5" )
+ column=(type=number updatewhereclause=yes name=dosesem6 dbname="dosesem6" )
+ column=(type=number updatewhereclause=yes name=dosesem7 dbname="dosesem7" )
+ column=(type=number updatewhereclause=yes name=dosesem8 dbname="dosesem8" )
+ column=(type=number updatewhereclause=yes name=dosesem9 dbname="dosesem9" )
+ column=(type=number updatewhereclause=yes name=dosesem10 dbname="dosesem10" )
+ column=(type=number updatewhereclause=yes name=dosesem11 dbname="dosesem11" )
+ column=(type=number updatewhereclause=yes name=dosesem12 dbname="dosesem12" )
+ column=(type=number updatewhereclause=yes name=totddose dbname="totddose" )
+ column=(type=long updatewhereclause=yes name=totsem dbname="totsem" )
+ retrieve="SELECT 
+cie_no, 
+JourSem, 
+SUM(rec1) AS RecSem1, 
+SUM(rec2) AS RecSem2, 
+SUM(rec3) AS RecSem3, 
+SUM(rec4) AS RecSem4, 
+SUM(rec5) AS RecSem5, 
+SUM(rec6) AS RecSem6, 
+SUM(rec7) AS RecSem7, 
+SUM(rec8) AS RecSem8, 
+SUM(rec9) AS RecSem9, 
+SUM(rec10) AS RecSem10, 
+SUM(rec11) AS RecSem11, 
+SUM(rec12) AS RecSem12, 
+SUM(NbrRec) AS TotRec, 
+SUM(dDose1) AS DoseSem1, 
+SUM(dDose2) AS DoseSem2, 
+SUM(dDose3) AS DoseSem3, 
+SUM(dDose4) AS DoseSem4, 
+SUM(dDose5) AS DoseSem5, 
+SUM(dDose6) AS DoseSem6, 
+SUM(dDose7) AS DoseSem7, 
+SUM(dDose8) AS DoseSem8, 
+SUM(dDose9) AS DoseSem9, 
+SUM(dDose10) AS DoseSem10, 
+SUM(dDose11) AS DoseSem11, 
+SUM(dDose12) AS DoseSem12, 
+SUM(SumDDose) AS TotDDose, 
+Max(NbrSemEff) AS TotSem
+FROM 
+(SELECT 
+qryHebdoSom_1.CIE_NO,
+qryHebdoSom_1.PREPOSE,
+qryHebdoSom_1.JourSem,
+qryHebdoSom_1.rec1,
+qryHebdoSom_1.rec2,
+qryHebdoSom_1.rec3,
+qryHebdoSom_1.rec4,
+qryHebdoSom_1.rec5,
+qryHebdoSom_1.rec6,
+qryHebdoSom_1.rec7,
+qryHebdoSom_1.rec8,
+qryHebdoSom_1.rec9,
+qryHebdoSom_1.rec10,
+qryHebdoSom_1.rec11,
+qryHebdoSom_1.rec12,
+qryHebdoSom_1.ddose1,
+qryHebdoSom_1.ddose2,
+qryHebdoSom_1.ddose3,
+qryHebdoSom_1.ddose4,
+qryHebdoSom_1.ddose5,
+qryHebdoSom_1.ddose6,
+qryHebdoSom_1.ddose7,
+qryHebdoSom_1.ddose8,
+qryHebdoSom_1.ddose9,
+qryHebdoSom_1.ddose10,
+qryHebdoSom_1.ddose11,
+qryHebdoSom_1.ddose12,
+qryHebdoSom_1.NbrRec,
+qryHebdoSom_1.SumDDose,
+t_CentreCipq.VILLE AS NomCentre, 
+qryXPrep.PrepNom, 
+(If rec1<>0 then 1 else 0 endif 
++If rec2<>0 then 1 else 0 endif 
++If rec3<>0 then 1 else 0 endif 
++If rec4<>0 then 1 else 0 endif 
++If rec5<>0 then 1 else 0 endif 
++If rec6<>0 then 1 else 0 endif 
++If rec7<>0 then 1 else 0 endif 
++If rec8<>0 then 1 else 0 endif 
++If rec9<>0 then 1 else 0 endif 
++If rec10<>0 then 1 else 0 endif
++If rec11<>0 then 1 else 0 endif 
++If rec12<>0 then 1 else 0 endif) AS NbrSemEff
+FROM 
+((SELECT 
+T_Verrat.CIE_NO, 
+Temp_t_Recolte.PREPOSE, 
+DOW(Temp_t_Recolte.date_recolte) AS JourSem, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<7 then 1 else 0 endif) AS rec1, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=7 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<14 then 1 else 0 endif) AS rec2, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=14 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<21 then 1 else 0 endif) AS rec3, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=21 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<28 then 1 else 0 endif) AS rec4, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=28 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<35 then 1 else 0 endif) AS rec5, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=35 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<42 then 1 else 0 endif) AS rec6, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=42 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<49 then 1 else 0 endif) AS rec7, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=49 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<56 then 1 else 0 endif) AS rec8, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=56 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<63 then 1 else 0 endif) AS rec9, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=63 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<70 then 1 else 0 endif) AS rec10, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=70 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<77 then 1 else 0 endif) AS rec11, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=77 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<84 then 1 else 0 endif) AS rec12, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<7 then  Temp_t_Recolte.ampo_total else 0 endif) AS ddose1, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=7 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<14 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose2, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=14 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<21 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose3, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=21 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<28 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose4, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=28 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<35 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose5, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=35 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<42 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose6, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=42 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<49 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose7, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=49 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<56 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose8, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=56 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<63 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose9, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=63 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<70 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose10, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=70 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<77 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose11, 
+Sum(If DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)>=77 And 
+DateDiff(day,:RA_DATEDEBUT,Temp_t_Recolte.date_recolte)<84 then Temp_t_Recolte.ampo_total else 0 endif) AS ddose12, 
+rec1 + rec2 + rec3 + rec4 + rec5 + rec6 + rec7 + rec8 + rec9 + rec10 + rec11 + rec12 AS NbrRec, 
+Sum(Temp_t_Recolte.AMPO_TOTAL) AS SumDDose
+FROM (SELECT
+t_Recolte.date_recolte,
+t_Recolte.prepose,
+t_Recolte.CodeVerrat,
+t_Recolte.MOTILITE_P, 
+t_Recolte.ampo_total
+FROM 
+t_Recolte 
+WHERE 
+t_Recolte.date_recolte >=:RA_DATEDEBUT And 
+t_Recolte.date_recolte <=:RA_DATEFIN) as Temp_t_Recolte INNER JOIN T_Verrat ON Temp_t_Recolte.CodeVerrat = T_Verrat.CodeVerrat
+GROUP BY 
+T_Verrat.CIE_NO, 
+Temp_t_Recolte.PREPOSE, 
+JourSem) as qryHebdoSom_1 LEFT JOIN t_CentreCipq ON qryHebdoSom_1.CIE_NO = t_CentreCipq.CIE) LEFT JOIN (SELECT 
+t_PrepRecolte.PrepId, 
+t_PrepRecolte.PrepCode, 
+t_PrepRecolte.PrepNom, 
+t_PrepCentre.Cie
+FROM 
+t_PrepCentre LEFT JOIN t_PrepRecolte ON 
+t_PrepCentre.PrepId = t_PrepRecolte.PrepId) as qryXPrep ON (qryHebdoSom_1.PREPOSE = qryXPrep.PrepCode) AND (qryHebdoSom_1.CIE_NO = qryXPrep.Cie)) as qryHebdoSom
+WHERE
+cie_no = :RA_CIENO
+GROUP BY 
+cie_no, 
+JourSem;" arguments=(("RA_DATEDEBUT", date),("RA_DATEFIN", date),("RA_CIENO", string))  sort="joursem A " )
+text(band=header alignment="2" text="Cie No" border="0" color="33554432" x="5" y="4" height="64" width="169" html.valueishtml="0"  name=cie_no_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Joursem" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=joursem_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem1" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem1_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem2" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem2_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem3" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem3_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem4" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem4_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem5" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem5_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem6" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem6_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem7" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem7_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem8" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem8_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem9" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem9_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem10" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem10_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem11" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem11_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Recsem12" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=recsem12_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Totrec" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=totrec_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem1" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem1_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem2" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem2_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem3" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem3_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem4" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem4_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem5" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem5_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem6" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem6_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem7" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem7_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem8" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem8_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem9" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem9_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem10" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem10_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem11" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem11_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dosesem12" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=dosesem12_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Totddose" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=totddose_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Totsem" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=totsem_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="9" y1="212" x2="4352" y2="212"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if( joursem = 1, ~"Dimanche~", if(  joursem = 2 , ~"Lundi~", if( joursem = 3, ~"Mardi~", if(  joursem = 4, ~"Mercredi~", if(  joursem = 5 , ~"Jeudi~", if( joursem = 6, ~"Vendredi~", if(  joursem = 7, ~"Samedi~", ~"~" ) ) ) ) ) ) )"border="0" color="33554432" x="18" y="4" height="60" width="370" format="[GENERAL]" html.valueishtml="0"  name=compute_13 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="33554432" x="1161" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem3 visible="1~tif(relativedate(  RA_DATEDEBUT  , 14) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="0" color="33554432" x="1445" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem4 visible="1~tif(relativedate(  RA_DATEDEBUT  , 21) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="1" tabsequence=32766 border="0" color="33554432" x="1728" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem5 visible="1~tif(relativedate(  RA_DATEDEBUT  , 28) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="1" tabsequence=32766 border="0" color="33554432" x="2016" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem6 visible="1~tif(relativedate(  RA_DATEDEBUT  , 35) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="1" tabsequence=32766 border="0" color="33554432" x="2299" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem7 visible="1~tif(relativedate(  RA_DATEDEBUT  , 42) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="1" tabsequence=32766 border="0" color="33554432" x="2583" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem8 visible="1~tif(relativedate(  RA_DATEDEBUT  , 49) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="1" tabsequence=32766 border="0" color="33554432" x="2866" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem9 visible="1~tif(relativedate(  RA_DATEDEBUT  ,56) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=32766 border="0" color="33554432" x="3150" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem10 visible="1~tif(relativedate(  RA_DATEDEBUT  ,63) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="1" tabsequence=32766 border="0" color="33554432" x="3433" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem11 visible="1~tif(relativedate(  RA_DATEDEBUT  ,70) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="0" color="33554432" x="3717" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem12 visible="1~tif(relativedate(  RA_DATEDEBUT  ,77) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(round( (  dosesem1  +  dosesem2  +  dosesem3  +  dosesem4  +  dosesem5  +  dosesem6  +  dosesem7 +  dosesem8  +  dosesem9  +  dosesem10  +  dosesem11  +   dosesem12  )  /  compute_nbrsem , 2 ) , ~"###,###.00~")"border="0" color="33554432" x="4000" y="4" height="60" width="361" format="[GENERAL]" html.valueishtml="0"  name=compute_14 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="878" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem2 visible="1~tif(relativedate(  RA_DATEDEBUT  , 7) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432" x="594" y="4" height="60" width="279" format="[general]" html.valueishtml="0"  name=dosesem1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Do:" border="0" color="33554432" x="421" y="4" height="60" width="101" html.valueishtml="0"  name=t_10 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="1" text="R$$HEX1$$e900$$ENDHEX$$:" border="0" color="33554432" x="421" y="72" height="60" width="96" html.valueishtml="0"  name=t_12 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="594" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="878" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem2 visible="1~tif(relativedate(  RA_DATEDEBUT  , 7) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1161" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem3 visible="1~tif(relativedate(  RA_DATEDEBUT  , 14) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1445" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem4 visible="1~tif(relativedate(  RA_DATEDEBUT  , 21) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1728" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem5 visible="1~tif(relativedate(  RA_DATEDEBUT  , 28) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2016" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem6 visible="1~tif(relativedate(  RA_DATEDEBUT  , 35) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2299" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem7 visible="1~tif(relativedate(  RA_DATEDEBUT  , 42) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="2583" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem8 visible="1~tif(relativedate(  RA_DATEDEBUT  , 49) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="2866" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem9 visible="1~tif(relativedate(  RA_DATEDEBUT  ,56) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="3150" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem10 visible="1~tif(relativedate(  RA_DATEDEBUT  ,63) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="3433" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem11 visible="1~tif(relativedate(  RA_DATEDEBUT  ,70) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="3717" y="72" height="60" width="279" format="[general]" html.valueishtml="0"  name=recsem12 visible="1~tif(relativedate(  RA_DATEDEBUT  ,77) <  RA_DATEFIN  ,1,0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(round( (   recsem1  +  recsem2  +  recsem3  +  recsem4  +  recsem5  +  recsem6  +  recsem7  +  recsem8  +  recsem9  +  recsem10  +  recsem11  +  recsem12   )  / compute_nbrsem , 2 ) , ~"###,###.00~")"border="0" color="33554432" x="4000" y="72" height="60" width="357" format="[GENERAL]" html.valueishtml="0"  name=compute_15 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="1" text="Mo:" border="0" color="33554432" x="421" y="140" height="60" width="101" html.valueishtml="0"  name=t_13 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="1" expression="string(  dosesem1  /  recsem1 , ~"###,###.00~")"border="0" color="33554432" x="594" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem2  /  recsem2 , ~"###,###.00~")"border="0" color="33554432" x="878" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div2 visible="1~tif(relativedate(  RA_DATEDEBUT  , 7) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem3  /  recsem3 , ~"###,###.00~")"border="0" color="33554432" x="1161" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div3 visible="1~tif(relativedate(  RA_DATEDEBUT  , 14) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem4  /  recsem4 , ~"###,###.00~")"border="0" color="33554432" x="1445" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div4 visible="1~tif(relativedate(  RA_DATEDEBUT  , 21) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem5  /  recsem5 , ~"###,###.00~")"border="0" color="33554432" x="1728" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div5 visible="1~tif(relativedate(  RA_DATEDEBUT  , 28) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem6  /  recsem6 , ~"###,###.00~")"border="0" color="33554432" x="2016" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div6 visible="1~tif(relativedate(  RA_DATEDEBUT  , 35) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem7  /  recsem7 , ~"###,###.00~")"border="0" color="33554432" x="2299" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div7 visible="1~tif(relativedate(  RA_DATEDEBUT  , 42) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem8  /  recsem8 , ~"###,###.00~")"border="0" color="33554432" x="2583" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div8 visible="1~tif(relativedate(  RA_DATEDEBUT  , 49) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem9  /  recsem9 , ~"###,###.00~")"border="0" color="33554432" x="2866" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div9 visible="1~tif(relativedate(  RA_DATEDEBUT  ,56) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem10  /  recsem10 , ~"###,###.00~")"border="0" color="33554432" x="3150" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div10 visible="1~tif(relativedate(  RA_DATEDEBUT  ,63) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem11  /  recsem11 , ~"###,###.00~")"border="0" color="33554432" x="3433" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div11 visible="1~tif(relativedate(  RA_DATEDEBUT  ,70) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(  dosesem12  /  recsem12 , ~"###,###.00~")"border="0" color="33554432" x="3717" y="140" height="60" width="279" format="[GENERAL]" html.valueishtml="0"  name=compute_div12 visible="1~tif(relativedate(  RA_DATEDEBUT  ,77) <  RA_DATEFIN  ,1,0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="string(round( (  number( compute_div1 )  + number( compute_div2 ) + number( compute_div3 ) +number( compute_div4 )+number( compute_div5 )+number( compute_div6 )+number( compute_div7 )+number( compute_div8 )+number( compute_div9 )+number( compute_div10 )+number( compute_div11 )+number( compute_div12 )   )  /  compute_nbrsem  , 2 ) , ~"###,###.00~")"border="0" color="33554432" x="4000" y="140" height="60" width="357" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="247" y="400" height="76" width="329" format="[general]" html.valueishtml="0"  name=joursem visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="110" y="556" height="76" width="110" format="[general]" html.valueishtml="0"  name=cie_no visible="0" edit.limit=3 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="33554432" x="251" y="444" height="76" width="329" format="[general]" html.valueishtml="0"  name=totrec visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="1" tabsequence=32766 border="0" color="33554432" x="439" y="540" height="76" width="329" format="[general]" html.valueishtml="0"  name=totddose visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="1" tabsequence=32766 border="0" color="33554432" x="37" y="308" height="76" width="329" format="[general]" html.valueishtml="0"  name=totsem visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="If (recsem1<>0, 1, 0)
++If (recsem2<>0, 1, 0) 
++If (recsem3<>0, 1, 0) 
++If (recsem4<>0, 1, 0) 
++If (recsem5<>0, 1, 0) 
++If (recsem6<>0, 1, 0) 
++If (recsem7<>0, 1, 0) 
++If (recsem8<>0, 1, 0) 
++If (recsem9<>0, 1, 0) 
++If (recsem10<>0, 1, 0)
++If (recsem11<>0, 1, 0) 
++If (recsem12<>0, 1, 0)"border="0" color="33554432" x="133" y="112" height="64" width="215" format="[GENERAL]" html.valueishtml="0"  name=compute_nbrsem visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

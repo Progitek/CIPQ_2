@@ -1,0 +1,27 @@
+HA$PBExportHeader$gf_enleveraccents.srf
+global type gf_enleveraccents from function_object
+end type
+
+forward prototypes
+global function string gf_enleveraccents (string as_string)
+end prototypes
+
+global function string gf_enleveraccents (string as_string);string ls_caract[52], ls_setnull
+int i, li_nb
+
+setnull(ls_setnull)
+
+if isnull(as_string) then return ls_setnull
+
+ls_caract = {'$$HEX1$$c000$$ENDHEX$$', '$$HEX1$$c200$$ENDHEX$$', '$$HEX1$$c400$$ENDHEX$$', '$$HEX1$$c900$$ENDHEX$$', '$$HEX1$$c800$$ENDHEX$$', '$$HEX1$$cb00$$ENDHEX$$', '$$HEX1$$ca00$$ENDHEX$$', '$$HEX1$$ce00$$ENDHEX$$', '$$HEX1$$cf00$$ENDHEX$$', '$$HEX1$$d400$$ENDHEX$$', '$$HEX1$$d600$$ENDHEX$$', '$$HEX1$$db00$$ENDHEX$$', '$$HEX1$$dc00$$ENDHEX$$', &
+'$$HEX1$$e000$$ENDHEX$$', '$$HEX1$$e200$$ENDHEX$$', '$$HEX1$$e400$$ENDHEX$$', '$$HEX1$$e900$$ENDHEX$$', '$$HEX1$$e800$$ENDHEX$$', '$$HEX1$$eb00$$ENDHEX$$', '$$HEX1$$ea00$$ENDHEX$$', '$$HEX1$$ee00$$ENDHEX$$', '$$HEX1$$ef00$$ENDHEX$$', '$$HEX1$$f400$$ENDHEX$$', '$$HEX1$$f600$$ENDHEX$$', '$$HEX1$$fb00$$ENDHEX$$', '$$HEX1$$fc00$$ENDHEX$$', &
+'A', 'A', 'A', 'E', 'E', 'E', 'E', 'I', 'I', 'O', 'O', 'U', 'U', &
+'a', 'a', 'a', 'e', 'e', 'e', 'e', 'i', 'i', 'o', 'o', 'u', 'u'}
+
+for i = 1 to 26
+	as_string = rep(as_string, ls_caract[i], ls_caract[i + 26])
+next
+
+return as_string
+end function
+

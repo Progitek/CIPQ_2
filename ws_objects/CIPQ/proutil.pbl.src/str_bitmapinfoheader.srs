@@ -1,0 +1,15 @@
+﻿$PBExportHeader$str_bitmapinfoheader.srs
+global type str_bitmapinfoheader from structure
+   ulong  biSize 
+   LONG   biWidth 
+   LONG   biHeight 
+   integer   biPlanes 
+   integer   biBitCount 
+   ulong  biCompression 
+   ulong  biSizeImage 
+   LONG   biXPelsPerMeter 
+   LONG   biYPelsPerMeter 
+   ulong  biClrUsed 
+   ulong  biClrImportant 
+end type
+

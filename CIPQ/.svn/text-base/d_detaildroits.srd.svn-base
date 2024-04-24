@@ -1,0 +1,44 @@
+HA$PBExportHeader$d_detaildroits.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=15793151 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=484 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=id_user dbname="t_droitsusagers.id_user" )
+ column=(type=char(200) update=yes updatewhereclause=yes key=yes name=objet dbname="t_droitsusagers.objet" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=droits dbname="t_droitsusagers.droits" )
+ column=(type=long updatewhereclause=yes name=c dbname="c" values="Acc$$HEX1$$e800$$ENDHEX$$s	1/Acc$$HEX1$$e800$$ENDHEX$$s	0" initial="0" )
+ column=(type=long updatewhereclause=yes name=i dbname="i" values="Ins$$HEX1$$e900$$ENDHEX$$rer	1/Ins$$HEX1$$e900$$ENDHEX$$rer	0" initial="0" )
+ column=(type=long updatewhereclause=yes name=m dbname="m" values="Modifier	1/Modifier	0" initial="0" )
+ column=(type=long updatewhereclause=yes name=d dbname="d" values="D$$HEX1$$e900$$ENDHEX$$truire	1/D$$HEX1$$e900$$ENDHEX$$truire	0" initial="0" )
+ column=(type=long updatewhereclause=yes name=a dbname="a" values="Autre(s)	1/Autre(s)	0" initial="0" )
+ retrieve="  select id_user,
+			objet,
+			droits,
+			0 as C,
+			0 as I,
+			0 as M,
+			0 as D,
+			0 as A
+	 from t_droitsusagers
+	where id_user = :ra_user
+	  and objet = :ra_objet
+" update="t_droitsusagers" updatewhere=0 updatekeyinplace=no arguments=(("ra_user", number),("ra_objet", string)) )
+text(band=detail alignment="1" text="Droits" border="0" color="33554432" x="530" y="88" height="64" width="210" html.valueishtml="0"  name=droits_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="590" y="212" height="76" width="137" format="[general]" html.valueishtml="0"  name=droits visible="0" edit.limit=4 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="0" color="32768" x="41" y="24" height="64" width="370" format="[general]" html.valueishtml="0"  name=c visible="1" checkbox.text="Acc$$HEX1$$e800$$ENDHEX$$s" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=50 border="0" color="32768" x="41" y="388" height="64" width="370" format="[general]" html.valueishtml="0"  name=a visible="0~tc" checkbox.text="Autre(s)" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="0" color="32768" x="41" y="296" height="64" width="370" format="[general]" html.valueishtml="0"  name=d visible="0~tc" checkbox.text="D$$HEX1$$e900$$ENDHEX$$truire" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="0" color="32768" x="41" y="204" height="64" width="370" format="[general]" html.valueishtml="0"  name=m visible="0~tc" checkbox.text="Modifier" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="32768" x="41" y="112" height="64" width="370" format="[general]" html.valueishtml="0"  name=i visible="0~tc" checkbox.text="Ins$$HEX1$$e900$$ENDHEX$$rer" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

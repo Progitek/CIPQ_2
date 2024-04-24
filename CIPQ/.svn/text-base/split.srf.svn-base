@@ -1,0 +1,25 @@
+HA$PBExportHeader$split.srf
+global type split from function_object
+end type
+
+forward prototypes
+global function any split (string string1, string string2)
+end prototypes
+
+global function any split (string string1, string string2);string ls_str[]
+long p, i = 1
+
+p = Pos(string1, string2)
+
+Do While p > 0
+	ls_str[i] = Left(string1, p - 1)
+	i++
+	string1 = Mid(string1, p + Len(string2))
+	p = Pos(string1, string2)
+Loop
+
+ls_str[i] = string1
+
+return ls_str
+end function
+

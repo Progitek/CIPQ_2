@@ -1,0 +1,1674 @@
+﻿$PBExportHeader$m_shortcutoptions.srm
+forward
+global type m_shortcutoptions from menu
+end type
+type m_options from menu within m_shortcutoptions
+end type
+type m_showallitems from menu within m_options
+end type
+type m_showmorebuttons from menu within m_options
+end type
+type m_showfewerbuttons from menu within m_options
+end type
+type m_hideall from menu within m_options
+end type
+type m_addorremovebuttons from menu within m_options
+end type
+type m_item1 from menu within m_addorremovebuttons
+end type
+type m_item2 from menu within m_addorremovebuttons
+end type
+type m_item3 from menu within m_addorremovebuttons
+end type
+type m_item4 from menu within m_addorremovebuttons
+end type
+type m_item5 from menu within m_addorremovebuttons
+end type
+type m_item from menu within m_addorremovebuttons
+end type
+type m_6 from menu within m_addorremovebuttons
+end type
+type m_item8 from menu within m_addorremovebuttons
+end type
+type m_item9 from menu within m_addorremovebuttons
+end type
+type m_item10 from menu within m_addorremovebuttons
+end type
+type m_item11 from menu within m_addorremovebuttons
+end type
+type m_item12 from menu within m_addorremovebuttons
+end type
+type m_item13 from menu within m_addorremovebuttons
+end type
+type m_item14 from menu within m_addorremovebuttons
+end type
+type m_item15 from menu within m_addorremovebuttons
+end type
+type m_item16 from menu within m_addorremovebuttons
+end type
+type m_item17 from menu within m_addorremovebuttons
+end type
+type m_item18 from menu within m_addorremovebuttons
+end type
+type m_item19 from menu within m_addorremovebuttons
+end type
+type m_item20 from menu within m_addorremovebuttons
+end type
+type m_item21 from menu within m_addorremovebuttons
+end type
+type m_item22 from menu within m_addorremovebuttons
+end type
+type m_item23 from menu within m_addorremovebuttons
+end type
+type m_item24 from menu within m_addorremovebuttons
+end type
+type m_item25 from menu within m_addorremovebuttons
+end type
+type m_item26 from menu within m_addorremovebuttons
+end type
+type m_item27 from menu within m_addorremovebuttons
+end type
+type m_item28 from menu within m_addorremovebuttons
+end type
+type m_item29 from menu within m_addorremovebuttons
+end type
+type m_item30 from menu within m_addorremovebuttons
+end type
+type m_item31 from menu within m_addorremovebuttons
+end type
+type m_item32 from menu within m_addorremovebuttons
+end type
+type m_addorremovebuttons from menu within m_options
+m_item1 m_item1
+m_item2 m_item2
+m_item3 m_item3
+m_item4 m_item4
+m_item5 m_item5
+m_item m_item
+m_6 m_6
+m_item8 m_item8
+m_item9 m_item9
+m_item10 m_item10
+m_item11 m_item11
+m_item12 m_item12
+m_item13 m_item13
+m_item14 m_item14
+m_item15 m_item15
+m_item16 m_item16
+m_item17 m_item17
+m_item18 m_item18
+m_item19 m_item19
+m_item20 m_item20
+m_item21 m_item21
+m_item22 m_item22
+m_item23 m_item23
+m_item24 m_item24
+m_item25 m_item25
+m_item26 m_item26
+m_item27 m_item27
+m_item28 m_item28
+m_item29 m_item29
+m_item30 m_item30
+m_item31 m_item31
+m_item32 m_item32
+end type
+type m_options from menu within m_shortcutoptions
+m_showallitems m_showallitems
+m_showmorebuttons m_showmorebuttons
+m_showfewerbuttons m_showfewerbuttons
+m_hideall m_hideall
+m_addorremovebuttons m_addorremovebuttons
+end type
+global type m_shortcutoptions from menu
+m_options m_options
+end type
+end forward
+
+global type m_shortcutoptions from menu
+m_options m_options
+end type
+global m_shortcutoptions m_shortcutoptions
+
+type variables
+u_cst_shortcutbar iuo_parent
+end variables
+
+forward prototypes
+public function integer of_loadmenu ()
+end prototypes
+
+public function integer of_loadmenu ();Long ll_index, ll_loop
+
+ll_loop = UpperBound(iuo_parent.iuo_useditems)
+
+FOR ll_index = 1 TO ll_loop
+
+	m_options.m_addorremovebuttons.item[ll_index].Text = iuo_parent.iuo_useditems[ll_index].of_GetText()
+	m_options.m_addorremovebuttons.item[ll_index].Visible = TRUE
+	
+	IF iuo_parent.iuo_useditems[ll_index].Visible THEN
+		m_options.m_addorremovebuttons.item[ll_index].Checked = TRUE
+	ELSE
+		m_options.m_addorremovebuttons.item[ll_index].Checked = FALSE
+	END IF
+	
+	//m_options.m_addorremovebuttons.item[ll_index].MenuImage = iuo_parent.iuo_useditems[ll_index].of_GetImage()
+	
+NEXT
+
+RETURN 1
+end function
+
+on m_shortcutoptions.create
+m_shortcutoptions=this
+call super::create
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_options=create m_options
+this.Item[UpperBound(this.Item)+1]=this.m_options
+end on
+
+on m_shortcutoptions.destroy
+call super::destroy
+destroy(this.m_options)
+end on
+
+type m_options from menu within m_shortcutoptions
+m_showallitems m_showallitems
+m_showmorebuttons m_showmorebuttons
+m_showfewerbuttons m_showfewerbuttons
+m_hideall m_hideall
+m_addorremovebuttons m_addorremovebuttons
+end type
+
+on m_options.create
+call super::create
+this.text = "Options"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_showallitems=create m_showallitems
+this.m_showmorebuttons=create m_showmorebuttons
+this.m_showfewerbuttons=create m_showfewerbuttons
+this.m_hideall=create m_hideall
+this.m_addorremovebuttons=create m_addorremovebuttons
+this.Item[UpperBound(this.Item)+1]=this.m_showallitems
+this.Item[UpperBound(this.Item)+1]=this.m_showmorebuttons
+this.Item[UpperBound(this.Item)+1]=this.m_showfewerbuttons
+this.Item[UpperBound(this.Item)+1]=this.m_hideall
+this.Item[UpperBound(this.Item)+1]=this.m_addorremovebuttons
+end on
+
+on m_options.destroy
+call super::destroy
+destroy(this.m_showallitems)
+destroy(this.m_showmorebuttons)
+destroy(this.m_showfewerbuttons)
+destroy(this.m_hideall)
+destroy(this.m_addorremovebuttons)
+end on
+
+type m_showallitems from menu within m_options
+end type
+
+event clicked;iuo_parent.of_ShowAll()
+
+end event
+
+on m_showallitems.create
+call super::create
+this.text = "Show all items"
+this.menuimage = "showall.bmp"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_showallitems.destroy
+call super::destroy
+end on
+
+type m_showmorebuttons from menu within m_options
+end type
+
+on m_showmorebuttons.create
+call super::create
+this.text = "Show more items"
+this.menuimage = "showmore.bmp"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_showmorebuttons.destroy
+call super::destroy
+end on
+
+event clicked;iuo_parent.of_ShowMore()
+end event
+
+type m_showfewerbuttons from menu within m_options
+end type
+
+on m_showfewerbuttons.create
+call super::create
+this.text = "Show fewer items"
+this.menuimage = "showfewer.bmp"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_showfewerbuttons.destroy
+call super::destroy
+end on
+
+event clicked;iuo_parent.of_ShowFewer()
+end event
+
+type m_hideall from menu within m_options
+end type
+
+event clicked;iuo_parent.of_HideAll()
+end event
+
+on m_hideall.create
+call super::create
+this.text = "Hide all items"
+this.menuimage = "hideall.bmp"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hideall.destroy
+call super::destroy
+end on
+
+type m_addorremovebuttons from menu within m_options
+m_item1 m_item1
+m_item2 m_item2
+m_item3 m_item3
+m_item4 m_item4
+m_item5 m_item5
+m_item m_item
+m_6 m_6
+m_item8 m_item8
+m_item9 m_item9
+m_item10 m_item10
+m_item11 m_item11
+m_item12 m_item12
+m_item13 m_item13
+m_item14 m_item14
+m_item15 m_item15
+m_item16 m_item16
+m_item17 m_item17
+m_item18 m_item18
+m_item19 m_item19
+m_item20 m_item20
+m_item21 m_item21
+m_item22 m_item22
+m_item23 m_item23
+m_item24 m_item24
+m_item25 m_item25
+m_item26 m_item26
+m_item27 m_item27
+m_item28 m_item28
+m_item29 m_item29
+m_item30 m_item30
+m_item31 m_item31
+m_item32 m_item32
+end type
+
+on m_addorremovebuttons.create
+call super::create
+this.text = "Show or Hide Items"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_item1=create m_item1
+this.m_item2=create m_item2
+this.m_item3=create m_item3
+this.m_item4=create m_item4
+this.m_item5=create m_item5
+this.m_item=create m_item
+this.m_6=create m_6
+this.m_item8=create m_item8
+this.m_item9=create m_item9
+this.m_item10=create m_item10
+this.m_item11=create m_item11
+this.m_item12=create m_item12
+this.m_item13=create m_item13
+this.m_item14=create m_item14
+this.m_item15=create m_item15
+this.m_item16=create m_item16
+this.m_item17=create m_item17
+this.m_item18=create m_item18
+this.m_item19=create m_item19
+this.m_item20=create m_item20
+this.m_item21=create m_item21
+this.m_item22=create m_item22
+this.m_item23=create m_item23
+this.m_item24=create m_item24
+this.m_item25=create m_item25
+this.m_item26=create m_item26
+this.m_item27=create m_item27
+this.m_item28=create m_item28
+this.m_item29=create m_item29
+this.m_item30=create m_item30
+this.m_item31=create m_item31
+this.m_item32=create m_item32
+this.Item[UpperBound(this.Item)+1]=this.m_item1
+this.Item[UpperBound(this.Item)+1]=this.m_item2
+this.Item[UpperBound(this.Item)+1]=this.m_item3
+this.Item[UpperBound(this.Item)+1]=this.m_item4
+this.Item[UpperBound(this.Item)+1]=this.m_item5
+this.Item[UpperBound(this.Item)+1]=this.m_item
+this.Item[UpperBound(this.Item)+1]=this.m_6
+this.Item[UpperBound(this.Item)+1]=this.m_item8
+this.Item[UpperBound(this.Item)+1]=this.m_item9
+this.Item[UpperBound(this.Item)+1]=this.m_item10
+this.Item[UpperBound(this.Item)+1]=this.m_item11
+this.Item[UpperBound(this.Item)+1]=this.m_item12
+this.Item[UpperBound(this.Item)+1]=this.m_item13
+this.Item[UpperBound(this.Item)+1]=this.m_item14
+this.Item[UpperBound(this.Item)+1]=this.m_item15
+this.Item[UpperBound(this.Item)+1]=this.m_item16
+this.Item[UpperBound(this.Item)+1]=this.m_item17
+this.Item[UpperBound(this.Item)+1]=this.m_item18
+this.Item[UpperBound(this.Item)+1]=this.m_item19
+this.Item[UpperBound(this.Item)+1]=this.m_item20
+this.Item[UpperBound(this.Item)+1]=this.m_item21
+this.Item[UpperBound(this.Item)+1]=this.m_item22
+this.Item[UpperBound(this.Item)+1]=this.m_item23
+this.Item[UpperBound(this.Item)+1]=this.m_item24
+this.Item[UpperBound(this.Item)+1]=this.m_item25
+this.Item[UpperBound(this.Item)+1]=this.m_item26
+this.Item[UpperBound(this.Item)+1]=this.m_item27
+this.Item[UpperBound(this.Item)+1]=this.m_item28
+this.Item[UpperBound(this.Item)+1]=this.m_item29
+this.Item[UpperBound(this.Item)+1]=this.m_item30
+this.Item[UpperBound(this.Item)+1]=this.m_item31
+this.Item[UpperBound(this.Item)+1]=this.m_item32
+end on
+
+on m_addorremovebuttons.destroy
+call super::destroy
+destroy(this.m_item1)
+destroy(this.m_item2)
+destroy(this.m_item3)
+destroy(this.m_item4)
+destroy(this.m_item5)
+destroy(this.m_item)
+destroy(this.m_6)
+destroy(this.m_item8)
+destroy(this.m_item9)
+destroy(this.m_item10)
+destroy(this.m_item11)
+destroy(this.m_item12)
+destroy(this.m_item13)
+destroy(this.m_item14)
+destroy(this.m_item15)
+destroy(this.m_item16)
+destroy(this.m_item17)
+destroy(this.m_item18)
+destroy(this.m_item19)
+destroy(this.m_item20)
+destroy(this.m_item21)
+destroy(this.m_item22)
+destroy(this.m_item23)
+destroy(this.m_item24)
+destroy(this.m_item25)
+destroy(this.m_item26)
+destroy(this.m_item27)
+destroy(this.m_item28)
+destroy(this.m_item29)
+destroy(this.m_item30)
+destroy(this.m_item31)
+destroy(this.m_item32)
+end on
+
+type m_item1 from menu within m_addorremovebuttons
+end type
+
+on m_item1.create
+call super::create
+this.visible = false
+this.text = "item1"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item1.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item2 from menu within m_addorremovebuttons
+end type
+
+on m_item2.create
+call super::create
+this.visible = false
+this.text = "item2"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item2.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item3 from menu within m_addorremovebuttons
+end type
+
+on m_item3.create
+call super::create
+this.visible = false
+this.text = "item3"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item3.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item4 from menu within m_addorremovebuttons
+end type
+
+on m_item4.create
+call super::create
+this.visible = false
+this.text = "item4"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item4.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item5 from menu within m_addorremovebuttons
+end type
+
+on m_item5.create
+call super::create
+this.visible = false
+this.text = "item5"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item5.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item from menu within m_addorremovebuttons
+end type
+
+on m_item.create
+call super::create
+this.visible = false
+this.text = "item6"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_6 from menu within m_addorremovebuttons
+end type
+
+on m_6.create
+call super::create
+this.visible = false
+this.text = "item7"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_6.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item8 from menu within m_addorremovebuttons
+end type
+
+on m_item8.create
+call super::create
+this.visible = false
+this.text = "item8"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item8.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item9 from menu within m_addorremovebuttons
+end type
+
+on m_item9.create
+call super::create
+this.visible = false
+this.text = "item9"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item9.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item10 from menu within m_addorremovebuttons
+end type
+
+on m_item10.create
+call super::create
+this.visible = false
+this.text = "item10"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item10.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item11 from menu within m_addorremovebuttons
+end type
+
+on m_item11.create
+call super::create
+this.visible = false
+this.text = "item11"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item11.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item12 from menu within m_addorremovebuttons
+end type
+
+on m_item12.create
+call super::create
+this.visible = false
+this.text = "item12"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item12.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item13 from menu within m_addorremovebuttons
+end type
+
+on m_item13.create
+call super::create
+this.visible = false
+this.text = "item13"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item13.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item14 from menu within m_addorremovebuttons
+end type
+
+on m_item14.create
+call super::create
+this.visible = false
+this.text = "item14"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item14.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item15 from menu within m_addorremovebuttons
+end type
+
+on m_item15.create
+call super::create
+this.visible = false
+this.text = "item15"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item15.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item16 from menu within m_addorremovebuttons
+end type
+
+on m_item16.create
+call super::create
+this.visible = false
+this.text = "item16"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item16.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item17 from menu within m_addorremovebuttons
+end type
+
+on m_item17.create
+call super::create
+this.visible = false
+this.text = "item17"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item17.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item18 from menu within m_addorremovebuttons
+end type
+
+on m_item18.create
+call super::create
+this.visible = false
+this.text = "item18"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item18.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item19 from menu within m_addorremovebuttons
+end type
+
+on m_item19.create
+call super::create
+this.visible = false
+this.text = "item19"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item19.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item20 from menu within m_addorremovebuttons
+end type
+
+on m_item20.create
+call super::create
+this.visible = false
+this.text = "item20"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item20.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item21 from menu within m_addorremovebuttons
+end type
+
+on m_item21.create
+call super::create
+this.visible = false
+this.text = "item21"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item21.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item22 from menu within m_addorremovebuttons
+end type
+
+on m_item22.create
+call super::create
+this.visible = false
+this.text = "item22"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item22.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item23 from menu within m_addorremovebuttons
+end type
+
+on m_item23.create
+call super::create
+this.visible = false
+this.text = "item23"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item23.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item24 from menu within m_addorremovebuttons
+end type
+
+on m_item24.create
+call super::create
+this.visible = false
+this.text = "item24"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item24.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item25 from menu within m_addorremovebuttons
+end type
+
+on m_item25.create
+call super::create
+this.visible = false
+this.text = "item25"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item25.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item26 from menu within m_addorremovebuttons
+end type
+
+on m_item26.create
+call super::create
+this.visible = false
+this.text = "item26"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item26.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item27 from menu within m_addorremovebuttons
+end type
+
+on m_item27.create
+call super::create
+this.visible = false
+this.text = "item27"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item27.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item28 from menu within m_addorremovebuttons
+end type
+
+on m_item28.create
+call super::create
+this.visible = false
+this.text = "item28"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item28.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item29 from menu within m_addorremovebuttons
+end type
+
+on m_item29.create
+call super::create
+this.visible = false
+this.text = "item29"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item29.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item30 from menu within m_addorremovebuttons
+end type
+
+on m_item30.create
+call super::create
+this.visible = false
+this.text = "item30"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item30.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item31 from menu within m_addorremovebuttons
+end type
+
+on m_item31.create
+call super::create
+this.visible = false
+this.text = "item31"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item31.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+
+type m_item32 from menu within m_addorremovebuttons
+end type
+
+on m_item32.create
+call super::create
+this.visible = false
+this.text = "item32"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 15780518
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item32.destroy
+call super::destroy
+end on
+
+event clicked;IF Checked THEN
+	iuo_parent.of_HideItem(Text)
+ELSE 
+	iuo_parent.of_ShowItem(Text)
+END IF
+end event
+

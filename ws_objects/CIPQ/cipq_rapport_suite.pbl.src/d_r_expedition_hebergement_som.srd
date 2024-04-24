@@ -1,0 +1,151 @@
+﻿$PBExportHeader$d_r_expedition_hebergement_som.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=728 color="536870912" )
+summary(height=96 color="536870912" )
+footer(height=72 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=hebergeur dbname="t_codehebergeur.hebergeur" )
+ column=(type=char(1) updatewhereclause=yes name=code_hebergeur dbname="t_ELEVEUR_Group.code_hebergeur" )
+ column=(type=number updatewhereclause=yes name=nbrpure dbname="t_codehebergeur.nbrpure" )
+ column=(type=number updatewhereclause=yes name=nbrmel dbname="t_codehebergeur.nbrmel" )
+ column=(type=long updatewhereclause=yes name=nbrheb dbname="t_codehebergeur.nbrheb" )
+ column=(type=long updatewhereclause=yes name=nbrverrat dbname="t_codehebergeur.nbrverrat" )
+ column=(type=char(100) updatewhereclause=yes name=raisonsocial dbname="t_ELEVEUR_Group.raisonsocial" )
+ retrieve="  SELECT t_ELEVEUR_Group.Description AS Hebergeur,
+			t_ELEVEUR_Group.code_hebergeur,
+			QryExpSomLoc.NbrPure,
+			QryExpSomLoc.NbrMel,
+			QryExpSomHeber.NbrHeb,
+			QryExpSomVerrat.NbrVerrat,
+			t_codehebergeur.raisonsocial
+	 FROM (SELECT TempTblRapLoc.CodeHebergeur
+				FROM ((SELECT Sum(T_StatFactureDetail.QTE_EXP) AS TotExped,
+								  0 AS Pure,
+								  t_Produit.CodeHebergeur AS CodeHebergeur
+							FROM T_StatFacture
+					INNER JOIN T_StatFactureDetail ON T_StatFacture.LIV_NO = T_StatFactureDetail.LIV_NO
+															AND T_StatFacture.CIE_NO = T_StatFactureDetail.CIE_NO
+					INNER JOIN t_ELEVEUR ON T_StatFacture.No_Eleveur = t_ELEVEUR.No_Eleveur
+					INNER JOIN t_Produit ON T_StatFactureDetail.PROD_NO = t_Produit.NoProduit
+						  WHERE t_Produit.NoClasse = 9
+							 AND T_StatFacture.LIV_DATE >= :RA_DATEDEBUT
+							 and T_StatFacture.LIV_DATE <= :RA_DATEFIN
+							 and (T_StatFacture.CIE_NO = :RA_CIENO or :RA_CIENO is null)
+							 and T_StatFactureDetail.PROD_NO Not Like 'PUR%'
+					  GROUP BY Pure,
+								  CodeHebergeur
+						 HAVING TotExped <> 0)
+		  UNION ALL (SELECT Sum(T_StatFactureDetail.QTE_EXP) AS TotExped,
+								  1 AS Pure,
+								  Left(CodeVerrat,1) AS CodeHebergeur
+							FROM T_StatFacture
+					INNER JOIN T_StatFactureDetail ON T_StatFacture.LIV_NO = T_StatFactureDetail.LIV_NO
+															AND T_StatFacture.CIE_NO = T_StatFactureDetail.CIE_NO
+					INNER JOIN t_ELEVEUR ON T_StatFacture.No_Eleveur = t_ELEVEUR.No_Eleveur
+					INNER JOIN T_Verrat ON T_StatFactureDetail.VERRAT_NO = T_Verrat.CodeVerrat
+						  WHERE T_StatFacture.LIV_DATE >= :RA_DATEDEBUT
+							 and T_StatFacture.LIV_DATE <= :RA_DATEFIN
+							 and (T_StatFacture.CIE_NO = :RA_CIENO or :RA_CIENO is null)
+					  GROUP BY Pure,
+								  CodeHebergeur
+						 HAVING TotExped <> 0)) as TempTblRapLoc
+		  GROUP BY TempTblRapLoc.CodeHebergeur) as QryExpSom_Init
+INNER JOIN t_ELEVEUR_Group ON QryExpSom_Init.CodeHebergeur = t_ELEVEUR_Group.Code_Hebergeur
+LEFT JOIN (SELECT t_ELEVEUR.Groupe AS Groupe_Eleveur,
+						Count(T_StatFactureDetail.PROD_NO) AS NbrHeb
+				 FROM T_StatFacture
+		 INNER JOIN T_StatFactureDetail ON T_StatFacture.LIV_NO = T_StatFactureDetail.LIV_NO
+												 AND T_StatFacture.CIE_NO = T_StatFactureDetail.CIE_NO
+		 INNER JOIN t_ELEVEUR ON T_StatFacture.No_Eleveur = t_ELEVEUR.No_Eleveur
+				WHERE T_StatFacture.FACT_DATE>=:RA_DATEDEBUT
+				  And T_StatFacture.FACT_DATE<=:RA_DATEFIN
+				  AND LEFT(T_StatFactureDetail.PROD_NO, 3) = 'HEB'
+				  and (T_StatFacture.CIE_NO = :RA_CIENO or :RA_CIENO is null)
+			GROUP BY Groupe_Eleveur) as QryExpSomHeber ON t_ELEVEUR_Group.IDGroup = QryExpSomHeber.Groupe_Eleveur
+LEFT JOIN (SELECT Left(T_Verrat.CodeVerrat, 1) AS Code_Hebergeur,
+						Count(T_Verrat.CodeVerrat) AS NbrVerrat
+				 FROM T_Verrat
+				WHERE (T_Verrat.ELIMIN Is Null
+						Or T_Verrat.ELIMIN >= :RA_DATEDEBUT)
+				  AND T_Verrat.ENTPRODUCT <= :RA_DATEFIN
+			GROUP BY Code_Hebergeur) as QryExpSomVerrat ON t_ELEVEUR_Group.Code_Hebergeur = QryExpSomVerrat.Code_Hebergeur
+LEFT JOIN (SELECT TempTblRapLoc.CodeHebergeur AS Code_Hebergeur,
+						Sum(If TempTblRapLoc.pure = 1 then TempTblRapLoc.TotExped else 0 endif) AS NbrPure,
+						Sum(If TempTblRapLoc.pure = 1 then 0 else TempTblRapLoc.TotExped endif) AS NbrMel
+				 FROM ((SELECT Sum(T_StatFactureDetail.QTE_EXP) AS TotExped,
+									0 AS Pure,
+									t_Produit.CodeHebergeur AS CodeHebergeur
+							 FROM T_StatFacture
+					 INNER JOIN T_StatFactureDetail ON T_StatFacture.LIV_NO = T_StatFactureDetail.LIV_NO
+															 AND T_StatFacture.CIE_NO = T_StatFactureDetail.CIE_NO
+					 INNER JOIN t_ELEVEUR ON T_StatFacture.No_Eleveur = t_ELEVEUR.No_Eleveur
+					 INNER JOIN t_Produit ON T_StatFactureDetail.PROD_NO = t_Produit.NoProduit
+							WHERE t_Produit.NoClasse = 9
+							  and T_StatFactureDetail.PROD_NO Not Like 'PUR%'
+							  and T_StatFacture.LIV_DATE >= :RA_DATEDEBUT
+							  and T_StatFacture.LIV_DATE <= :RA_DATEFIN
+							  and (T_StatFacture.CIE_NO = :RA_CIENO or :RA_CIENO is null)
+						GROUP BY Pure, 
+									CodeHebergeur
+						  HAVING TotExped <> 0)
+			UNION ALL (SELECT Sum(T_StatFactureDetail.QTE_EXP) AS TotExped,
+									1 AS Pure,
+									Left(T_Verrat.CodeVerrat,1) AS CodeHebergeur
+							 FROM T_StatFacture
+					 INNER JOIN T_StatFactureDetail ON T_StatFacture.LIV_NO = T_StatFactureDetail.LIV_NO
+															 AND T_StatFacture.CIE_NO = T_StatFactureDetail.CIE_NO
+					 INNER JOIN t_ELEVEUR ON T_StatFacture.No_Eleveur = t_ELEVEUR.No_Eleveur
+					 INNER JOIN T_Verrat ON T_StatFactureDetail.VERRAT_NO = T_Verrat.CodeVerrat
+							WHERE T_StatFacture.LIV_DATE >= :RA_DATEDEBUT
+							  and T_StatFacture.LIV_DATE <= :RA_DATEFIN
+							  and (T_StatFacture.CIE_NO = :RA_CIENO or :RA_CIENO is null)
+						GROUP BY Pure,
+									CodeHebergeur
+						  HAVING TotExped <> 0)) as TempTblRapLoc
+			GROUP BY Code_Hebergeur) as QryExpSomLoc ON t_ELEVEUR_Group.Code_Hebergeur = QryExpSomLoc.Code_Hebergeur
+left outer join t_codehebergeur on t_ELEVEUR_Group.Code_Hebergeur = t_codehebergeur.codehebergeur" arguments=(("RA_DATEDEBUT", datetime),("RA_DATEFIN", datetime),("RA_CIENO", string))  sort="hebergeur A " )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="27" y="16" height="540" width="448" border="0"  name=p_1 visible="1" )
+text(band=header alignment="2" text="Expéditions et Hébergement Sommaire" border="0" color="33554432" x="485" y="16" height="296" width="2034" html.valueishtml="0"  name=t_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="" border="0" color="33554432" x="485" y="488" height="68" width="2034" html.valueishtml="0"  name=t_criteres  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="2" expression="~"Pour la période du: ~" +  RA_DATEDEBUT + ~" au ~" +  RA_DATEFIN "border="0" color="33554432" x="494" y="368" height="68" width="2021" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2528" y="16" height="76" width="882" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2528" y="96" height="460" width="882" html.valueishtml="0"  name=t_14  tag="filtre_t" visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2528" y1="100" x2="3406" y2="100"  name=l_6 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Hébergeur" border="0" color="33554432" x="0" y="620" height="64" width="1399" html.valueishtml="0"  name=hebergeur_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pures" border="0" color="33554432" x="1403" y="620" height="64" width="329" html.valueishtml="0"  name=nbrpure_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mélange" border="0" color="33554432" x="1737" y="620" height="64" width="329" html.valueishtml="0"  name=nbrmel_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Total" border="0" color="33554432" x="2071" y="620" height="64" width="329" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Hébergé" border="0" color="33554432" x="2738" y="620" height="64" width="329" html.valueishtml="0"  name=nbrheb_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Verrats" border="0" color="33554432" x="2405" y="620" height="64" width="329" html.valueishtml="0"  name=nbrverrat_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="27" y1="696" x2="3401" y2="696"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header x1="23" y1="704" x2="3397" y2="704"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Code Hebergeur" border="0" color="33554432" x="690" y="816" height="64" width="425" html.valueishtml="0"  name=code_hebergeur_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Hebergeur" border="0" color="33554432" x="393" y="944" height="64" width="274" html.valueishtml="0"  name=raisonsocial_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="76" width="1399" format="[general]" html.valueishtml="0"  name=hebergeur visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1408" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=nbrpure visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1742" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=nbrmel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression=" nbrpure  +  nbrmel "border="0" color="33554432" x="2075" y="4" height="76" width="329" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="2409" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=nbrverrat visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="2743" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=nbrheb visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="571" y="152" height="64" width="2702" format="[general]" html.valueishtml="0"  name=raisonsocial visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="2281" y="276" height="64" width="27" format="[general]" html.valueishtml="0"  name=code_hebergeur visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="2" text="Grand Total" border="0" color="33554432" x="370" y="4" height="88" width="667" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  nbrpure  for all )"border="0" color="33554432" x="1408" y="12" height="76" width="329" format="[GENERAL]" html.valueishtml="0"  name=compute_sompur visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  nbrmel  for all )"border="0" color="33554432" x="1742" y="12" height="76" width="329" format="[GENERAL]" html.valueishtml="0"  name=compute_sommel visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression=" compute_sompur  +  compute_sommel "border="0" color="33554432" x="2075" y="12" height="76" width="329" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  nbrverrat  for all )"border="0" color="33554432" x="2409" y="12" height="76" width="329" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  nbrheb  for all )"border="0" color="33554432" x="2743" y="12" height="76" width="329" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="27" y1="0" x2="3401" y2="0"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=summary x1="27" y1="92" x2="3401" y2="92"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="4" height="64" width="3397" html.valueishtml="0"  name=t_13  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

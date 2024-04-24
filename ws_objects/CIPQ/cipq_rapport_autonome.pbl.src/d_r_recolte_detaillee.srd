@@ -1,0 +1,88 @@
+﻿$PBExportHeader$d_r_recolte_detaillee.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=544 color="536870912" )
+summary(height=136 color="536870912" )
+footer(height=88 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(3) update=yes updatewhereclause=yes name=cie_no dbname="t_verrat.cie_no" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_recolte dbname="t_verrat.date_recolte" )
+ column=(type=char(12) update=yes updatewhereclause=yes name=codeverrat dbname="t_verrat.codeverrat" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=nom dbname="t_verrat.nom" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=tatouage dbname="t_verrat.tatouage" )
+ column=(type=number update=yes updatewhereclause=yes name=ampo_total dbname="t_verrat.ampo_total" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=ville dbname="t_verrat.ville" )
+ column=(type=long update=yes updatewhereclause=yes name=nbr dbname="nbr" )
+ column=(type=char(4) updatewhereclause=yes name=vrairace dbname="t_verrat.vrairace" )
+ column=(type=char(4) updatewhereclause=yes name=coderace dbname="t_verrat.coderace" )
+ column=(type=char(35) updatewhereclause=yes name=t_preprecolte_prepnom dbname="t_preprecolte.prepnom" )
+ retrieve="SELECT 
+t_Verrat.CIE_NO, 
+t_Recolte.DATE_recolte, 
+t_Recolte.CodeVerrat, 
+t_Verrat.NOM, 
+t_Verrat.TATOUAGE, 
+t_Recolte.AMPO_TOTAL, 
+t_CentreCIPQ.VILLE, 
+1 AS Nbr,
+t_Verrat.VRAIRACE,
+t_Verrat.CodeRace,
+t_PrepRecolte.prepnom
+FROM t_Verrat 
+INNER JOIN (t_CentreCIPQ 
+INNER JOIN t_Recolte ON t_CentreCIPQ.CIE = t_Recolte.CIE_NO) 
+ON t_Verrat.CodeVerrat = t_Recolte.CodeVerrat
+INNER JOIN t_PrepRecolte ON t_Recolte.Prepose = t_PrepRecolte.prepcode
+WHERE t_Recolte.DATE_recolte >= :ad_de AND t_Recolte.DATE_recolte <= :ad_au" arguments=(("ad_de", date),("ad_au", date))  sort="cie_no A date_recolte A codeverrat A " )
+group(level=1 header.height=0 trailer.height=128 by=("cie_no" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=268 trailer.height=112 by=("date_recolte" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\CIPQ\images\CIPQ_logo 2004.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1  tag="exclure_mr" visible="1" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2523" y="4" height="76" width="910" format="[GENERAL]" html.valueishtml="0"  name=compute_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="88" height="444" width="914" html.valueishtml="0"  name=filtre_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2519" y1="80" x2="3433" y2="80"  name=l_4  tag="exclure_mr" visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Centre:" border="0" color="33554432" x="494" y="404" height="108" width="402" html.valueishtml="0"  name=cie_no_t  tag="" visible="1"  font.face="Tahoma" font.height="-16" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="905" y="404" height="108" width="256" format="[general]" html.valueishtml="0"  name=cie_no  tag="exclure_mr" visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=7 alignment="0" tabsequence=70 border="0" color="33554432" x="1189" y="404" height="108" width="1317" format="[general]" html.valueishtml="0"  name=ville  tag="exclure_mr" visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.2 x1="9" y1="248" x2="3419" y2="248"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header.2 x1="5" y1="256" x2="3415" y2="256"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.2 alignment="0" text="Nom" border="0" color="33554432" x="1056" y="172" height="64" width="987" html.valueishtml="0"  name=nom_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Tatouage" border="0" color="33554432" x="2048" y="172" height="64" width="667" html.valueishtml="0"  name=tatouage_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Numéro" border="0" color="33554432" x="681" y="172" height="64" width="361" html.valueishtml="0"  name=codeverrat_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Doses" border="0" color="33554432" x="3017" y="172" height="64" width="357" html.valueishtml="0"  name=ampo_total_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Date:" border="0" color="33554432" x="14" y="48" height="92" width="247" html.valueishtml="0"  name=date_recolte_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="283" y="48" height="92" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=date_recolte  tag="exclure_mr" visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=80 border="0" color="33554432" x="407" y="956" height="76" width="329" format="[general]" html.valueishtml="0"  name=nbr  tag="exclure_mr" visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ville:" border="0" color="33554432" x="37" y="820" height="64" width="352" html.valueishtml="0"  name=ville_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Nbr:" border="0" color="33554432" x="37" y="956" height="64" width="352" html.valueishtml="0"  name=nbr_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="681" y="8" height="76" width="361" format="[general]" html.valueishtml="0"  name=codeverrat  tag="exclure_mr" visible="1" edit.limit=12 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="33554432" x="1056" y="8" height="76" width="987" format="[general]" html.valueishtml="0"  name=nom  tag="exclure_mr" visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="33554432" x="2053" y="8" height="76" width="891" format="[general]" html.valueishtml="0"  name=tatouage  tag="exclure_mr" visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=60 border="0" color="33554432" x="3017" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=ampo_total  tag="exclure_mr" visible="1" editmask.mask="###,###.0" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=90 border="0" color="33554432" x="73" y="248" height="100" width="622" format="[general]" html.valueishtml="0"  name=vrairace visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=100 border="0" color="33554432" x="869" y="244" height="100" width="443" format="[general]" html.valueishtml="0"  name=coderace visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Race" border="0" color="33554432" x="50" y="140" height="100" width="338" html.valueishtml="0"  name=vrairace_t visible="0"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Groupe (verrat)" border="0" color="33554432" x="850" y="144" height="100" width="667" html.valueishtml="0"  name=coderace_t visible="0"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Préposé" border="0" color="33554432" x="453" y="392" height="100" width="384" html.valueishtml="0"  name=t_preprecolte_prepnom_t visible="0"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=110 border="0" color="33554432" x="1285" y="392" height="100" width="1435" format="[general]" html.valueishtml="0"  name=t_preprecolte_prepnom visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="0" expression="~"Total pour le ~" + lookupdisplay( date_recolte ) + ~":~""border="2" color="33554432" x="466" y="12" height="88" width="2949" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="2" expression="string(sum( ampo_total for group 2), ~"###,###.0~")"border="0" color="33554432" x="2976" y="24" height="92" width="425" format="[General]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="0" expression="~"Récoltes: ~" + count( codeverrat for group 2)"border="0" color="33554432" x="2181" y="24" height="64" width="777" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="0" expression="~"Total pour le centre ~" +  cie_no + ~":~""border="2" color="33554432" x="210" y="8" height="100" width="3205" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="string(sum( ampo_total for group 1), ~"###,###.0~")"border="0" color="33554432" x="2976" y="24" height="92" width="425" format="[General]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="0" expression="~"Récoltes: ~" + count( codeverrat for group 1)"border="0" color="33554432" x="2181" y="24" height="92" width="777" format="[GENERAL]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="~"Grand total:~""border="2" color="33554432" x="14" y="12" height="116" width="3401" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-16" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="string(sum( ampo_total for all), ~"###,###.0~")"border="0" color="33554432" x="2976" y="24" height="92" width="425" format="[General]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="~"Récoltes: ~" + count( codeverrat for all)"border="0" color="33554432" x="2181" y="28" height="92" width="777" format="[GENERAL]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="4" height="64" width="3442" html.valueishtml="0"  name=t_2  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Récoltes détaillées" border="0" color="33554432" x="480" y="0" height="156" width="2039" html.valueishtml="0"  name=t_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="2" expression="~"Pour la période du ~" +  ad_de + ~" au ~" +  ad_au "border="0" color="33554432" x="480" y="204" height="156" width="2039" format="[GENERAL]" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

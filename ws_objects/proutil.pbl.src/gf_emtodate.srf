@@ -1,0 +1,24 @@
+﻿$PBExportHeader$gf_emtodate.srf
+global type gf_emtodate from function_object
+end type
+
+forward prototypes
+global function date gf_emtodate (string as_text)
+end prototypes
+
+global function date gf_emtodate (string as_text);/////////////////////
+// 
+// Créé par: Sebastien Tremblay
+// Créé le: 26-05-2005
+// Demande: 
+// Version: 
+// Description: Cette fonction convertit le contenu texte d'un
+//					 champ editmask en date
+// Modifié par: 
+// Modifié le:
+//
+//////////////////////
+
+return date(right(as_text, 4) + '-' + mid(as_text, 4, 2) + '-' + left(as_text, 2))
+end function
+

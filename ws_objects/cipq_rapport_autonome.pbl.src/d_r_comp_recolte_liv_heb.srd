@@ -1,0 +1,74 @@
+﻿$PBExportHeader$d_r_comp_recolte_liv_heb.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=552 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=92 color="536870912" )
+detail(height=100 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=codehebergeur dbname="#Tmp_CompilationRecolte.codehebergeur" )
+ column=(type=datetime updatewhereclause=yes name=datecompilation dbname="#Tmp_CompilationRecolte.datecompilation" )
+ column=(type=long updatewhereclause=yes name=nbrdose dbname="#Tmp_CompilationRecolte.nbrdose" )
+ column=(type=long updatewhereclause=yes name=nbrpure dbname="#Tmp_CompilationRecolte.nbrpure" )
+ column=(type=long updatewhereclause=yes name=nbrmelange dbname="#Tmp_CompilationRecolte.nbrmelange" )
+ column=(type=char(50) updatewhereclause=yes name=t_eleveur_group_description dbname="t_eleveur_group.description" )
+ column=(type=char(54) updatewhereclause=yes name=hebergeur dbname="hebergeur" )
+ column=(type=long updatewhereclause=yes name=livraison dbname="livraison" )
+ column=(type=long updatewhereclause=yes name=ecart dbname="ecart" )
+ retrieve="SELECT 
+#Tmp_CompilationRecolte.CodeHebergeur, 
+#Tmp_CompilationRecolte.DateCompilation, 
+#Tmp_CompilationRecolte.NbrDose, 
+#Tmp_CompilationRecolte.NbrPure, 
+#Tmp_CompilationRecolte.NbrMelange, 
+t_ELEVEUR_Group.Description,
+t_ELEVEUR_Group.Description + ' (' + t_ELEVEUR_Group.Code_Hebergeur + ')' AS Hebergeur, 
+isnull(NbrPure,0) + isnull(NbrMelange,0) AS Livraison, 
+isnull(NbrDose,0) - isnull(Livraison,0) AS Ecart 
+FROM #Tmp_CompilationRecolte 
+LEFT JOIN t_ELEVEUR_Group 
+ON #Tmp_CompilationRecolte.CodeHebergeur = t_ELEVEUR_Group.Code_Hebergeur"  sort="hebergeur A datecompilation A " )
+group(level=1 header.height=320 trailer.height=144 by=("hebergeur" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2523" y="12" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1  tag="exclure_mr" visible="1" )
+text(band=header alignment="2" text="Comparaison des récoltes et des livraisons par hébergeur" border="0" color="33554432" x="498" y="0" height="452" width="2011" html.valueishtml="0"  name=t_1  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="108" height="444" width="946" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2519" y1="100" x2="3465" y2="100"  name=l_5 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="Hébergeur:" border="0" color="33554432" x="14" y="40" height="92" width="489" html.valueishtml="0"  name=hebergeur_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="526" y="40" height="92" width="1509" format="[general]" html.valueishtml="0"  name=hebergeur  tag="exclure_mr" visible="1" edit.limit=54 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="512" y="512" height="76" width="55" format="[general]" html.valueishtml="0"  name=codehebergeur  tag="exclure_mr" visible="0" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Code d'hébergeur:" border="0" color="33554432" x="18" y="512" height="64" width="553" html.valueishtml="0"  name=codehebergeur_t  tag="" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Nom de l'hébergeur" border="0" color="33554432" x="690" y="520" height="64" width="576" html.valueishtml="0"  name=t_eleveur_group_description_t  tag="" visible="0"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1147" y="520" height="76" width="1399" format="[general]" html.valueishtml="0"  name=t_eleveur_group_description  tag="exclure_mr" visible="0" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="14" y1="308" x2="3456" y2="308"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="Date" border="0" color="33554432" x="41" y="228" height="64" width="352" html.valueishtml="0"  name=datecompilation_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Récolte" border="0" color="33554432" x="695" y="228" height="64" width="439" html.valueishtml="0"  name=nbrdose_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Livraison" border="0" color="33554432" x="1166" y="228" height="64" width="439" html.valueishtml="0"  name=livraison_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Écart" border="0" color="33554432" x="2853" y="228" height="64" width="439" html.valueishtml="0"  name=ecart_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Mélange" border="0" color="33554432" x="2194" y="228" height="64" width="439" html.valueishtml="0"  name=nbrmelange_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Pur" border="0" color="33554432" x="1710" y="228" height="64" width="439" html.valueishtml="0"  name=nbrpure_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="18" y1="304" x2="3461" y2="304"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="41" y="8" height="76" width="352" format="[shortdate] [time]" html.valueishtml="0"  name=datecompilation  tag="exclure_mr" visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="695" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=nbrdose  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="0" color="33554432" x="1166" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=livraison  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1710" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=nbrpure  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="2194" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=nbrmelange  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="0" color="33554432" x="2853" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=ecart  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="2" text="Total de l'hébergeur:" border="0" color="33554432" x="14" y="24" height="64" width="622" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( nbrdose for group 1)"border="0" color="33554432" x="695" y="24" height="64" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( livraison for group 1)"border="0" color="33554432" x="1166" y="24" height="64" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( nbrpure for group 1)"border="0" color="33554432" x="1710" y="24" height="64" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( nbrmelange for group 1)"border="0" color="33554432" x="2194" y="24" height="64" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="18" y1="20" x2="3461" y2="20"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+line(band=trailer.1 x1="18" y1="124" x2="3461" y2="124"  name=l_4 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="2" expression="sum( ecart for group 1)"border="0" color="33554432" x="2853" y="36" height="64" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="0" y="12" height="64" width="3465" html.valueishtml="0"  name=t_3  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

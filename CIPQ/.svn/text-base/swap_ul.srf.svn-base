@@ -1,0 +1,25 @@
+HA$PBExportHeader$swap_ul.srf
+global type swap_ul from function_object
+end type
+
+forward prototypes
+global function integer swap_ul (ref unsignedlong al_item1, ref unsignedlong al_item2)
+end prototypes
+
+global function integer swap_ul (ref unsignedlong al_item1, ref unsignedlong al_item2);// Fonction qui interchange 2 items de type unsigned long
+// Les 2 items doivent $$HEX1$$ea00$$ENDHEX$$tre de m$$HEX1$$ea00$$ENDHEX$$me type
+//
+// Retourne un entier
+// 1 - Succ$$HEX1$$e800$$ENDHEX$$s
+// -1 - $$HEX1$$c900$$ENDHEX$$chec
+
+ulong ll_tmp
+
+ll_tmp = al_item1
+al_item1 = al_item2
+al_item2 = ll_tmp
+
+return 1
+
+end function
+

@@ -1,0 +1,25 @@
+﻿$PBExportHeader$swap_l.srf
+global type swap_l from function_object
+end type
+
+forward prototypes
+global function integer swap_l (ref long al_item1, ref long al_item2)
+end prototypes
+
+global function integer swap_l (ref long al_item1, ref long al_item2);// Fonction qui interchange 2 items de type long
+// Les 2 items doivent être de même type
+//
+// Retourne un entier
+// 1 - Succès
+// -1 - Échec
+
+long ll_tmp
+
+ll_tmp = al_item1
+al_item1 = al_item2
+al_item2 = ll_tmp
+
+return 1
+
+end function
+

@@ -1,0 +1,20 @@
+﻿$PBExportHeader$m_dw.srm
+$PBExportComments$Extension DataWindow menu class
+forward
+global type m_dw from pro_m_dw
+end type
+end forward
+
+global type m_dw from pro_m_dw
+end type
+global m_dw m_dw
+
+on m_dw.create
+m_dw=this
+call super::create
+end on
+
+on m_dw.destroy
+call super::destroy
+end on
+

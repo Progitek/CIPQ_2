@@ -1,0 +1,18 @@
+﻿$PBExportHeader$f_ecart_reel_comp_melange.srf
+global type f_ecart_reel_comp_melange from function_object
+end type
+
+forward prototypes
+global function long f_ecart_reel_comp_melange (string as_code, datetime ad_cur)
+end prototypes
+
+global function long f_ecart_reel_comp_melange (string as_code, datetime ad_cur);long	ll_rtn
+
+SELECT sum(isnull(NbrMelange,0))
+INTO :ll_rtn
+FROM #Tmp_CompilationMelange_Detail_Sommaire
+WHERE CodeHebergeur = :as_code AND DateCompilation = :ad_cur ;
+
+RETURN ll_rtn
+end function
+

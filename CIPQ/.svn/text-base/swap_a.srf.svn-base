@@ -1,0 +1,45 @@
+HA$PBExportHeader$swap_a.srf
+global type swap_a from function_object
+end type
+
+forward prototypes
+global function integer swap_a (ref any aa_item1, ref any aa_item2)
+end prototypes
+
+global function integer swap_a (ref any aa_item1, ref any aa_item2);// Fonction qui interchange 2 items de type any
+// Les 2 items doivent $$HEX1$$ea00$$ENDHEX$$tre de m$$HEX1$$ea00$$ENDHEX$$me type
+//
+// Retourne un entier
+// 1 - Succ$$HEX1$$e800$$ENDHEX$$s
+// -1 - $$HEX1$$c900$$ENDHEX$$chec
+
+string ls_keytype1
+string ls_keytype2
+any la_tmp
+
+// Validation des param$$HEX1$$e800$$ENDHEX$$tres.
+If IsNull(aa_item1) Then return -1
+If IsNull(aa_item2) Then return -1
+
+// Obtenir les types de donn$$HEX1$$e900$$ENDHEX$$es.
+ls_keytype1 = classname(aa_item1)
+ls_keytype2 = classname(aa_item2)
+
+// Comfirmer que les types sont comparables.
+if ls_keytype1 <> ls_keytype2 then 
+	// Les types de classes sont diff$$HEX1$$e900$$ENDHEX$$rents, alors on ne peut proc$$HEX1$$e900$$ENDHEX$$der $$HEX2$$e0002000$$ENDHEX$$l'$$HEX1$$e900$$ENDHEX$$change
+	return -1
+end if
+
+// Validation des types.
+if ls_keytype1 = "" or isnull(ls_keytype1) then return -1
+if ls_keytype2 = "" or isnull(ls_keytype2) then return -1
+
+la_tmp = aa_item1
+aa_item1 = aa_item2
+aa_item2 = la_tmp
+
+return 1
+
+end function
+

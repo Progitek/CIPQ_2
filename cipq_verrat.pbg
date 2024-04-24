@@ -1,0 +1,29 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "cipq_verrat.pbl" "";
+@end;
+@begin Objects
+ "d_recolte_message.srd" "cipq_verrat.pbl";
+ "w_recolte_commande.srw" "cipq_verrat.pbl";
+ "w_recolte_message.srw" "cipq_verrat.pbl";
+ "d_cote_peremption_coms.srd" "cipq_verrat.pbl";
+ "d_recolte_externe.srd" "cipq_verrat.pbl";
+ "d_cote_peremption.srd" "cipq_verrat.pbl";
+ "d_codeverratetiq.srd" "cipq_verrat.pbl";
+ "w_verrat_ecrasement.srw" "cipq_verrat.pbl";
+ "d_dernieres_recoltes.srd" "cipq_verrat.pbl";
+ "d_emplacement_verrat.srd" "cipq_verrat.pbl";
+ "w_emplacement_verrat.srw" "cipq_verrat.pbl";
+ "w_recolte_externe.srw" "cipq_verrat.pbl";
+ "w_cote_peremption.srw" "cipq_verrat.pbl";
+ "d_verrat_produit.srd" "cipq_verrat.pbl";
+ "d_r_cote_peremption.srd" "cipq_verrat.pbl";
+ "d_gestion_recolte_commande.srd" "cipq_verrat.pbl";
+ "d_recolte.srd" "cipq_verrat.pbl";
+ "w_recolte_commande_produit_detail.srw" "cipq_verrat.pbl";
+ "w_savefile.srw" "cipq_verrat.pbl";
+ "d_verrat.srd" "cipq_verrat.pbl";
+ "w_recolte_peremption_coms.srw" "cipq_verrat.pbl";
+ "w_recolte.srw" "cipq_verrat.pbl";
+ "w_verrats.srw" "cipq_verrat.pbl";
+@end;

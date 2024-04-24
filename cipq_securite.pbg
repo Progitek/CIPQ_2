@@ -1,0 +1,18 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "cipq_securite.pbl" "";
+@end;
+@begin Objects
+ "d_user.srd" "cipq_securite.pbl";
+ "d_r_journalcommandes.srd" "cipq_securite.pbl";
+ "d_userslistgr.srd" "cipq_securite.pbl";
+ "d_detaildroits.srd" "cipq_securite.pbl";
+ "w_editpwd_user.srw" "cipq_securite.pbl";
+ "d_groupesuser.srd" "cipq_securite.pbl";
+ "d_usergroupe.srd" "cipq_securite.pbl";
+ "n_cst_journal.sru" "cipq_securite.pbl";
+ "w_droitsgroupes.srw" "cipq_securite.pbl";
+ "d_groupes.srd" "cipq_securite.pbl";
+ "w_groupes.srw" "cipq_securite.pbl";
+ "w_editpwd.srw" "cipq_securite.pbl";
+@end;

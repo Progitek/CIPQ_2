@@ -1,0 +1,52 @@
+﻿$PBExportHeader$gf_throw.srf
+global type gf_throw from function_object
+end type
+
+forward prototypes
+global subroutine gf_throw (integer ai_populate_error_rc_dummy) throws n_ex
+end prototypes
+
+global subroutine gf_throw (integer ai_populate_error_rc_dummy) throws n_ex;/**********************************************************************************************************************
+Dscr:	Creates an Exception object (of type n_ex or its descendant), populates the exception-related data and throws.
+		Is called this way:
+		
+		gf_throw(PopulateError(0, "[string]"))
+		
+		IF "[string]" is the name of a descendant of n_ex THEN
+			the thrown exception is of that class;
+			no error message is generated (the caught exceptions are distinguished by data type, in the "PL/SQL style");
+		ELSE // [string] is an error message
+			the thrown exception is of the class n_ex;
+			the string is interpreted as an error message which can be displayed with uf_msg() of the caught exception;
+		END IF
+		
+		More details: http://forum.powerbuilder.us/viewtopic.php?f=2&t=1
+-----------------------------------------------------------------------------------------------------------------------
+Arg:	ai_populate_error_rc_dummy - placeholder for PopulateError()'s return code; the only purpose of this argument
+												is to enable writing PopulateError inside the argument parentheses of f_throw.
+-----------------------------------------------------------------------------------------------------------------------
+Thr:	n_ex
+**********************************************************************************************************************/
+string				ls_msg
+string				ls_ex_type = "n_ex" // the default (used if Error.Text contains an error message)
+n_ex					ln_ex
+ClassDefinition	lcd
+
+ls_msg = Trim(Error.Text)
+lcd = FindClassDefinition(ls_msg)
+if not IsNull(lcd) /* Error.Text contains the name of a valid PB type */ then
+	do until lcd.Name = "powerobject"
+		lcd = lcd.Ancestor
+		if lcd.Name <> "n_ex" /* the PB type, contained in Error.Text, is NOT a descendant of n_ex */ then continue
+		ls_ex_type = ls_msg
+		ls_msg = "Exception " + ls_msg + " thrown." // usually will not be used, but anyway...
+		exit
+	loop
+end if
+
+ln_ex = create using ls_ex_type
+ln_ex.uf_populate(Error.Number, ls_msg, Error.Object, Error.ObjectEvent, Error.Line)
+
+throw ln_ex
+end subroutine
+

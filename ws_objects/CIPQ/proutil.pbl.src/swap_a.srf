@@ -1,0 +1,45 @@
+﻿$PBExportHeader$swap_a.srf
+global type swap_a from function_object
+end type
+
+forward prototypes
+global function integer swap_a (ref any aa_item1, ref any aa_item2)
+end prototypes
+
+global function integer swap_a (ref any aa_item1, ref any aa_item2);// Fonction qui interchange 2 items de type any
+// Les 2 items doivent être de même type
+//
+// Retourne un entier
+// 1 - Succès
+// -1 - Échec
+
+string ls_keytype1
+string ls_keytype2
+any la_tmp
+
+// Validation des paramètres.
+If IsNull(aa_item1) Then return -1
+If IsNull(aa_item2) Then return -1
+
+// Obtenir les types de données.
+ls_keytype1 = classname(aa_item1)
+ls_keytype2 = classname(aa_item2)
+
+// Comfirmer que les types sont comparables.
+if ls_keytype1 <> ls_keytype2 then 
+	// Les types de classes sont différents, alors on ne peut procéder à l'échange
+	return -1
+end if
+
+// Validation des types.
+if ls_keytype1 = "" or isnull(ls_keytype1) then return -1
+if ls_keytype2 = "" or isnull(ls_keytype2) then return -1
+
+la_tmp = aa_item1
+aa_item1 = aa_item2
+aa_item2 = la_tmp
+
+return 1
+
+end function
+

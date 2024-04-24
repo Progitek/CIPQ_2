@@ -1,0 +1,20 @@
+﻿$PBExportHeader$m_tvs.srm
+$PBExportComments$Extension TreeView menu class
+forward
+global type m_tvs from pro_m_tvs
+end type
+end forward
+
+global type m_tvs from pro_m_tvs
+end type
+global m_tvs m_tvs
+
+on m_tvs.create
+m_tvs=this
+call super::create
+end on
+
+on m_tvs.destroy
+call super::destroy
+end on
+

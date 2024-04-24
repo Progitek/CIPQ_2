@@ -1,0 +1,63 @@
+﻿$PBExportHeader$d_r_commandes_mensuelles.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=556 color="536870912" )
+summary(height=176 color="536870912" )
+footer(height=76 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=date updatewhereclause=yes name=liv_date dbname="liv_date" )
+ column=(type=char(3) updatewhereclause=yes name=cie_no dbname="#temp_com_men_statfacture.cie_no" )
+ column=(type=number updatewhereclause=yes name=sumofqte_exp dbname="sumofqte_exp" )
+ column=(type=char(40) updatewhereclause=yes name=t_centrecipq_ville dbname="t_centrecipq.ville" )
+ retrieve="SELECT 
+date(#temp_com_men_statfacture.LIV_DATE) as liv_date,
+#temp_com_men_statfacture.CIE_NO, 
+Sum(#temp_com_men_statfactureDetail.QTE_EXP) AS SumOfQTE_EXP,
+t_centrecipq.ville
+FROM #temp_com_men_statfacture 
+INNER JOIN (#temp_com_men_statfactureDetail 
+INNER JOIN t_Produit ON #temp_com_men_statfactureDetail.PROD_NO = t_Produit.NoProduit) 
+ON (#temp_com_men_statfacture.LIV_NO = #temp_com_men_statfactureDetail.LIV_NO) 
+AND (#temp_com_men_statfacture.CIE_NO = #temp_com_men_statfactureDetail.CIE_NO) 
+INNER JOIN t_centrecipq ON  t_centrecipq.CIE = #temp_com_men_statfacture.CIE_NO
+WHERE t_Produit.Special = 1
+GROUP BY 
+date(#temp_com_men_statfacture.LIV_DATE),
+#temp_com_men_statfacture.CIE_NO,
+t_centrecipq.ville" arguments=(("ad_de", date))  sort="cie_no A liv_date A " )
+group(level=1 header.height=280 trailer.height=128 by=("cie_no" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+bitmap(band=header filename="C:\ii4net\ii4sc\CIPQ\Copie de CIPQ.jpg" x="23" y="0" height="540" width="448" border="0"  name=p_1 visible="1" )
+compute(band=header alignment="0" expression="case ( month(  date( ad_de ) ) when 1 then 'Janvier' when 2 then 'Février' when 3 then 'Mars' when 4 then 'Avril' when 5 then 'Mai' when 6 then 'Juin' when 7 then 'Juillet' when 8 then 'Août' when 9 then 'Septembre' when 10 then 'Octobre' when 11 then 'Novembre' when 12 then 'Décembre')"border="0" color="33554432" x="960" y="444" height="76" width="256" format="[GENERAL]" html.valueishtml="0"  name=cf_mois visible="0"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="~"Imprimé le: ~" + today()"border="0" color="33554432" x="2523" y="8" height="76" width="946" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Commandes mensuelles" border="0" color="33554432" x="480" y="4" height="156" width="2034" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="2" expression="~"Pour le mois de: ~" +  cf_mois + ~" ~" + string(year( ad_de ))"border="0" color="33554432" x="480" y="184" height="76" width="2034" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="" border="0" color="33554432" x="2523" y="104" height="444" width="946" html.valueishtml="0"  name=filtre_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+line(band=header x1="2519" y1="96" x2="3465" y2="96"  name=l_4 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+column(band=header.1 id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="594" y="28" height="92" width="1842" format="[general]" html.valueishtml="0"  name=t_centrecipq_ville  tag="exclure_mr" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="No centre:" border="0" color="33554432" x="2107" y="40" height="64" width="384" html.valueishtml="0"  name=cie_no_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Ville du centre" border="0" color="33554432" x="2574" y="32" height="64" width="384" html.valueishtml="0"  name=t_centrecipq_nom_t visible="0"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Centre:" border="0" color="33554432" x="9" y="24" height="92" width="320" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="370" y="24" height="92" width="201" format="[general]" html.valueishtml="0"  name=cie_no visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="9" y1="248" x2="3447" y2="248"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+line(band=header.1 x1="5" y1="256" x2="3442" y2="256"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="12639424"  background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="Nbr semences" border="0" color="33554432" x="2313" y="160" height="64" width="425" html.valueishtml="0"  name=sumofqte_exp_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Date" border="0" color="33554432" x="1600" y="160" height="64" width="384" html.valueishtml="0"  name=liv_date_t  tag="exclure_mr" visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="t_centrecipq_ville" border="0" color="33554432" x="590" y="128" height="92" width="786" html.valueishtml="0"  name=t_centrecipq_ville_t  tag="exclure_mr" visible="0"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="1600" y="8" height="76" width="384" format="[shortdate]" html.valueishtml="0"  name=liv_date visible="1" editmask.mask="yyyy-mm-dd" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="2313" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=sumofqte_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="2304" y1="4" x2="2743" y2="4"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="2" expression="sum( sumofqte_exp for group 1)"border="0" color="33554432" x="2313" y="32" height="84" width="425" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="2" text="Total:" border="0" color="33554432" x="2034" y="32" height="76" width="224" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="Grand total:" border="0" color="33554432" x="1746" y="44" height="100" width="512" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="2" expression="sum( sumofqte_exp for all)"border="0" color="33554432" x="2277" y="48" height="112" width="526" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-16" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="1" text="page~t~"Page ~" + Page() + ~" de ~" + pagecount()" border="2" color="0" x="5" y="4" height="64" width="3465" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

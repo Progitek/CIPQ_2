@@ -1,0 +1,117 @@
+﻿$PBExportHeader$d_portail_rappels.srd
+release 10.5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 1 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no )
+header(height=76 color="536870912" height.autosize=yes )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912~tif ( mod( getrow() , 2 ) = 0 , rgb ( 215,220,255 ) , -1 )" )
+table(column=(type=long update=yes updatewhereclause=yes name=t_rdv_id_patient dbname="t_rdv.id_patient" )
+ column=(type=char(50) updatewhereclause=yes name=t_patients_nom dbname="t_patients.nom" )
+ column=(type=char(50) updatewhereclause=yes name=t_patients_prenom dbname="t_patients.prenom" )
+ column=(type=long updatewhereclause=yes name=t_patients_nodos dbname="t_patients.nodos" )
+ column=(type=char(15) updatewhereclause=yes name=t_patients_telres dbname="t_patients.telres" )
+ column=(type=date updatewhereclause=yes name=lastrapdate dbname="lastrapdate" )
+ column=(type=date update=yes updatewhereclause=yes name=t_rdv_rdvdate dbname="t_rdv.rdvdate" )
+ column=(type=datetime updatewhereclause=yes name=nextrapdate dbname="nextrapdate" )
+ column=(type=long update=yes updatewhereclause=yes name=t_rdv_id_user dbname="t_rdv.id_user" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=t_rdv_id_rdv dbname="t_rdv.id_rdv" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=t_rdv_flag dbname="t_rdv.flag" values="	1/	0" )
+ column=(type=char(500) update=yes updatewhereclause=yes name=t_rdv_rdvnote dbname="t_rdv.rdvnote" )
+ column=(type=long update=yes updatewhereclause=yes name=t_rdv_id_specialist dbname="t_rdv.id_specialist" )
+ column=(type=long update=yes updatewhereclause=yes name=t_rdv_id_raptrait dbname="t_rdv.id_raptrait" )
+ retrieve="select  t_rdv.id_patient,
+        t_patients.nom,
+        t_patients.prenom,
+		  t_patients.nodos,
+		  t_patients.telres,
+        isnull((select max(visitdate) from t_visites inner join t_factures on t_visites.id_visit = t_factures.id_visit
+															  inner join t_codes on t_factures.id_code = t_codes.id_code 
+															  where t_visites.id_patient = t_rdv.id_patient AND 
+																	  t_codes.id_raptrait = t_rdv.id_raptrait AND
+																	  t_visites.typevisit = 'F'), t_rdv.rdvdatev, date('1900-01-01')) as lastrapdate,
+        t_rdv.rdvdate,
+        isnull((select min(daterdv) 
+         from t_rdvhor inner join t_typetrait on t_rdvhor.id_typetrait = t_typetrait.id_typetrait 
+			where t_rdvhor.id_patient = t_patients.id_patient and 
+					t_typetrait.id_raptrait = t_rdv.id_raptrait and 
+					daterdv >= isnull(:ra_date, :ra_date_fin)),'1900-01-01') as nextrapdate,
+        t_rdv.id_user as id_user,
+        t_rdv.id_rdv,
+		  t_rdv.flag,
+        t_rdv.rdvnote,
+		  t_rdv.id_specialist,
+        t_rdv.id_raptrait
+from    t_patients INNER join t_rdv on t_patients.id_patient = t_rdv.id_patient
+where   t_patients.actif = 1 and
+		  t_patients.dossurg = 0 and
+		  (t_rdv.id_specialist = :ra_idspec or :ra_idspec is null) AND
+        (t_rdv.id_raptrait = :ra_idraptrait or :ra_idraptrait is null) AND
+		  (t_rdv.id_user = :ra_iduser or :ra_iduser is null) AND
+		  (t_rdv.id_patient = :ra_patid or :ra_patid is null) AND
+		  ((datediff(~"mm~",t_rdv.rdvdate,:ra_date) >= 0 OR :ra_date is null) AND 
+        ((t_rdv.rdvdate >= :ra_date_debut AND t_rdv.rdvdate <= :ra_date_fin) OR  :ra_date_fin is null )) AND
+		  (:ra_rdv = nextrapdate or :ra_rdv is null)
+union all
+select DISTINCT t_patients.id_patient, 
+        t_patients.nom,
+        t_patients.prenom,
+		  t_patients.nodos,
+		  t_patients.telres,
+        t_visites.visitdate as lastrapdate,
+        date(days(months(lastrapdate,t_patraptrait.intervalle),1)),
+        isnull((select min(daterdv) 
+         from t_rdvhor inner join t_typetrait on t_rdvhor.id_typetrait = t_typetrait.id_typetrait 
+			where t_rdvhor.id_patient = t_patients.id_patient and 
+					t_typetrait.id_raptrait = t_codes.id_raptrait and 
+					daterdv >= isnull(:ra_date, :ra_date_fin)),'1900-01-01') as nextrapdate,
+        0 as id_user,
+        null as id_rdv,
+		  null as flag,
+        null as note1,
+		  t_patients.id_specialist,
+        t_codes.id_raptrait
+from    t_patients  INNER JOIN t_visites ON t_visites.id_patient = t_patients.id_patient
+                    INNER JOIN t_factures ON t_factures.id_visit = t_visites.id_visit
+                    INNER JOIN t_codes ON t_factures.id_code = t_codes.id_code
+						  INNER JOIN t_patraptrait ON t_patraptrait.id_raptrait = t_codes.id_raptrait AND t_patraptrait.id_patient = t_patients.id_patient AND t_patraptrait.intervalle > 0
+where   ((datediff(~"mm~",lastrapdate,:ra_date) >= t_patraptrait.intervalle OR :ra_date is null) AND 
+		  ((months(date(lastrapdate), t_patraptrait.intervalle) >= :ra_date_debut AND 
+			months(date(lastrapdate), t_patraptrait.intervalle) <= :ra_date_fin ) OR :ra_date_fin is null)) AND
+		  t_patients.actif = 1 AND
+		  t_patients.dossurg = 0 AND
+		  t_patraptrait.intervalle <> 0 AND
+		  (:ra_iduser = 0 or :ra_iduser is null) AND
+	     (t_patients.id_specialist = :ra_idspec or :ra_idspec is null) AND
+        (t_codes.id_raptrait = :ra_idraptrait or :ra_idraptrait is null) AND
+		  (t_patients.id_patient = :ra_patid or :ra_patid is null) AND
+		  (:ra_rdv = nextrapdate or :ra_rdv is null) AND
+        t_visites.visitdate = (select max(visitdate) from t_visites inner join t_factures on t_visites.id_visit = t_factures.id_visit
+															  inner join t_codes as cod on t_factures.id_code = cod.id_code 
+															  where t_visites.id_patient = t_patients.id_patient AND 
+																	  cod.id_raptrait = t_codes.id_raptrait AND
+																	  t_visites.typevisit = 'F') AND
+        not exists( select  *
+                    from t_patients as p INNER join t_rdv on t_patients.id_patient = t_rdv.id_patient
+                    where   p.id_patient = t_patients.id_patient AND
+		                    t_rdv.id_specialist = t_patients.id_specialist AND
+                            t_rdv.id_raptrait = t_codes.id_raptrait AND
+                            isnull(t_rdv.rdvdate,'1900-01-01') > isnull(lastrapdate,'1900-01-01'))
+order by telres asc, nom asc, prenom asc
+" update="t_rdv" updatewhere=0 updatekeyinplace=no arguments=(("ra_idraptrait", number),("ra_idspec", number),("ra_date", date),("ra_iduser", number),("ra_patid", number),("ra_rdv", date),("ra_date_debut", date),("ra_date_fin", date)) )
+text(band=header alignment="2" text="Téléphone" border="6" color="0" x="0" y="8" height="56" width="352" html.valueishtml="0"  name=t_tel pointer="Arrow!" visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Nom" border="6" color="0" x="370" y="8" height="56" width="759" html.valueishtml="0"  name=t_patnom pointer="Arrow!" visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+rectangle(band=detail x="101" y="152" height="20" width="137"  name=r_1 visible="1"  slideup=allabove brush.hatch="7" brush.color="570425344" pen.style="5" pen.width="5" pen.color="1073741824"  background.mode="2" background.color="33554432" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="0" x="0" y="4" height="68" width="352" format="[general]" html.valueishtml="0"  name=t_patients_telres pointer="Arrow!" visible="1" editmask.mask="(###) ###-####" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression=" t_patients_nom +~",~"+  t_patients_prenom "border="0" color="134217856" x="370" y="4" height="68" width="759" format="[general]" html.valueishtml="0"  name=nom_complet pointer="HyperLink!" visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=0 border="0" color="33554432" x="1285" y="8" height="76" width="128" html.valueishtml="0"  name=t_rdv_id_patient visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 
